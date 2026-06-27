@@ -2,7 +2,7 @@
   "name": "@robertcastro/roui",
   "version": "0.1.2",
   "description": "RoUI — design system reutilizable: tokens, componentes y layouts en CSS.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RobertCastro/RoUI.git"
@@ -12,8 +12,7 @@
     "url": "https://github.com/RobertCastro/RoUI/issues"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
+    "access": "public"
   },
   "type": "module",
   "sideEffects": [

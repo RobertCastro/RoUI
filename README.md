@@ -40,7 +40,10 @@ Abre **`docs/index.html`** en el navegador (mejor servido por HTTP: `npm run dev
 
 **A · Un solo archivo (cualquier stack)**
 ```html
+<!-- local -->
 <link rel="stylesheet" href="dist/roui.css">
+<!-- o vía CDN (jsDelivr, sin instalar nada) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@robertcastro/roui/dist/roui.css">
 <body class="ro-root"> … </body>
 ```
 
@@ -67,39 +70,36 @@ El script lee el orden de `@import` de `src/index.css`, así que **añadir un co
 
 > **`dist/` no se versiona** (es build generado, está en `.gitignore`). Tras clonar, `npm install` lo recrea vía el script `prepare`. Si prefieres versionarlo (uso sin build), quita `dist/` del `.gitignore`.
 
-## Publicar (privado · GitHub Packages)
+## Publicar (público · npm)
 
-El paquete es `@robertcastro/roui` y se publica en el registry privado de GitHub (visibilidad ligada al repo). El `.npmrc` del repo solo mapea el scope (sin secretos); el token va aparte.
+Paquete público en npm: **`@robertcastro/roui`** (MIT). Cualquiera lo instala sin token.
 
-**Publicar una versión**
-1. Crea un **PAT** (GitHub → Settings → Developer settings → Tokens) con permisos `write:packages`, `read:packages` y `repo`.
-2. Autentícate (en tu `~/.npmrc`, fuera del repo):
-   ```
-   //npm.pkg.github.com/:_authToken=TU_PAT
-   ```
-   o por entorno: `export NODE_AUTH_TOKEN=TU_PAT`
-3. Sube la versión y publica:
+**Publicar una versión** (automático vía GitHub Actions)
+1. Crea un token **Automation** en npmjs.com → guárdalo como secret **`NPM_TOKEN`** en el repo (Settings → Secrets → Actions).
+2. Lanza la versión:
    ```bash
-   npm version patch        # o minor / major (crea tag git)
-   npm publish              # prepare compila dist/ y publica
-   git push --follow-tags
+   npm version patch        # o minor / major (crea commit + tag)
+   git push --follow-tags   # el workflow publish.yml publica en npm
    ```
+   (o manual: `npm publish --access public` con tu sesión `npm login`).
 
-**Consumir en otro proyecto**
-1. `.npmrc` del proyecto consumidor:
-   ```
-   @robertcastro:registry=https://npm.pkg.github.com
-   //npm.pkg.github.com/:_authToken=TU_PAT_DE_LECTURA   # mejor en ~/.npmrc o CI
-   ```
-2. Instala y usa:
-   ```bash
-   npm install @robertcastro/roui
-   ```
-   ```js
-   import '@robertcastro/roui';   // dist/roui.css
-   ```
+**Consumir en cualquier proyecto** (sin autenticación)
+```bash
+npm install @robertcastro/roui
+```
+```js
+import '@robertcastro/roui';   // dist/roui.css
+```
+o por **CDN** (sin instalar):
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@robertcastro/roui/dist/roui.css">
+```
 
-> Requiere **Node ≥ 18** (recomendado) para publicar sin fricción. El repo incluye `dist/src/tokens` en el paquete (campo `files`) y excluye `docs/`.
+## Documentación (GitHub Pages)
+
+La galería (`docs/`) se publica como sitio en cada push a `main` vía `pages.yml`.
+Actívalo una vez en **Settings → Pages → Source: GitHub Actions**.
+URL: `https://robertcastro.github.io/RoUI/`
 
 ## Convenciones (mejores prácticas)
 - **Prefijo `ro-`** en todas las clases → sin colisiones con tu CSS existente.

@@ -1,15 +1,15 @@
-name: Publish package
+name: Publish to npm
 
-# Publica en GitHub Packages al subir un tag de versión (vX.Y.Z).
-# Flujo: npm version patch/minor/major → git push --follow-tags → este workflow publica.
+# Publica en el registry público de npm al subir un tag de versión (vX.Y.Z).
+# Requiere el secret NPM_TOKEN (token "Automation" de npmjs.com) en el repo.
+# Flujo: npm version patch/minor/major → git push --follow-tags → publica.
 on:
   push:
     tags: ["v*.*.*"]
-  workflow_dispatch: {}   # permite ejecutarlo manualmente desde la pestaña Actions
+  workflow_dispatch: {}
 
 permissions:
   contents: read
-  packages: write          # necesario para publicar en GitHub Packages
 
 jobs:
   publish:
@@ -20,8 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://npm.pkg.github.com
-          scope: "@robertcastro"
+          registry-url: https://registry.npmjs.org
 
       # Verifica que el tag (vX.Y.Z) coincida con la versión de package.json.
       - name: Verificar tag vs versión
@@ -34,6 +33,6 @@ jobs:
 
       # `npm publish` dispara el script `prepare` → compila dist/ antes de publicar.
       - name: Publicar
-        run: npm publish
+        run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
