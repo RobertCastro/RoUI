@@ -1,6 +1,6 @@
 {
   "name": "@robertcastro/roui",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "RoUI — design system reutilizable: tokens, componentes y layouts en CSS.",
   "license": "MIT",
   "repository": {
