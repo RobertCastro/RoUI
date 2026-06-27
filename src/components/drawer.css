@@ -1,0 +1,30 @@
+/* components/drawer.css — Off-canvas: menú mobile, bottom-sheet, paneles laterales. */
+.ro-drawer-overlay {
+  position: fixed; inset: 0; z-index: var(--ro-z-overlay);
+  background: rgba(23,23,25,0.45); display: none;
+}
+.ro-drawer {
+  position: fixed; z-index: calc(var(--ro-z-overlay) + 1);
+  background: var(--ro-white); box-shadow: var(--ro-shadow-md);
+  display: flex; flex-direction: column;
+  transition: transform 0.25s var(--ro-ease-out);
+}
+.ro-drawer--left  { top: 0; bottom: 0; left: 0;  width: min(320px, 85vw); transform: translateX(-100%); }
+.ro-drawer--right { top: 0; bottom: 0; right: 0; width: min(360px, 90vw); transform: translateX(100%); }
+.ro-drawer--bottom {
+  left: 0; right: 0; bottom: 0; max-height: 80vh;
+  border-radius: var(--ro-radius-2xl) var(--ro-radius-2xl) 0 0; transform: translateY(100%);
+}
+
+/* Abierto: el root marca is-open en sus dos hijos */
+.ro-drawer-root.is-open .ro-drawer-overlay { display: block; }
+.ro-drawer-root.is-open .ro-drawer { transform: none; }
+
+.ro-drawer__header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 18px; border-bottom: 1px solid var(--ro-ink-06);
+}
+.ro-drawer__title { font-weight: var(--ro-weight-bold); letter-spacing: var(--ro-tracking-tight); }
+.ro-drawer__body { padding: 12px; overflow-y: auto; flex: 1; }
+.ro-drawer__grip { width: 36px; height: 4px; border-radius: var(--ro-radius-full);
+  background: var(--ro-ink-20); margin: 8px auto 0; } /* tirador del bottom-sheet */

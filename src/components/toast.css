@@ -1,0 +1,22 @@
+/* components/toast.css — Notificaciones flotantes (toasts). */
+.ro-toast-region {
+  position: fixed; bottom: 20px; right: 20px; z-index: var(--ro-z-modal);
+  display: flex; flex-direction: column; gap: 10px; max-width: 360px;
+}
+.ro-toast {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 14px; border-radius: var(--ro-radius-xl);
+  background: var(--ro-ink); color: var(--ro-on-dark);
+  box-shadow: var(--ro-shadow-md);
+  animation: ro-toast-in 0.2s var(--ro-ease-out);
+}
+.ro-toast.is-leaving { animation: ro-toast-out 0.15s var(--ro-ease) forwards; }
+.ro-toast__icon { flex-shrink: 0; color: var(--ro-on-dark-72); margin-top: 1px; }
+.ro-toast__body { flex: 1; font-size: var(--ro-text-sm); line-height: 1.4; }
+.ro-toast__close { border: 0; background: transparent; color: var(--ro-on-dark-60);
+  cursor: pointer; padding: 0; display: grid; place-items: center; }
+.ro-toast__close:hover { color: var(--ro-on-dark); }
+
+.ro-toast--success .ro-toast__icon { color: var(--ro-success); }
+.ro-toast--error   .ro-toast__icon { color: var(--ro-error); }
+.ro-toast--info    .ro-toast__icon { color: var(--ro-secondary); }

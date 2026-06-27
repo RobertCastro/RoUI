@@ -1,0 +1,15 @@
+/* components/list-group.css — Lista con items y divisores. */
+.ro-list {
+  border: 1px solid var(--ro-ink-10); border-radius: var(--ro-radius-xl);
+  overflow: hidden; background: var(--ro-white);
+}
+.ro-list__item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+  color: var(--ro-ink); text-decoration: none; font-size: var(--ro-text-sm);
+  transition: var(--ro-transition);
+}
+.ro-list__item + .ro-list__item { border-top: 1px solid var(--ro-ink-06); }
+a.ro-list__item:hover, .ro-list__item--link:hover { background: var(--ro-ink-02); }
+.ro-list__item--active { background: var(--ro-secondary-soft); box-shadow: inset 3px 0 0 var(--ro-secondary); }
+.ro-list__title { font-weight: var(--ro-weight-medium); }
+.ro-list__meta { color: var(--ro-ink-50); font-size: var(--ro-text-xs); }

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iconos — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/roui.css">
+  <link rel="stylesheet" href="assets/docs.css">
+  <style>
+    .ic-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:10px; }
+    .ic-cell { display:flex; flex-direction:column; align-items:center; gap:10px; padding:18px 10px;
+      border:1px solid var(--ro-ink-10); border-radius:14px; text-align:center; }
+    .ic-cell code { font-family:var(--ro-font-mono); font-size:11px; color:var(--ro-ink-50); word-break:break-all; }
+    .ic-cell .ro-icon { width:24px; height:24px; }
+  </style>
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+      <div class="dx-brand">RoUI<span>.</span></div>
+      <div class="dx-nav-group"><h4>Inicio</h4><a href="index.html">Introducción</a></div>
+      <div class="dx-nav-group"><h4>Fundamentos</h4>
+        <a href="tokens.html">Tokens / Variables</a>
+        <a href="icons.html" class="is-active">Iconos</a>
+        <a href="layouts.html">Layouts &amp; Grid</a></div>
+      <div class="dx-nav-group"><h4>Componentes</h4><a href="components.html">Galería de componentes</a></div>
+      <div class="dx-nav-group"><h4>Plantillas</h4>
+        <a href="templates/dashboard.html">Dashboard</a>
+        <a href="templates/module-3col.html">Módulo (3 columnas)</a></div>
+    </aside>
+
+    <main class="dx-main">
+      <h1>Iconos</h1>
+      <p class="dx-lead">Set <strong>Lucide</strong> (MIT) como <strong>sprite SVG</strong>: un solo archivo, sin librerías ni PNG, coloreable con <code>currentColor</code> y escalable.</p>
+
+      <div class="dx-section">
+        <h2>Cómo usar</h2>
+        <p class="dx-sub">1 · Inyecta el sprite una vez (al inicio del &lt;body&gt; o vía fetch)</p>
+        <div class="dx-demo dx-demo--soft"><span class="dx-code">&lt;!-- inline --&gt; &lt;svg style="display:none"&gt;…symbols…&lt;/svg&gt;  ·  o  fetch('dist/icons.svg')</span></div>
+        <p class="dx-sub">2 · Referencia el símbolo</p>
+        <div class="dx-demo dx-demo--soft"><span class="dx-code">&lt;svg class="ro-icon"&gt;&lt;use href="#ro-i-bell"&gt;&lt;/use&gt;&lt;/svg&gt;</span></div>
+        <p>Tamaños: <span class="dx-code">.ro-icon--xs</span> 14 · <span class="dx-code">--sm</span> 16 · base 18 · <span class="dx-code">--lg</span> 20. El color se hereda del texto (currentColor).</p>
+        <div class="dx-demo" style="align-items:flex-end">
+          <span style="color:var(--ro-ink)"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-bell"></use></svg></span>
+          <span style="color:var(--ro-ink-50)"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-bell"></use></svg></span>
+          <span style="color:var(--ro-secondary)"><svg class="ro-icon"><use href="#ro-i-bell"></use></svg></span>
+          <span style="color:var(--ro-error)"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg></span>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Set disponible</h2>
+        <div class="ic-grid" id="icGrid"></div>
+      </div>
+    </main>
+  </div>
+  <script src="assets/docs.js"></script>
+  <script>
+    var NAMES = ["building-2","chevron-down","chevron-left","chevron-right","wrench","bell",
+      "languages","menu","check","circle-check","user","settings","log-out","search","plus",
+      "arrow-right","play","lock","book-open","calendar","copy","eye","external-link","share-2",
+      "message-square","circle-question-mark"];
+    document.getElementById("icGrid").innerHTML = NAMES.map(function (n) {
+      return '<div class="ic-cell"><svg class="ro-icon"><use href="#ro-i-' + n + '"></use></svg><code>' + n + '</code></div>';
+    }).join("");
+  </script>
+</body>
+</html>

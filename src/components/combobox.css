@@ -1,0 +1,17 @@
+/* components/combobox.css — Combobox / autocomplete (input + lista filtrable). Usa .ro-field. */
+.ro-combobox { position: relative; }
+.ro-combobox__list {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: var(--ro-z-overlay);
+  background: var(--ro-white); border: 1px solid var(--ro-ink-10);
+  border-radius: var(--ro-radius-xl); box-shadow: var(--ro-shadow-md);
+  padding: 6px; max-height: 240px; overflow-y: auto; display: none;
+}
+.ro-combobox.is-open .ro-combobox__list { display: block; }
+.ro-combobox__option {
+  display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+  border-radius: var(--ro-radius-lg); font-size: var(--ro-text-sm);
+  color: var(--ro-ink-70); cursor: pointer;
+}
+.ro-combobox__option:hover, .ro-combobox__option.is-active { background: var(--ro-ink-05); color: var(--ro-ink); }
+.ro-combobox__option[hidden] { display: none; }
+.ro-combobox__empty { padding: 10px; text-align: center; font-size: var(--ro-text-sm); color: var(--ro-ink-40); }

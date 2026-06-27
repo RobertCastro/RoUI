@@ -1,0 +1,15 @@
+/* components/breadcrumb.css — Breadcrumb standalone (default + mono, como la context-bar). */
+.ro-breadcrumbs {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  font-size: var(--ro-text-sm); color: var(--ro-ink-60);
+}
+.ro-breadcrumbs a { color: var(--ro-ink-60); text-decoration: none; transition: var(--ro-transition); }
+.ro-breadcrumbs a:hover { color: var(--ro-ink); }
+.ro-breadcrumbs__sep { color: var(--ro-ink-40); display: inline-flex; }
+.ro-breadcrumbs__current { color: var(--ro-ink); font-weight: var(--ro-weight-semibold); }
+
+/* Variante mono mayúsculas (la usada en la barra de contexto) */
+.ro-breadcrumbs--mono {
+  font-family: var(--ro-font-mono); font-size: 0.6875rem;
+  text-transform: uppercase; letter-spacing: var(--ro-tracking-wider);
+}

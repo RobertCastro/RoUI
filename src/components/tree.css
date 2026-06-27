@@ -1,0 +1,14 @@
+/* components/tree.css — Árbol / tree view (nodo activo en lavanda de marca). */
+.ro-tree, .ro-tree__children { list-style: none; margin: 0; padding: 0; font-size: var(--ro-text-sm); }
+.ro-tree__children { padding-left: 18px; display: none; }
+.ro-tree__item.is-open > .ro-tree__children { display: block; }
+.ro-tree__row {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+  border-radius: var(--ro-radius-lg); cursor: pointer; color: var(--ro-ink-70);
+  transition: var(--ro-transition);
+}
+.ro-tree__row:hover { background: var(--ro-ink-04); color: var(--ro-ink); }
+.ro-tree__row--active { background: var(--ro-secondary-soft); color: var(--ro-ink); font-weight: var(--ro-weight-semibold); }
+.ro-tree__chevron { color: var(--ro-ink-40); transition: transform 0.2s var(--ro-ease); flex-shrink: 0; }
+.ro-tree__item.is-open > .ro-tree__row .ro-tree__chevron { transform: rotate(90deg); }
+.ro-tree__row--leaf { padding-left: 30px; } /* alinea hojas sin chevron */

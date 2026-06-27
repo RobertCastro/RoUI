@@ -1,0 +1,10 @@
+/* components/rating.css — Rating de estrellas (relleno amarillo de marca). */
+.ro-rating { display: inline-flex; gap: 2px; }
+.ro-rating__star {
+  display: inline-grid; place-items: center; padding: 0; border: 0; background: none; cursor: pointer;
+  color: var(--ro-ink-20);
+}
+.ro-rating__star .ro-icon { width: 20px; height: 20px; }
+.ro-rating__star.is-active { color: var(--ro-primary); }
+.ro-rating__star.is-active .ro-icon { fill: var(--ro-primary); }
+.ro-rating--readonly .ro-rating__star { cursor: default; }

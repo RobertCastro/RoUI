@@ -1,0 +1,19 @@
+/* components/number-input.css — Input numérico con steppers − / +. */
+.ro-number {
+  display: inline-flex; align-items: center; overflow: hidden;
+  border: 1px solid var(--ro-ink-10); border-radius: var(--ro-radius-lg); background: var(--ro-white);
+}
+.ro-number:focus-within { box-shadow: var(--ro-focus-ring); border-color: var(--ro-secondary); }
+.ro-number__btn {
+  width: 34px; height: 34px; display: grid; place-items: center;
+  border: 0; background: transparent; color: var(--ro-ink-60); cursor: pointer; font-size: 16px;
+  transition: var(--ro-transition);
+}
+.ro-number__btn:hover { background: var(--ro-ink-05); color: var(--ro-ink); }
+.ro-number__btn:disabled { color: var(--ro-ink-20); cursor: not-allowed; }
+.ro-number input {
+  width: 48px; text-align: center; border: 0; outline: 0; background: transparent;
+  font-family: var(--ro-font-sans); font-size: var(--ro-text-sm); color: var(--ro-ink);
+  -moz-appearance: textfield;
+}
+.ro-number input::-webkit-outer-spin-button, .ro-number input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }

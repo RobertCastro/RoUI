@@ -1,0 +1,19 @@
+/* components/slider.css — Range / slider (thumb lavanda de marca). */
+.ro-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 6px; border-radius: var(--ro-radius-full);
+  background: var(--ro-ink-10); cursor: pointer;
+}
+.ro-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--ro-secondary); border: 3px solid var(--ro-white);
+  box-shadow: 0 1px 3px rgba(23,23,25,0.25); cursor: pointer;
+}
+.ro-slider::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--ro-secondary); border: 3px solid var(--ro-white);
+  box-shadow: 0 1px 3px rgba(23,23,25,0.25); cursor: pointer;
+}
+.ro-slider:focus-visible { outline: none; }
+.ro-slider:focus-visible::-webkit-slider-thumb { box-shadow: var(--ro-focus-ring); }
+.ro-slider:focus-visible::-moz-range-thumb { box-shadow: var(--ro-focus-ring); }

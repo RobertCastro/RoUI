@@ -1,0 +1,33 @@
+/* components/badge.css — Badges, contadores, dots y status-chip. */
+.ro-badge {
+  display: inline-flex; align-items: center; gap: var(--ro-space-2);
+  border-radius: var(--ro-radius-full);
+  padding: 0.1875rem 0.5625rem;
+  font-family: var(--ro-font-mono); font-size: 0.6875rem;
+  font-weight: var(--ro-weight-semibold);
+  background: var(--ro-secondary); color: var(--ro-ink);
+}
+.ro-badge--soft  { background: var(--ro-ink-04); color: var(--ro-ink); }
+.ro-badge--count {
+  background: var(--ro-primary-soft); border: 1px solid var(--ro-primary);
+  color: var(--ro-primary); padding: 0 0.375rem; font-size: 0.625rem;
+  font-weight: var(--ro-weight-bold); text-transform: uppercase;
+}
+
+.ro-dot { display: inline-block; width: 0.625rem; height: 0.625rem; border-radius: var(--ro-radius-full); background: var(--ro-secondary); }
+.ro-dot--sm      { width: 7px; height: 7px; }
+.ro-dot--success { background: var(--ro-success); }
+.ro-dot--warning { background: var(--ro-warning); }
+.ro-dot--error   { background: var(--ro-error); }
+
+/* Chip de estado sobre fondo oscuro (context bar) */
+.ro-status-chip {
+  display: inline-flex; align-items: center; gap: 0.625rem;
+  border-radius: var(--ro-radius-full);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.06);
+  padding: 0.375rem 0.875rem 0.375rem 0.5rem;
+  font-size: 0.6875rem; font-weight: var(--ro-weight-bold);
+  text-transform: uppercase; letter-spacing: var(--ro-tracking-wide);
+  color: var(--ro-on-dark);
+}

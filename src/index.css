@@ -1,0 +1,71 @@
+/* ============================================================================
+   RoUI Design System — Entry point
+   Importa todo en orden. Úsalo con un bundler (Vite/PostCSS) o genera el
+   bundle plano con `npm run build` → dist/roui.css
+   ============================================================================ */
+
+/* 1. Tokens (variables) */
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/effects.css";
+@import "./tokens/layout.css";
+
+/* 2. Base */
+@import "./base/reset.css";
+@import "./base/animations.css";
+
+/* 3. Layouts */
+@import "./layouts/shell.css";
+@import "./layouts/grid.css";
+@import "./layouts/three-col.css";
+
+/* 4. Componentes */
+@import "./components/typography.css";
+@import "./components/icon.css";
+@import "./components/button.css";
+@import "./components/badge.css";
+@import "./components/avatar.css";
+@import "./components/card.css";
+@import "./components/form.css";
+@import "./components/nav.css";
+@import "./components/header.css";
+@import "./components/sidebar.css";
+@import "./components/progress.css";
+@import "./components/menu.css";
+@import "./components/table.css";
+@import "./components/pagination.css";
+@import "./components/tooltip.css";
+@import "./components/modal.css";
+@import "./components/toast.css";
+@import "./components/alert.css";
+@import "./components/skeleton.css";
+@import "./components/spinner.css";
+@import "./components/empty.css";
+@import "./components/drawer.css";
+@import "./components/code.css";
+@import "./components/segmented.css";
+@import "./components/tag.css";
+@import "./components/accordion.css";
+@import "./components/breadcrumb.css";
+@import "./components/stepper.css";
+@import "./components/popover.css";
+@import "./components/prose.css";
+@import "./components/combobox.css";
+@import "./components/tags-input.css";
+@import "./components/slider.css";
+@import "./components/file-upload.css";
+@import "./components/input-group.css";
+@import "./components/rating.css";
+@import "./components/list-group.css";
+@import "./components/description-list.css";
+@import "./components/timeline.css";
+@import "./components/progress-ring.css";
+@import "./components/calendar.css";
+@import "./components/command-palette.css";
+@import "./components/button-group.css";
+@import "./components/number-input.css";
+@import "./components/tree.css";
+
+/* 5. Utilidades */
+@import "./utilities/helpers.css";

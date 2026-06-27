@@ -1,0 +1,39 @@
+/* components/typography.css — Clases de texto. */
+.ro-display {
+  font-family: var(--ro-font-display);
+  font-size: var(--ro-text-display);
+  font-weight: var(--ro-weight-bold);
+  line-height: var(--ro-leading-tight);
+  letter-spacing: var(--ro-tracking-tight);
+  color: var(--ro-text); margin: 0;
+}
+.ro-h2 {
+  font-family: var(--ro-font-display);
+  font-size: var(--ro-text-4xl);
+  font-weight: var(--ro-weight-bold);
+  line-height: 1.1; letter-spacing: var(--ro-tracking-tight);
+  color: var(--ro-text); margin: 0;
+}
+.ro-h3 {
+  font-size: 1.0625rem; /* 17 */
+  font-weight: var(--ro-weight-bold);
+  line-height: var(--ro-leading-snug);
+  letter-spacing: var(--ro-tracking-tight);
+  color: var(--ro-text); margin: 0;
+}
+.ro-body {
+  font-size: 0.9375rem; /* 15 */
+  font-weight: var(--ro-weight-normal);
+  line-height: var(--ro-leading-relaxed);
+  color: var(--ro-ink-72); margin: 0;
+}
+.ro-muted { color: var(--ro-text-muted); }
+
+.ro-eyebrow {
+  display: inline-flex; align-items: center; gap: var(--ro-space-2);
+  font-size: 0.6875rem; /* 11 */
+  font-weight: var(--ro-weight-medium); line-height: 1;
+  letter-spacing: var(--ro-tracking-wider);
+  text-transform: uppercase; color: var(--ro-secondary);
+}
+.ro-eyebrow--ink { color: var(--ro-ink-55); }

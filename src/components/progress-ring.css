@@ -1,0 +1,16 @@
+/* components/progress-ring.css — Progreso circular (lavanda de marca). CSS-only con conic-gradient.
+   Uso: <div class="ro-ring" style="--val:65"><div class="ro-ring__hole">65%</div></div> */
+.ro-ring {
+  --val: 0; --size: 56px;
+  width: var(--size); height: var(--size); border-radius: 50%;
+  display: grid; place-items: center;
+  background: conic-gradient(var(--ro-secondary) calc(var(--val) * 1%), var(--ro-ink-06) 0);
+}
+.ro-ring--ink { background: conic-gradient(var(--ro-ink) calc(var(--val) * 1%), var(--ro-ink-06) 0); }
+.ro-ring__hole {
+  width: calc(var(--size) - 12px); height: calc(var(--size) - 12px); border-radius: 50%;
+  background: var(--ro-white); display: grid; place-items: center;
+  font-size: 13px; font-weight: var(--ro-weight-bold); color: var(--ro-ink);
+}
+.ro-ring--lg { --size: 88px; }
+.ro-ring--lg .ro-ring__hole { font-size: 18px; }

@@ -1,0 +1,39 @@
+name: Publish package
+
+# Publica en GitHub Packages al subir un tag de versión (vX.Y.Z).
+# Flujo: npm version patch/minor/major → git push --follow-tags → este workflow publica.
+on:
+  push:
+    tags: ["v*.*.*"]
+  workflow_dispatch: {}   # permite ejecutarlo manualmente desde la pestaña Actions
+
+permissions:
+  contents: read
+  packages: write          # necesario para publicar en GitHub Packages
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: "@robertcastro"
+
+      # Verifica que el tag (vX.Y.Z) coincida con la versión de package.json.
+      - name: Verificar tag vs versión
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          PKG="$(node -p "require('./package.json').version")"
+          TAG="${GITHUB_REF_NAME#v}"
+          echo "package.json=$PKG  tag=$TAG"
+          test "$PKG" = "$TAG" || { echo "::error::El tag ($TAG) no coincide con package.json ($PKG)"; exit 1; }
+
+      # `npm publish` dispara el script `prepare` → compila dist/ antes de publicar.
+      - name: Publicar
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

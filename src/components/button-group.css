@@ -1,0 +1,16 @@
+/* components/button-group.css — Grupo de botones conectados + split button. */
+.ro-btn-group { display: inline-flex; }
+.ro-btn-group > .ro-btn { border-radius: 0; }
+.ro-btn-group > .ro-btn:first-child { border-top-left-radius: var(--ro-radius-full); border-bottom-left-radius: var(--ro-radius-full); }
+.ro-btn-group > .ro-btn:last-child  { border-top-right-radius: var(--ro-radius-full); border-bottom-right-radius: var(--ro-radius-full); }
+.ro-btn-group > .ro-btn + .ro-btn { box-shadow: inset 1px 0 0 rgba(255,255,255,0.18); }
+.ro-btn-group > .ro-btn--soft + .ro-btn--soft { box-shadow: inset 1px 0 0 var(--ro-ink-10); }
+
+/* Split button: acción principal + disparador de menú */
+.ro-split { display: inline-flex; }
+.ro-split > .ro-btn:first-child { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.ro-split__toggle {
+  border-top-left-radius: 0; border-bottom-left-radius: 0;
+  padding-left: 10px; padding-right: 10px; box-shadow: inset 1px 0 0 rgba(255,255,255,0.2);
+}
+.ro-split__toggle.ro-btn--soft { box-shadow: inset 1px 0 0 var(--ro-ink-10); }

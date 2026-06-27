@@ -1,0 +1,26 @@
+/* components/command-palette.css — Command palette (⌘K). Item activo en lavanda de marca. */
+.ro-cmdk-overlay {
+  position: fixed; inset: 0; z-index: var(--ro-z-modal);
+  background: rgba(23,23,25,0.45); display: none;
+  align-items: flex-start; justify-content: center; padding: 12vh 16px 16px;
+}
+.ro-cmdk-overlay.is-open { display: flex; }
+.ro-cmdk {
+  width: min(560px, 92vw); background: var(--ro-white);
+  border-radius: var(--ro-radius-2xl); box-shadow: var(--ro-shadow-md); overflow: hidden;
+  animation: ro-pop 0.18s var(--ro-ease-out);
+}
+.ro-cmdk__search { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--ro-ink-06); }
+.ro-cmdk__search input { flex: 1; border: 0; outline: 0; background: transparent;
+  font-family: var(--ro-font-sans); font-size: var(--ro-text-base); color: var(--ro-ink); }
+.ro-cmdk__list { max-height: 320px; overflow-y: auto; padding: 8px; }
+.ro-cmdk__group { padding: 8px 10px 4px; font-family: var(--ro-font-mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: var(--ro-tracking-wider); color: var(--ro-ink-40); }
+.ro-cmdk__item {
+  display: flex; align-items: center; gap: 10px; padding: 9px 10px;
+  border-radius: var(--ro-radius-lg); font-size: var(--ro-text-sm); color: var(--ro-ink-70); cursor: pointer;
+}
+.ro-cmdk__item:hover, .ro-cmdk__item.is-active { background: var(--ro-secondary-soft); color: var(--ro-ink); }
+.ro-cmdk__item[hidden] { display: none; }
+.ro-cmdk__item .ro-kbd { margin-left: auto; }
+.ro-cmdk__empty { padding: 16px; text-align: center; color: var(--ro-ink-40); font-size: var(--ro-text-sm); }

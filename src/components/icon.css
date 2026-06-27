@@ -1,0 +1,9 @@
+/* components/icon.css — Aplica tamaño/stroke a un <svg> (Lucide). currentColor. */
+.ro-icon {
+  width: var(--ro-icon-md); height: var(--ro-icon-md);
+  stroke: currentColor; fill: none; stroke-width: var(--ro-icon-stroke);
+  stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
+}
+.ro-icon--xs { width: var(--ro-icon-xs); height: var(--ro-icon-xs); }
+.ro-icon--sm { width: var(--ro-icon-sm); height: var(--ro-icon-sm); }
+.ro-icon--lg { width: var(--ro-icon-lg); height: var(--ro-icon-lg); }

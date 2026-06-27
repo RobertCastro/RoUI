@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Build generado (se regenera con `npm run build` o `npm install` → prepare)
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
+*.swp
+*~

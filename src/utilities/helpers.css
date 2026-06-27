@@ -1,0 +1,11 @@
+/* utilities/helpers.css — Helpers responsive y de visibilidad. */
+.ro-hide-mobile { display: none; }
+@media (min-width: 768px) { .ro-hide-mobile { display: revert; } }
+.ro-only-mobile { display: revert; }
+@media (min-width: 768px) { .ro-only-mobile { display: none; } }
+
+.ro-fab { position: fixed; right: 16px; bottom: 16px; z-index: var(--ro-z-overlay); }
+@media (min-width: 1280px) { .ro-fab { display: none; } }
+
+.ro-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }

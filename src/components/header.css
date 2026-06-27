@@ -1,0 +1,36 @@
+/* components/header.css — Header principal, switcher, context-bar, breadcrumb. */
+.ro-header {
+  display: flex; align-items: center; gap: var(--ro-space-7);
+  height: var(--ro-header-h); padding-inline: 1rem;
+  background: var(--ro-white); border-bottom: 1px solid var(--ro-ink-10);
+}
+@media (min-width: 768px) { .ro-header { padding-inline: 2rem; } }
+.ro-header__brand { display: flex; align-items: center; flex-shrink: 0; }
+.ro-header__nav { display: none; align-items: center; gap: var(--ro-space-1); }
+@media (min-width: 768px) { .ro-header__nav { display: flex; } }
+.ro-header__title { display: none; flex: 1; justify-content: center;
+  font-family: var(--ro-font-mono); font-size: var(--ro-text-sm); color: var(--ro-ink); }
+@media (min-width: 768px) { .ro-header__title { display: flex; } }
+.ro-header__actions { display: flex; align-items: center; gap: var(--ro-space-2); margin-left: auto; }
+.ro-burger { display: grid; }
+@media (min-width: 768px) { .ro-burger { display: none; } }
+
+.ro-switcher {
+  display: inline-flex; align-items: center; gap: var(--ro-space-2);
+  border-radius: var(--ro-radius-lg); padding: 0.375rem 0.5rem;
+  font-size: var(--ro-text-sm); color: var(--ro-ink-70);
+  background: transparent; border: 0; cursor: pointer; transition: var(--ro-transition);
+}
+.ro-switcher:hover { background: var(--ro-ink-05); color: var(--ro-ink); }
+
+/* Barra de contexto (oscura) */
+.ro-context-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.625rem 1.75rem;
+  padding: 0.75rem 1rem; background: var(--ro-ink); color: var(--ro-on-dark);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+@media (min-width: 640px) { .ro-context-bar { padding: 0.75rem 2rem; } }
+.ro-breadcrumb { display: flex; align-items: center; gap: 0.625rem;
+  font-family: var(--ro-font-mono); font-size: 0.6875rem; text-transform: uppercase;
+  letter-spacing: var(--ro-tracking-wider); color: var(--ro-on-dark-60); }
+.ro-breadcrumb b { color: var(--ro-on-dark); font-weight: var(--ro-weight-bold); }

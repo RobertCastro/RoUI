@@ -1,0 +1,22 @@
+/* components/spinner.css — Spinner y estado de carga de botones. */
+.ro-spinner {
+  display: inline-block; width: 20px; height: 20px;
+  border: 2px solid var(--ro-ink-20); border-top-color: var(--ro-ink);
+  border-radius: var(--ro-radius-full); animation: ro-spin 0.6s linear infinite;
+}
+.ro-spinner--sm { width: 14px; height: 14px; }
+.ro-spinner--lg { width: 28px; height: 28px; border-width: 3px; }
+.ro-spinner--light { border-color: rgba(255,255,255,0.3); border-top-color: #fff; }
+
+/* Botón en carga: oculta el texto y muestra un spinner centrado */
+.ro-btn.is-loading { color: transparent !important; pointer-events: none; position: relative; }
+.ro-btn.is-loading::after {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 16px; height: 16px; margin: -8px 0 0 -8px;
+  border: 2px solid rgba(23,23,25,0.3); border-top-color: var(--ro-ink);
+  border-radius: var(--ro-radius-full); animation: ro-spin 0.6s linear infinite;
+}
+.ro-btn--dark.is-loading::after,
+.ro-btn--primary.is-loading::after { border-color: rgba(23,23,25,0.25); border-top-color: var(--ro-ink); }
+.ro-btn--dark.is-loading::after { border-color: rgba(255,255,255,0.4); border-top-color: #fff; }
+@media (prefers-reduced-motion: reduce) { .ro-spinner, .ro-btn.is-loading::after { animation-duration: 1.2s; } }

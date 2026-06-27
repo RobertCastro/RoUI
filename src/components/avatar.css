@@ -1,0 +1,22 @@
+/* components/avatar.css — Avatar y pila de avatares. */
+.ro-avatar {
+  display: grid; place-items: center;
+  width: 2.25rem; height: 2.25rem;
+  border: 0;
+  border-radius: var(--ro-radius-full);
+  background: var(--ro-secondary); color: var(--ro-ink);
+  font-size: 0.8125rem; font-weight: var(--ro-weight-semibold);
+  line-height: 1; cursor: pointer;
+  overflow: hidden;
+  transition: opacity var(--ro-duration) var(--ro-ease);
+}
+.ro-avatar:hover { opacity: 0.85; }
+.ro-avatar:focus { outline: none; }
+.ro-avatar:focus-visible { outline: none; box-shadow: var(--ro-focus-ring); }
+.ro-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.ro-avatar--sm { width: 1.625rem; height: 1.625rem; font-size: 0.625rem; }
+.ro-avatar--lg { width: 3rem; height: 3rem; }
+
+.ro-avatar-stack { display: inline-flex; }
+.ro-avatar-stack > * { margin-left: -10px; border: 2px solid var(--ro-white); }
+.ro-avatar-stack > *:first-child { margin-left: 0; }

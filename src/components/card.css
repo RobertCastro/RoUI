@@ -1,0 +1,48 @@
+/* components/card.css — Cards, fila clickable, callout, stat, recurso. */
+.ro-card {
+  position: relative; overflow: hidden;
+  border: var(--ro-border-strong); border-radius: var(--ro-radius-card);
+  background: var(--ro-ink-02); padding: 1rem 1rem 1.125rem; color: var(--ro-ink);
+}
+.ro-card--plain { background: var(--ro-white); border-color: var(--ro-ink-10); }
+.ro-card--soft-yellow {
+  border: 1px solid var(--ro-primary);
+  background: linear-gradient(135deg, rgba(246,240,114,0.40), rgba(246,240,114,0.13) 60%, rgba(0,0,0,0));
+}
+.ro-card__header { display: flex; align-items: center; justify-content: space-between; gap: var(--ro-space-3); }
+.ro-card__footer { margin-top: var(--ro-space-4); display: flex; align-items: center; gap: var(--ro-space-2); }
+
+.ro-card-dark {
+  position: relative; overflow: hidden;
+  border-radius: var(--ro-radius-2xl);
+  background: var(--ro-ink); color: var(--ro-on-dark);
+  padding: 2rem 2.5rem;
+}
+.ro-card-dark .ro-body { color: var(--ro-on-dark-72); }
+
+.ro-card-row {
+  display: flex; align-items: center; gap: var(--ro-space-4);
+  border-radius: var(--ro-radius-xl); padding: 1rem 1.25rem;
+  transition: var(--ro-transition); text-decoration: none; color: var(--ro-ink);
+}
+.ro-card-row:hover { background: var(--ro-ink-05); }
+
+.ro-callout {
+  display: flex; align-items: center; gap: var(--ro-space-6); overflow: hidden;
+  border-radius: var(--ro-radius-banner); background: var(--ro-primary);
+  color: var(--ro-ink); padding: 1.25rem 1.75rem;
+}
+.ro-callout--soft {
+  background: linear-gradient(135deg, rgba(246,240,114,0.40), rgba(246,240,114,0.13) 60%, rgba(0,0,0,0));
+  border: 1px solid var(--ro-primary);
+}
+
+.ro-stat { text-align: right; }
+.ro-stat__value { font-family: var(--ro-font-display); font-size: var(--ro-text-4xl);
+  font-weight: var(--ro-weight-bold); line-height: 1; letter-spacing: var(--ro-tracking-tight); }
+.ro-stat__label { margin-top: 4px; font-family: var(--ro-font-mono); font-size: 0.625rem;
+  text-transform: uppercase; letter-spacing: var(--ro-tracking-wider); color: var(--ro-ink-50); }
+
+.ro-resource { display: flex; align-items: center; gap: var(--ro-space-2);
+  padding: 0.625rem 0; color: var(--ro-ink-70); text-decoration: none; font-size: var(--ro-text-sm); }
+.ro-resource:hover { color: var(--ro-ink); }

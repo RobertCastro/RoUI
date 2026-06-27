@@ -1,0 +1,14 @@
+/* components/pagination.css — Paginación. */
+.ro-pagination { display: inline-flex; align-items: center; gap: 4px; }
+.ro-page {
+  display: grid; place-items: center;
+  min-width: 36px; height: 36px; padding: 0 10px;
+  border: 0; border-radius: var(--ro-radius-lg);
+  background: transparent; color: var(--ro-ink-70);
+  font-family: var(--ro-font-sans); font-size: var(--ro-text-sm); font-weight: var(--ro-weight-medium);
+  cursor: pointer; text-decoration: none; transition: var(--ro-transition);
+}
+.ro-page:hover { background: var(--ro-ink-05); color: var(--ro-ink); }
+.ro-page--active { background: var(--ro-ink); color: var(--ro-white); font-weight: var(--ro-weight-bold); }
+.ro-page:disabled { opacity: 0.4; cursor: not-allowed; }
+.ro-page__ellipsis { display: grid; place-items: center; min-width: 36px; height: 36px; color: var(--ro-ink-40); }

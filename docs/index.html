@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoUI Design System — Docs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/roui.css">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <!-- NAV -->
+    <aside class="dx-nav">
+      <div class="dx-brand">RoUI<span>.</span></div>
+      <div class="dx-nav-group">
+        <h4>Inicio</h4>
+        <a href="index.html" class="is-active">Introducción</a>
+      </div>
+      <div class="dx-nav-group">
+        <h4>Fundamentos</h4>
+        <a href="tokens.html">Tokens / Variables</a>
+        <a href="icons.html">Iconos</a>
+        <a href="layouts.html">Layouts &amp; Grid</a>
+      </div>
+      <div class="dx-nav-group">
+        <h4>Componentes</h4>
+        <a href="components.html">Galería de componentes</a>
+      </div>
+      <div class="dx-nav-group">
+        <h4>Plantillas</h4>
+        <a href="templates/dashboard.html">Dashboard</a>
+        <a href="templates/module-3col.html">Módulo (3 columnas)</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="dx-main">
+      <h1>RoUI Design System</h1>
+      <p class="dx-lead">Sistema de diseño <strong>RoUI</strong>: tokens, componentes y layouts en CSS modular — listo para usar en cualquier proyecto, con o sin Tailwind.</p>
+
+      <div class="dx-section">
+        <h2>Cómo usarlo</h2>
+        <p class="dx-sub">Opción A · Un solo archivo (cualquier proyecto)</p>
+        <div class="dx-demo dx-demo--col dx-demo--soft">
+          <span class="dx-code">&lt;link rel="stylesheet" href="dist/roui.css"&gt;</span>
+          <span class="dx-code">&lt;body class="ro-root"&gt; … &lt;/body&gt;</span>
+        </div>
+
+        <p class="dx-sub">Opción B · Con bundler (Vite / PostCSS / Next)</p>
+        <div class="dx-demo dx-demo--col dx-demo--soft">
+          <span class="dx-code">import 'roui/src';  /* o dist/roui.css */</span>
+        </div>
+
+        <p class="dx-sub">Opción C · Tailwind</p>
+        <div class="dx-demo dx-demo--col dx-demo--soft">
+          <span class="dx-code">// tailwind.config.js</span>
+          <span class="dx-code">presets: [require('roui/tailwind')]</span>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Arquitectura</h2>
+        <p>Estructura modular tipo Tailwind: tokens separados de componentes, y un bundle plano generado.</p>
+        <div class="dx-demo dx-demo--col dx-demo--soft" style="font-family:var(--ro-font-mono);font-size:12.5px;line-height:1.9;color:var(--ro-ink-70)">
+<pre style="margin:0">src/
+├─ tokens/      colors · typography · spacing · effects · layout
+├─ base/        reset
+├─ layouts/     shell · grid · three-col
+├─ components/  button · badge · card · form · nav · header · sidebar · …
+├─ utilities/   helpers
+└─ index.css    @import de todo  ──build──▶  dist/roui.css
+tokens/         tokens.json · tailwind.preset.js
+docs/           esta galería</pre>
+        </div>
+        <p style="margin-top:14px">Regenerar el bundle: <span class="dx-code">npm run build</span></p>
+      </div>
+
+      <div class="dx-section">
+        <h2>Principios</h2>
+        <div class="ro-cols-3">
+          <div class="ro-card ro-card--plain">
+            <h3 class="ro-h3">Tokens primero</h3>
+            <p class="ro-body" style="margin-top:6px">Todo color/tamaño es una variable <code>--ro-*</code>. Re-tematizas cambiando tokens, no componentes.</p>
+          </div>
+          <div class="ro-card ro-card--plain">
+            <h3 class="ro-h3">Portable</h3>
+            <p class="ro-body" style="margin-top:6px">CSS plano con prefijo <code>ro-</code>. Sin dependencias, sin colisiones, funciona en cualquier framework.</p>
+          </div>
+          <div class="ro-card ro-card--plain">
+            <h3 class="ro-h3">Roles semánticos</h3>
+            <p class="ro-body" style="margin-top:6px"><code>--ro-bg</code>, <code>--ro-surface</code>, <code>--ro-accent</code>… apuntan a primitivos y son fáciles de remapear.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

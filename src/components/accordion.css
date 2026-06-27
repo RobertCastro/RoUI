@@ -1,0 +1,21 @@
+/* components/accordion.css — Accordion genérico (basado en .ro-accordion-head del sidebar real). */
+.ro-accordion {
+  border: 1px solid var(--ro-ink-10); border-radius: var(--ro-radius-xl);
+  overflow: hidden; background: var(--ro-white);
+}
+.ro-accordion__item + .ro-accordion__item { border-top: 1px solid var(--ro-ink-06); }
+.ro-accordion__head {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 14px 16px; background: transparent; border: 0; cursor: pointer; text-align: left;
+  font-size: var(--ro-text-sm); font-weight: var(--ro-weight-semibold); color: var(--ro-ink);
+  transition: var(--ro-transition);
+}
+.ro-accordion__head:hover { background: var(--ro-ink-04); }
+.ro-accordion__chevron { margin-left: auto; color: var(--ro-ink-50);
+  transition: transform 0.2s var(--ro-ease); }
+.ro-accordion__item.is-open .ro-accordion__chevron { transform: rotate(180deg); }
+.ro-accordion__panel {
+  display: none; padding: 0 16px 16px;
+  font-size: var(--ro-text-sm); line-height: 1.55; color: var(--ro-ink-70);
+}
+.ro-accordion__item.is-open .ro-accordion__panel { display: block; }

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layouts &amp; Grid — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/roui.css">
+  <link rel="stylesheet" href="assets/docs.css">
+  <style>
+    .dx-box { background: var(--ro-secondary); color: var(--ro-ink); border-radius: 10px;
+      padding: 16px; font-family: var(--ro-font-mono); font-size: 12px; text-align: center; }
+    .dx-box--alt { background: var(--ro-ink-06); }
+  </style>
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+      <div class="dx-brand">RoUI<span>.</span></div>
+      <div class="dx-nav-group"><h4>Inicio</h4><a href="index.html">Introducción</a></div>
+      <div class="dx-nav-group"><h4>Fundamentos</h4>
+        <a href="tokens.html">Tokens / Variables</a>
+        <a href="icons.html">Iconos</a>
+        <a href="layouts.html" class="is-active">Layouts &amp; Grid</a></div>
+      <div class="dx-nav-group"><h4>Componentes</h4><a href="components.html">Galería de componentes</a></div>
+      <div class="dx-nav-group"><h4>Plantillas</h4>
+        <a href="templates/dashboard.html">Dashboard</a>
+        <a href="templates/module-3col.html">Módulo (3 columnas)</a></div>
+    </aside>
+
+    <main class="dx-main">
+      <h1>Layouts &amp; Grid</h1>
+      <p class="dx-lead">Sistema de filas/columnas responsive. Redimensiona la ventana para ver los breakpoints (sm 640 · md 768 · lg 1024 · xl 1280).</p>
+
+      <div class="dx-section">
+        <h2>Grid 12 columnas</h2>
+        <p><span class="dx-code">.ro-grid</span> + <span class="dx-code">.ro-col-8 / .ro-col-4</span> (en mobile pasan a 12).</p>
+        <div class="ro-grid">
+          <div class="ro-col-8"><div class="dx-box">.ro-col-8</div></div>
+          <div class="ro-col-4"><div class="dx-box dx-box--alt">.ro-col-4</div></div>
+          <div class="ro-col-6"><div class="dx-box">.ro-col-6</div></div>
+          <div class="ro-col-6"><div class="dx-box dx-box--alt">.ro-col-6</div></div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Columnas iguales · auto-fit</h2>
+        <p><span class="dx-code">.ro-cols-3</span> (1→3 cols) y <span class="dx-code">.ro-cards</span> (auto-fill).</p>
+        <div class="ro-cols-3" style="margin-bottom:14px">
+          <div class="dx-box">1</div><div class="dx-box">2</div><div class="dx-box">3</div>
+        </div>
+        <div class="ro-cards">
+          <div class="dx-box dx-box--alt">card</div><div class="dx-box dx-box--alt">card</div>
+          <div class="dx-box dx-box--alt">card</div><div class="dx-box dx-box--alt">card</div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>App shell &amp; 3 columnas</h2>
+        <p>La estructura completa (header → context-bar → grid de 3 columnas con rails sticky) vive en las plantillas:</p>
+        <div class="dx-demo">
+          <a class="ro-btn ro-btn--dark" href="templates/module-3col.html">Ver plantilla módulo (3 col) →</a>
+          <a class="ro-btn ro-btn--soft" href="templates/dashboard.html">Ver plantilla dashboard →</a>
+        </div>
+        <p class="dx-sub">Esquema</p>
+        <div class="dx-demo dx-demo--col">
+          <div class="dx-box" style="background:var(--ro-ink);color:#fff">header (72px)</div>
+          <div class="dx-box" style="background:var(--ro-ink);color:#fff">context-bar</div>
+          <div style="display:grid;grid-template-columns:90px 1fr 130px;gap:8px;width:100%">
+            <div class="dx-box dx-box--alt">rail<br>280</div>
+            <div class="dx-box">contenido · 1fr</div>
+            <div class="dx-box dx-box--alt">rail<br>440</div>
+          </div>
+          <p class="ro-muted" style="font-size:13px;margin:0">&lt;md: 1 columna · md–xl: rail+contenido · ≥xl: 3 columnas</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

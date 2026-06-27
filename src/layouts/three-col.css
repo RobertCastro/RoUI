@@ -1,0 +1,26 @@
+/* layouts/three-col.css — Layout de 3 columnas (rail · contenido · rail) + 2col. */
+.ro-layout-3col {
+  display: grid; flex: 1; min-height: 0; grid-template-columns: 1fr;
+  transition: grid-template-columns 0.3s var(--ro-ease-out);
+}
+@media (min-width: 768px)  { .ro-layout-3col { grid-template-columns: var(--ro-rail-left) minmax(0, 1fr); } }
+@media (min-width: 1280px) { .ro-layout-3col { grid-template-columns: var(--ro-rail-left) minmax(0, 1fr) var(--ro-rail-right); } }
+
+.ro-rail {
+  position: sticky; top: 0; align-self: start;
+  height: calc(100vh - var(--ro-header-h));
+  flex-direction: column; overflow: hidden; background: var(--ro-white); display: none;
+}
+.ro-rail__scroll { flex: 1; min-height: 0; overflow-y: auto; }
+.ro-rail--left  { border-right: 1px solid rgba(0,0,0,0.08); }
+.ro-rail--right { border-left:  1px solid rgba(0,0,0,0.08); }
+@media (min-width: 768px)  { .ro-rail--left  { display: flex; } }
+@media (min-width: 1280px) { .ro-rail--right { display: flex; } }
+
+.ro-main { display: flex; flex-direction: column; gap: var(--ro-space-4); min-width: 0;
+  padding: 1rem; padding-bottom: 6rem; }
+@media (min-width: 640px)  { .ro-main { padding: 1.25rem 1.5rem; } }
+@media (min-width: 1024px) { .ro-main { padding-bottom: 2rem; } }
+
+.ro-layout-2col { display: grid; grid-template-columns: 1fr; gap: var(--ro-space-6); }
+@media (min-width: 1024px) { .ro-layout-2col { grid-template-columns: minmax(0,1fr) var(--ro-rail-right); } }

@@ -1,0 +1,15 @@
+/* components/file-upload.css — Dropzone (resalte lavanda al arrastrar). */
+.ro-dropzone {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 28px; text-align: center;
+  border: 1.5px dashed var(--ro-ink-20); border-radius: var(--ro-radius-xl);
+  background: var(--ro-ink-02); color: var(--ro-ink-60);
+  cursor: pointer; transition: var(--ro-transition);
+}
+.ro-dropzone:hover, .ro-dropzone.is-dragover {
+  border-color: var(--ro-secondary); background: var(--ro-secondary-soft); color: var(--ro-ink);
+}
+.ro-dropzone__icon { color: var(--ro-ink-40); }
+.ro-dropzone:hover .ro-dropzone__icon, .ro-dropzone.is-dragover .ro-dropzone__icon { color: var(--ro-secondary); }
+.ro-dropzone strong { color: var(--ro-ink); font-weight: var(--ro-weight-semibold); }
+.ro-dropzone__hint { font-size: var(--ro-text-xs); color: var(--ro-ink-50); }

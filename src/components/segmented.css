@@ -1,0 +1,13 @@
+/* components/segmented.css — Segmented control (toggle de opciones conectado). */
+.ro-segmented {
+  display: inline-flex; padding: 3px; gap: 2px;
+  background: var(--ro-ink-06); border-radius: var(--ro-radius-full);
+}
+.ro-segmented__item {
+  border: 0; background: transparent; cursor: pointer;
+  padding: 6px 14px; border-radius: var(--ro-radius-full);
+  font-family: var(--ro-font-sans); font-size: var(--ro-text-sm); font-weight: var(--ro-weight-semibold);
+  color: var(--ro-ink-60); white-space: nowrap; transition: var(--ro-transition);
+}
+.ro-segmented__item:hover { color: var(--ro-ink); }
+.ro-segmented__item--active { background: var(--ro-white); color: var(--ro-ink); box-shadow: var(--ro-shadow-sm); }

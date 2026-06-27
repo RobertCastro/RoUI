@@ -1,0 +1,16 @@
+/* layouts/shell.css — App shell, contenedor y utilidades de fila/pila. */
+.ro-app { display: flex; flex-direction: column; min-height: 100vh;
+  background: var(--ro-white); color: var(--ro-ink); }
+.ro-app__body { display: flex; flex: 1; min-height: 0; flex-direction: column; }
+
+.ro-container { width: 100%; max-width: var(--ro-content-max); margin-inline: auto; padding-inline: 1rem; }
+@media (min-width: 640px)  { .ro-container { padding-inline: 1.5rem; } }
+@media (min-width: 1024px) { .ro-container { padding-inline: 2rem; } }
+
+.ro-stack { display: flex; flex-direction: column; gap: var(--ro-space-4); }
+.ro-stack--sm { gap: var(--ro-space-2); }
+.ro-stack--lg { gap: var(--ro-space-6); }
+.ro-row { display: flex; align-items: center; gap: var(--ro-space-3); }
+.ro-row--between { justify-content: space-between; }
+.ro-row--wrap { flex-wrap: wrap; }
+.ro-spacer { flex: 1 1 auto; }

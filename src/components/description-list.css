@@ -1,0 +1,8 @@
+/* components/description-list.css — Lista clave–valor. */
+.ro-dl {
+  display: grid; grid-template-columns: max-content 1fr; gap: 10px 24px;
+  font-size: var(--ro-text-sm); margin: 0;
+}
+.ro-dl dt { color: var(--ro-ink-50); }
+.ro-dl dd { margin: 0; color: var(--ro-ink); font-weight: var(--ro-weight-medium); }
+@media (max-width: 480px) { .ro-dl { grid-template-columns: 1fr; gap: 2px 0; } .ro-dl dd { margin-bottom: 8px; } }

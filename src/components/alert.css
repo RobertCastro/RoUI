@@ -1,0 +1,27 @@
+/* components/alert.css — Aviso inline persistente (distinto del toast efímero). */
+.ro-alert {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 14px; border-radius: var(--ro-radius-xl);
+  border: 1px solid var(--ro-ink-10); background: var(--ro-ink-02);
+  font-size: var(--ro-text-sm); color: var(--ro-ink); line-height: 1.45;
+}
+.ro-alert__icon { flex-shrink: 0; margin-top: 1px; color: var(--ro-ink-50); }
+.ro-alert__title { font-weight: var(--ro-weight-semibold); }
+.ro-alert__body { flex: 1; }
+.ro-alert__close { border: 0; background: transparent; color: var(--ro-ink-40); cursor: pointer; display: grid; place-items: center; }
+.ro-alert__close:hover { color: var(--ro-ink); }
+
+.ro-alert--info    { background: rgba(59,130,246,0.08);  border-color: rgba(59,130,246,0.30); }
+.ro-alert--info    .ro-alert__icon { color: var(--ro-info); }
+.ro-alert--success { background: rgba(16,185,129,0.08);  border-color: rgba(16,185,129,0.30); }
+.ro-alert--success .ro-alert__icon { color: var(--ro-success); }
+.ro-alert--warning { background: rgba(245,158,11,0.10);  border-color: rgba(245,158,11,0.35); }
+.ro-alert--warning .ro-alert__icon { color: var(--ro-warning); }
+.ro-alert--error   { background: rgba(239,68,68,0.08);   border-color: rgba(239,68,68,0.30); }
+.ro-alert--error   .ro-alert__icon { color: var(--ro-error); }
+
+/* Variantes de MARCA (avisos no-críticos / destacados) */
+.ro-alert--brand     { background: var(--ro-secondary-soft); border-color: rgba(169,160,236,0.40); }
+.ro-alert--brand     .ro-alert__icon { color: var(--ro-secondary); }
+.ro-alert--highlight { background: var(--ro-primary-soft);  border-color: var(--ro-primary); }
+.ro-alert--highlight .ro-alert__icon { color: var(--ro-ink); }

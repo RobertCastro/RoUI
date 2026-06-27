@@ -1,0 +1,34 @@
+/* components/stepper.css — Stepper / wizard (horizontal y vertical). */
+.ro-stepper { display: flex; }
+.ro-step-item {
+  flex: 1; position: relative; display: flex; flex-direction: column;
+  align-items: center; gap: 8px; text-align: center;
+}
+.ro-step-item::before { /* conector */
+  content: ""; position: absolute; top: 13px; left: -50%;
+  width: 100%; height: 2px; background: var(--ro-ink-10); z-index: 0;
+}
+.ro-step-item:first-child::before { display: none; }
+.ro-step-item.is-done::before, .ro-step-item.is-current::before { background: var(--ro-ink); }
+
+.ro-step-dot {
+  position: relative; z-index: 1; display: grid; place-items: center;
+  width: 28px; height: 28px; border-radius: var(--ro-radius-full);
+  background: var(--ro-white); border: 2px solid var(--ro-ink-20);
+  color: var(--ro-ink-50); font-size: 12px; font-weight: var(--ro-weight-bold);
+}
+.ro-step-item.is-done .ro-step-dot { background: var(--ro-ink); border-color: var(--ro-ink); color: var(--ro-white); }
+/* Activo: lavanda de marca */
+.ro-step-item.is-current .ro-step-dot {
+  background: var(--ro-secondary); border-color: var(--ro-secondary); color: var(--ro-ink);
+  box-shadow: 0 0 0 4px var(--ro-secondary-ring);
+}
+
+.ro-step-label { font-size: var(--ro-text-xs); font-weight: var(--ro-weight-medium); color: var(--ro-ink-60); }
+.ro-step-item.is-done .ro-step-label, .ro-step-item.is-current .ro-step-label { color: var(--ro-ink); }
+
+/* Vertical */
+.ro-stepper--vertical { flex-direction: column; align-items: stretch; }
+.ro-stepper--vertical .ro-step-item { flex-direction: row; align-items: flex-start; text-align: left; gap: 12px; padding-bottom: 22px; }
+.ro-stepper--vertical .ro-step-item::before { top: 28px; left: 13px; width: 2px; height: 100%; }
+.ro-stepper--vertical .ro-step-body { padding-top: 3px; }

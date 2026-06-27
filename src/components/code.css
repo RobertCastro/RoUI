@@ -1,0 +1,35 @@
+/* components/code.css — Código inline, bloque de código y tecla (kbd).
+   El inline-code usa bg ink/5, radio 4, JetBrains Mono. */
+.ro-code {
+  font-family: var(--ro-font-mono); font-size: var(--ro-text-sm);
+  background: var(--ro-ink-05); color: var(--ro-ink);
+  border-radius: var(--ro-radius-sm); padding: 2px 6px;
+}
+
+.ro-codeblock {
+  position: relative; overflow-x: auto;
+  background: var(--ro-ink); color: var(--ro-on-dark);
+  border-radius: var(--ro-radius-xl); padding: 16px 18px;
+  font-family: var(--ro-font-mono); font-size: 13px; line-height: 1.6;
+}
+.ro-codeblock code { font: inherit; background: none; color: inherit; padding: 0; }
+.ro-codeblock--light { background: var(--ro-ink-02); color: var(--ro-ink); border: 1px solid var(--ro-ink-10); }
+
+/* Barra superior opcional (lenguaje + copiar) */
+.ro-codeblock__bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin: -16px -18px 12px; padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  font-family: var(--ro-font-mono); font-size: 11px; color: var(--ro-on-dark-60);
+  text-transform: uppercase; letter-spacing: var(--ro-tracking-wider);
+}
+.ro-codeblock--light .ro-codeblock__bar { border-color: var(--ro-ink-06); color: var(--ro-ink-50); }
+
+.ro-kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 20px; height: 20px; padding: 0 6px;
+  font-family: var(--ro-font-mono); font-size: 11px; color: var(--ro-ink-70);
+  background: var(--ro-white);
+  border: 1px solid var(--ro-ink-20); border-bottom-width: 2px;
+  border-radius: var(--ro-radius-md);
+}

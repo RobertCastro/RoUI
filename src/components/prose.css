@@ -1,0 +1,38 @@
+/* components/prose.css — Estilos de contenido renderizado (markdown de lecciones).
+   Base: 14px · line-height 1.6 · ink/78. */
+.ro-prose { font-size: var(--ro-text-sm); line-height: 1.6; color: var(--ro-ink-72); }
+.ro-prose > * + * { margin-top: 14px; }
+
+.ro-prose h1, .ro-prose h2, .ro-prose h3, .ro-prose h4 {
+  font-family: var(--ro-font-display); color: var(--ro-ink);
+  letter-spacing: var(--ro-tracking-tight); line-height: 1.25;
+}
+.ro-prose h1 { font-size: var(--ro-text-3xl); }
+.ro-prose h2 { font-size: var(--ro-text-2xl); margin-top: 28px; }
+.ro-prose h3 { font-size: var(--ro-text-xl);  margin-top: 22px; }
+.ro-prose h4 { font-size: var(--ro-text-lg); }
+
+.ro-prose strong { font-weight: var(--ro-weight-bold); color: var(--ro-ink); }
+.ro-prose a { color: var(--ro-ink); text-decoration: underline;
+  text-decoration-color: var(--ro-secondary); text-underline-offset: 2px; }
+.ro-prose ul, .ro-prose ol { padding-left: 1.25rem; }
+.ro-prose ul { list-style: disc; }
+.ro-prose ol { list-style: decimal; }
+.ro-prose li { margin-top: 6px; }
+.ro-prose li::marker { color: var(--ro-ink-40); }
+.ro-prose blockquote {
+  border-left: 3px solid var(--ro-secondary); padding: 2px 0 2px 14px;
+  color: var(--ro-ink-70); font-style: italic;
+}
+.ro-prose code {
+  font-family: var(--ro-font-mono); font-size: 0.875em;
+  background: var(--ro-ink-05); border-radius: var(--ro-radius-sm); padding: 2px 6px;
+}
+.ro-prose pre {
+  background: var(--ro-ink); color: var(--ro-on-dark);
+  border-radius: var(--ro-radius-xl); padding: 16px 18px; overflow-x: auto;
+  font-family: var(--ro-font-mono); font-size: 13px; line-height: 1.6;
+}
+.ro-prose pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+.ro-prose hr { border: 0; border-top: 1px solid var(--ro-ink-10); }
+.ro-prose img { max-width: 100%; border-radius: var(--ro-radius-lg); }

@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Componentes — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/roui.css">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+      <div class="dx-brand">RoUI<span>.</span></div>
+      <div class="dx-nav-group"><h4>Inicio</h4><a href="index.html">Introducción</a></div>
+      <div class="dx-nav-group"><h4>Fundamentos</h4>
+        <a href="tokens.html">Tokens / Variables</a>
+        <a href="icons.html">Iconos</a>
+        <a href="layouts.html">Layouts &amp; Grid</a></div>
+      <div class="dx-nav-group"><h4>Componentes</h4>
+        <a href="components.html" class="is-active">Galería de componentes</a>
+        <a href="#header">↳ Header / Navbar</a>
+        <a href="#nav">↳ Pills · Tabs · Nav</a>
+        <a href="#table">↳ Tabla</a>
+        <a href="#modal">↳ Modal &amp; Toast</a>
+        <a href="#tooltip">↳ Tooltip &amp; Paginación</a>
+        <a href="#alert">↳ Alert &amp; Feedback</a>
+        <a href="#empty">↳ Empty &amp; Skeleton</a>
+        <a href="#code">↳ Código &amp; kbd</a>
+        <a href="#segmented">↳ Segmented &amp; Tags</a>
+        <a href="#drawer">↳ Drawer</a>
+        <a href="#accordion">↳ Accordion &amp; Breadcrumb</a>
+        <a href="#stepper">↳ Stepper &amp; Popover</a>
+        <a href="#prose">↳ Prose</a>
+        <a href="#combobox">↳ Combobox &amp; Tags input</a>
+        <a href="#slider">↳ Slider &amp; Upload</a>
+        <a href="#input-group">↳ Input group &amp; Rating</a>
+        <a href="#list-group">↳ List &amp; Description</a>
+        <a href="#timeline">↳ Timeline &amp; Ring</a>
+        <a href="#calendar">↳ Calendar &amp; Date picker</a>
+        <a href="#cmdk">↳ Command palette</a>
+        <a href="#button-group">↳ Button group &amp; Number</a>
+        <a href="#tree">↳ Tree view</a></div>
+      <div class="dx-nav-group"><h4>Plantillas</h4>
+        <a href="templates/dashboard.html">Dashboard</a>
+        <a href="templates/module-3col.html">Módulo (3 columnas)</a></div>
+    </aside>
+
+    <main class="dx-main">
+      <h1>Componentes</h1>
+      <p class="dx-lead">Cada bloque usa solo clases <code>ro-*</code>. Inspecciona el HTML para copiar el patrón.</p>
+
+      <div class="dx-section" id="header">
+        <h2>Navegación · Header / Navbar</h2>
+        <p>Réplica fiel del header de la app. Todo es interactivo: el selector de workspace, la nav,
+           la campana, el idioma y el avatar abren dropdowns. Iconos vía sprite SVG (sin librerías).
+           Montado a pantalla completa en las <a href="templates/dashboard.html">plantillas</a>.</p>
+        <div style="border:1px solid var(--ro-ink-10);border-radius:16px;overflow:visible">
+          <header class="ro-header" style="border-bottom:1px solid var(--ro-ink-10)">
+            <a class="ro-header__brand"><strong style="font-size:20px">RoUI<span style="color:var(--ro-secondary)">.</span></strong></a>
+
+            <!-- Workspace switcher con dropdown -->
+            <div class="ro-dropdown" data-dropdown>
+              <button class="ro-switcher" data-dropdown-trigger aria-expanded="false">
+                <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg>
+                Acme Inc
+                <svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg>
+              </button>
+              <div class="ro-menu" data-single>
+                <div class="ro-menu__label">Workspaces</div>
+                <button class="ro-menu__item" aria-current="true">
+                  <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg> Acme Inc
+                  <svg class="ro-icon ro-icon--sm ro-menu__check"><use href="#ro-i-check"></use></svg>
+                </button>
+                <button class="ro-menu__item">
+                  <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg> Globex
+                  <svg class="ro-icon ro-icon--sm ro-menu__check"><use href="#ro-i-check"></use></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Nav (selección única) -->
+            <nav class="ro-header__nav" data-select="ro-nav-link--active" data-output="#hdrOut" data-output-prefix="Sección: ">
+              <a class="ro-nav-link ro-nav-link--active">Inicio</a>
+              <a class="ro-nav-link">Mis Proyectos</a>
+              <a class="ro-nav-link">Sesiones</a>
+              <a class="ro-nav-link">Directorio</a>
+              <a class="ro-nav-link">Explorar</a>
+            </nav>
+
+            <!-- Acciones -->
+            <div class="ro-header__actions">
+              <button class="ro-btn-icon" title="Tus herramientas">
+                <svg class="ro-icon"><use href="#ro-i-wrench"></use></svg>
+              </button>
+
+              <!-- Campana con punto + dropdown de notificaciones -->
+              <div class="ro-dropdown" data-dropdown>
+                <button class="ro-btn-icon" data-dropdown-trigger title="Notificaciones" style="position:relative">
+                  <svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg>
+                  <span class="ro-dot-badge"></span>
+                </button>
+                <div class="ro-menu ro-menu--end" style="min-width:280px">
+                  <div class="ro-menu__label">Notificaciones</div>
+                  <a class="ro-menu__item" data-keep-open>
+                    <svg class="ro-icon ro-icon--sm" style="color:var(--ro-secondary)"><use href="#ro-i-circle-check"></use></svg>
+                    <span>Completaste <b>Input &gt; Proceso &gt; Output</b></span>
+                  </a>
+                  <a class="ro-menu__item" data-keep-open>
+                    <svg class="ro-icon ro-icon--sm" style="color:var(--ro-secondary)"><use href="#ro-i-message-square"></use></svg>
+                    <span>María respondió en <b>Discusión</b></span>
+                  </a>
+                  <div class="ro-menu__sep"></div>
+                  <a class="ro-menu__item" style="justify-content:center;color:var(--ro-ink-60)">Ver todas</a>
+                </div>
+              </div>
+
+              <!-- Idioma con dropdown -->
+              <div class="ro-dropdown" data-dropdown>
+                <button class="ro-btn-icon" data-dropdown-trigger title="Idioma">
+                  <svg class="ro-icon"><use href="#ro-i-languages"></use></svg>
+                </button>
+                <div class="ro-menu ro-menu--end" data-single style="min-width:160px">
+                  <button class="ro-menu__item" aria-current="true">Español
+                    <svg class="ro-icon ro-icon--sm ro-menu__check"><use href="#ro-i-check"></use></svg></button>
+                  <button class="ro-menu__item">English
+                    <svg class="ro-icon ro-icon--sm ro-menu__check"><use href="#ro-i-check"></use></svg></button>
+                </div>
+              </div>
+
+              <!-- Avatar con menú de perfil -->
+              <div class="ro-dropdown" data-dropdown>
+                <button class="ro-avatar" data-dropdown-trigger aria-label="Cuenta">RC</button>
+                <div class="ro-menu ro-menu--end" style="min-width:200px">
+                  <div class="ro-menu__label">Robert Castro</div>
+                  <a class="ro-menu__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-user"></use></svg> Mi perfil</a>
+                  <a class="ro-menu__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-settings"></use></svg> Ajustes</a>
+                  <div class="ro-menu__sep"></div>
+                  <a class="ro-menu__item ro-menu__item--danger"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-log-out"></use></svg> Cerrar sesión</a>
+                </div>
+              </div>
+
+              <!-- Hamburguesa (mobile) -->
+              <button class="ro-btn-icon ro-burger" title="Menú">
+                <svg class="ro-icon ro-icon--lg"><use href="#ro-i-menu"></use></svg>
+              </button>
+            </div>
+          </header>
+        </div>
+        <p class="ro-muted" id="hdrOut" style="margin-top:10px;font-size:13px">Sección: Inicio · prueba los dropdowns ↑</p>
+
+        <p class="dx-sub">Estructura &amp; comportamiento</p>
+        <div class="dx-demo dx-demo--soft" style="font-family:var(--ro-font-mono);font-size:12px;line-height:1.8;color:var(--ro-ink-70)">
+<pre style="margin:0">.ro-header
+ ├─ .ro-header__brand                     logo
+ ├─ .ro-dropdown > .ro-switcher          workspace ▸ .ro-menu[data-single]
+ ├─ .ro-header__nav                       nav (oculta &lt;md → hamburguesa)
+ ├─ .ro-header__title                     título contextual (centro)
+ └─ .ro-header__actions
+     ├─ .ro-btn-icon  (wrench)            herramientas
+     ├─ .ro-dropdown  (bell + dot-badge)  notificaciones ▸ .ro-menu
+     ├─ .ro-dropdown  (languages)         idioma ▸ .ro-menu[data-single]
+     ├─ .ro-dropdown  (.ro-avatar)       perfil ▸ .ro-menu--end
+     └─ .ro-btn-icon.ro-burger           menú mobile</pre>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Botones</h2>
+        <div class="dx-demo">
+          <button class="ro-btn ro-btn--primary">Primary</button>
+          <button class="ro-btn ro-btn--dark">Dark</button>
+          <button class="ro-btn ro-btn--soft">Soft</button>
+          <button class="ro-btn ro-btn--ghost">+ Ghost</button>
+          <button class="ro-btn ro-btn--subtle">Subtle ▾</button>
+          <button class="ro-btn ro-btn--primary ro-btn--sm">sm</button>
+          <button class="ro-btn ro-btn--primary ro-btn--lg">lg</button>
+          <button class="ro-btn-icon ro-btn-icon--secondary">RC</button>
+          <button class="ro-btn-icon ro-btn-icon--outline">+</button>
+        </div>
+      </div>
+
+      <div class="dx-section" id="nav">
+        <h2>Pills · Tabs · Nav <span class="dx-code">interactivo</span></h2>
+        <p>Funcionalidad de demo via <code>docs/assets/docs.js</code> (data-attributes). La librería solo aporta el estilo de los estados <code>--active</code>.</p>
+
+        <p class="dx-sub">Pills (selección única)</p>
+        <div class="dx-demo dx-demo--col">
+          <div class="ro-row ro-row--wrap" data-select="ro-pill--active" data-output="#pillOut" data-output-prefix="Mostrando contenido de: ">
+            <button class="ro-pill ro-pill--active" data-label="Semana 1">Semana 1</button>
+            <button class="ro-pill" data-label="Semana 2">Semana 2</button>
+            <button class="ro-pill" data-label="Semana 3">Semana 3</button>
+            <button class="ro-pill" data-label="Semana 4">Semana 4</button>
+          </div>
+          <p class="ro-body" id="pillOut">Mostrando contenido de: Semana 1</p>
+        </div>
+
+        <p class="dx-sub">Nav links (selección única)</p>
+        <div class="dx-demo dx-demo--col">
+          <nav class="ro-row ro-row--wrap" data-select="ro-nav-link--active" data-output="#navOut" data-output-prefix="Sección activa: ">
+            <a class="ro-nav-link ro-nav-link--active">Inicio</a>
+            <a class="ro-nav-link">Mis Proyectos</a>
+            <a class="ro-nav-link">Sesiones</a>
+            <a class="ro-nav-link">Directorio</a>
+          </nav>
+          <p class="ro-body" id="navOut">Sección activa: Inicio</p>
+        </div>
+
+        <p class="dx-sub">Tabs con paneles (cambia el contenido)</p>
+        <div class="dx-demo dx-demo--col" style="padding:0;overflow:hidden;align-items:stretch">
+          <div class="ro-tabs" data-tabs="demoTabs">
+            <button class="ro-tab ro-tab--active" data-tab="temario">Temario</button>
+            <button class="ro-tab" data-tab="discusion">Discusión <span class="ro-tab__count">2</span></button>
+            <button class="ro-tab" data-tab="checkpoints">Checkpoints <span class="ro-tab__count">3</span></button>
+          </div>
+          <div data-tab-panels="demoTabs" style="padding:22px">
+            <div data-panel="temario">
+              <h3 class="ro-h3">Recursos del módulo</h3>
+              <a class="ro-resource">🔗 10X Builder Code · GitHub</a>
+              <p class="ro-body" style="margin-top:10px">
+                Aprendes que la calidad del código generado por IA depende del contexto.
+                <strong>Contexto de calidad = código de calidad.</strong>
+              </p>
+            </div>
+            <div data-panel="discusion" hidden>
+              <div class="ro-stack ro-stack--sm">
+                <div class="ro-row" style="align-items:flex-start;gap:10px">
+                  <span class="ro-avatar ro-avatar--sm">M</span>
+                  <div><div style="font-weight:600;font-size:14px">María · hace 2h</div>
+                    <p class="ro-body">¿El Technical Brief reemplaza al PRD completo o es un paso previo?</p></div>
+                </div>
+                <div class="ro-row" style="align-items:flex-start;gap:10px">
+                  <span class="ro-avatar ro-avatar--sm" style="background:var(--ro-primary)">RC</span>
+                  <div><div style="font-weight:600;font-size:14px">Robert · hace 1h</div>
+                    <p class="ro-body">Es un paso previo y más enfocado: contexto + DoD antes de pedir código.</p></div>
+                </div>
+              </div>
+              <div class="ro-field" style="margin-top:14px"><input class="ro-input" placeholder="Escribe un comentario…"><button class="ro-btn ro-btn--dark ro-btn--sm">Enviar</button></div>
+            </div>
+            <div data-panel="checkpoints" hidden>
+              <div class="ro-stack ro-stack--sm">
+                <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check" checked> Escribir el contexto del problema</label>
+                <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check" checked> Definir requerimientos y restricciones</label>
+                <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check"> Redactar la Definition of Done</label>
+              </div>
+              <div class="ro-row" style="margin-top:14px;gap:10px">
+                <div style="flex:1"><div class="ro-progress"><div class="ro-progress__fill" style="width:66%"></div></div></div>
+                <span class="ro-badge ro-badge--soft">2/3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Badges · Dots · Progreso</h2>
+        <div class="dx-demo">
+          <span class="ro-badge">8%</span>
+          <span class="ro-badge ro-badge--soft">3/9 completados</span>
+          <span class="ro-badge ro-badge--count">40</span>
+          <span class="ro-dot"></span>
+          <span class="ro-dot ro-dot--success"></span>
+          <span class="ro-dot ro-dot--warning"></span>
+          <span class="ro-dot ro-dot--error"></span>
+        </div>
+        <div class="dx-demo dx-demo--col">
+          <div class="ro-progress" style="width:100%"><div class="ro-progress__fill" style="width:42%"></div></div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Formularios</h2>
+        <div class="dx-demo dx-demo--col" style="max-width:460px">
+          <div class="ro-field"><span style="color:var(--ro-ink-40)">⌕</span><input class="ro-input" placeholder="Buscar…"></div>
+          <div><label class="ro-label">Etiqueta</label><input class="ro-input-box" placeholder="Input con borde"></div>
+          <div><label class="ro-label">Select</label>
+            <select class="ro-select-box"><option>Opción A</option><option>Opción B</option></select></div>
+          <div><label class="ro-label">Mensaje</label><textarea class="ro-textarea" placeholder="Textarea…"></textarea>
+            <div class="ro-hint">Texto de ayuda.</div></div>
+          <div class="ro-row">
+            <label class="ro-row" style="gap:8px"><input type="checkbox" class="ro-check" checked> Acepto</label>
+            <label class="ro-switch"><input type="checkbox" checked><span class="ro-switch__track"></span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Cards</h2>
+        <div class="ro-cols-3">
+          <div class="ro-card-dark">
+            <div class="ro-eyebrow">Continuar</div>
+            <h3 class="ro-h3" style="color:#fff;margin-top:8px">Technical Brief</h3>
+            <p class="ro-body" style="margin-top:6px">Módulo 4 de 40</p>
+            <button class="ro-btn ro-btn--primary" style="margin-top:14px">Continuar →</button>
+          </div>
+          <div class="ro-card">
+            <div class="ro-eyebrow ro-eyebrow--ink">Aún explorando</div>
+            <h3 class="ro-h3" style="margin-top:8px">"Optimizar procesos"</h3>
+          </div>
+          <div class="ro-card ro-card--soft-yellow">
+            <div class="ro-eyebrow ro-eyebrow--ink">Resaltado</div>
+            <h3 class="ro-h3" style="margin-top:8px">Card con degradado</h3>
+          </div>
+        </div>
+        <div class="dx-demo dx-demo--col" style="margin-top:14px">
+          <a class="ro-card-row" style="background:var(--ro-ink-02)">
+            <span class="ro-avatar">O</span>
+            <div><div style="font-weight:600">API Sandbox</div>
+              <div class="ro-muted" style="font-size:13px">Acceso a modelos vía API</div></div>
+            <span class="ro-badge" style="margin-left:auto">Activo</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Callout / Banner</h2>
+        <div class="ro-callout">
+          <span class="ro-btn-icon ro-btn-icon--outline" style="background:var(--ro-ink);color:var(--ro-primary)">+</span>
+          <div><div class="ro-eyebrow ro-eyebrow--ink">Aún no estás en el directorio</div>
+            <h3 class="ro-h3" style="margin-top:4px">Únete y deja que tu cohort te encuentre.</h3></div>
+          <button class="ro-btn ro-btn--dark" style="margin-left:auto">Agregarme →</button>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Stat / KPI · Avatares</h2>
+        <div class="dx-demo">
+          <div class="ro-stat"><div class="ro-stat__value">3</div><div class="ro-stat__label">Completados</div></div>
+          <div class="ro-stat"><div class="ro-stat__value">2</div><div class="ro-stat__label">En progreso</div></div>
+          <div class="ro-avatar-stack" style="margin-left:24px">
+            <span class="ro-avatar">A</span><span class="ro-avatar">B</span><span class="ro-avatar">C</span>
+            <span class="ro-avatar" style="background:var(--ro-primary)">+64</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="table">
+        <h2>Tabla de datos</h2>
+        <div class="ro-table-wrap">
+          <div class="ro-table-toolbar">
+            <h3 class="ro-h3">Builders</h3>
+            <span class="ro-badge ro-badge--soft">71 activos</span>
+          </div>
+          <table class="ro-table ro-table--hover">
+            <thead>
+              <tr><th>Nombre</th><th>Proyecto</th><th>Estado</th><th class="ro-table__num">Módulos</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><div class="ro-row" style="gap:10px"><span class="ro-avatar ro-avatar--sm">MA</span> María A.</div></td>
+                  <td class="ro-muted">Edición con IA</td><td><span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--success"></span> Activo</span></td><td class="ro-table__num">12</td></tr>
+              <tr><td><div class="ro-row" style="gap:10px"><span class="ro-avatar ro-avatar--sm">JP</span> Juan P.</div></td>
+                  <td class="ro-muted">Gestión de leads</td><td><span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--warning"></span> Pausa</span></td><td class="ro-table__num">7</td></tr>
+              <tr><td><div class="ro-row" style="gap:10px"><span class="ro-avatar ro-avatar--sm">RC</span> Robert C.</div></td>
+                  <td class="ro-muted">Plataforma interna</td><td><span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--success"></span> Activo</span></td><td class="ro-table__num">40</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dx-section" id="pagination">
+        <h2>Paginación</h2>
+        <div class="dx-demo">
+          <nav class="ro-pagination" data-select="ro-page--active">
+            <button class="ro-page" title="Anterior"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-left"></use></svg></button>
+            <button class="ro-page ro-page--active">1</button>
+            <button class="ro-page">2</button>
+            <button class="ro-page">3</button>
+            <span class="ro-page__ellipsis">…</span>
+            <button class="ro-page">9</button>
+            <button class="ro-page" title="Siguiente"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-right"></use></svg></button>
+          </nav>
+        </div>
+      </div>
+
+      <div class="dx-section" id="tooltip">
+        <h2>Tooltip <span class="dx-code">CSS-only</span></h2>
+        <p>Solo añade <code>class="ro-tooltip" data-tooltip="texto"</code>. Pasa el cursor:</p>
+        <div class="dx-demo">
+          <button class="ro-btn ro-btn--soft ro-tooltip" data-tooltip="Información útil">Pásame el cursor</button>
+          <button class="ro-btn-icon ro-btn-icon--outline ro-tooltip" data-tooltip="Ajustes"><svg class="ro-icon"><use href="#ro-i-settings"></use></svg></button>
+          <span class="ro-tooltip" data-tooltip="También en texto" style="text-decoration:underline dotted;cursor:help">término</span>
+        </div>
+      </div>
+
+      <div class="dx-section" id="modal">
+        <h2>Modal / Diálogo</h2>
+        <div class="dx-demo">
+          <button class="ro-btn ro-btn--dark" data-modal-open="demoModal">Abrir modal</button>
+        </div>
+      </div>
+
+      <div class="dx-section" id="toast">
+        <h2>Toast / Notificaciones</h2>
+        <div class="dx-demo">
+          <button class="ro-btn ro-btn--soft" data-toast="success" data-toast-msg="Cambios guardados con éxito">Toast éxito</button>
+          <button class="ro-btn ro-btn--soft" data-toast="error" data-toast-msg="No se pudo guardar. Reintenta.">Toast error</button>
+          <button class="ro-btn ro-btn--soft" data-toast="info" data-toast-msg="Tienes 2 notificaciones nuevas">Toast info</button>
+        </div>
+      </div>
+
+      <div class="dx-section" id="alert">
+        <h2>Alert / Banner inline</h2>
+        <div class="dx-demo dx-demo--col" style="align-items:stretch">
+          <div class="ro-alert ro-alert--info">
+            <svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-info"></use></svg>
+            <div class="ro-alert__body"><span class="ro-alert__title">Heads up.</span> Tu cohort empieza el 27 de abril.</div>
+            <button class="ro-alert__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button>
+          </div>
+          <div class="ro-alert ro-alert--success"><svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-circle-check"></use></svg><div class="ro-alert__body">Módulo completado.</div></div>
+          <div class="ro-alert ro-alert--warning"><svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-triangle-alert"></use></svg><div class="ro-alert__body">Tu licencia caduca pronto.</div></div>
+          <div class="ro-alert ro-alert--error"><svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-triangle-alert"></use></svg><div class="ro-alert__body">No se pudo conectar con el servidor.</div></div>
+        </div>
+        <p class="dx-sub">Variantes de marca (no-críticas)</p>
+        <div class="dx-demo dx-demo--col" style="align-items:stretch">
+          <div class="ro-alert ro-alert--brand"><svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-info"></use></svg><div class="ro-alert__body"><span class="ro-alert__title">brand</span> — acento lavanda (<code>--ro-secondary</code>).</div></div>
+          <div class="ro-alert ro-alert--highlight"><svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-book-open"></use></svg><div class="ro-alert__body"><span class="ro-alert__title">highlight</span> — acento amarillo (<code>--ro-primary</code>).</div></div>
+        </div>
+        <p class="ro-muted" style="font-size:13px;margin-top:8px">Los 4 primeros son <b>semánticos</b> (estados); estos 2 usan la <b>paleta de marca</b>.</p>
+      </div>
+
+      <div class="dx-section" id="feedback">
+        <h2>Carga · Skeleton · Spinner</h2>
+        <p class="dx-sub">Skeleton (carga de una card)</p>
+        <div class="dx-demo">
+          <div class="ro-card ro-card--plain" style="width:280px">
+            <div class="ro-row" style="gap:12px">
+              <div class="ro-skeleton ro-skeleton--circle" style="width:40px;height:40px"></div>
+              <div style="flex:1">
+                <div class="ro-skeleton ro-skeleton--title" style="width:60%"></div>
+                <div class="ro-skeleton ro-skeleton--text" style="width:90%;margin-top:8px"></div>
+              </div>
+            </div>
+            <div class="ro-skeleton ro-skeleton--text" style="width:100%;margin-top:14px"></div>
+            <div class="ro-skeleton ro-skeleton--text" style="width:80%;margin-top:8px"></div>
+          </div>
+        </div>
+        <p class="dx-sub">Spinner &amp; botón en carga</p>
+        <div class="dx-demo">
+          <span class="ro-spinner ro-spinner--sm"></span>
+          <span class="ro-spinner"></span>
+          <span class="ro-spinner ro-spinner--lg"></span>
+          <button class="ro-btn ro-btn--primary" data-loading-demo>Guardar</button>
+          <button class="ro-btn ro-btn--dark" data-loading-demo>Procesar</button>
+        </div>
+      </div>
+
+      <div class="dx-section" id="empty">
+        <h2>Empty state</h2>
+        <div class="ro-card ro-card--plain">
+          <div class="ro-empty">
+            <div class="ro-empty__icon"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-search"></use></svg></div>
+            <div class="ro-empty__title">Sin resultados</div>
+            <div class="ro-empty__text">No encontramos builders que coincidan con tu búsqueda. Prueba con otros filtros.</div>
+            <div class="ro-empty__actions"><button class="ro-btn ro-btn--soft ro-btn--sm">Limpiar filtros</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="code">
+        <h2>Código · kbd</h2>
+        <p>Inline: usa <code class="ro-code">npm run build</code> para generar el bundle. Atajo: <span class="ro-kbd">⌘</span> <span class="ro-kbd">K</span>.</p>
+        <div class="dx-demo dx-demo--col" style="align-items:stretch">
+          <div class="ro-codeblock">
+            <div class="ro-codeblock__bar"><span>bash</span><button class="ro-btn-icon" style="color:inherit;width:24px;height:24px"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-copy"></use></svg></button></div>
+<pre style="margin:0"><code>npm install
+npm run build   # → dist/roui.css</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="segmented">
+        <h2>Segmented control</h2>
+        <div class="dx-demo">
+          <div class="ro-segmented" data-select="ro-segmented__item--active">
+            <button class="ro-segmented__item ro-segmented__item--active">Semana</button>
+            <button class="ro-segmented__item">Mes</button>
+            <button class="ro-segmented__item">Año</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="tag">
+        <h2>Tags / Chips removibles</h2>
+        <div class="dx-demo">
+          <span class="ro-tag">Frontend <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
+          <span class="ro-tag ro-tag--accent">IA <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
+          <span class="ro-tag ro-tag--outline">React <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
+        </div>
+      </div>
+
+      <div class="dx-section" id="drawer">
+        <h2>Drawer / Off-canvas</h2>
+        <div class="dx-demo">
+          <button class="ro-btn ro-btn--dark" data-drawer-open="navDrawer">Menú lateral</button>
+          <button class="ro-btn ro-btn--soft" data-drawer-open="sheet">Bottom-sheet</button>
+        </div>
+      </div>
+
+      <div class="dx-section" id="accordion">
+        <h2>Accordion</h2>
+        <div class="ro-accordion" data-single style="max-width:560px">
+          <div class="ro-accordion__item is-open">
+            <button class="ro-accordion__head">¿Qué incluye el curso?<svg class="ro-icon ro-icon--sm ro-accordion__chevron"><use href="#ro-i-chevron-down"></use></svg></button>
+            <div class="ro-accordion__panel">40 módulos en video, recursos descargables y checkpoints por semana.</div>
+          </div>
+          <div class="ro-accordion__item">
+            <button class="ro-accordion__head">¿Necesito experiencia previa?<svg class="ro-icon ro-icon--sm ro-accordion__chevron"><use href="#ro-i-chevron-down"></use></svg></button>
+            <div class="ro-accordion__panel">No. Empezamos desde los fundamentos y subimos el nivel gradualmente.</div>
+          </div>
+          <div class="ro-accordion__item">
+            <button class="ro-accordion__head">¿Hay certificado?<svg class="ro-icon ro-icon--sm ro-accordion__chevron"><use href="#ro-i-chevron-down"></use></svg></button>
+            <div class="ro-accordion__panel">Sí, al completar todos los checkpoints del path.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="breadcrumb">
+        <h2>Breadcrumb</h2>
+        <div class="dx-demo dx-demo--col" style="align-items:flex-start">
+          <nav class="ro-breadcrumbs">
+            <a>Inicio</a><span class="ro-breadcrumbs__sep">›</span>
+            <a>Mis Proyectos</a><span class="ro-breadcrumbs__sep">›</span>
+            <span class="ro-breadcrumbs__current">Frontend</span>
+          </nav>
+          <nav class="ro-breadcrumbs ro-breadcrumbs--mono">
+            <a>Frontend · 4 semanas</a><span class="ro-breadcrumbs__sep">›</span>
+            <a>Semana 1</a><span class="ro-breadcrumbs__sep">›</span>
+            <span class="ro-breadcrumbs__current">Mód. 04</span>
+          </nav>
+        </div>
+      </div>
+
+      <div class="dx-section" id="stepper">
+        <h2>Stepper / Wizard</h2>
+        <p class="dx-sub">Horizontal</p>
+        <div class="dx-demo">
+          <div class="ro-stepper" style="width:100%;max-width:520px">
+            <div class="ro-step-item is-done"><span class="ro-step-dot"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span><span class="ro-step-label">Cuenta</span></div>
+            <div class="ro-step-item is-done"><span class="ro-step-dot"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span><span class="ro-step-label">Perfil</span></div>
+            <div class="ro-step-item is-current"><span class="ro-step-dot">3</span><span class="ro-step-label">Plan</span></div>
+            <div class="ro-step-item"><span class="ro-step-dot">4</span><span class="ro-step-label">Pago</span></div>
+          </div>
+        </div>
+        <p class="dx-sub">Vertical</p>
+        <div class="dx-demo">
+          <div class="ro-stepper ro-stepper--vertical" style="max-width:320px">
+            <div class="ro-step-item is-done"><span class="ro-step-dot"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span><div class="ro-step-body"><div style="font-weight:600;font-size:14px">Crear cuenta</div><div class="ro-muted" style="font-size:13px">Completado</div></div></div>
+            <div class="ro-step-item is-current"><span class="ro-step-dot">2</span><div class="ro-step-body"><div style="font-weight:600;font-size:14px">Elegir plan</div><div class="ro-muted" style="font-size:13px">En curso</div></div></div>
+            <div class="ro-step-item"><span class="ro-step-dot">3</span><div class="ro-step-body"><div style="font-weight:600;font-size:14px">Confirmar</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="popover">
+        <h2>Popover</h2>
+        <div class="dx-demo">
+          <div class="ro-dropdown" data-dropdown>
+            <button class="ro-btn ro-btn--soft" data-dropdown-trigger>Ver detalles</button>
+            <div class="ro-popover">
+              <div class="ro-popover__arrow"></div>
+              <div class="ro-popover__title">Frontend · 4 semanas</div>
+              <div class="ro-popover__body">Cohort de abril · 40 módulos. Incluye sesiones en vivo y revisión de código.</div>
+              <button class="ro-btn ro-btn--primary ro-btn--sm" style="margin-top:10px">Inscribirme</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="prose">
+        <h2>Prose / Markdown <span class="dx-code">.ro-prose</span></h2>
+        <div class="ro-card ro-card--plain">
+          <div class="ro-prose">
+            <h2>El Arte del "Technical Brief"</h2>
+            <p>La calidad del código generado por IA depende del <strong>contexto</strong> que le das. Un brief claro define requerimientos, restricciones y <a href="#">Definition of Done</a>.</p>
+            <ul>
+              <li>Contexto del problema</li>
+              <li>Requerimientos y restricciones</li>
+              <li>Criterio de aceptación</li>
+            </ul>
+            <blockquote>Contexto de calidad = código de calidad.</blockquote>
+            <p>Usa <code>npm run build</code> para generar el bundle:</p>
+            <pre><code>npm install
+npm run build</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="combobox">
+        <h2>Combobox / Autocomplete</h2>
+        <div class="dx-demo" style="align-items:flex-start">
+          <div class="ro-combobox" style="width:280px">
+            <div class="ro-field"><svg class="ro-icon ro-icon--sm" style="color:var(--ro-ink-40)"><use href="#ro-i-search"></use></svg><input class="ro-input" placeholder="Busca un lenguaje…"></div>
+            <div class="ro-combobox__list">
+              <div class="ro-combobox__option">JavaScript</div>
+              <div class="ro-combobox__option">TypeScript</div>
+              <div class="ro-combobox__option">Python</div>
+              <div class="ro-combobox__option">Go</div>
+              <div class="ro-combobox__option">Rust</div>
+              <div class="ro-combobox__empty" hidden>Sin coincidencias</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="tagsinput">
+        <h2>Tags input</h2>
+        <div class="dx-demo" style="align-items:flex-start">
+          <div class="ro-tags-input" style="width:340px">
+            <span class="ro-tag">React <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
+            <span class="ro-tag">IA <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
+            <input class="ro-tags-input__field" placeholder="Añade y pulsa Enter…">
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="slider">
+        <h2>Slider / Range</h2>
+        <div class="dx-demo" style="gap:16px">
+          <input type="range" class="ro-slider" min="0" max="100" value="65" data-output="#slVal" style="width:280px">
+          <span class="ro-badge ro-badge--soft"><span id="slVal">65</span>%</span>
+        </div>
+      </div>
+
+      <div class="dx-section" id="upload">
+        <h2>File upload / Dropzone</h2>
+        <div class="dx-demo dx-demo--col" style="align-items:stretch">
+          <label class="ro-dropzone" style="max-width:420px">
+            <svg class="ro-icon ro-icon--lg ro-dropzone__icon"><use href="#ro-i-upload"></use></svg>
+            <div><strong>Arrastra un archivo</strong> o haz clic para subir</div>
+            <div class="ro-dropzone__hint">PNG, JPG o PDF · máx 10 MB</div>
+            <input type="file" hidden>
+          </label>
+        </div>
+      </div>
+
+      <div class="dx-section" id="input-group">
+        <h2>Input group</h2>
+        <div class="dx-demo dx-demo--col" style="align-items:stretch;max-width:420px">
+          <div class="ro-input-group"><span class="ro-input-group__addon">$</span><input placeholder="0.00"><span class="ro-input-group__addon">USD</span></div>
+          <div class="ro-input-group"><span class="ro-input-group__addon">@</span><input placeholder="usuario"></div>
+          <div class="ro-input-group"><input placeholder="Buscar builders…"><button class="ro-input-group__btn">Buscar</button></div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="rating">
+        <h2>Rating</h2>
+        <div class="dx-demo">
+          <div class="ro-rating">
+            <button class="ro-rating__star is-active"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
+            <button class="ro-rating__star is-active"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
+            <button class="ro-rating__star is-active"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
+            <button class="ro-rating__star is-active"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
+            <button class="ro-rating__star"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
+          </div>
+          <span class="ro-muted" style="font-size:13px">Haz clic para puntuar</span>
+        </div>
+      </div>
+
+      <div class="dx-section" id="list-group">
+        <h2>List group</h2>
+        <div class="ro-list" style="max-width:480px">
+          <a class="ro-list__item ro-list__item--active">
+            <span class="ro-avatar ro-avatar--sm">M0</span>
+            <div style="flex:1"><div class="ro-list__title">Estado actual de AI</div><div class="ro-list__meta">Módulo 0 · Video</div></div>
+            <span class="ro-badge ro-badge--soft">Activo</span>
+          </a>
+          <a class="ro-list__item">
+            <span class="ro-avatar ro-avatar--sm">M1</span>
+            <div style="flex:1"><div class="ro-list__title">Input &gt; Proceso &gt; Output</div><div class="ro-list__meta">Módulo 1 · Video</div></div>
+          </a>
+          <a class="ro-list__item">
+            <span class="ro-avatar ro-avatar--sm">M2</span>
+            <div style="flex:1"><div class="ro-list__title">El Síndrome del 80%</div><div class="ro-list__meta">Módulo 2 · Video</div></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="dx-section" id="description-list">
+        <h2>Description list</h2>
+        <div class="ro-card ro-card--plain" style="max-width:440px">
+          <dl class="ro-dl">
+            <dt>Cohort</dt><dd>Abril 2026</dd>
+            <dt>Duración</dt><dd>4 semanas · 40 módulos</dd>
+            <dt>Modalidad</dt><dd>Online · sesiones en vivo</dd>
+            <dt>Estado</dt><dd><span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--success"></span> Activo</span></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="dx-section" id="timeline">
+        <h2>Timeline</h2>
+        <ol class="ro-timeline" style="max-width:480px">
+          <li class="ro-timeline__item ro-timeline__item--done"><div class="ro-timeline__time">27 abr</div><div class="ro-timeline__title">Inscripción confirmada</div><div class="ro-timeline__text">Te uniste al cohort de abril.</div></li>
+          <li class="ro-timeline__item ro-timeline__item--active"><div class="ro-timeline__time">Hoy</div><div class="ro-timeline__title">Módulo 4 en curso</div><div class="ro-timeline__text">El Arte del "Technical Brief".</div></li>
+          <li class="ro-timeline__item"><div class="ro-timeline__time">Próximo</div><div class="ro-timeline__title">Sesión en vivo</div><div class="ro-timeline__text">Revisión de código grupal.</div></li>
+        </ol>
+      </div>
+
+      <div class="dx-section" id="progress-ring">
+        <h2>Progress ring</h2>
+        <div class="dx-demo">
+          <div class="ro-ring" style="--val:8"><div class="ro-ring__hole">8%</div></div>
+          <div class="ro-ring" style="--val:65"><div class="ro-ring__hole">65%</div></div>
+          <div class="ro-ring ro-ring--lg" style="--val:100"><div class="ro-ring__hole">100%</div></div>
+          <div class="ro-ring ro-ring--ink" style="--val:42"><div class="ro-ring__hole">42%</div></div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="calendar">
+        <h2>Calendar &amp; Date picker</h2>
+        <div class="dx-demo" style="align-items:flex-start;gap:32px">
+          <div class="ro-card ro-card--plain">
+            <div class="ro-calendar" data-calendar data-year="2026" data-month="5" data-today="27" data-selected="12">
+              <div class="ro-calendar__header">
+                <span class="ro-calendar__title"></span>
+                <div class="ro-calendar__nav">
+                  <button class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-left"></use></svg></button>
+                  <button class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-right"></use></svg></button>
+                </div>
+              </div>
+              <div class="ro-calendar__grid"></div>
+            </div>
+          </div>
+          <div>
+            <p class="dx-sub" style="margin-top:0">Date picker (campo + popover)</p>
+            <div class="ro-dropdown" data-dropdown data-datepicker style="width:240px">
+              <div class="ro-field" data-dropdown-trigger style="cursor:pointer">
+                <svg class="ro-icon ro-icon--sm" style="color:var(--ro-ink-40)"><use href="#ro-i-calendar"></use></svg>
+                <input class="ro-input" placeholder="Selecciona fecha" readonly style="cursor:pointer">
+              </div>
+              <div class="ro-popover" style="min-width:300px">
+                <div class="ro-calendar" data-calendar data-year="2026" data-month="5" data-today="27">
+                  <div class="ro-calendar__header">
+                    <span class="ro-calendar__title"></span>
+                    <div class="ro-calendar__nav">
+                      <button class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-left"></use></svg></button>
+                      <button class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-right"></use></svg></button>
+                    </div>
+                  </div>
+                  <div class="ro-calendar__grid"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="cmdk">
+        <h2>Command palette <span class="dx-code">⌘K</span></h2>
+        <div class="dx-demo">
+          <button class="ro-btn ro-btn--soft" data-cmdk-open="demoCmdk">Abrir <span class="ro-kbd" style="margin-left:6px">⌘</span><span class="ro-kbd">K</span></button>
+          <span class="ro-muted" style="font-size:13px">o pulsa ⌘K / Ctrl+K</span>
+        </div>
+      </div>
+
+      <div class="dx-section" id="button-group">
+        <h2>Button group &amp; Split button</h2>
+        <div class="dx-demo">
+          <div class="ro-btn-group">
+            <button class="ro-btn ro-btn--soft">Día</button>
+            <button class="ro-btn ro-btn--soft">Semana</button>
+            <button class="ro-btn ro-btn--soft">Mes</button>
+          </div>
+          <div class="ro-split">
+            <button class="ro-btn ro-btn--dark">Guardar</button>
+            <div class="ro-dropdown" data-dropdown>
+              <button class="ro-btn ro-btn--dark ro-split__toggle" data-dropdown-trigger><svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg></button>
+              <div class="ro-menu ro-menu--end">
+                <a class="ro-menu__item">Guardar y cerrar</a>
+                <a class="ro-menu__item">Guardar como borrador</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="number-input">
+        <h2>Number input</h2>
+        <div class="dx-demo">
+          <div class="ro-number">
+            <button class="ro-number__btn" data-step="-">−</button>
+            <input type="number" value="3" min="0" max="40">
+            <button class="ro-number__btn" data-step="+">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="tree">
+        <h2>Tree view</h2>
+        <ul class="ro-tree ro-card ro-card--plain" style="max-width:320px;padding:8px">
+          <li class="ro-tree__item is-open">
+            <div class="ro-tree__row"><svg class="ro-icon ro-icon--sm ro-tree__chevron"><use href="#ro-i-chevron-right"></use></svg> Frontend · 4 semanas</div>
+            <ul class="ro-tree__children">
+              <li class="ro-tree__item is-open">
+                <div class="ro-tree__row"><svg class="ro-icon ro-icon--sm ro-tree__chevron"><use href="#ro-i-chevron-right"></use></svg> Semana 1</div>
+                <ul class="ro-tree__children">
+                  <li class="ro-tree__item"><div class="ro-tree__row ro-tree__row--leaf ro-tree__row--active">Estado actual de AI</div></li>
+                  <li class="ro-tree__item"><div class="ro-tree__row ro-tree__row--leaf">Input &gt; Proceso &gt; Output</div></li>
+                </ul>
+              </li>
+              <li class="ro-tree__item"><div class="ro-tree__row"><svg class="ro-icon ro-icon--sm ro-tree__chevron"><use href="#ro-i-chevron-right"></use></svg> Semana 2</div>
+                <ul class="ro-tree__children"><li class="ro-tree__item"><div class="ro-tree__row ro-tree__row--leaf">Módulo 5</div></li></ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </div>
+
+  <!-- Command palette overlay -->
+  <div class="ro-cmdk-overlay" id="demoCmdk">
+    <div class="ro-cmdk" role="dialog" aria-modal="true">
+      <div class="ro-cmdk__search">
+        <svg class="ro-icon" style="color:var(--ro-ink-40)"><use href="#ro-i-search"></use></svg>
+        <input placeholder="Buscar comandos…">
+      </div>
+      <div class="ro-cmdk__list">
+        <div class="ro-cmdk__group">Navegar</div>
+        <div class="ro-cmdk__item is-active"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-book-open"></use></svg> Ir a Inicio <span class="ro-kbd">G</span></div>
+        <div class="ro-cmdk__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-user"></use></svg> Ir a Directorio</div>
+        <div class="ro-cmdk__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-calendar"></use></svg> Ir a Sesiones</div>
+        <div class="ro-cmdk__group">Acciones</div>
+        <div class="ro-cmdk__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-plus"></use></svg> Crear proyecto</div>
+        <div class="ro-cmdk__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-settings"></use></svg> Ajustes</div>
+        <div class="ro-cmdk__empty" hidden>Sin comandos</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer lateral (menú mobile) -->
+  <div class="ro-drawer-root" id="navDrawer">
+    <div class="ro-drawer-overlay"></div>
+    <aside class="ro-drawer ro-drawer--left">
+      <div class="ro-drawer__header">
+        <span class="ro-drawer__title">Menú</span>
+        <button class="ro-btn-icon" data-drawer-close><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
+      </div>
+      <div class="ro-drawer__body">
+        <a class="ro-nav-item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-book-open"></use></svg> Inicio</a>
+        <a class="ro-nav-item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-calendar"></use></svg> Sesiones</a>
+        <a class="ro-nav-item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-user"></use></svg> Directorio</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Bottom-sheet -->
+  <div class="ro-drawer-root" id="sheet">
+    <div class="ro-drawer-overlay"></div>
+    <aside class="ro-drawer ro-drawer--bottom">
+      <div class="ro-drawer__grip"></div>
+      <div class="ro-drawer__header">
+        <span class="ro-drawer__title">Temario</span>
+        <button class="ro-btn-icon" data-drawer-close><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
+      </div>
+      <div class="ro-drawer__body">
+        <p class="ro-body" style="margin:0">Contenido del panel deslizable desde abajo (ideal para el rail derecho en mobile).</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Modal (overlay; abierto por [data-modal-open="demoModal"]) -->
+  <div class="ro-overlay" id="demoModal">
+    <div class="ro-modal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
+      <div class="ro-modal__header">
+        <h3 class="ro-modal__title" id="demoModalTitle">Confirmar acción</h3>
+        <button class="ro-btn-icon" data-modal-close aria-label="Cerrar"><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
+      </div>
+      <div class="ro-modal__body">
+        ¿Seguro que quieres continuar? Esta acción se puede deshacer desde tus ajustes más adelante.
+      </div>
+      <div class="ro-modal__footer">
+        <button class="ro-btn ro-btn--soft" data-modal-close>Cancelar</button>
+        <button class="ro-btn ro-btn--primary" data-modal-close>Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/docs.js"></script>
+</body>
+</html>

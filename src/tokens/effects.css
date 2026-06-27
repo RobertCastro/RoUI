@@ -1,0 +1,22 @@
+/* tokens/effects.css — Bordes, sombras, focus, movimiento. */
+:root {
+  --ro-border:        1px solid var(--ro-ink-10);
+  --ro-border-strong: 1px solid var(--ro-ink-18);
+  --ro-border-dashed: 1px dashed var(--ro-ink-20);
+
+  --ro-shadow-sm:  0 1px 2px rgba(23, 23, 25, 0.06);
+  --ro-shadow-md:  0 6px 20px rgba(23, 23, 25, 0.08);
+  --ro-focus-ring: 0 0 0 3px rgba(169, 160, 236, 0.55);
+
+  --ro-ease:       cubic-bezier(0.4, 0, 0.2, 1);
+  --ro-ease-out:   cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ro-duration:   0.15s;
+  --ro-transition: all var(--ro-duration) var(--ro-ease);
+
+  /* Iconografía (Lucide): viewBox 24, stroke=currentColor, fill=none, sw 2 */
+  --ro-icon-xs: 14px;
+  --ro-icon-sm: 16px;
+  --ro-icon-md: 18px;
+  --ro-icon-lg: 20px;
+  --ro-icon-stroke: 2;
+}

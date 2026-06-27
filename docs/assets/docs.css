@@ -1,0 +1,63 @@
+/* docs.css — Chrome del sitio de documentación (prefijo dx-). */
+body { margin: 0; }
+.dx { display: grid; grid-template-columns: 1fr; min-height: 100vh; }
+@media (min-width: 900px) { .dx { grid-template-columns: 248px 1fr; } }
+
+/* Sidebar de navegación de docs */
+.dx-nav {
+  position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto;
+  border-right: 1px solid var(--ro-ink-10); background: var(--ro-white);
+  padding: 24px 18px; display: none;
+}
+@media (min-width: 900px) { .dx-nav { display: block; } }
+.dx-brand { font-family: var(--ro-font-display); font-weight: 700; font-size: 20px; letter-spacing: -.02em; }
+.dx-brand span { color: var(--ro-secondary); }
+.dx-nav-group { margin-top: 22px; }
+.dx-nav-group h4 { margin: 0 0 8px; font-family: var(--ro-font-mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--ro-ink-40); }
+.dx-nav a { display: block; padding: 6px 10px; border-radius: 8px; text-decoration: none;
+  font-size: 14px; color: var(--ro-ink-70); }
+.dx-nav a:hover { background: var(--ro-ink-04); color: var(--ro-ink); }
+.dx-nav a.is-active { background: var(--ro-ink); color: #fff; font-weight: 600; }
+
+/* Contenido */
+.dx-main { padding: 32px 24px 96px; max-width: 1100px; }
+@media (min-width: 900px) { .dx-main { padding: 48px 56px 96px; } }
+.dx-main > h1 { font-family: var(--ro-font-display); font-size: 40px; letter-spacing: -.03em; margin: 0 0 6px; }
+.dx-lead { color: var(--ro-ink-60); font-size: 16px; margin: 0 0 8px; max-width: 60ch; }
+
+.dx-section { margin-top: 56px; }
+.dx-section > h2 { font-family: var(--ro-font-display); font-size: 24px; margin: 0 0 4px; letter-spacing: -.02em; }
+.dx-section > p { color: var(--ro-ink-60); margin: 0 0 20px; }
+.dx-sub { font-family: var(--ro-font-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: .06em; color: var(--ro-ink-40); margin: 28px 0 12px; }
+
+/* Specimen: caja que enmarca un ejemplo */
+.dx-demo { border: 1px solid var(--ro-ink-10); border-radius: 16px; background: var(--ro-white);
+  padding: 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.dx-demo--col { flex-direction: column; align-items: stretch; }
+.dx-demo--soft { background: var(--ro-ink-soft); }
+
+/* Tabla de tokens */
+.dx-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.dx-table th { text-align: left; font-family: var(--ro-font-mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--ro-ink-40);
+  padding: 8px 12px; border-bottom: 1px solid var(--ro-ink-10); }
+.dx-table td { padding: 10px 12px; border-bottom: 1px solid var(--ro-ink-06); vertical-align: middle; }
+.dx-table code { font-family: var(--ro-font-mono); font-size: 12px; color: var(--ro-ink-70); }
+
+/* Swatches */
+.dx-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 14px; }
+.dx-swatch { border: 1px solid var(--ro-ink-10); border-radius: 14px; overflow: hidden; }
+.dx-swatch .chip { height: 72px; }
+.dx-swatch .meta { padding: 10px 12px; }
+.dx-swatch .meta b { display: block; font-size: 13px; }
+.dx-swatch .meta code { font-family: var(--ro-font-mono); font-size: 11px; color: var(--ro-ink-50); }
+
+/* Code chip */
+.dx-code { display: inline-block; font-family: var(--ro-font-mono); font-size: 12px;
+  background: var(--ro-ink-04); padding: 2px 7px; border-radius: 6px; color: var(--ro-ink-70); }
+
+/* Specimen tipográfico */
+.dx-type-row { display: flex; align-items: baseline; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--ro-ink-06); }
+.dx-type-row .lbl { width: 90px; flex: none; font-family: var(--ro-font-mono); font-size: 11px; color: var(--ro-ink-40); }

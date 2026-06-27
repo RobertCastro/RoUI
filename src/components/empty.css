@@ -1,0 +1,13 @@
+/* components/empty.css — Estado vacío (sin resultados / sin datos). */
+.ro-empty {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 10px; padding: 40px 24px;
+}
+.ro-empty__icon {
+  display: grid; place-items: center; width: 48px; height: 48px;
+  border-radius: var(--ro-radius-full); background: var(--ro-ink-04); color: var(--ro-ink-40);
+  margin-bottom: 4px;
+}
+.ro-empty__title { font-weight: var(--ro-weight-bold); color: var(--ro-ink); }
+.ro-empty__text { color: var(--ro-ink-50); font-size: var(--ro-text-sm); max-width: 38ch; }
+.ro-empty__actions { margin-top: 8px; display: flex; gap: 8px; }

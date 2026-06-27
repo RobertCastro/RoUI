@@ -1,0 +1,18 @@
+/* components/popover.css — Popover (contenido rico al clic). Usa el wrapper .ro-dropdown. */
+.ro-popover {
+  position: absolute; top: calc(100% + 8px); left: 0; z-index: var(--ro-z-overlay);
+  min-width: 240px; max-width: 320px;
+  background: var(--ro-white); border: 1px solid var(--ro-ink-10);
+  border-radius: var(--ro-radius-xl); box-shadow: var(--ro-shadow-md);
+  padding: 14px; display: none;
+}
+.ro-popover--end { left: auto; right: 0; }
+.ro-popover.is-open { display: block; animation: ro-pop 0.16s var(--ro-ease-out); }
+.ro-popover__arrow {
+  position: absolute; top: -5px; left: 16px; width: 10px; height: 10px;
+  background: var(--ro-white); border-left: 1px solid var(--ro-ink-10); border-top: 1px solid var(--ro-ink-10);
+  transform: rotate(45deg);
+}
+.ro-popover--end .ro-popover__arrow { left: auto; right: 16px; }
+.ro-popover__title { font-weight: var(--ro-weight-bold); margin-bottom: 4px; }
+.ro-popover__body { font-size: var(--ro-text-sm); color: var(--ro-ink-70); line-height: 1.5; }

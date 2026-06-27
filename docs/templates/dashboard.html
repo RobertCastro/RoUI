@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plantilla · Dashboard — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <style>.ico{width:16px;height:16px;display:inline-block;border:2px solid currentColor;border-radius:4px;flex:none}</style>
+</head>
+<body class="ro-app ro-root" style="background:var(--ro-ink-soft)">
+
+  <header class="ro-header">
+    <a class="ro-header__brand"><strong style="font-size:20px">RoUI</strong></a>
+    <button class="ro-switcher">
+      <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg> Acme Inc
+      <svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg>
+    </button>
+    <nav class="ro-header__nav">
+      <a class="ro-nav-link ro-nav-link--active">Inicio</a>
+      <a class="ro-nav-link">Mis Proyectos</a>
+      <a class="ro-nav-link">Sesiones</a>
+      <a class="ro-nav-link">Directorio</a>
+      <a class="ro-nav-link">Explorar</a>
+    </nav>
+    <div class="ro-header__title"></div>
+    <div class="ro-header__actions">
+      <button class="ro-btn-icon" title="Tus herramientas"><svg class="ro-icon"><use href="#ro-i-wrench"></use></svg></button>
+      <button class="ro-btn-icon" title="Notificaciones" style="position:relative"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg><span class="ro-dot-badge"></span></button>
+      <button class="ro-btn-icon" title="Idioma"><svg class="ro-icon"><use href="#ro-i-languages"></use></svg></button>
+      <button class="ro-avatar">RC</button>
+      <button class="ro-btn-icon ro-burger"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-menu"></use></svg></button>
+    </div>
+  </header>
+
+  <div class="ro-app__body">
+    <div class="ro-container" style="padding-top:32px;padding-bottom:64px">
+
+      <!-- Encabezado de página + stats -->
+      <div class="ro-row ro-row--between ro-row--wrap" style="align-items:flex-end">
+        <div>
+          <h1 class="ro-display">Bienvenido, Robert<span style="color:var(--ro-secondary)">.</span></h1>
+          <p class="ro-muted" style="margin-top:6px">1 ruta de aprendizaje activa · Sábado, 27 de junio</p>
+        </div>
+        <div class="ro-row" style="gap:32px">
+          <div class="ro-stat"><div class="ro-stat__value">3</div><div class="ro-stat__label">Completados</div></div>
+          <div class="ro-stat"><div class="ro-stat__value">2</div><div class="ro-stat__label">En progreso</div></div>
+          <div class="ro-stat"><div class="ro-stat__value" style="color:var(--ro-secondary)">0%</div><div class="ro-stat__label">Promedio</div></div>
+        </div>
+      </div>
+
+      <!-- Tabs de rutas -->
+      <div class="ro-row" style="margin-top:24px;gap:10px">
+        <span class="ro-eyebrow ro-eyebrow--ink">Mis rutas</span>
+        <button class="ro-pill ro-pill--active">Frontend · 4 semanas 8%</button>
+        <span class="ro-spacer"></span>
+        <button class="ro-btn ro-btn--ghost ro-hide-mobile"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-plus"></use></svg> Explorar paths</button>
+      </div>
+
+      <!-- Layout 2 columnas: principal + panel -->
+      <div class="ro-layout-2col" style="margin-top:20px">
+        <div class="ro-stack">
+          <div class="ro-card-dark">
+            <div class="ro-eyebrow">Cohort · Abril 2026</div>
+            <h2 class="ro-h2" style="color:#fff;margin-top:8px">Frontend · 4 semanas</h2>
+            <p class="ro-body" style="margin-top:6px">Semana 9 de 4 · 3 módulos completados</p>
+            <div class="ro-row" style="margin-top:18px;gap:10px">
+              <button class="ro-pill ro-pill--active">Sem 1</button>
+              <button class="ro-pill">Sem 2</button>
+              <button class="ro-pill">Sem 3</button>
+              <button class="ro-pill">Sem 4</button>
+            </div>
+          </div>
+
+          <div class="ro-card-dark" style="background:var(--ro-ink)">
+            <div class="ro-eyebrow">Continuar aprendiendo</div>
+            <h3 class="ro-h3" style="color:#fff;margin-top:10px">El Arte del "Technical Brief" (Architecting)</h3>
+            <p class="ro-body" style="margin-top:6px">Frontend · Módulo 4 de 40</p>
+            <button class="ro-btn ro-btn--primary" style="margin-top:16px">Continuar Aprendiendo →</button>
+          </div>
+
+          <div>
+            <div class="ro-row ro-row--between" style="margin-bottom:10px">
+              <span class="ro-eyebrow ro-eyebrow--ink">Semana 1 · empieza el 27 de abril</span>
+              <span class="ro-badge ro-badge--soft">3/9 completados</span>
+            </div>
+            <div class="ro-stack ro-stack--sm">
+              <a class="ro-card-row" style="background:var(--ro-white);border:1px solid var(--ro-ink-10)">
+                <span class="ro-step ro-step--done"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span>
+                <div><div style="font-weight:600">Estado actual de AI</div>
+                  <div class="ro-muted" style="font-size:13px">Módulo 0 · Video</div></div>
+              </a>
+              <a class="ro-card-row" style="background:var(--ro-white);border:1px solid var(--ro-ink-10)">
+                <span class="ro-step ro-step--current"></span>
+                <div><div style="font-weight:600">El Arte del "Technical Brief"</div>
+                  <div class="ro-muted" style="font-size:13px">Módulo 4 · Video</div></div>
+                <span class="ro-badge" style="margin-left:auto">En curso</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel lateral derecho -->
+        <div class="ro-stack">
+          <div class="ro-card ro-card--plain">
+            <div class="ro-card__header">
+              <h3 class="ro-h3">Tus herramientas</h3>
+              <span class="ro-badge ro-badge--soft">1/1</span>
+            </div>
+            <p class="ro-body" style="margin-top:8px">Activa cada licencia una sola vez.</p>
+            <button class="ro-btn ro-btn--dark" style="width:100%;margin-top:14px">Extender uso <svg class="ro-icon ro-icon--sm"><use href="#ro-i-external-link"></use></svg></button>
+            <a class="ro-card-row" style="margin-top:10px;padding-inline:0">
+              <span class="ro-avatar ro-avatar--sm">O</span>
+              <div><div style="font-weight:600;font-size:14px">API Sandbox</div>
+                <div class="ro-muted" style="font-size:12px">Modelos de IA vía API</div></div>
+              <span class="ro-badge ro-badge--soft" style="margin-left:auto;color:var(--ro-success)">✓ Activo</span>
+            </a>
+          </div>
+
+          <div class="ro-callout--soft" style="border-radius:16px;padding:18px">
+            <div class="ro-eyebrow ro-eyebrow--ink">Conexiones recomendadas</div>
+            <p class="ro-body" style="margin-top:6px">Por proyecto, industria e intereses.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Inyecta el sprite de iconos (en producción puedes inline-arlo en el HTML) -->
+  <script>
+    fetch(new URL('../../dist/icons.svg', document.baseURI).href)
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (svg) { if (!svg) return; var d = document.createElement('div'); d.style.display = 'none'; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+/* components/timeline.css — Línea de tiempo (punto activo lavanda de marca). */
+.ro-timeline { margin: 0; padding: 0; list-style: none; }
+.ro-timeline__item { position: relative; padding: 0 0 22px 24px; }
+.ro-timeline__item::before { /* punto */
+  content: ""; position: absolute; left: 0; top: 4px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--ro-ink-20); border: 2px solid var(--ro-white);
+  box-shadow: 0 0 0 1px var(--ro-ink-10); z-index: 1;
+}
+.ro-timeline__item::after { /* línea */
+  content: ""; position: absolute; left: 5px; top: 6px; bottom: -4px; width: 2px; background: var(--ro-ink-10);
+}
+.ro-timeline__item:last-child::after { display: none; }
+.ro-timeline__item--active::before { background: var(--ro-secondary); box-shadow: 0 0 0 3px var(--ro-secondary-ring); }
+.ro-timeline__item--done::before   { background: var(--ro-ink); }
+.ro-timeline__time { font-family: var(--ro-font-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: var(--ro-tracking-wide); color: var(--ro-ink-50); }
+.ro-timeline__title { font-weight: var(--ro-weight-semibold); margin-top: 2px; }
+.ro-timeline__text { color: var(--ro-ink-60); font-size: var(--ro-text-sm); margin-top: 2px; }

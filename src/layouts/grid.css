@@ -1,0 +1,20 @@
+/* layouts/grid.css — Grid de 12 columnas, columnas iguales y auto-fit. */
+.ro-grid { display: grid; gap: var(--ro-space-4); grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.ro-grid--gap-sm { gap: var(--ro-space-2); }
+.ro-grid--gap-lg { gap: var(--ro-space-6); }
+
+.ro-cols-2, .ro-cols-3, .ro-cols-4 { display: grid; gap: var(--ro-space-4); grid-template-columns: 1fr; }
+@media (min-width: 640px)  { .ro-cols-2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 768px)  { .ro-cols-3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .ro-cols-4 { grid-template-columns: repeat(4, 1fr); } }
+
+.ro-col-3, .ro-col-4, .ro-col-6, .ro-col-8, .ro-col-9 { grid-column: span 12; }
+@media (min-width: 768px) {
+  .ro-col-3 { grid-column: span 3; }
+  .ro-col-4 { grid-column: span 4; }
+  .ro-col-6 { grid-column: span 6; }
+  .ro-col-8 { grid-column: span 8; }
+  .ro-col-9 { grid-column: span 9; }
+}
+
+.ro-cards { display: grid; gap: var(--ro-space-4); grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }

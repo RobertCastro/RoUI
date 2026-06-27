@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tokens — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dist/roui.css">
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+      <div class="dx-brand">RoUI<span>.</span></div>
+      <div class="dx-nav-group"><h4>Inicio</h4><a href="index.html">Introducción</a></div>
+      <div class="dx-nav-group"><h4>Fundamentos</h4>
+        <a href="tokens.html" class="is-active">Tokens / Variables</a>
+        <a href="icons.html">Iconos</a>
+        <a href="layouts.html">Layouts &amp; Grid</a></div>
+      <div class="dx-nav-group"><h4>Componentes</h4><a href="components.html">Galería de componentes</a></div>
+      <div class="dx-nav-group"><h4>Plantillas</h4>
+        <a href="templates/dashboard.html">Dashboard</a>
+        <a href="templates/module-3col.html">Módulo (3 columnas)</a></div>
+    </aside>
+
+    <main class="dx-main">
+      <h1>Tokens</h1>
+      <p class="dx-lead">Las variables CSS son la fuente de verdad. Todos los componentes las consumen.</p>
+
+      <div class="dx-section">
+        <h2>Color · marca</h2>
+        <div class="dx-swatches">
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-ink)"></div><div class="meta"><b>ink</b><code>#171719</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-primary)"></div><div class="meta"><b>primary</b><code>#f6f072</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-secondary)"></div><div class="meta"><b>secondary</b><code>#a9a0ec</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-gray)"></div><div class="meta"><b>gray</b><code>#d9e3e3</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-sky)"></div><div class="meta"><b>sky</b><code>#d4e0ed</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-ink-soft);border-bottom:1px solid var(--ro-ink-10)"></div><div class="meta"><b>ink-soft</b><code>#f7f7f8</code></div></div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Color · semánticos</h2>
+        <div class="dx-swatches">
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-success)"></div><div class="meta"><b>success</b><code>#10b981</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-warning)"></div><div class="meta"><b>warning</b><code>#f59e0b</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-error)"></div><div class="meta"><b>error</b><code>#ef4444</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-info)"></div><div class="meta"><b>info</b><code>#3b82f6</code></div></div>
+        </div>
+        <p class="dx-sub">Escala neutra = ink + opacidad</p>
+        <div class="dx-demo" style="gap:0">
+          <div style="flex:1;height:48px;background:var(--ro-ink-90)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-ink-70)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-ink-50)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-ink-40)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-ink-20)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-ink-10)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-ink-06)"></div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Tipografía</h2>
+        <div class="dx-demo dx-demo--col">
+          <div class="dx-type-row"><span class="lbl">display 44</span><span class="ro-display">Aa título</span></div>
+          <div class="dx-type-row"><span class="lbl">4xl 36</span><span class="ro-h2">Aa sección</span></div>
+          <div class="dx-type-row"><span class="lbl">xl 20</span><span style="font-size:var(--ro-text-xl);font-weight:600">Aa subtítulo</span></div>
+          <div class="dx-type-row"><span class="lbl">base 16</span><span style="font-size:var(--ro-text-base)">Aa cuerpo</span></div>
+          <div class="dx-type-row"><span class="lbl">sm 14</span><span style="font-size:var(--ro-text-sm)">Aa UI / botones</span></div>
+          <div class="dx-type-row"><span class="lbl">xs 12</span><span class="ro-mono" style="font-size:var(--ro-text-xs);text-transform:uppercase;letter-spacing:.05em">Aa eyebrow / meta</span></div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Espaciado &amp; radios</h2>
+        <table class="dx-table">
+          <thead><tr><th>Token</th><th>Valor</th><th>Muestra</th></tr></thead>
+          <tbody>
+            <tr><td><code>--ro-space-2</code></td><td>8px</td><td><div style="height:14px;width:8px;background:var(--ro-secondary)"></div></td></tr>
+            <tr><td><code>--ro-space-4</code></td><td>16px</td><td><div style="height:14px;width:16px;background:var(--ro-secondary)"></div></td></tr>
+            <tr><td><code>--ro-space-8</code></td><td>32px</td><td><div style="height:14px;width:32px;background:var(--ro-secondary)"></div></td></tr>
+            <tr><td><code>--ro-radius-lg</code></td><td>8px</td><td><div style="height:28px;width:48px;background:var(--ro-ink-06);border-radius:8px"></div></td></tr>
+            <tr><td><code>--ro-radius-card</code></td><td>14px</td><td><div style="height:28px;width:48px;background:var(--ro-ink-06);border-radius:14px"></div></td></tr>
+            <tr><td><code>--ro-radius-full</code></td><td>9999px</td><td><div style="height:28px;width:48px;background:var(--ro-ink-06);border-radius:9999px"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

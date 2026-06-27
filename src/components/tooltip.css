@@ -1,0 +1,24 @@
+/* components/tooltip.css — Tooltip CSS-only vía atributo data-tooltip. */
+.ro-tooltip { position: relative; }
+.ro-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--ro-ink); color: var(--ro-on-dark);
+  font-family: var(--ro-font-sans); font-size: 12px; font-weight: var(--ro-weight-medium);
+  line-height: 1; white-space: nowrap;
+  padding: 6px 9px; border-radius: var(--ro-radius-lg);
+  box-shadow: var(--ro-shadow-md);
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--ro-duration) var(--ro-ease), transform var(--ro-duration) var(--ro-ease);
+  z-index: var(--ro-z-overlay);
+}
+.ro-tooltip::before {
+  content: ""; position: absolute; bottom: calc(100% + 3px); left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent; border-top-color: var(--ro-ink);
+  opacity: 0; pointer-events: none; transition: opacity var(--ro-duration) var(--ro-ease);
+  z-index: var(--ro-z-overlay);
+}
+.ro-tooltip:hover::after, .ro-tooltip:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.ro-tooltip:hover::before, .ro-tooltip:focus-visible::before { opacity: 1; }

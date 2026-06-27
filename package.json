@@ -1,0 +1,51 @@
+{
+  "name": "@robertcastro/roui",
+  "version": "0.1.2",
+  "description": "RoUI — design system reutilizable: tokens, componentes y layouts en CSS.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobertCastro/RoUI.git"
+  },
+  "homepage": "https://github.com/RobertCastro/RoUI#readme",
+  "bugs": {
+    "url": "https://github.com/RobertCastro/RoUI/issues"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "dist/roui.css",
+  "style": "dist/roui.css",
+  "exports": {
+    ".": "./dist/roui.css",
+    "./min": "./dist/roui.min.css",
+    "./src": "./src/index.css",
+    "./tokens.css": "./src/tokens/colors.css",
+    "./tokens.json": "./tokens/tokens.json",
+    "./tailwind": "./tokens/tailwind.preset.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "tokens"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepare": "node scripts/build.mjs",
+    "start": "python3 -m http.server 8799",
+    "serve": "python3 -m http.server 8799",
+    "dev": "node scripts/build.mjs && echo '→ http://localhost:8799/docs/index.html' && python3 -m http.server 8799"
+  },
+  "keywords": [
+    "design-system",
+    "css",
+    "tokens",
+    "roui",
+    "ui"
+  ]
+}

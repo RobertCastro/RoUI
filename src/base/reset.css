@@ -1,0 +1,25 @@
+/* base/reset.css — Reset mínimo y defaults de marca. */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Foco de teclado accesible y consistente para cualquier elemento interactivo
+   que no defina su propio indicador (los que usan --ro-focus-ring hacen override). */
+:focus-visible { outline: 2px solid var(--ro-secondary); outline-offset: 2px; }
+
+/* Respeta la preferencia de menos movimiento del sistema. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.ro-root {
+  font-family: var(--ro-font-sans);
+  color: var(--ro-text);
+  background: var(--ro-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.ro-mono { font-family: var(--ro-font-mono); }
