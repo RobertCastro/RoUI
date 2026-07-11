@@ -65,7 +65,6 @@ const report = {
     undefinedCustomProperties,
   },
   knownIssues: [
-    "Tailwind preset mezcla package type=module con module.exports.",
     "Tokens CSS, JSON y Tailwind son fuentes editables duplicadas.",
     "No existen aun pruebas automatizadas de componentes o accesibilidad.",
   ],

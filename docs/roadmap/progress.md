@@ -6,8 +6,8 @@ Ultima actualizacion: 2026-07-10
 
 | Fase | Estado | Progreso | Condicion siguiente |
 |---|---|---:|---|
-| 0. Sistema de ejecucion | review | 95% | Aprobar auditoria humana de cierre |
-| 1. Fundamentos | backlog | 0% | Cierre aprobado de Fase 0 |
+| 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
+| 1. Fundamentos | in-progress | 15% | Verificar F1-001 en CI |
 | 2. Tokens y temas | backlog | 0% | Fundamentos estables |
 | 3. Primitivas accesibles | backlog | 0% | Contratos y tokens estables |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
@@ -35,7 +35,7 @@ Ultima actualizacion: 2026-07-10
 
 - No hay consumidores estables; se permiten breaking changes en Fases 0-2. El
   riesgo se traslada a mantener documentacion y fixtures alineadas.
-- El preset Tailwind actual no cumple el contrato CommonJS documentado.
+- El contrato Tailwind se esta corrigiendo en F1-001.
 - Los tokens tienen varias fuentes editables.
 - No existe todavia suite automatizada de calidad.
 
