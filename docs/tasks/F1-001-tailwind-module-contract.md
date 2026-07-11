@@ -1,6 +1,6 @@
 # F1-001: Corregir contrato de modulos Tailwind
 
-- Estado: review
+- Estado: verified
 - Fase: 1
 - Dependencias: cierre de Fase 0, ADR-0002
 - ADR relacionados: ADR-0002
@@ -39,3 +39,4 @@ npm pack
 - Comandos: `npm run validate`, `npm pack --dry-run`, `git diff --check`.
 - Riesgo pendiente: los valores Tailwind siguen duplicados hasta Fase 2.
 - Siguiente tarea: F1-002, entrypoints CSS publicos.
+- CI: PR #2, job `baseline` correcto en 9 segundos.

@@ -7,7 +7,7 @@ Ultima actualizacion: 2026-07-10
 | Fase | Estado | Progreso | Condicion siguiente |
 |---|---|---:|---|
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
-| 1. Fundamentos | in-progress | 15% | Verificar F1-001 en CI |
+| 1. Fundamentos | in-progress | 17% | Integrar F1-001 y preparar F1-002 |
 | 2. Tokens y temas | backlog | 0% | Fundamentos estables |
 | 3. Primitivas accesibles | backlog | 0% | Contratos y tokens estables |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
@@ -35,7 +35,7 @@ Ultima actualizacion: 2026-07-10
 
 - No hay consumidores estables; se permiten breaking changes en Fases 0-2. El
   riesgo se traslada a mantener documentacion y fixtures alineadas.
-- El contrato Tailwind se esta corrigiendo en F1-001.
+- El contrato Tailwind fue verificado en F1-001; queda pendiente integrar PR #2.
 - Los tokens tienen varias fuentes editables.
 - No existe todavia suite automatizada de calidad.
 
