@@ -6,7 +6,7 @@ Ultima actualizacion: 2026-07-10
 
 | Fase | Estado | Progreso | Condicion siguiente |
 |---|---|---:|---|
-| 0. Sistema de ejecucion | in-progress | 85% | Validar CI remota y aprobar cierre humano |
+| 0. Sistema de ejecucion | review | 95% | Aprobar auditoria humana de cierre |
 | 1. Fundamentos | backlog | 0% | Cierre aprobado de Fase 0 |
 | 2. Tokens y temas | backlog | 0% | Fundamentos estables |
 | 3. Primitivas accesibles | backlog | 0% | Contratos y tokens estables |
@@ -28,7 +28,7 @@ Ultima actualizacion: 2026-07-10
 | F0-007 | Inventario de componentes y madurez | verified |
 | F0-008 | Matriz de soporte | verified |
 | F0-009 | Baseline automatizado | verified |
-| F0-010 | CI minima de pull requests | review |
+| F0-010 | CI minima de pull requests | verified |
 | F0-011 | Backlog detallado de Fase 1 | verified |
 
 ## Riesgos activos
@@ -46,3 +46,4 @@ Ultima actualizacion: 2026-07-10
 - `git diff --check`: correcto.
 - Baseline estructural: cero imports duplicados/inexistentes y cero custom
   properties utilizadas sin definicion.
+- CI GitHub Actions: correcta en PR #1, job `baseline`, 11 segundos.
