@@ -35,6 +35,8 @@
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
+    "baseline": "node scripts/baseline.mjs",
+    "validate": "npm run build && npm run baseline",
     "prepare": "node scripts/build.mjs",
     "start": "python3 -m http.server 8799",
     "serve": "python3 -m http.server 8799",

@@ -51,6 +51,20 @@ cambie vision, arquitectura o alcance debe registrarse antes de implementarse.
 - Cuando el estado documentado y el repositorio difieran, detener la
   implementacion y reconciliar primero la discrepancia.
 
+## Politica temporal de compatibilidad
+
+RoUI no tiene aun una aplicacion estable consumidora. Durante las Fases 0, 1 y
+2 se permiten breaking changes para corregir fundamentos, nombres, estructura
+y contratos. No se requiere compatibilidad hacia atras en estas fases, pero
+cada ruptura debe:
+
+- aparecer en la tarea activa y en el informe de cierre;
+- actualizar documentacion, ejemplos y fixtures en el mismo cambio;
+- eliminar el contrato anterior completamente para no mantener dos caminos;
+- conservar una decision trazable cuando afecte la arquitectura.
+
+Esta excepcion termina antes de publicar la primera release candidata estable.
+
 ## Estados permitidos para una tarea
 
 `backlog -> ready -> in-progress -> review -> verified -> done`
@@ -83,3 +97,9 @@ Registrar o comunicar:
 
 No usar expresiones como "deberia funcionar" como sustituto de validacion.
 
+## Ejecucion del programa
+
+Cada fase se ejecuta mediante el protocolo definido en
+`docs/roadmap/execution-plan.md`. Ese documento establece preparacion, baseline,
+descomposicion, quality gates, auditoria, aprobacion y transicion. No se puede
+sustituir el protocolo con una lista informal en una conversacion.

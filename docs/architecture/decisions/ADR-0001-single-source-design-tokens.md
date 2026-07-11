@@ -1,6 +1,6 @@
 # ADR-0001: Fuente unica de design tokens
 
-- Estado: proposed
+- Estado: accepted
 - Fecha: 2026-07-10
 - Fase: 0
 
@@ -18,6 +18,9 @@ TypeScript y configuracion Tailwind.
 Los artefactos generados incluiran cabecera de no edicion y CI verificara que
 el repositorio este actualizado despues de ejecutar el generador.
 
+La aceptacion autoriza preparar esta migracion en Fase 1 y ejecutarla en Fase
+2. No autoriza mantener en paralelo fuentes editables despues de la migracion.
+
 ## Alternativas
 
 - CSS como fuente: simple para web, insuficiente para validacion y otras salidas.
@@ -34,4 +37,3 @@ el repositorio este actualizado despues de ejecutar el generador.
 - Cero diferencias entre una segunda ejecucion del generador y Git.
 - Pruebas de referencias inexistentes y circulares.
 - Aplicaciones ejemplo consumen las salidas publicas.
-

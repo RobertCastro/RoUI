@@ -46,6 +46,14 @@ rapida y actualizaciones predecibles.
 - Cubrir aplicaciones nativas antes de estabilizar los contratos web.
 - Agregar componentes por volumen sin validar necesidades de producto.
 
+## Estado de adopcion y compatibilidad
+
+No existe todavia una aplicacion estable que dependa de RoUI. Por ello, las
+fases fundacionales pueden reemplazar la API, estructura y nombres actuales sin
+mantener compatibilidad hacia atras. La prioridad es llegar a contratos
+correctos antes de estabilizarlos. Toda ruptura seguira siendo documentada y
+verificada para mantener trazabilidad.
+
 ## Indicadores de exito
 
 - Un proyecto nuevo integra fundamentos y primeros componentes en menos de un
@@ -54,4 +62,3 @@ rapida y actualizaciones predecibles.
 - Todos los componentes estables tienen pruebas de teclado, axe y visuales.
 - Todos los artefactos de tokens se generan desde una unica fuente.
 - Los productos consumidores pueden actualizar con una guia y riesgo conocido.
-

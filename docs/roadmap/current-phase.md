@@ -13,6 +13,7 @@ ejecutar el roadmap sin perder alcance, decisiones ni evidencia.
 - Definicion de compatibilidad y metricas.
 - Plantillas de tareas y cierre de sesion.
 - CI minima que valide el estado actual sin forzar aun la arquitectura destino.
+- Breaking changes documentados necesarios para preparar los fundamentos.
 
 ## Fuera de alcance
 
@@ -26,7 +27,7 @@ ejecutar el roadmap sin perder alcance, decisiones ni evidencia.
 ## Baseline provisional
 
 ```bash
-npm run build
+npm run validate
 NPM_CONFIG_CACHE=/tmp/roui-npm-cache npm pack --dry-run
 ```
 
@@ -40,4 +41,3 @@ Este baseline se ampliara cuando existan linters y pruebas.
 - CI minima esta verde.
 - La Fase 1 tiene tareas pequenas, dependencias y criterios de aceptacion.
 - Un revisor humano aprueba el cierre de fase.
-
