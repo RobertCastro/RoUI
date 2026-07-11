@@ -1,0 +1,6 @@
+/* Entry point publico de tokens. Los archivos individuales son internos. */
+@import "./colors.css";
+@import "./typography.css";
+@import "./spacing.css";
+@import "./effects.css";
+@import "./layout.css";

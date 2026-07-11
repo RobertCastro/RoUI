@@ -49,10 +49,23 @@ Abre **`docs/index.html`** en el navegador (mejor servido por HTTP: `npm run dev
 
 **B · Con bundler (Vite / PostCSS / Next)**
 ```js
-import '@robertcastro/roui';          // dist/roui.css
-// o, para tree-shaking del source:
-import '@robertcastro/roui/src';      // src/index.css (@import)
+import '@robertcastro/roui'; // bundle completo, incluido reset
 ```
+
+**B.1 · Consumo granular (recomendado)**
+```js
+import '@robertcastro/roui/tokens.css';
+import '@robertcastro/roui/components/button.css';
+import '@robertcastro/roui/components/card.css';
+
+// Opcionales y explicitos:
+import '@robertcastro/roui/reset.css';
+import '@robertcastro/roui/animations.css';
+```
+
+Tambien se publican `layouts/*.css`, `utilities.css`, `icons.svg`,
+`bundle.css`, `min.css`, `tokens.json` y `tailwind`. Las rutas internas de
+`src/` no forman parte de la API publica.
 
 **C · Tailwind**
 ```js
