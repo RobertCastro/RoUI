@@ -1,6 +1,6 @@
 # F1-001: Corregir contrato de modulos Tailwind
 
-- Estado: ready
+- Estado: verified
 - Fase: 1
 - Dependencias: cierre de Fase 0, ADR-0002
 - ADR relacionados: ADR-0002
@@ -17,11 +17,11 @@ documentado y probado desde una fixture consumidora.
 
 ## Criterios de aceptacion
 
-- [ ] El entrypoint Tailwind se importa en los entornos soportados.
-- [ ] El formato declarado coincide con la sintaxis del archivo.
-- [ ] Una prueba consumidora usa el tarball generado.
-- [ ] El contrato anterior se elimina, sin shim innecesario.
-- [ ] README y package exports muestran el uso real.
+- [x] El entrypoint Tailwind se importa mediante CJS y ESM.
+- [x] El formato `.cjs` coincide con `module.exports`.
+- [x] Una prueba consumidora instala y usa el tarball generado.
+- [x] El contrato `.js` anterior se elimino sin shim.
+- [x] README y package exports muestran el uso real.
 
 ## Plan de validacion
 
@@ -31,3 +31,12 @@ npm pack
 # instalar tarball en fixture y cargar preset
 ```
 
+## Cierre
+
+- Resultado: preset renombrado a `.cjs` y export publico corregido.
+- Prueba: `scripts/test-package.mjs` instala el tarball en un directorio temporal
+  y valida `require()` e `import()`.
+- Comandos: `npm run validate`, `npm pack --dry-run`, `git diff --check`.
+- Riesgo pendiente: los valores Tailwind siguen duplicados hasta Fase 2.
+- Siguiente tarea: F1-002, entrypoints CSS publicos.
+- CI: PR #2, job `baseline` correcto en 9 segundos.

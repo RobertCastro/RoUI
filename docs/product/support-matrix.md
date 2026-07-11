@@ -11,7 +11,7 @@ automatizaran durante Fase 1.
 | WebKit/Safari | Dos versiones estables recientes | Sin pruebas |
 | Movil | iOS Safari y Chrome Android recientes | Demo responsive manual |
 | HTML/CSS vanilla | Soporte de primera clase | Bundle disponible |
-| Tailwind | Integracion versionada | Preset actual incompatible con contrato documentado |
+| Tailwind | Integracion versionada | Contrato CJS/ESM en validacion mediante F1-001 |
 | React/Next | Adaptador prioritario futuro | No implementado |
 | Vue/Svelte/Angular | Segun demanda validada | No implementado |
 | SSR | Sin errores de importacion o hidratacion | No evaluado |
@@ -25,4 +25,3 @@ automatizaran durante Fase 1.
 - Una superficie pasa a `supported` solo cuando tiene fixture, CI y responsable.
 - Lo no probado se considera experimental, aunque visualmente funcione.
 - La matriz se revisa en cada version mayor y cuando cambia una dependencia base.
-

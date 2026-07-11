@@ -31,7 +31,8 @@ sin definicion. Tambien reporta indicadores de deuda sin bloquear la Fase 0.
 
 ## Fallos conocidos
 
-- Preset Tailwind incompatible con el contrato `require()` documentado.
+- El baseline original detecto un preset Tailwind incompatible; F1-001 contiene
+  su remediacion y prueba consumidora.
 - Fuentes de tokens duplicadas entre CSS, JSON y Tailwind.
 - Reset y foco globales afectan elementos externos al sistema.
 - No existen pruebas de comportamiento, axe o regresion visual.

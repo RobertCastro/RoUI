@@ -1,7 +1,7 @@
 # Auditoria de cierre — Fase 0
 
 - Fecha: 2026-07-10
-- Estado: awaiting-human-approval
+- Estado: approved
 - Rama: `codex/roui-world-class-foundation`
 - Pull request: #1 (draft)
 
@@ -69,7 +69,6 @@ hasta que el revisor humano acepte esta auditoria.
 
 ## Aprobacion humana
 
-- [ ] Entregables aceptados.
-- [ ] Riesgos transferidos aceptados.
-- [ ] Autorizada apertura de Fase 1.
-
+- [x] Entregables aceptados por el usuario el 2026-07-10.
+- [x] Riesgos transferidos aceptados.
+- [x] Autorizada apertura de Fase 1.

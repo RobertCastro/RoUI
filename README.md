@@ -22,7 +22,7 @@ dsystem/
 │  └─ icons.svg              # sprite SVG de iconos
 ├─ tokens/
 │  ├─ tokens.json            # design tokens (Style Dictionary / Figma Tokens)
-│  └─ tailwind.preset.js     # preset para proyectos Tailwind
+│  └─ tailwind.preset.cjs    # preset CommonJS para proyectos Tailwind
 ├─ scripts/build.mjs         # genera dist/ desde src/ (sin dependencias)
 ├─ docs/                     # GALERÍA visual (abrir docs/index.html)
 │  ├─ index.html  tokens.html  components.html  layouts.html

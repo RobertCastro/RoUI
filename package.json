@@ -26,7 +26,7 @@
     "./src": "./src/index.css",
     "./tokens.css": "./src/tokens/colors.css",
     "./tokens.json": "./tokens/tokens.json",
-    "./tailwind": "./tokens/tailwind.preset.js"
+    "./tailwind": "./tokens/tailwind.preset.cjs"
   },
   "files": [
     "dist",
@@ -36,7 +36,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "baseline": "node scripts/baseline.mjs",
-    "validate": "npm run build && npm run baseline",
+    "test:package": "node scripts/test-package.mjs",
+    "validate": "npm run build && npm run baseline && npm run test:package",
     "prepare": "node scripts/build.mjs",
     "start": "python3 -m http.server 8799",
     "serve": "python3 -m http.server 8799",

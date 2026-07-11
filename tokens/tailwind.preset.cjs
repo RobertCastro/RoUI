@@ -4,7 +4,7 @@
  *
  * Tailwind v3:
  *   // tailwind.config.js
- *   module.exports = { presets: [require('./dsystem/tailwind.preset.js')] }
+ *   module.exports = { presets: [require('@robertcastro/roui/tailwind')] }
  *
  * Tailwind v4: puedes mapear estos valores en tu bloque @theme,
  * o seguir usando tokens.css directamente (recomendado en v4).
