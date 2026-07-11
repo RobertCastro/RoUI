@@ -48,6 +48,10 @@ cambie vision, arquitectura o alcance debe registrarse antes de implementarse.
 - No afirmar que una tarea termino sin evidencia de sus quality gates.
 - No mezclar cambios funcionales, redisenos y refactors no relacionados.
 - No sobrescribir, descartar ni incluir en commits cambios locales ajenos.
+- No crear ramas cuyo nombre contenga la palabra `codex`, sin importar
+  mayusculas o minusculas.
+- No incluir referencias a `codex` en los mensajes de commit, sin importar
+  mayusculas o minusculas.
 - Cuando el estado documentado y el repositorio difieran, detener la
   implementacion y reconciliar primero la discrepancia.
 
