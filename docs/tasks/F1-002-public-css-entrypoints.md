@@ -1,6 +1,6 @@
 # F1-002: Definir entrypoints CSS publicos
 
-- Estado: review
+- Estado: done
 - Fase: 1
 - Dependencias: F1-001, ADR-0002
 - ADR relacionados: ADR-0002
@@ -24,6 +24,5 @@ individuales y bundle completo sin rutas internas privadas.
 - Prueba: la fixture instala el tarball, resuelve cada categoria publica y
   verifica que una ruta interna falle con `ERR_PACKAGE_PATH_NOT_EXPORTED`.
 - Comandos: `npm run validate`, `npm pack --dry-run`, `git diff --check`.
-- Riesgo pendiente: el bundle completo contiene reset; F1-003 definira layers y
-  aislamiento para composiciones agregadas.
+- Integracion: PR #3 fusionado en `main` con CI correcta.
 - Siguiente tarea: F1-003, reset y cascade layers.

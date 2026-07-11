@@ -12,12 +12,16 @@ const distDir = resolve(root, "dist");
 mkdirSync(distDir, { recursive: true }); // crea dist/ si no existe (checkout limpio / CI)
 const index = readFileSync(resolve(srcDir, "index.css"), "utf8");
 
-const files = [...index.matchAll(/@import\s+["']\.\/(.+?)["'];/g)].map((m) => m[1]);
+const imports = [...index.matchAll(
+  /@import\s+["']\.\/(.+?)["'](?:\s+layer\(([^)]+)\))?;/g,
+)].map((match) => ({ file: match[1], layer: match[2] }));
 
 let out = `/*! RoUI Design System — bundle generado. No editar a mano. */\n`;
-for (const f of files) {
-  const css = readFileSync(resolve(srcDir, f), "utf8");
-  out += `\n/* ===== ${f} ===== */\n${css.trim()}\n`;
+out += `@layer roui.tokens, roui.reset, roui.base, roui.layouts, roui.components, roui.utilities;\n`;
+for (const { file, layer } of imports) {
+  const css = readFileSync(resolve(srcDir, file), "utf8");
+  const content = layer ? `@layer ${layer} {\n${css.trim()}\n}` : css.trim();
+  out += `\n/* ===== ${file} ===== */\n${content}\n`;
 }
 
 writeFileSync(resolve(distDir, "roui.css"), out);
@@ -31,7 +35,7 @@ const min = out
   .trim();
 writeFileSync(resolve(distDir, "roui.min.css"), min);
 
-console.log(`✓ dist/roui.css (${files.length} archivos, ${(out.length/1024).toFixed(1)} KB)`);
+console.log(`✓ dist/roui.css (${imports.length} archivos, ${(out.length/1024).toFixed(1)} KB)`);
 console.log(`✓ dist/roui.min.css (${(min.length/1024).toFixed(1)} KB)`);
 
 /* --- Sprite de iconos: src/icons/icons.json → dist/icons.svg --- */
