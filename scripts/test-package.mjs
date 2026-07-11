@@ -50,12 +50,36 @@ try {
   writeFileSync(
     join(fixture, "verify.cjs"),
     `const assert = require("node:assert/strict");
+const { existsSync, readFileSync } = require("node:fs");
 const preset = require("@robertcastro/roui/tailwind");
 assert.equal(preset.theme.extend.colors.ink, "#171719");
 assert.equal(preset.theme.extend.spacing.header, "72px");
+const publicFiles = [
+  "@robertcastro/roui",
+  "@robertcastro/roui/bundle.css",
+  "@robertcastro/roui/min.css",
+  "@robertcastro/roui/tokens.css",
+  "@robertcastro/roui/reset.css",
+  "@robertcastro/roui/animations.css",
+  "@robertcastro/roui/components/button.css",
+  "@robertcastro/roui/components/modal.css",
+  "@robertcastro/roui/layouts/grid.css",
+  "@robertcastro/roui/utilities.css",
+  "@robertcastro/roui/icons.svg",
+  "@robertcastro/roui/tokens.json",
+];
+for (const entrypoint of publicFiles) {
+  const resolved = require.resolve(entrypoint);
+  assert.ok(existsSync(resolved), entrypoint + " debe existir en el tarball");
+  assert.ok(readFileSync(resolved).length > 0, entrypoint + " no puede estar vacio");
+}
+assert.throws(
+  () => require.resolve("@robertcastro/roui/src/components/button.css"),
+  (error) => error && error.code === "ERR_PACKAGE_PATH_NOT_EXPORTED",
+);
 import("@robertcastro/roui/tailwind").then((module) => {
   assert.equal(module.default.theme.extend.colors.primary, "#f6f072");
-  console.log("Tailwind entrypoint: CJS require + ESM import correctos");
+  console.log("Entrypoints publicos: tarball, CJS y ESM correctos");
 }).catch((error) => { console.error(error); process.exitCode = 1; });
 `,
   );

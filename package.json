@@ -16,15 +16,21 @@
   },
   "type": "module",
   "sideEffects": [
-    "*.css"
+    "**/*.css"
   ],
   "main": "dist/roui.css",
   "style": "dist/roui.css",
   "exports": {
     ".": "./dist/roui.css",
-    "./min": "./dist/roui.min.css",
-    "./src": "./src/index.css",
-    "./tokens.css": "./src/tokens/colors.css",
+    "./bundle.css": "./dist/roui.css",
+    "./min.css": "./dist/roui.min.css",
+    "./tokens.css": "./src/tokens/index.css",
+    "./reset.css": "./src/base/reset.css",
+    "./animations.css": "./src/base/animations.css",
+    "./components/*.css": "./src/components/*.css",
+    "./layouts/*.css": "./src/layouts/*.css",
+    "./utilities.css": "./src/utilities/helpers.css",
+    "./icons.svg": "./dist/icons.svg",
     "./tokens.json": "./tokens/tokens.json",
     "./tailwind": "./tokens/tailwind.preset.cjs"
   },
