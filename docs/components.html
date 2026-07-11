@@ -40,7 +40,9 @@
         <a href="#calendar">↳ Calendar &amp; Date picker</a>
         <a href="#cmdk">↳ Command palette</a>
         <a href="#button-group">↳ Button group &amp; Number</a>
-        <a href="#tree">↳ Tree view</a></div>
+        <a href="#tree">↳ Tree view</a>
+        <a href="#divider">↳ Divider &amp; Banner</a>
+        <a href="#toolbar">↳ Toolbar &amp; Footer</a></div>
       <div class="dx-nav-group"><h4>Plantillas</h4>
         <a href="templates/dashboard.html">Dashboard</a>
         <a href="templates/module-3col.html">Módulo (3 columnas)</a></div>
@@ -804,6 +806,67 @@ npm run build</code></pre>
             </ul>
           </li>
         </ul>
+      </div>
+
+      <div class="dx-section" id="divider">
+        <h2>Divider</h2>
+        <div class="dx-demo dx-demo--col" style="align-items:stretch;max-width:420px">
+          <span>Arriba</span>
+          <hr class="ro-divider">
+          <span>Abajo</span>
+          <div class="ro-divider-text"><span>o</span></div>
+          <div class="ro-row">Izquierda <span class="ro-divider ro-divider--vertical" style="height:20px"></span> Derecha</div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="banner">
+        <h2>Banner / Announcement</h2>
+        <div class="dx-demo dx-demo--col" style="align-items:stretch;padding:0;overflow:hidden">
+          <div class="ro-banner">🎉 Nuevo: RoUI 1.0 ya disponible. <a href="#">Ver novedades</a><button class="ro-banner__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></div>
+          <div class="ro-banner ro-banner--primary">Oferta de lanzamiento — 50% esta semana</div>
+          <div class="ro-banner ro-banner--brand">Únete al cohort de abril</div>
+        </div>
+      </div>
+
+      <div class="dx-section" id="toolbar">
+        <h2>Toolbar / Action bar</h2>
+        <div class="ro-toolbar">
+          <span class="ro-toolbar__title">Builders</span>
+          <span class="ro-badge ro-badge--soft">71</span>
+          <span class="ro-spacer"></span>
+          <div class="ro-toolbar__group">
+            <button class="ro-btn-icon ro-tooltip" data-tooltip="Filtrar"><svg class="ro-icon"><use href="#ro-i-filter"></use></svg></button>
+            <button class="ro-btn-icon ro-tooltip" data-tooltip="Ordenar"><svg class="ro-icon"><use href="#ro-i-arrow-up-down"></use></svg></button>
+            <button class="ro-btn-icon ro-tooltip" data-tooltip="Descargar"><svg class="ro-icon"><use href="#ro-i-download"></use></svg></button>
+          </div>
+          <span class="ro-toolbar__sep"></span>
+          <button class="ro-btn ro-btn--primary ro-btn--sm"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-plus"></use></svg> Nuevo</button>
+        </div>
+      </div>
+
+      <div class="dx-section" id="footer">
+        <h2>Footer</h2>
+        <footer class="ro-footer" style="border-radius:16px;overflow:hidden">
+          <div class="ro-container">
+            <div class="ro-footer__cols">
+              <div class="ro-footer__col">
+                <div class="ro-footer__brand">RoUI<span style="color:var(--ro-secondary)">.</span></div>
+                <p class="ro-body" style="margin-top:8px;max-width:34ch">Design system reutilizable: tokens, componentes y layouts en CSS.</p>
+                <div class="ro-footer__social" style="margin-top:12px">
+                  <a class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-link"></use></svg></a>
+                  <a class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-mail"></use></svg></a>
+                </div>
+              </div>
+              <div class="ro-footer__col"><h4>Producto</h4><a href="#">Componentes</a><a href="#">Tokens</a><a href="#">Iconos</a></div>
+              <div class="ro-footer__col"><h4>Recursos</h4><a href="#">Docs</a><a href="#">Changelog</a><a href="#">GitHub</a></div>
+              <div class="ro-footer__col"><h4>Legal</h4><a href="#">Licencia MIT</a><a href="#">Privacidad</a></div>
+            </div>
+            <div class="ro-footer__bottom">
+              <span>© 2026 RoUI · MIT</span>
+              <span>Hecho con RoUI</span>
+            </div>
+          </div>
+        </footer>
       </div>
     </main>
   </div>

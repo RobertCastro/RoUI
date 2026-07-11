@@ -1,0 +1,26 @@
+/* components/footer.css — Pie de página (columnas de links + barra inferior). */
+.ro-footer {
+  background: var(--ro-ink-soft); border-top: 1px solid var(--ro-ink-10); color: var(--ro-ink-60);
+}
+.ro-footer__cols {
+  display: grid; gap: var(--ro-space-8); padding: var(--ro-space-10) 0;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) { .ro-footer__cols { grid-template-columns: 2fr repeat(3, 1fr); } }
+.ro-footer__brand { font-family: var(--ro-font-display); font-weight: var(--ro-weight-bold);
+  font-size: var(--ro-text-xl); color: var(--ro-ink); letter-spacing: var(--ro-tracking-tight); }
+.ro-footer__col h4 {
+  margin: 0 0 10px; font-family: var(--ro-font-mono); font-size: var(--ro-text-xs);
+  text-transform: uppercase; letter-spacing: var(--ro-tracking-wider); color: var(--ro-ink-50);
+}
+.ro-footer__col a {
+  display: block; padding: 4px 0; color: var(--ro-ink-60); text-decoration: none; font-size: var(--ro-text-sm);
+  transition: var(--ro-transition);
+}
+.ro-footer__col a:hover { color: var(--ro-ink); }
+.ro-footer__bottom {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+  padding: var(--ro-space-5) 0; border-top: 1px solid var(--ro-ink-06);
+  font-size: var(--ro-text-xs); color: var(--ro-ink-50);
+}
+.ro-footer__social { display: flex; gap: var(--ro-space-2); }

@@ -66,6 +66,10 @@
 @import "./components/button-group.css";
 @import "./components/number-input.css";
 @import "./components/tree.css";
+@import "./components/divider.css";
+@import "./components/banner.css";
+@import "./components/footer.css";
+@import "./components/toolbar.css";
 
 /* 5. Utilidades */
 @import "./utilities/helpers.css";
