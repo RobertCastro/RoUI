@@ -1,0 +1,16 @@
+/* components/banner.css — Franja de anuncio global (top-of-page). */
+.ro-banner {
+  display: flex; align-items: center; justify-content: center; gap: var(--ro-space-3);
+  padding: 10px 16px; text-align: center;
+  font-size: var(--ro-text-sm); background: var(--ro-ink); color: var(--ro-on-dark);
+}
+.ro-banner a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.ro-banner__close {
+  margin-left: auto; display: grid; place-items: center; width: 24px; height: 24px;
+  border: 0; background: transparent; color: inherit; cursor: pointer; opacity: 0.7;
+}
+.ro-banner__close:hover { opacity: 1; }
+
+.ro-banner--primary { background: var(--ro-primary); color: var(--ro-ink); }
+.ro-banner--brand   { background: var(--ro-secondary); color: var(--ro-ink); }
+.ro-banner--soft    { background: var(--ro-ink-04); color: var(--ro-ink); }

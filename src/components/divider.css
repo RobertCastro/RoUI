@@ -1,0 +1,18 @@
+/* components/divider.css — Separador horizontal/vertical, con o sin texto. */
+.ro-divider {
+  border: 0; height: 1px; background: var(--ro-ink-10);
+  margin: var(--ro-space-4) 0;
+}
+.ro-divider--vertical {
+  width: 1px; height: auto; align-self: stretch; margin: 0 var(--ro-space-3);
+}
+/* Con etiqueta centrada: <div class="ro-divider-text"><span>o</span></div> */
+.ro-divider-text {
+  display: flex; align-items: center; gap: var(--ro-space-3);
+  margin: var(--ro-space-4) 0;
+  font-family: var(--ro-font-mono); font-size: var(--ro-text-xs);
+  text-transform: uppercase; letter-spacing: var(--ro-tracking-wider); color: var(--ro-ink-50);
+}
+.ro-divider-text::before, .ro-divider-text::after {
+  content: ""; flex: 1; height: 1px; background: var(--ro-ink-10);
+}
