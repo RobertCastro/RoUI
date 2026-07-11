@@ -7,7 +7,7 @@ Ultima actualizacion: 2026-07-10
 | Fase | Estado | Progreso | Condicion siguiente |
 |---|---|---:|---|
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
-| 1. Fundamentos | in-progress | 30% | Verificar F1-002 en CI |
+| 1. Fundamentos | in-progress | 48% | Verificar F1-003 en CI |
 | 2. Tokens y temas | backlog | 0% | Fundamentos estables |
 | 3. Primitivas accesibles | backlog | 0% | Contratos y tokens estables |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |

@@ -73,6 +73,12 @@ for (const entrypoint of publicFiles) {
   assert.ok(existsSync(resolved), entrypoint + " debe existir en el tarball");
   assert.ok(readFileSync(resolved).length > 0, entrypoint + " no puede estar vacio");
 }
+const bundle = readFileSync(require.resolve("@robertcastro/roui"), "utf8");
+const reset = readFileSync(require.resolve("@robertcastro/roui/reset.css"), "utf8");
+assert.match(bundle, /@layer roui\.tokens/);
+assert.match(bundle, /@layer roui\.components/);
+assert.equal(bundle.includes("*, *::before, *::after"), false);
+assert.equal(reset.includes("*, *::before, *::after"), true);
 assert.throws(
   () => require.resolve("@robertcastro/roui/src/components/button.css"),
   (error) => error && error.code === "ERR_PACKAGE_PATH_NOT_EXPORTED",

@@ -49,7 +49,7 @@ Abre **`docs/index.html`** en el navegador (mejor servido por HTTP: `npm run dev
 
 **B · Con bundler (Vite / PostCSS / Next)**
 ```js
-import '@robertcastro/roui'; // bundle completo, incluido reset
+import '@robertcastro/roui'; // bundle completo, sin reset global
 ```
 
 **B.1 · Consumo granular (recomendado)**
@@ -66,6 +66,16 @@ import '@robertcastro/roui/animations.css';
 Tambien se publican `layouts/*.css`, `utilities.css`, `icons.svg`,
 `bundle.css`, `min.css`, `tokens.json` y `tailwind`. Las rutas internas de
 `src/` no forman parte de la API publica.
+
+El bundle declara este orden de cascada:
+
+```css
+@layer roui.tokens, roui.reset, roui.base, roui.layouts, roui.components, roui.utilities;
+```
+
+El reset no forma parte del bundle predeterminado. Si se necesita, debe
+importarse explicitamente antes o junto a RoUI. Los estilos de una aplicacion
+que no pertenezcan a una capa conservan precedencia sobre los layers de RoUI.
 
 **C · Tailwind**
 ```js

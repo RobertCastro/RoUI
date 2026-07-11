@@ -18,7 +18,9 @@ const cssFiles = walk(src, ".css");
 const componentFiles = cssFiles.filter((file) => file.includes("/components/"));
 const indexPath = resolve(src, "index.css");
 const index = readFileSync(indexPath, "utf8");
-const imports = [...index.matchAll(/@import\s+["']\.\/(.+?)["'];/g)].map((m) => m[1]);
+const imports = [...index.matchAll(
+  /@import\s+["']\.\/(.+?)["'](?:\s+layer\(([^)]+)\))?;/g,
+)].map((match) => match[1]);
 const duplicateImports = imports.filter((item, index) => imports.indexOf(item) !== index);
 const missingImports = imports.filter((file) => {
   try {
