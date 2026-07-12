@@ -1,6 +1,6 @@
 # F3-002: Contrato accesible de Dialog y Drawer
 
-- Estado: review
+- Estado: done
 - Fase: 3
 - Dependencias: F3-001
 - ADR relacionados: ADR-0002
@@ -58,4 +58,5 @@ git diff --check
 - Riesgos pendientes: matriz browser, axe y regresión visual se implementan en Fase 4.
 - Decisión de tamaño: se ajusta el límite descomprimido a 272 KiB según
   ADR-0005; el tarball con el controlador mide 271 802 bytes descomprimidos.
+- Integración: PR #17, CI `baseline` aprobada.
 - Siguiente tarea desbloqueada: F3-003 Menu, Popover y Tooltip.
