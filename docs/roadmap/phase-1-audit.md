@@ -1,7 +1,7 @@
 # Auditoria de cierre — Fase 1
 
 - Fecha: 2026-07-11
-- Estado: awaiting-human-approval
+- Estado: approved
 - Rango: PR #2 a PR #7
 
 ## Objetivo auditado
@@ -60,7 +60,6 @@ Fase 2 será elegir y validar el formato DTCG exacto y su transformador.
 
 ## Aprobación humana
 
-- [ ] Entregables de Fase 1 aceptados.
-- [ ] Riesgos transferidos aceptados.
-- [ ] Autorizada apertura de Fase 2.
-
+- [x] Entregables de Fase 1 aceptados por el usuario el 2026-07-11.
+- [x] Riesgos transferidos aceptados.
+- [x] Autorizada apertura de Fase 2.

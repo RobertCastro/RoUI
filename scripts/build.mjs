@@ -2,6 +2,7 @@
 /* Build sin dependencias: concatena src/ en orden → dist/roui.css (+ .min.css)
    Lee la lista de @import desde src/index.css para mantener una sola fuente de orden. */
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -9,6 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 const srcDir = resolve(root, "src");
 const distDir = resolve(root, "dist");
+execFileSync(process.execPath, [resolve(root, "scripts/build-tokens.mjs")], { stdio: "inherit" });
 mkdirSync(distDir, { recursive: true }); // crea dist/ si no existe (checkout limpio / CI)
 const index = readFileSync(resolve(srcDir, "index.css"), "utf8");
 

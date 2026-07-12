@@ -1,18 +1,15 @@
-/* tokens/layout.css — Dimensiones de layout, breakpoints y z-index.
-   Breakpoints = defaults de Tailwind (los media queries viven en layouts/). */
+/* Generado desde tokens/tokens.json. No editar a mano. */
 :root {
-  --ro-header-h:    72px;
-  --ro-subheader-h: 56px;
-  --ro-rail-left:   280px;
-  --ro-rail-right:  440px;
-  --ro-content-max: 80rem; /* 1280px */
-
-  --ro-z-header:  50;
-  --ro-z-overlay: 80;
-  --ro-z-modal:   100;
-
-  --ro-bp-sm: 640px;
-  --ro-bp-md: 768px;
   --ro-bp-lg: 1024px;
+  --ro-bp-md: 768px;
+  --ro-bp-sm: 640px;
   --ro-bp-xl: 1280px;
+  --ro-content-max: 80rem;
+  --ro-header-h: 72px;
+  --ro-rail-left: 280px;
+  --ro-rail-right: 440px;
+  --ro-subheader-h: 56px;
+  --ro-z-header: 50;
+  --ro-z-modal: 100;
+  --ro-z-overlay: 80;
 }

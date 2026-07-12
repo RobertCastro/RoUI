@@ -1,35 +1,31 @@
-/* tokens/typography.css — Familias, escala, pesos, tracking, leading. */
+/* Generado desde tokens/tokens.json. No editar a mano. */
 :root {
   --ro-font-display: "StackSans", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --ro-font-sans:    "StackSans", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --ro-font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-
-  --ro-text-xs:      0.75rem;   /* 12 */
-  --ro-text-sm:      0.875rem;  /* 14 */
-  --ro-text-base:    1rem;      /* 16 */
-  --ro-text-lg:      1.125rem;  /* 18 */
-  --ro-text-xl:      1.25rem;   /* 20 */
-  --ro-text-2xl:     1.5rem;    /* 24 */
-  --ro-text-3xl:     1.875rem;  /* 30 */
-  --ro-text-4xl:     2.25rem;   /* 36 */
-  --ro-text-5xl:     3rem;      /* 48 */
-  --ro-text-display: 2.75rem;   /* 44 — h1 hero */
-
-  --ro-leading-none:    1;
-  --ro-leading-tight:   1.1;
-  --ro-leading-snug:    1.25;
-  --ro-leading-normal:  1.5;
+  --ro-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ro-font-sans: "StackSans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --ro-leading-none: 1;
+  --ro-leading-normal: 1.5;
   --ro-leading-relaxed: 1.55;
-
-  --ro-weight-light:     300;
-  --ro-weight-normal:    400;
-  --ro-weight-medium:    500;
-  --ro-weight-semibold:  600;
-  --ro-weight-bold:      700;
-  --ro-weight-extrabold: 800;
-
-  --ro-tracking-tight:  -0.025em;
+  --ro-leading-snug: 1.25;
+  --ro-leading-tight: 1.1;
+  --ro-text-2xl: 1.5rem;
+  --ro-text-3xl: 1.875rem;
+  --ro-text-4xl: 2.25rem;
+  --ro-text-5xl: 3rem;
+  --ro-text-base: 1rem;
+  --ro-text-display: 2.75rem;
+  --ro-text-lg: 1.125rem;
+  --ro-text-sm: 0.875rem;
+  --ro-text-xl: 1.25rem;
+  --ro-text-xs: 0.75rem;
   --ro-tracking-normal: 0em;
-  --ro-tracking-wide:   0.025em;
-  --ro-tracking-wider:  0.05em;
+  --ro-tracking-tight: -0.025em;
+  --ro-tracking-wide: 0.025em;
+  --ro-tracking-wider: 0.05em;
+  --ro-weight-bold: 700;
+  --ro-weight-extrabold: 800;
+  --ro-weight-light: 300;
+  --ro-weight-medium: 500;
+  --ro-weight-normal: 400;
+  --ro-weight-semibold: 600;
 }
