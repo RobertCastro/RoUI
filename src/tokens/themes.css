@@ -13,6 +13,7 @@
   --ro-accent: #f6f072;
   --ro-bg: #171719;
   --ro-border-color: rgba(255,255,255,0.20);
+  --ro-button-primary-fg: #171719;
   --ro-focus-ring: 0 0 0 3px rgba(246,240,114,0.65);
   --ro-surface: #242426;
   --ro-text: #ffffff;
@@ -23,6 +24,7 @@
   --ro-accent: #ffff00;
   --ro-bg: #000000;
   --ro-border-color: #ffffff;
+  --ro-button-primary-fg: #000000;
   --ro-focus-ring: 0 0 0 3px #ffffff;
   --ro-surface: #000000;
   --ro-text: #ffffff;
