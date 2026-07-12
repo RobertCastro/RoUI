@@ -8,8 +8,8 @@ Ultima actualizacion: 2026-07-10
 |---|---|---:|---|
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
-| 2. Tokens y temas | review | 100% | Aprobar auditoria humana de cierre |
-| 3. Primitivas accesibles | backlog | 0% | Contratos y tokens estables |
+| 2. Tokens y temas | done | 100% | Cerrada y aprobada |
+| 3. Primitivas accesibles | in-progress | 20% | Verificar F3-001 en CI |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |

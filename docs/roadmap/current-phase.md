@@ -1,43 +1,36 @@
-# Fase activa: 2 — Tokens y temas
+# Fase activa: 3 — Primitivas accesibles
 
 ## Objetivo
 
-Establecer una única fuente DTCG para los valores de diseño y permitir temas,
-marcas y salidas de plataforma sin bifurcar componentes.
+Convertir los componentes visuales en contratos de interacción completos,
+accesibles por teclado y utilizables desde distintos stacks frontend.
 
 ## Trabajo permitido
 
-- Migrar tokens a formato DTCG y validar referencias.
-- Generar variables CSS, JSON público y preset Tailwind.
-- Introducir tokens primitivos, semánticos y de componente.
-- Diseñar temas light, dark y high-contrast.
-- Validar contraste y eliminar valores visuales duplicados.
+- Definir semántica HTML, ARIA, estados y teclado por componente.
+- Mejorar controles nativos antes de implementar patrones compuestos.
+- Crear primitivas de Dialog, Menu, Tabs, Popover, Combobox y Drawer.
+- Documentar gestión de foco, portales, scroll y anuncios dinámicos.
+- Añadir pruebas de comportamiento proporcionales; la matriz integral llega en
+  Fase 4.
 
 ## Fuera de alcance
 
-- Crear adaptadores por framework.
-- Cambiar comportamiento de componentes interactivos.
-- Declarar componentes accesibles `stable`.
-- Agregar componentes visuales por volumen.
+- Añadir componentes visuales sin contrato de accesibilidad.
+- Crear adaptadores para todos los frameworks simultáneamente.
+- Declarar componentes `stable` sin pruebas de teclado y lector de pantalla.
 
 ## Orden inicial
 
-1. F2-001: fuente DTCG única y pipeline de generación.
-2. Definir temas light, dark y high-contrast.
-3. Crear tokens semánticos y de componente.
-4. Validar contraste, aliases y valores literales restantes.
-
-## Baseline
-
-```bash
-npm run check:tokens
-npm run validate
-```
+1. F3-001: contratos para Button y Form nativos.
+2. F3-002: Dialog y Drawer con foco, Escape y restauración.
+3. F3-003: Menu, Popover y Tooltip.
+4. F3-004: Tabs, Accordion y navegación.
+5. F3-005: Combobox, Calendar y Command Palette.
 
 ## Condiciones de salida
 
-- Una única fuente editable para cada valor de diseño.
-- CSS y Tailwind generados y validados desde DTCG.
-- Temas light, dark y high-contrast probados.
-- No quedan valores visuales duplicados sin tarea de remediación.
-- Auditoría humana aprueba el cierre de Fase 2.
+- Cada componente estable define roles, teclado, foco y estados.
+- Los patrones complejos tienen primitivas o controladores verificables.
+- Las pruebas de comportamiento y accesibilidad requeridas están verdes.
+- Auditoría humana aprueba el cierre de Fase 3.
