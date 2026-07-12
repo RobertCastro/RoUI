@@ -1,4 +1,5 @@
 import { createOverlayController } from "../../dist/primitives/overlay-controller.js";
+import { createDisclosureController } from "../../dist/primitives/disclosure-controller.js";
 
 /* docs.js — Interactividad de demostración para la galería.
    Genérico y basado en data-attributes; no es parte de la librería (solo docs). */
@@ -18,38 +19,11 @@ import { createOverlayController } from "../../dist/primitives/overlay-controlle
     }).catch(function () {});
   })();
 
-  /* DROPDOWNS: [data-dropdown] contiene un trigger [data-dropdown-trigger]
-     y un panel .ro-menu. Click = toggle; click fuera o Esc = cerrar. */
-  function closeAllMenus(except) {
-    document.querySelectorAll(".ro-menu.is-open, .ro-popover.is-open").forEach(function (m) {
-      if (m !== except) m.classList.remove("is-open");
-    });
-  }
-  document.querySelectorAll("[data-dropdown]").forEach(function (dd) {
-    var trigger = dd.querySelector("[data-dropdown-trigger]");
-    var menu = dd.querySelector(".ro-menu, .ro-popover");
-    if (!trigger || !menu) return;
-    trigger.addEventListener("click", function (e) {
-      e.stopPropagation();
-      var willOpen = !menu.classList.contains("is-open");
-      closeAllMenus(menu);
-      menu.classList.toggle("is-open", willOpen);
-      trigger.setAttribute("aria-expanded", String(willOpen));
-    });
-    menu.addEventListener("click", function (e) {
-      var item = e.target.closest(".ro-menu__item");
-      if (!item) return;
-      // selección única (workspace): marca aria-current si el grupo lo pide
-      if (menu.hasAttribute("data-single")) {
-        menu.querySelectorAll(".ro-menu__item").forEach(function (it) {
-          it.setAttribute("aria-current", String(it === item));
-        });
-      }
-      if (!item.hasAttribute("data-keep-open")) menu.classList.remove("is-open");
-    });
+  /* DISCLOSURES: Menu y Popover comparten la primitiva pública generada. */
+  var disclosures = new WeakMap();
+  document.querySelectorAll("[data-ro-disclosure-root]").forEach(function (root) {
+    disclosures.set(root, createDisclosureController(root));
   });
-  document.addEventListener("click", function () { closeAllMenus(null); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAllMenus(null); });
 
   /* TABS: [data-tabs="id"] con .ro-tab[data-tab=key]
      + panel container [data-tab-panels="id"] con hijos [data-panel=key] */
@@ -255,8 +229,10 @@ import { createOverlayController } from "../../dist/primitives/overlay-controlle
       grid.querySelectorAll(".ro-calendar__day--selected").forEach(function (s) { s.classList.remove("ro-calendar__day--selected"); });
       day.classList.add("ro-calendar__day--selected");
       var dp = cal.closest("[data-datepicker]");
-      if (dp) { var inp = dp.querySelector("input"); if (inp) inp.value = day.textContent + " " + MONTHS[m] + " " + y;
-        var menu = cal.closest(".ro-popover"); if (menu) menu.classList.remove("is-open"); }
+      if (dp) { var value = dp.querySelector("[data-datepicker-value]"); if (value) value.textContent = day.textContent + " " + MONTHS[m] + " " + y;
+        var root = cal.closest("[data-ro-disclosure-root]");
+        var disclosure = root ? disclosures.get(root) : null;
+        if (disclosure) disclosure.close({ returnFocus: true }); }
     });
   });
 

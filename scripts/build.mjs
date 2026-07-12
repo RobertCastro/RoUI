@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /* Build sin dependencias: concatena src/ en orden → dist/roui.css (+ .min.css)
    Lee la lista de @import desde src/index.css para mantener una sola fuente de orden. */
-import { copyFileSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildSync } from "esbuild";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
@@ -58,8 +59,18 @@ console.log(`✓ dist/icons.svg (${Object.keys(iconsData).length} iconos)`);
 /* --- Primitivas de comportamiento publicas --- */
 const primitivesDir = resolve(distDir, "primitives");
 mkdirSync(primitivesDir, { recursive: true });
-copyFileSync(
-  resolve(srcDir, "primitives/overlay-controller.js"),
-  resolve(primitivesDir, "overlay-controller.js"),
-);
-console.log("✓ dist/primitives/overlay-controller.js");
+const primitiveFiles = readdirSync(resolve(srcDir, "primitives"))
+  .filter((file) => file.endsWith(".js"));
+for (const file of primitiveFiles) {
+  buildSync({
+    entryPoints: [resolve(srcDir, "primitives", file)],
+    outfile: resolve(primitivesDir, file),
+    bundle: true,
+    format: "esm",
+    minify: true,
+    platform: "browser",
+    target: "es2020",
+    legalComments: "none",
+  });
+  console.log(`✓ dist/primitives/${file}`);
+}

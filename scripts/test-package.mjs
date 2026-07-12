@@ -68,6 +68,7 @@ const publicFiles = [
   "@robertcastro/roui/layouts/grid.css",
   "@robertcastro/roui/utilities.css",
   "@robertcastro/roui/primitives/overlay-controller",
+  "@robertcastro/roui/primitives/disclosure-controller",
   "@robertcastro/roui/icons.svg",
   "@robertcastro/roui/tokens.json",
 ];
@@ -93,9 +94,11 @@ assert.throws(
 Promise.all([
   import("@robertcastro/roui/tailwind"),
   import("@robertcastro/roui/primitives/overlay-controller"),
-]).then(([tailwind, primitives]) => {
+  import("@robertcastro/roui/primitives/disclosure-controller"),
+]).then(([tailwind, overlays, disclosures]) => {
   assert.equal(tailwind.default.theme.extend.colors.primary, "#f6f072");
-  assert.equal(typeof primitives.createOverlayController, "function");
+  assert.equal(typeof overlays.createOverlayController, "function");
+  assert.equal(typeof disclosures.createDisclosureController, "function");
   console.log("Entrypoints publicos: tarball, CJS y ESM correctos");
 }).catch((error) => { console.error(error); process.exitCode = 1; });
 `,
