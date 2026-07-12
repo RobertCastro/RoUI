@@ -1,0 +1,30 @@
+/* Generado desde tokens/tokens.json. No editar a mano. */
+[data-ro-theme="light"] {
+  --ro-accent: #f6f072;
+  --ro-bg: #f7f7f8;
+  --ro-border-color: rgba(23, 23, 25, 0.10);
+  --ro-focus-ring: 0 0 0 3px rgba(169, 160, 236, 0.55);
+  --ro-surface: #ffffff;
+  --ro-text: #171719;
+  --ro-text-muted: rgba(23, 23, 25, 0.60);
+}
+
+[data-ro-theme="dark"] {
+  --ro-accent: #f6f072;
+  --ro-bg: #171719;
+  --ro-border-color: rgba(255,255,255,0.20);
+  --ro-focus-ring: 0 0 0 3px rgba(246,240,114,0.65);
+  --ro-surface: #242426;
+  --ro-text: #ffffff;
+  --ro-text-muted: rgba(255,255,255,0.72);
+}
+
+[data-ro-theme="high-contrast"] {
+  --ro-accent: #ffff00;
+  --ro-bg: #000000;
+  --ro-border-color: #ffffff;
+  --ro-focus-ring: 0 0 0 3px #ffffff;
+  --ro-surface: #000000;
+  --ro-text: #ffffff;
+  --ro-text-muted: #ffffff;
+}

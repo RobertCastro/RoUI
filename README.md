@@ -67,6 +67,19 @@ Tambien se publican `layouts/*.css`, `utilities.css`, `icons.svg`,
 `bundle.css`, `min.css`, `tokens.json` y `tailwind`. Las rutas internas de
 `src/` no forman parte de la API publica.
 
+### Temas
+
+`tokens.css` incluye los temas generados. El diseño actual se conserva sin
+atributo; para activar un tema, aplica el atributo en el elemento raíz:
+
+```html
+<html data-ro-theme="dark">
+```
+
+Temas disponibles: `light`, `dark` y `high-contrast`. Los temas redefinen los
+roles semánticos `--ro-bg`, `--ro-surface`, `--ro-text`, `--ro-text-muted`,
+`--ro-border-color`, `--ro-accent` y `--ro-focus-ring`.
+
 El bundle declara este orden de cascada:
 
 ```css

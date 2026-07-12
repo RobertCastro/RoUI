@@ -59,6 +59,7 @@ const publicFiles = [
   "@robertcastro/roui/bundle.css",
   "@robertcastro/roui/min.css",
   "@robertcastro/roui/tokens.css",
+  "@robertcastro/roui/themes.css",
   "@robertcastro/roui/reset.css",
   "@robertcastro/roui/animations.css",
   "@robertcastro/roui/components/button.css",
@@ -75,10 +76,14 @@ for (const entrypoint of publicFiles) {
 }
 const bundle = readFileSync(require.resolve("@robertcastro/roui"), "utf8");
 const reset = readFileSync(require.resolve("@robertcastro/roui/reset.css"), "utf8");
+const themes = readFileSync(require.resolve("@robertcastro/roui/themes.css"), "utf8");
 assert.match(bundle, /@layer roui\.tokens/);
 assert.match(bundle, /@layer roui\.components/);
 assert.equal(bundle.includes("*, *::before, *::after"), false);
 assert.equal(reset.includes("*, *::before, *::after"), true);
+for (const selector of ['[data-ro-theme="light"]', '[data-ro-theme="dark"]', '[data-ro-theme="high-contrast"]']) {
+  assert.ok(themes.includes(selector), selector + " debe estar generado");
+}
 assert.throws(
   () => require.resolve("@robertcastro/roui/src/components/button.css"),
   (error) => error && error.code === "ERR_PACKAGE_PATH_NOT_EXPORTED",
