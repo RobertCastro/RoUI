@@ -12,16 +12,16 @@
 .ro-btn:focus-visible { outline: none; box-shadow: var(--ro-focus-ring); }
 .ro-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-.ro-btn--primary { background: var(--ro-primary); color: var(--ro-ink); padding: 0.625rem 1.25rem; }
+.ro-btn--primary { background: var(--ro-button-primary-bg); color: var(--ro-button-primary-fg); padding: 0.625rem 1.25rem; }
 .ro-btn--primary:hover { opacity: 0.9; }
-.ro-btn--dark { background: var(--ro-ink); color: var(--ro-white); }
+.ro-btn--dark { background: var(--ro-button-dark-bg); color: var(--ro-button-dark-fg); }
 .ro-btn--dark:hover { opacity: 0.9; }
-.ro-btn--soft { background: var(--ro-ink-06); color: var(--ro-ink); font-weight: var(--ro-weight-bold); padding: 0.5rem 0.875rem; }
-.ro-btn--soft:hover { background: var(--ro-ink-10); }
-.ro-btn--ghost { background: transparent; border: var(--ro-border-dashed); color: var(--ro-ink-70); font-size: 0.8125rem; }
-.ro-btn--ghost:hover { border-color: var(--ro-ink-40); color: var(--ro-ink); }
-.ro-btn--subtle { background: transparent; border-radius: var(--ro-radius-lg); padding: 0.375rem 0.5rem; color: var(--ro-ink-70); font-weight: var(--ro-weight-normal); }
-.ro-btn--subtle:hover { background: var(--ro-ink-05); color: var(--ro-ink); }
+.ro-btn--soft { background: var(--ro-button-soft-bg); color: var(--ro-button-primary-fg); font-weight: var(--ro-weight-bold); padding: 0.5rem 0.875rem; }
+.ro-btn--soft:hover { background: var(--ro-button-soft-hover); }
+.ro-btn--ghost { background: transparent; border: 1px dashed var(--ro-button-ghost-border); color: var(--ro-button-ghost-fg); font-size: 0.8125rem; }
+.ro-btn--ghost:hover { border-color: var(--ro-button-primary-fg); color: var(--ro-button-primary-fg); }
+.ro-btn--subtle { background: transparent; border-radius: var(--ro-radius-lg); padding: 0.375rem 0.5rem; color: var(--ro-button-ghost-fg); font-weight: var(--ro-weight-normal); }
+.ro-btn--subtle:hover { background: var(--ro-button-subtle-hover); color: var(--ro-button-primary-fg); }
 
 .ro-btn--sm { padding: 0.375rem 0.75rem; font-size: var(--ro-text-xs); }
 .ro-btn--lg { padding: 0.75rem 1.5rem; font-size: var(--ro-text-base); }
@@ -30,11 +30,11 @@
   display: grid; place-items: center;
   width: 2.25rem; height: 2.25rem; border: 0;
   border-radius: var(--ro-radius-full); background: transparent;
-  color: var(--ro-ink-50); cursor: pointer; transition: var(--ro-transition);
+  color: var(--ro-button-icon-fg); cursor: pointer; transition: var(--ro-transition);
 }
-.ro-btn-icon:hover { color: var(--ro-ink); }
+.ro-btn-icon:hover { color: var(--ro-button-primary-fg); }
 .ro-btn-icon:focus { outline: none; }
 .ro-btn-icon:focus-visible { outline: none; box-shadow: var(--ro-focus-ring); }
-.ro-btn-icon--secondary { background: var(--ro-secondary); color: var(--ro-ink); }
+.ro-btn-icon--secondary { background: var(--ro-button-secondary-bg); color: var(--ro-button-primary-fg); }
 .ro-btn-icon--secondary:hover { opacity: 0.8; }
-.ro-btn-icon--outline { border: 1px solid var(--ro-ink-40); }
+.ro-btn-icon--outline { border: 1px solid var(--ro-button-ghost-border); }

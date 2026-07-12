@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const sourcePath = resolve(root, "tokens/tokens.json");
 const source = JSON.parse(readFileSync(sourcePath, "utf8"));
-const allowedFiles = new Set(["colors", "typography", "spacing", "effects", "layout", "themes"]);
+const allowedFiles = new Set(["colors", "typography", "spacing", "effects", "layout", "themes", "components"]);
 const tokens = new Map();
 
 if (source.$schema !== "https://design-tokens.github.io/community-group/format/") {
@@ -147,7 +147,7 @@ const tailwind = {
 };
 
 const outputs = new Map([
-  ...["colors", "typography", "spacing", "effects", "layout", "themes"].map((file) => [
+  ...["colors", "typography", "spacing", "effects", "layout", "themes", "components"].map((file) => [
     resolve(root, `src/tokens/${file}.css`), cssFile(file),
   ]),
   [

@@ -12,3 +12,5 @@ aceptado:
 presupuestos cubren el paquete publicado; no incluyen `node_modules`, fixtures
 ni documentacion del repositorio.
 
+Tras F2-003 quedan aproximadamente 2.7 KiB sin comprimir antes del límite. Todo
+nuevo artefacto público debe justificar su tamaño o reducir otro contenido.

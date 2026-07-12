@@ -1,0 +1,28 @@
+/* Generado desde tokens/tokens.json. No editar a mano. */
+:root {
+  --ro-button-dark-bg: var(--ro-text);
+  --ro-button-dark-fg: var(--ro-surface);
+  --ro-button-ghost-border: var(--ro-border-color);
+  --ro-button-ghost-fg: var(--ro-text-muted);
+  --ro-button-icon-fg: var(--ro-text-muted);
+  --ro-button-primary-bg: var(--ro-accent);
+  --ro-button-primary-fg: var(--ro-text);
+  --ro-button-secondary-bg: var(--ro-secondary);
+  --ro-button-soft-bg: var(--ro-surface);
+  --ro-button-soft-hover: var(--ro-border-color);
+  --ro-button-subtle-hover: var(--ro-surface);
+  --ro-card-bg: var(--ro-surface);
+  --ro-card-border: var(--ro-border-color);
+  --ro-card-fg: var(--ro-text);
+  --ro-card-inverse-bg: var(--ro-text);
+  --ro-card-inverse-fg: var(--ro-surface);
+  --ro-card-inverse-muted: var(--ro-text-muted);
+  --ro-control-bg: var(--ro-surface);
+  --ro-control-border: var(--ro-border-color);
+  --ro-control-fg: var(--ro-text);
+  --ro-control-focus-border: var(--ro-accent);
+  --ro-control-placeholder: var(--ro-text-muted);
+  --ro-control-switch-checked: var(--ro-text);
+  --ro-control-switch-thumb: var(--ro-surface);
+  --ro-control-switch-track: var(--ro-border-color);
+}
