@@ -1,6 +1,6 @@
 # F2-005: Inventariar y controlar valores literales
 
-- Estado: review
+- Estado: done
 - Fase: 2
 - Dependencias: F2-001 a F2-004
 
@@ -24,3 +24,4 @@ tokens, y clasificar las excepciones que aún son necesarias.
   documentados con orden de migración.
 - Comandos: `npm run check:literals`, `npm run validate`, `git diff --check`.
 - Siguiente paso: auditoría de cierre de Fase 2.
+- Integración: PR #13 fusionado en `main` con CI correcta.

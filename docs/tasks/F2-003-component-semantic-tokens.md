@@ -1,6 +1,6 @@
 # F2-003: Migrar componentes a tokens semánticos
 
-- Estado: review
+- Estado: done
 - Fase: 2
 - Dependencias: F2-001, F2-002, ADR-0006
 
@@ -27,3 +27,4 @@ controles de mayor uso para que respondan a los temas sin valores duplicados.
 - Comandos: `npm run check:tokens`, `npm run validate`, `git diff --check`.
 - Riesgo: quedan ~2.7 KiB del presupuesto descomprimido; futuros artefactos
   públicos requieren especial control de tamaño.
+- Integración: PR #11 fusionado en `main` con CI correcta.
