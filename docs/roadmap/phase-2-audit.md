@@ -1,7 +1,7 @@
 # Auditoria de cierre — Fase 2
 
 - Fecha: 2026-07-12
-- Estado: awaiting-human-approval
+- Estado: approved
 - Rango: PR #9 a PR #13
 
 ## Objetivo auditado
@@ -57,7 +57,6 @@ Button/Form, Dialog y Menu antes de abordar controles compuestos.
 
 ## Aprobación humana
 
-- [ ] Entregables de Fase 2 aceptados.
-- [ ] Riesgos transferidos aceptados.
-- [ ] Autorizada apertura de Fase 3.
-
+- [x] Entregables de Fase 2 aceptados por el usuario el 2026-07-12.
+- [x] Riesgos transferidos aceptados.
+- [x] Autorizada apertura de Fase 3.

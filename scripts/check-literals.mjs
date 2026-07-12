@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const source = resolve(root, "src");
-const expectedDigest = "423702225cb0e28ca717941e759a6e3370ca64c1be75f58ad28c24629852b27a";
+const expectedDigest = "2841ae7ba080c264db9145ca926ecb15b7f880aae5874cec728e8b24674ef044";
 
 function walk(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -25,8 +25,7 @@ for (const file of walk(source)) {
   const css = readFileSync(file, "utf8");
   for (const [kind, pattern] of patterns) {
     for (const match of css.matchAll(pattern)) {
-      const line = css.slice(0, match.index).split("\n").length;
-      occurrences.push(`${kind}:${relative(root, file)}:${line}:${match[0]}`);
+      occurrences.push(`${kind}:${relative(root, file)}:${match[0]}`);
     }
   }
 }

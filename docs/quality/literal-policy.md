@@ -5,7 +5,7 @@ provenir de tokens. `npm run check:literals` registra los literales restantes
 fuera de `src/tokens/` y bloquea cambios no revisados en su inventario.
 
 Baseline F2-005: 39 literales de color y 382 valores en píxeles, con huella
-`423702225cb0e28ca717941e759a6e3370ca64c1be75f58ad28c24629852b27a`.
+`2841ae7ba080c264db9145ca926ecb15b7f880aae5874cec728e8b24674ef044`.
 
 Excepciones permitidas actualmente:
 

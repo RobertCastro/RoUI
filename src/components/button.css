@@ -11,6 +11,8 @@
 }
 .ro-btn:focus-visible { outline: none; box-shadow: var(--ro-focus-ring); }
 .ro-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.ro-btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+.ro-btn[aria-busy="true"] { cursor: progress; }
 
 .ro-btn--primary { background: var(--ro-button-primary-bg); color: var(--ro-button-primary-fg); padding: 0.625rem 1.25rem; }
 .ro-btn--primary:hover { opacity: 0.9; }
@@ -35,6 +37,7 @@
 .ro-btn-icon:hover { color: var(--ro-button-primary-fg); }
 .ro-btn-icon:focus { outline: none; }
 .ro-btn-icon:focus-visible { outline: none; box-shadow: var(--ro-focus-ring); }
+.ro-btn-icon[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
 .ro-btn-icon--secondary { background: var(--ro-button-secondary-bg); color: var(--ro-button-primary-fg); }
 .ro-btn-icon--secondary:hover { opacity: 0.8; }
 .ro-btn-icon--outline { border: 1px solid var(--ro-button-ghost-border); }
