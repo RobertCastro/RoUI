@@ -31,7 +31,7 @@ sin definicion. Tambien reporta indicadores de deuda sin bloquear la Fase 0.
 
 ## Fallos conocidos
 
-- Fuentes de tokens duplicadas entre CSS, JSON y Tailwind: F2-001.
+- Fuente DTCG única y artefactos CSS/Tailwind generados: F2-001.
 - No existen pruebas de comportamiento, axe o regresion visual: Fase 3 y 4.
 
 ## Gates incorporados en Fase 1

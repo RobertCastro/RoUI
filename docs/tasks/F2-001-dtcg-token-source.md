@@ -1,6 +1,6 @@
 # F2-001: Migrar tokens a fuente DTCG unica
 
-- Estado: backlog
+- Estado: review
 - Fase: 2
 - Dependencias: cierre de Fase 1, ADR-0001
 - ADR relacionados: ADR-0001
@@ -12,8 +12,16 @@ fuente DTCG que genere los artefactos publicos.
 
 ## Criterios de aceptacion
 
-- [ ] Existe un esquema DTCG validado.
-- [ ] CSS, JSON y Tailwind se generan desde el mismo origen.
-- [ ] CI detecta artefactos generados desactualizados.
-- [ ] No quedan fuentes paralelas editables de los mismos valores.
+- [x] Existe un esquema DTCG validado por el generador.
+- [x] CSS, JSON y Tailwind se generan desde el mismo origen.
+- [x] CI detecta artefactos generados desactualizados mediante `check:tokens`.
+- [x] No quedan fuentes paralelas editables de los mismos valores.
 
+## Cierre
+
+- Fuente: `tokens/tokens.json` con `$type`, `$value`, aliases y metadata de
+  destino no valorativa.
+- Generador: `scripts/build-tokens.mjs` valida 112 tokens, referencias y ciclos.
+- Artefactos: cinco CSS de tokens y preset Tailwind CommonJS.
+- Comandos: `npm run check:tokens`, `npm run validate`, `git diff --check`.
+- Siguiente tarea: temas light, dark y high-contrast.

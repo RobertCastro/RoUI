@@ -7,8 +7,8 @@ Ultima actualizacion: 2026-07-10
 | Fase | Estado | Progreso | Condicion siguiente |
 |---|---|---:|---|
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
-| 1. Fundamentos | review | 100% | Aprobar auditoria humana de cierre |
-| 2. Tokens y temas | backlog | 0% | Fundamentos estables |
+| 1. Fundamentos | done | 100% | Cerrada y aprobada |
+| 2. Tokens y temas | in-progress | 25% | Verificar F2-001 en CI |
 | 3. Primitivas accesibles | backlog | 0% | Contratos y tokens estables |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
@@ -40,7 +40,7 @@ Ultima actualizacion: 2026-07-10
   pendiente su verificacion independiente en CI.
 - ADR-0004 mantiene el repositorio unico hasta que existan dos paquetes con
   responsabilidad y build independientes.
-- Los tokens tienen varias fuentes editables.
+- Temas dark y high-contrast todavía no existen.
 - No existe todavia suite automatizada de calidad.
 
 ## Evidencia de la ultima ejecucion
@@ -51,3 +51,5 @@ Ultima actualizacion: 2026-07-10
 - Baseline estructural: cero imports duplicados/inexistentes y cero custom
   properties utilizadas sin definicion.
 - CI GitHub Actions: correcta en PR #1, job `baseline`, 11 segundos.
+- F2-001 establece tokens DTCG y generación de CSS/Tailwind desde una sola
+  fuente; queda pendiente su verificación independiente en CI.

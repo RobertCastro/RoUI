@@ -1,52 +1,42 @@
-/* tokens/colors.css — Paleta. Toda la jerarquía de grises = ink + opacidad. */
+/* Generado desde tokens/tokens.json. No editar a mano. */
 :root {
-  /* Brand / core */
-  --ro-ink:        #171719;  /* texto principal · superficies oscuras */
-  --ro-ink-soft:   #f7f7f8;  /* fondo de página                       */
-  --ro-primary:    #f6f072;  /* amarillo · CTAs y acentos             */
-  --ro-secondary:  #a9a0ec;  /* lavanda · acentos, avatares, eyebrows */
-  --ro-gray:       #d9e3e3;
-  --ro-sky:        #d4e0ed;
-  --ro-white:      #ffffff;
+  --ro-accent: var(--ro-primary);
+  --ro-bg: var(--ro-ink-soft);
+  --ro-border-color: var(--ro-ink-10);
+  --ro-error: #ef4444;
+  --ro-gray: #d9e3e3;
+  --ro-info: #3b82f6;
+  --ro-ink: #171719;
+  --ro-ink-02: rgba(23, 23, 25, 0.02);
+  --ro-ink-04: rgba(23, 23, 25, 0.04);
+  --ro-ink-05: rgba(23, 23, 25, 0.05);
+  --ro-ink-06: rgba(23, 23, 25, 0.06);
+  --ro-ink-10: rgba(23, 23, 25, 0.10);
+  --ro-ink-18: rgba(23, 23, 25, 0.18);
+  --ro-ink-20: rgba(23, 23, 25, 0.20);
+  --ro-ink-40: rgba(23, 23, 25, 0.40);
+  --ro-ink-50: rgba(23, 23, 25, 0.50);
+  --ro-ink-55: rgba(23, 23, 25, 0.55);
+  --ro-ink-60: rgba(23, 23, 25, 0.60);
+  --ro-ink-70: rgba(23, 23, 25, 0.70);
+  --ro-ink-72: rgba(23, 23, 25, 0.72);
+  --ro-ink-90: rgba(23, 23, 25, 0.90);
+  --ro-ink-soft: #f7f7f8;
+  --ro-on-dark: #ffffff;
+  --ro-on-dark-40: rgba(255, 255, 255, 0.40);
+  --ro-on-dark-60: rgba(255, 255, 255, 0.60);
+  --ro-on-dark-72: rgba(255, 255, 255, 0.72);
+  --ro-primary: #f6f072;
   --ro-primary-soft: rgba(246, 240, 114, 0.18);
-  /* Tintes de secondary (estados activos, selección, halo de foco) */
+  --ro-secondary: #a9a0ec;
+  --ro-secondary-ring: rgba(169, 160, 236, 0.25);
   --ro-secondary-soft: rgba(169, 160, 236, 0.14);
   --ro-secondary-tint: rgba(169, 160, 236, 0.18);
-  --ro-secondary-ring: rgba(169, 160, 236, 0.25);
-
-  /* Ink + alpha (escala neutra real de la app) */
-  --ro-ink-90: rgba(23, 23, 25, 0.90);
-  --ro-ink-72: rgba(23, 23, 25, 0.72);
-  --ro-ink-70: rgba(23, 23, 25, 0.70);
-  --ro-ink-60: rgba(23, 23, 25, 0.60);
-  --ro-ink-55: rgba(23, 23, 25, 0.55);
-  --ro-ink-50: rgba(23, 23, 25, 0.50);
-  --ro-ink-40: rgba(23, 23, 25, 0.40);
-  --ro-ink-20: rgba(23, 23, 25, 0.20);
-  --ro-ink-18: rgba(23, 23, 25, 0.18);
-  --ro-ink-10: rgba(23, 23, 25, 0.10);
-  --ro-ink-06: rgba(23, 23, 25, 0.06);
-  --ro-ink-05: rgba(23, 23, 25, 0.05);
-  --ro-ink-04: rgba(23, 23, 25, 0.04);
-  --ro-ink-02: rgba(23, 23, 25, 0.02);
-
-  /* Texto sobre superficie oscura */
-  --ro-on-dark:    #ffffff;
-  --ro-on-dark-72: rgba(255, 255, 255, 0.72);
-  --ro-on-dark-60: rgba(255, 255, 255, 0.60);
-  --ro-on-dark-40: rgba(255, 255, 255, 0.40);
-
-  /* Semánticos */
+  --ro-sky: #d4e0ed;
   --ro-success: #10b981;
+  --ro-surface: var(--ro-white);
+  --ro-text: var(--ro-ink);
+  --ro-text-muted: var(--ro-ink-60);
   --ro-warning: #f59e0b;
-  --ro-error:   #ef4444;
-  --ro-info:    #3b82f6;
-
-  /* Roles semánticos (apunta a primitivos — cámbialos para re-tematizar) */
-  --ro-bg:          var(--ro-ink-soft);
-  --ro-surface:     var(--ro-white);
-  --ro-text:        var(--ro-ink);
-  --ro-text-muted:  var(--ro-ink-60);
-  --ro-border-color: var(--ro-ink-10);
-  --ro-accent:      var(--ro-primary);
+  --ro-white: #ffffff;
 }

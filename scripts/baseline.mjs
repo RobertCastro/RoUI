@@ -67,7 +67,6 @@ const report = {
     undefinedCustomProperties,
   },
   knownIssues: [
-    "Tokens CSS, JSON y Tailwind son fuentes editables duplicadas.",
     "No existen aun pruebas automatizadas de componentes o accesibilidad.",
   ],
 };
