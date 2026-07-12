@@ -387,7 +387,7 @@
       <div class="dx-section" id="modal">
         <h2>Modal / Diálogo</h2>
         <div class="dx-demo">
-          <button class="ro-btn ro-btn--dark" data-modal-open="demoModal">Abrir modal</button>
+          <button class="ro-btn ro-btn--dark" data-ro-overlay-open="demoModal" aria-haspopup="dialog" aria-controls="demoModal" aria-expanded="false">Abrir modal</button>
         </div>
       </div>
 
@@ -493,8 +493,8 @@ npm run build   # → dist/roui.css</code></pre>
       <div class="dx-section" id="drawer">
         <h2>Drawer / Off-canvas</h2>
         <div class="dx-demo">
-          <button class="ro-btn ro-btn--dark" data-drawer-open="navDrawer">Menú lateral</button>
-          <button class="ro-btn ro-btn--soft" data-drawer-open="sheet">Bottom-sheet</button>
+          <button class="ro-btn ro-btn--dark" data-ro-overlay-open="navDrawer" aria-haspopup="dialog" aria-controls="navDrawer" aria-expanded="false">Menú lateral</button>
+          <button class="ro-btn ro-btn--soft" data-ro-overlay-open="sheet" aria-haspopup="dialog" aria-controls="sheet" aria-expanded="false">Bottom-sheet</button>
         </div>
       </div>
 
@@ -892,12 +892,12 @@ npm run build</code></pre>
   </div>
 
   <!-- Drawer lateral (menú mobile) -->
-  <div class="ro-drawer-root" id="navDrawer">
-    <div class="ro-drawer-overlay"></div>
-    <aside class="ro-drawer ro-drawer--left">
+  <div class="ro-drawer-root" id="navDrawer" data-ro-overlay-root hidden>
+    <div class="ro-drawer-overlay" data-ro-overlay-backdrop></div>
+    <aside class="ro-drawer ro-drawer--left" role="dialog" aria-modal="true" aria-labelledby="navDrawerTitle" tabindex="-1">
       <div class="ro-drawer__header">
-        <span class="ro-drawer__title">Menú</span>
-        <button class="ro-btn-icon" data-drawer-close><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
+        <h2 class="ro-drawer__title" id="navDrawerTitle">Menú</h2>
+        <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar menú"><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
       </div>
       <div class="ro-drawer__body">
         <a class="ro-nav-item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-book-open"></use></svg> Inicio</a>
@@ -908,13 +908,13 @@ npm run build</code></pre>
   </div>
 
   <!-- Bottom-sheet -->
-  <div class="ro-drawer-root" id="sheet">
-    <div class="ro-drawer-overlay"></div>
-    <aside class="ro-drawer ro-drawer--bottom">
+  <div class="ro-drawer-root" id="sheet" data-ro-overlay-root hidden>
+    <div class="ro-drawer-overlay" data-ro-overlay-backdrop></div>
+    <aside class="ro-drawer ro-drawer--bottom" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1">
       <div class="ro-drawer__grip"></div>
       <div class="ro-drawer__header">
-        <span class="ro-drawer__title">Temario</span>
-        <button class="ro-btn-icon" data-drawer-close><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
+        <h2 class="ro-drawer__title" id="sheetTitle">Temario</h2>
+        <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar temario"><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
       </div>
       <div class="ro-drawer__body">
         <p class="ro-body" style="margin:0">Contenido del panel deslizable desde abajo (ideal para el rail derecho en mobile).</p>
@@ -922,23 +922,23 @@ npm run build</code></pre>
     </aside>
   </div>
 
-  <!-- Modal (overlay; abierto por [data-modal-open="demoModal"]) -->
-  <div class="ro-overlay" id="demoModal">
-    <div class="ro-modal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
+  <!-- Modal accesible (abierto por [data-ro-overlay-open="demoModal"]) -->
+  <div class="ro-overlay" id="demoModal" data-ro-overlay-root hidden>
+    <div class="ro-modal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle" aria-describedby="demoModalDescription" tabindex="-1">
       <div class="ro-modal__header">
         <h3 class="ro-modal__title" id="demoModalTitle">Confirmar acción</h3>
-        <button class="ro-btn-icon" data-modal-close aria-label="Cerrar"><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
+        <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar"><svg class="ro-icon"><use href="#ro-i-x"></use></svg></button>
       </div>
-      <div class="ro-modal__body">
+      <div class="ro-modal__body" id="demoModalDescription">
         ¿Seguro que quieres continuar? Esta acción se puede deshacer desde tus ajustes más adelante.
       </div>
       <div class="ro-modal__footer">
-        <button class="ro-btn ro-btn--soft" data-modal-close>Cancelar</button>
-        <button class="ro-btn ro-btn--primary" data-modal-close>Confirmar</button>
+        <button class="ro-btn ro-btn--soft" data-ro-overlay-close>Cancelar</button>
+        <button class="ro-btn ro-btn--primary" data-ro-overlay-close>Confirmar</button>
       </div>
     </div>
   </div>
 
-  <script src="assets/docs.js"></script>
+  <script type="module" src="assets/docs.js"></script>
 </body>
 </html>

@@ -24,7 +24,11 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px 18px; border-bottom: 1px solid var(--ro-ink-06);
 }
-.ro-drawer__title { font-weight: var(--ro-weight-bold); letter-spacing: var(--ro-tracking-tight); }
-.ro-drawer__body { padding: 12px; overflow-y: auto; flex: 1; }
+.ro-drawer__title { margin: 0; font-weight: var(--ro-weight-bold); letter-spacing: var(--ro-tracking-tight); }
+.ro-drawer__body { min-height: 0; padding: 12px; overflow-y: auto; overscroll-behavior: contain; flex: 1; }
 .ro-drawer__grip { width: 36px; height: 4px; border-radius: var(--ro-radius-full);
   background: var(--ro-ink-20); margin: 8px auto 0; } /* tirador del bottom-sheet */
+
+@media (prefers-reduced-motion: reduce) {
+  .ro-drawer { transition: none; }
+}

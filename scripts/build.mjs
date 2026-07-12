@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Build sin dependencias: concatena src/ en orden → dist/roui.css (+ .min.css)
    Lee la lista de @import desde src/index.css para mantener una sola fuente de orden. */
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { copyFileSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -54,3 +54,12 @@ ${symbols}
 `;
 writeFileSync(resolve(distDir, "icons.svg"), sprite);
 console.log(`✓ dist/icons.svg (${Object.keys(iconsData).length} iconos)`);
+
+/* --- Primitivas de comportamiento publicas --- */
+const primitivesDir = resolve(distDir, "primitives");
+mkdirSync(primitivesDir, { recursive: true });
+copyFileSync(
+  resolve(srcDir, "primitives/overlay-controller.js"),
+  resolve(primitivesDir, "overlay-controller.js"),
+);
+console.log("✓ dist/primitives/overlay-controller.js");

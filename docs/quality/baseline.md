@@ -32,16 +32,18 @@ sin definicion. Tambien reporta indicadores de deuda sin bloquear la Fase 0.
 ## Fallos conocidos
 
 - Fuente DTCG única y artefactos CSS/Tailwind generados: F2-001.
-- No existen pruebas de comportamiento, axe o regresion visual: Fase 3 y 4.
+- F3-002 añade pruebas de comportamiento para overlays; faltan axe, matriz de
+  navegador y regresión visual para el resto de componentes en Fase 4.
 
 ## Gates incorporados en Fase 1
 
 - Stylelint para sintaxis y errores CSS de alto valor.
 - Build desde `src`, seguido de empaquetado del artefacto real.
 - Fixtures consumidoras esbuild y Tailwind instaladas desde el tarball.
-- Presupuesto de 64 KiB comprimidos y 256 KiB descomprimidos.
+- Presupuesto de 64 KiB comprimidos y 272 KiB descomprimidos.
 - Auditoria de dependencias de produccion en CI.
-- Los componentes interactivos complejos solo tienen comportamiento de demo.
+- F3-002 entrega un controlador verificable para Dialog y Drawer; los demás
+  componentes complejos continúan con comportamiento de demo hasta su tarea.
 
 Los valores detallados de colores y pixeles literales se obtienen del comando y
 serviran como indicadores de migracion, no como metas aisladas.

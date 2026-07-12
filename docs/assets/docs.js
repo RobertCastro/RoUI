@@ -1,3 +1,5 @@
+import { createOverlayController } from "../../dist/primitives/overlay-controller.js";
+
 /* docs.js — Interactividad de demostración para la galería.
    Genérico y basado en data-attributes; no es parte de la librería (solo docs). */
 (function () {
@@ -91,21 +93,16 @@
     });
   });
 
-  /* MODAL: [data-modal-open="id"] abre #id (.ro-overlay); [data-modal-close] cierra;
-     clic en el backdrop o Esc también cierran. */
-  document.querySelectorAll("[data-modal-open]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var o = document.getElementById(btn.getAttribute("data-modal-open"));
-      if (o) o.classList.add("is-open");
-    });
+  /* OVERLAYS: la demo consume la primitiva pública generada. */
+  var overlays = new Map();
+  document.querySelectorAll("[data-ro-overlay-root]").forEach(function (root) {
+    overlays.set(root.id, createOverlayController(root));
   });
-  document.querySelectorAll(".ro-overlay").forEach(function (o) {
-    o.addEventListener("click", function (e) {
-      if (e.target === o || e.target.closest("[data-modal-close]")) o.classList.remove("is-open");
+  document.querySelectorAll("[data-ro-overlay-open]").forEach(function (trigger) {
+    trigger.addEventListener("click", function () {
+      var overlay = overlays.get(trigger.getAttribute("data-ro-overlay-open"));
+      if (overlay) overlay.open(trigger);
     });
-  });
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") document.querySelectorAll(".ro-overlay.is-open").forEach(function (o) { o.classList.remove("is-open"); });
   });
 
   /* TOAST: [data-toast="success|error|info"] [data-toast-msg="..."] dispara un toast. */
@@ -131,22 +128,6 @@
     btn.addEventListener("click", function () {
       toast(btn.getAttribute("data-toast"), btn.getAttribute("data-toast-msg") || "Notificación de ejemplo");
     });
-  });
-
-  /* DRAWER: [data-drawer-open="id"] abre #id (.ro-drawer-root); [data-drawer-close] o Esc cierran. */
-  document.querySelectorAll("[data-drawer-open]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var root = document.getElementById(btn.getAttribute("data-drawer-open"));
-      if (root) root.classList.add("is-open");
-    });
-  });
-  document.querySelectorAll(".ro-drawer-root").forEach(function (root) {
-    root.addEventListener("click", function (e) {
-      if (e.target.classList.contains("ro-drawer-overlay") || e.target.closest("[data-drawer-close]")) root.classList.remove("is-open");
-    });
-  });
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") document.querySelectorAll(".ro-drawer-root.is-open").forEach(function (r) { r.classList.remove("is-open"); });
   });
 
   /* TAG removible: clic en .ro-tag__close elimina su .ro-tag. */

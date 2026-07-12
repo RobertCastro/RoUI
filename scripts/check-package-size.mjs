@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const temp = mkdtempSync(join(tmpdir(), "roui-size-"));
-const limits = { packed: 64 * 1024, unpacked: 256 * 1024 };
+const limits = { packed: 64 * 1024, unpacked: 272 * 1024 };
 
 try {
   const result = spawnSync("npm", [

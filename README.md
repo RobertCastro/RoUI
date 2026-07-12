@@ -174,7 +174,7 @@ URL: `https://robertcastro.github.io/RoUI/`
 
 ### Interacciones (modal, toast, dropdown)
 La librería aporta **solo estilos**; el comportamiento de demo vive en `docs/assets/docs.js` por `data-attributes` (reemplázalo por tu framework en producción):
-- **Modal:** `[data-modal-open="id"]` abre `.ro-overlay#id`; `[data-modal-close]`, clic en backdrop o `Esc` cierran.
+- **Dialog y Drawer:** el controlador opcional `createOverlayController` se importa desde `@robertcastro/roui/primitives/overlay-controller`; proporciona foco inicial, trap de `Tab`, `Escape`, scroll lock y restauración del disparador. Consulta `docs/accessibility/dialog-drawer.md` para el marcado contractual.
 - **Toast:** `[data-toast="success|error|info"]` + `[data-toast-msg]` dispara un toast (autocierre 3.5s).
 - **Tooltip:** sin JS — `class="ro-tooltip" data-tooltip="texto"`.
 
