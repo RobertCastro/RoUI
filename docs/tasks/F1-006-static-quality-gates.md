@@ -1,6 +1,6 @@
 # F1-006: Introducir quality gates estaticos
 
-- Estado: review
+- Estado: done
 - Fase: 1
 - Dependencias: F1-002, F1-003
 
@@ -26,3 +26,4 @@ tamano sin introducir herramientas que no tengan una responsabilidad clara.
   `git diff --check`.
 - Riesgo pendiente: pruebas de comportamiento y accesibilidad se incorporan en
   Fases 3 y 4.
+- Integracion: PR #7 fusionado en `main` con CI correcta.
