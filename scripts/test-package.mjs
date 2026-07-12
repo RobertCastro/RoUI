@@ -60,6 +60,7 @@ const publicFiles = [
   "@robertcastro/roui/min.css",
   "@robertcastro/roui/tokens.css",
   "@robertcastro/roui/themes.css",
+  "@robertcastro/roui/component-tokens.css",
   "@robertcastro/roui/reset.css",
   "@robertcastro/roui/animations.css",
   "@robertcastro/roui/components/button.css",

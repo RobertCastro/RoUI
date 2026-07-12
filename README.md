@@ -80,6 +80,10 @@ Temas disponibles: `light`, `dark` y `high-contrast`. Los temas redefinen los
 roles semánticos `--ro-bg`, `--ro-surface`, `--ro-text`, `--ro-text-muted`,
 `--ro-border-color`, `--ro-accent` y `--ro-focus-ring`.
 
+Los controles principales consumen además tokens de componente generados. Para
+usarlos sin el bundle completo, importa `@robertcastro/roui/component-tokens.css`
+después de `tokens.css`.
+
 El bundle declara este orden de cascada:
 
 ```css

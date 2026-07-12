@@ -8,6 +8,7 @@
 @import "./tokens/effects.css" layer(roui.tokens);
 @import "./tokens/layout.css" layer(roui.tokens);
 @import "./tokens/themes.css" layer(roui.tokens);
+@import "./tokens/components.css" layer(roui.tokens);
 
 /* 2. Base opt-in no destructiva */
 @import "./base/animations.css" layer(roui.base);
