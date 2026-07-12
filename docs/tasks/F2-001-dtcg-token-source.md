@@ -1,6 +1,6 @@
 # F2-001: Migrar tokens a fuente DTCG unica
 
-- Estado: review
+- Estado: done
 - Fase: 2
 - Dependencias: cierre de Fase 1, ADR-0001
 - ADR relacionados: ADR-0001
@@ -25,3 +25,4 @@ fuente DTCG que genere los artefactos publicos.
 - Artefactos: cinco CSS de tokens y preset Tailwind CommonJS.
 - Comandos: `npm run check:tokens`, `npm run validate`, `git diff --check`.
 - Siguiente tarea: temas light, dark y high-contrast.
+- Integracion: PR #9 fusionado en `main` con CI correcta.

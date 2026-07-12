@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const sourcePath = resolve(root, "tokens/tokens.json");
 const source = JSON.parse(readFileSync(sourcePath, "utf8"));
-const allowedFiles = new Set(["colors", "typography", "spacing", "effects", "layout"]);
+const allowedFiles = new Set(["colors", "typography", "spacing", "effects", "layout", "themes"]);
 const tokens = new Map();
 
 if (source.$schema !== "https://design-tokens.github.io/community-group/format/") {
@@ -32,8 +32,14 @@ function collect(node, path = [], inherited = {}) {
 }
 collect(source);
 
-const variables = new Map([...tokens.values()].map((token) => [token.cssVariable, token.id]));
-if (variables.size !== tokens.size) throw new Error("Variables CSS duplicadas");
+const baseVariables = new Map(
+  [...tokens.values()]
+    .filter((token) => token.cssFile !== "themes")
+    .map((token) => [token.cssVariable, token.id]),
+);
+if (baseVariables.size !== [...tokens.values()].filter((token) => token.cssFile !== "themes").length) {
+  throw new Error("Variables CSS duplicadas fuera de temas");
+}
 
 function resolveAlias(value, stack = []) {
   const match = typeof value === "string" && value.match(/^\{([^}]+)\}$/);
@@ -66,6 +72,22 @@ function cssFile(file) {
   const entries = [...tokens.values()]
     .filter((token) => token.cssFile === file)
     .sort((a, b) => a.cssVariable.localeCompare(b.cssVariable));
+  if (file === "themes") {
+    const bySelector = new Map();
+    for (const entry of entries) {
+      if (!entry.selector) throw new Error(`Tema sin selector: ${entry.id}`);
+      bySelector.set(entry.selector, [...(bySelector.get(entry.selector) ?? []), entry]);
+    }
+    return [
+      "/* Generado desde tokens/tokens.json. No editar a mano. */",
+      ...[...bySelector.entries()].flatMap(([selector, themeEntries]) => [
+        `${selector} {`,
+        ...themeEntries.map((token) => `  ${token.cssVariable}: ${resolveAlias(token.value)};`),
+        "}",
+        "",
+      ]),
+    ].join("\n");
+  }
   return [
     "/* Generado desde tokens/tokens.json. No editar a mano. */",
     ":root {",
@@ -125,7 +147,7 @@ const tailwind = {
 };
 
 const outputs = new Map([
-  ...["colors", "typography", "spacing", "effects", "layout"].map((file) => [
+  ...["colors", "typography", "spacing", "effects", "layout", "themes"].map((file) => [
     resolve(root, `src/tokens/${file}.css`), cssFile(file),
   ]),
   [
@@ -137,7 +159,7 @@ const outputs = new Map([
 const check = process.argv.includes("--check");
 const stale = [];
 for (const [path, content] of outputs) {
-  const current = readFileSync(path, "utf8");
+  const current = existsSync(path) ? readFileSync(path, "utf8") : null;
   if (current !== content) stale.push(path.replace(`${root}/`, ""));
   if (!check) writeFileSync(path, content);
 }

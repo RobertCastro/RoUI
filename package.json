@@ -28,6 +28,7 @@
     "./bundle.css": "./dist/roui.css",
     "./min.css": "./dist/roui.min.css",
     "./tokens.css": "./src/tokens/index.css",
+    "./themes.css": "./src/tokens/themes.css",
     "./reset.css": "./src/base/reset.css",
     "./animations.css": "./src/base/animations.css",
     "./components/*.css": "./src/components/*.css",
