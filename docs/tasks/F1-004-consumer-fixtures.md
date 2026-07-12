@@ -1,6 +1,6 @@
 # F1-004: Crear fixtures consumidoras
 
-- Estado: review
+- Estado: done
 - Fase: 1
 - Dependencias: F1-001, F1-002
 - ADR relacionados: ADR-0002
@@ -28,3 +28,4 @@ usando solamente entrypoints publicos.
 - Riesgo pendiente: las versiones de prueba se revisaran con la matriz de
   soporte durante F1-006.
 - Siguiente tarea: F1-005, decision de workspace.
+- Integracion: PR #5 fusionado en `main` con CI correcta.
