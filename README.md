@@ -172,11 +172,13 @@ URL: `https://robertcastro.github.io/RoUI/`
 
 > **Nota:** todos los componentes comparten los mismos tokens, por lo que cualquier acento (lavanda/amarillo) o medida se re-tematiza desde `src/tokens/`.
 
-### Interacciones (modal, toast, dropdown)
-La librería aporta **solo estilos**; el comportamiento de demo vive en `docs/assets/docs.js` por `data-attributes` (reemplázalo por tu framework en producción):
+### Interacciones (modal, toast, disclosures)
+La librería aporta estilos y primitivas ESM opcionales; las demos consumen los
+artefactos generados para que el contrato publicado sea el mismo que se ve:
 - **Dialog y Drawer:** el controlador opcional `createOverlayController` se importa desde `@robertcastro/roui/primitives/overlay-controller`; proporciona foco inicial, trap de `Tab`, `Escape`, scroll lock y restauración del disparador. Consulta `docs/accessibility/dialog-drawer.md` para el marcado contractual.
+- **Menu y Popover:** `createDisclosureController` se importa desde `@robertcastro/roui/primitives/disclosure-controller`; controla `aria-expanded`, Escape, interacción exterior y la navegación de Menu por teclado. Consulta `docs/accessibility/menu-popover-tooltip.md`.
 - **Toast:** `[data-toast="success|error|info"]` + `[data-toast-msg]` dispara un toast (autocierre 3.5s).
-- **Tooltip:** sin JS — `class="ro-tooltip" data-tooltip="texto"`.
+- **Tooltip:** no necesita JavaScript, pero usa un elemento `role="tooltip"` asociado al disparador mediante `aria-describedby`.
 
 ### Iconos (sin librerías ni PNG)
 Set **Lucide** (MIT) distribuido como **sprite SVG** (`dist/icons.svg`, generado en el build desde `src/icons/icons.json`). Es la solución óptima: un solo archivo cacheable, sin dependencias, coloreable con `currentColor` y escalable.
@@ -189,7 +191,13 @@ Set **Lucide** (MIT) distribuido como **sprite SVG** (`dist/icons.svg`, generado
 Trade-offs: **sprite** (recomendado para HTML/CSS) · **inline** copia el `<svg>` directo (cero requests, ideal para 1-2 iconos críticos) · **componente por icono** (React/Vue) si ya usas un framework — el mismo path data sirve. Añadir un icono = una entrada en `icons.json` + `npm run build`.
 
 ### Dropdowns / menús
-`.ro-dropdown` (wrapper) → `[data-dropdown-trigger]` + `.ro-menu` (panel). El estilo lo da la librería; la apertura/cierre la maneja `docs/assets/docs.js` (toggle, clic fuera, Esc) — cámbialo por tu framework en producción. Modificadores: `.ro-menu--end` (alinear derecha), `.ro-menu__item--danger`, `[data-single]` (selección única con check), `.ro-dot-badge` (punto de notificación).
+`.ro-dropdown[data-ro-disclosure-root]` contiene un trigger
+`[data-ro-disclosure-trigger]` y un panel
+`[data-ro-disclosure-panel]`. El panel de Menu declara `role="menu"` y sus
+acciones `role="menuitem"`; Popover usa `role="dialog"` solo cuando contiene
+interacción. Modificadores: `.ro-menu--end` (alinear derecha),
+`.ro-menu__item--danger`, `data-ro-select-single` (selección única) y
+`.ro-dot-badge` (punto de notificación).
 
 ## Layouts
 

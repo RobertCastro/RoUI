@@ -61,20 +61,20 @@
           <header class="ro-header" style="border-bottom:1px solid var(--ro-ink-10)">
             <a class="ro-header__brand"><strong style="font-size:20px">RoUI<span style="color:var(--ro-secondary)">.</span></strong></a>
 
-            <!-- Workspace switcher con dropdown -->
-            <div class="ro-dropdown" data-dropdown>
-              <button class="ro-switcher" data-dropdown-trigger aria-expanded="false">
+            <!-- Workspace switcher con menu -->
+            <div class="ro-dropdown" data-ro-disclosure-root data-ro-select-single>
+              <button class="ro-switcher" data-ro-disclosure-trigger aria-haspopup="menu" aria-controls="workspace-menu" aria-expanded="false">
                 <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg>
                 Acme Inc
                 <svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg>
               </button>
-              <div class="ro-menu" data-single>
-                <div class="ro-menu__label">Workspaces</div>
-                <button class="ro-menu__item" aria-current="true">
+              <div class="ro-menu" id="workspace-menu" data-ro-disclosure-panel role="menu" aria-label="Workspaces" hidden>
+                <div class="ro-menu__label" role="presentation">Workspaces</div>
+                <button class="ro-menu__item" role="menuitem" aria-current="true">
                   <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg> Acme Inc
                   <svg class="ro-icon ro-icon--sm ro-menu__check"><use href="#ro-i-check"></use></svg>
                 </button>
-                <button class="ro-menu__item">
+                <button class="ro-menu__item" role="menuitem">
                   <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg> Globex
                   <svg class="ro-icon ro-icon--sm ro-menu__check"><use href="#ro-i-check"></use></svg>
                 </button>
@@ -96,49 +96,49 @@
                 <svg class="ro-icon"><use href="#ro-i-wrench"></use></svg>
               </button>
 
-              <!-- Campana con punto + dropdown de notificaciones -->
-              <div class="ro-dropdown" data-dropdown>
-                <button class="ro-btn-icon" data-dropdown-trigger title="Notificaciones" style="position:relative">
+              <!-- Campana con popover de notificaciones -->
+              <div class="ro-dropdown" data-ro-disclosure-root>
+                <button class="ro-btn-icon" data-ro-disclosure-trigger aria-label="Notificaciones" aria-haspopup="dialog" aria-controls="notifications-popover" aria-expanded="false" style="position:relative">
                   <svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg>
                   <span class="ro-dot-badge"></span>
                 </button>
-                <div class="ro-menu ro-menu--end" style="min-width:280px">
-                  <div class="ro-menu__label">Notificaciones</div>
-                  <a class="ro-menu__item" data-keep-open>
+                <div class="ro-popover ro-popover--end" id="notifications-popover" data-ro-disclosure-panel role="dialog" aria-label="Notificaciones" hidden style="min-width:280px">
+                  <div class="ro-popover__title">Notificaciones</div>
+                  <a class="ro-menu__item" href="#">
                     <svg class="ro-icon ro-icon--sm" style="color:var(--ro-secondary)"><use href="#ro-i-circle-check"></use></svg>
                     <span>Completaste <b>Input &gt; Proceso &gt; Output</b></span>
                   </a>
-                  <a class="ro-menu__item" data-keep-open>
+                  <a class="ro-menu__item" href="#">
                     <svg class="ro-icon ro-icon--sm" style="color:var(--ro-secondary)"><use href="#ro-i-message-square"></use></svg>
                     <span>María respondió en <b>Discusión</b></span>
                   </a>
                   <div class="ro-menu__sep"></div>
-                  <a class="ro-menu__item" style="justify-content:center;color:var(--ro-ink-60)">Ver todas</a>
+                  <a class="ro-menu__item" href="#" style="justify-content:center;color:var(--ro-ink-60)">Ver todas</a>
                 </div>
               </div>
 
-              <!-- Idioma con dropdown -->
-              <div class="ro-dropdown" data-dropdown>
-                <button class="ro-btn-icon" data-dropdown-trigger title="Idioma">
+              <!-- Idioma con menu -->
+              <div class="ro-dropdown" data-ro-disclosure-root data-ro-select-single>
+                <button class="ro-btn-icon" data-ro-disclosure-trigger aria-label="Idioma" aria-haspopup="menu" aria-controls="language-menu" aria-expanded="false">
                   <svg class="ro-icon"><use href="#ro-i-languages"></use></svg>
                 </button>
-                <div class="ro-menu ro-menu--end" data-single style="min-width:160px">
-                  <button class="ro-menu__item" aria-current="true">Español
+                <div class="ro-menu ro-menu--end" id="language-menu" data-ro-disclosure-panel role="menu" aria-label="Idioma" hidden style="min-width:160px">
+                  <button class="ro-menu__item" role="menuitem" aria-current="true">Español
                     <svg class="ro-icon ro-icon--sm ro-menu__check"><use href="#ro-i-check"></use></svg></button>
-                  <button class="ro-menu__item">English
+                  <button class="ro-menu__item" role="menuitem">English
                     <svg class="ro-icon ro-icon--sm ro-menu__check"><use href="#ro-i-check"></use></svg></button>
                 </div>
               </div>
 
               <!-- Avatar con menú de perfil -->
-              <div class="ro-dropdown" data-dropdown>
-                <button class="ro-avatar" data-dropdown-trigger aria-label="Cuenta">RC</button>
-                <div class="ro-menu ro-menu--end" style="min-width:200px">
-                  <div class="ro-menu__label">Robert Castro</div>
-                  <a class="ro-menu__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-user"></use></svg> Mi perfil</a>
-                  <a class="ro-menu__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-settings"></use></svg> Ajustes</a>
+              <div class="ro-dropdown" data-ro-disclosure-root>
+                <button class="ro-avatar" data-ro-disclosure-trigger aria-label="Cuenta" aria-haspopup="menu" aria-controls="profile-menu" aria-expanded="false">RC</button>
+                <div class="ro-menu ro-menu--end" id="profile-menu" data-ro-disclosure-panel role="menu" aria-label="Cuenta" hidden style="min-width:200px">
+                  <div class="ro-menu__label" role="presentation">Robert Castro</div>
+                  <a class="ro-menu__item" role="menuitem" href="#"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-user"></use></svg> Mi perfil</a>
+                  <a class="ro-menu__item" role="menuitem" href="#"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-settings"></use></svg> Ajustes</a>
                   <div class="ro-menu__sep"></div>
-                  <a class="ro-menu__item ro-menu__item--danger"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-log-out"></use></svg> Cerrar sesión</a>
+                  <a class="ro-menu__item ro-menu__item--danger" role="menuitem" href="#"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-log-out"></use></svg> Cerrar sesión</a>
                 </div>
               </div>
 
@@ -155,13 +155,13 @@
         <div class="dx-demo dx-demo--soft" style="font-family:var(--ro-font-mono);font-size:12px;line-height:1.8;color:var(--ro-ink-70)">
 <pre style="margin:0">.ro-header
  ├─ .ro-header__brand                     logo
- ├─ .ro-dropdown > .ro-switcher          workspace ▸ .ro-menu[data-single]
+ ├─ .ro-dropdown > .ro-switcher          workspace ▸ .ro-menu[role=menu]
  ├─ .ro-header__nav                       nav (oculta &lt;md → hamburguesa)
  ├─ .ro-header__title                     título contextual (centro)
  └─ .ro-header__actions
      ├─ .ro-btn-icon  (wrench)            herramientas
      ├─ .ro-dropdown  (bell + dot-badge)  notificaciones ▸ .ro-menu
-     ├─ .ro-dropdown  (languages)         idioma ▸ .ro-menu[data-single]
+     ├─ .ro-dropdown  (languages)         idioma ▸ .ro-menu[role=menu]
      ├─ .ro-dropdown  (.ro-avatar)       perfil ▸ .ro-menu--end
      └─ .ro-btn-icon.ro-burger           menú mobile</pre>
         </div>
@@ -375,12 +375,12 @@
       </div>
 
       <div class="dx-section" id="tooltip">
-        <h2>Tooltip <span class="dx-code">CSS-only</span></h2>
-        <p>Solo añade <code>class="ro-tooltip" data-tooltip="texto"</code>. Pasa el cursor:</p>
+        <h2>Tooltip <span class="dx-code">semántico · CSS-only</span></h2>
+        <p>El texto vive en un elemento con <code>role="tooltip"</code> y se asocia al control mediante <code>aria-describedby</code>.</p>
         <div class="dx-demo">
-          <button class="ro-btn ro-btn--soft ro-tooltip" data-tooltip="Información útil">Pásame el cursor</button>
-          <button class="ro-btn-icon ro-btn-icon--outline ro-tooltip" data-tooltip="Ajustes"><svg class="ro-icon"><use href="#ro-i-settings"></use></svg></button>
-          <span class="ro-tooltip" data-tooltip="También en texto" style="text-decoration:underline dotted;cursor:help">término</span>
+          <span class="ro-tooltip-trigger"><button class="ro-btn ro-btn--soft" aria-describedby="tooltip-info">Pásame el cursor</button><span class="ro-tooltip" id="tooltip-info" role="tooltip">Información útil</span></span>
+          <span class="ro-tooltip-trigger"><button class="ro-btn-icon ro-btn-icon--outline" aria-label="Ajustes" aria-describedby="tooltip-settings"><svg class="ro-icon"><use href="#ro-i-settings"></use></svg></button><span class="ro-tooltip" id="tooltip-settings" role="tooltip">Ajustes</span></span>
+          <span class="ro-tooltip-trigger"><span tabindex="0" aria-describedby="tooltip-term" style="text-decoration:underline dotted;cursor:help">término</span><span class="ro-tooltip" id="tooltip-term" role="tooltip">También en texto</span></span>
         </div>
       </div>
 
@@ -556,11 +556,11 @@ npm run build   # → dist/roui.css</code></pre>
       <div class="dx-section" id="popover">
         <h2>Popover</h2>
         <div class="dx-demo">
-          <div class="ro-dropdown" data-dropdown>
-            <button class="ro-btn ro-btn--soft" data-dropdown-trigger>Ver detalles</button>
-            <div class="ro-popover">
+          <div class="ro-dropdown" data-ro-disclosure-root>
+            <button class="ro-btn ro-btn--soft" data-ro-disclosure-trigger aria-haspopup="dialog" aria-controls="details-popover" aria-expanded="false">Ver detalles</button>
+            <div class="ro-popover" id="details-popover" data-ro-disclosure-panel role="dialog" aria-labelledby="details-popover-title" hidden>
               <div class="ro-popover__arrow"></div>
-              <div class="ro-popover__title">Frontend · 4 semanas</div>
+              <div class="ro-popover__title" id="details-popover-title">Frontend · 4 semanas</div>
               <div class="ro-popover__body">Cohort de abril · 40 módulos. Incluye sesiones en vivo y revisión de código.</div>
               <button class="ro-btn ro-btn--primary ro-btn--sm" style="margin-top:10px">Inscribirme</button>
             </div>
@@ -725,12 +725,12 @@ npm run build</code></pre>
           </div>
           <div>
             <p class="dx-sub" style="margin-top:0">Date picker (campo + popover)</p>
-            <div class="ro-dropdown" data-dropdown data-datepicker style="width:240px">
-              <div class="ro-field" data-dropdown-trigger style="cursor:pointer">
+            <div class="ro-dropdown" data-ro-disclosure-root data-datepicker style="width:240px">
+              <button type="button" class="ro-field ro-field--disclosure" data-ro-disclosure-trigger aria-haspopup="dialog" aria-controls="datepicker-popover" aria-expanded="false">
                 <svg class="ro-icon ro-icon--sm" style="color:var(--ro-ink-40)"><use href="#ro-i-calendar"></use></svg>
-                <input class="ro-input" placeholder="Selecciona fecha" readonly style="cursor:pointer">
-              </div>
-              <div class="ro-popover" style="min-width:300px">
+                <span class="ro-input" data-datepicker-value>Selecciona fecha</span>
+              </button>
+              <div class="ro-popover" id="datepicker-popover" data-ro-disclosure-panel role="dialog" aria-label="Seleccionar fecha" hidden style="min-width:300px">
                 <div class="ro-calendar" data-calendar data-year="2026" data-month="5" data-today="27">
                   <div class="ro-calendar__header">
                     <span class="ro-calendar__title"></span>
@@ -765,11 +765,11 @@ npm run build</code></pre>
           </div>
           <div class="ro-split">
             <button class="ro-btn ro-btn--dark">Guardar</button>
-            <div class="ro-dropdown" data-dropdown>
-              <button class="ro-btn ro-btn--dark ro-split__toggle" data-dropdown-trigger><svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg></button>
-              <div class="ro-menu ro-menu--end">
-                <a class="ro-menu__item">Guardar y cerrar</a>
-                <a class="ro-menu__item">Guardar como borrador</a>
+            <div class="ro-dropdown" data-ro-disclosure-root>
+              <button class="ro-btn ro-btn--dark ro-split__toggle" data-ro-disclosure-trigger aria-label="Más opciones de guardado" aria-haspopup="menu" aria-controls="save-menu" aria-expanded="false"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg></button>
+              <div class="ro-menu ro-menu--end" id="save-menu" data-ro-disclosure-panel role="menu" aria-label="Opciones de guardado" hidden>
+                <a class="ro-menu__item" role="menuitem" href="#">Guardar y cerrar</a>
+                <a class="ro-menu__item" role="menuitem" href="#">Guardar como borrador</a>
               </div>
             </div>
           </div>
@@ -835,9 +835,9 @@ npm run build</code></pre>
           <span class="ro-badge ro-badge--soft">71</span>
           <span class="ro-spacer"></span>
           <div class="ro-toolbar__group">
-            <button class="ro-btn-icon ro-tooltip" data-tooltip="Filtrar"><svg class="ro-icon"><use href="#ro-i-filter"></use></svg></button>
-            <button class="ro-btn-icon ro-tooltip" data-tooltip="Ordenar"><svg class="ro-icon"><use href="#ro-i-arrow-up-down"></use></svg></button>
-            <button class="ro-btn-icon ro-tooltip" data-tooltip="Descargar"><svg class="ro-icon"><use href="#ro-i-download"></use></svg></button>
+            <span class="ro-tooltip-trigger"><button class="ro-btn-icon" aria-label="Filtrar" aria-describedby="tooltip-filter"><svg class="ro-icon"><use href="#ro-i-filter"></use></svg></button><span class="ro-tooltip" id="tooltip-filter" role="tooltip">Filtrar</span></span>
+            <span class="ro-tooltip-trigger"><button class="ro-btn-icon" aria-label="Ordenar" aria-describedby="tooltip-sort"><svg class="ro-icon"><use href="#ro-i-arrow-up-down"></use></svg></button><span class="ro-tooltip" id="tooltip-sort" role="tooltip">Ordenar</span></span>
+            <span class="ro-tooltip-trigger"><button class="ro-btn-icon" aria-label="Descargar" aria-describedby="tooltip-download"><svg class="ro-icon"><use href="#ro-i-download"></use></svg></button><span class="ro-tooltip" id="tooltip-download" role="tooltip">Descargar</span></span>
           </div>
           <span class="ro-toolbar__sep"></span>
           <button class="ro-btn ro-btn--primary ro-btn--sm"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-plus"></use></svg> Nuevo</button>

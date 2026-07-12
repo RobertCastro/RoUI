@@ -9,7 +9,7 @@ Ultima actualizacion: 2026-07-12
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
-| 3. Primitivas accesibles | in-progress | 40% | Completar F3-003: Menu, Popover y Tooltip |
+| 3. Primitivas accesibles | in-progress | 60% | Completar F3-004: Tabs, Accordion y navegación |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
