@@ -26,6 +26,39 @@ body { margin: 0; }
 .dx-main > h1 { font-family: var(--ro-font-display); font-size: 40px; letter-spacing: -.03em; margin: 0 0 6px; }
 .dx-lead { color: var(--ro-ink-60); font-size: 16px; margin: 0 0 8px; max-width: 60ch; }
 
+/* Progreso del programa */
+.dx-progress { margin-top: 32px; padding: 24px; border: 1px solid var(--ro-ink-10); border-radius: 20px; background: var(--ro-white); }
+.dx-progress__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+.dx-progress__head h2 { margin: 0; font-family: var(--ro-font-display); font-size: 24px; letter-spacing: -.02em; }
+.dx-progress__head p:not(.dx-eyebrow) { max-width: 62ch; margin: 6px 0 0; color: var(--ro-ink-60); font-size: 14px; line-height: 1.5; }
+.dx-eyebrow { margin: 0 0 6px; font-family: var(--ro-font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ro-secondary); font-weight: 700; }
+.dx-status { flex: none; border-radius: var(--ro-radius-full); padding: 6px 10px; font-family: var(--ro-font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+.dx-status--active { background: var(--ro-primary); color: var(--ro-ink); }
+.dx-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 22px; }
+@media (min-width: 680px) { .dx-metrics { grid-template-columns: repeat(4, 1fr); } }
+.dx-metric { padding: 12px; border-radius: 12px; background: var(--ro-ink-02); }
+.dx-metric b { display: block; font-family: var(--ro-font-display); font-size: 23px; letter-spacing: -.03em; }
+.dx-metric span { display: block; margin-top: 2px; color: var(--ro-ink-60); font-size: 11px; }
+.dx-phases { display: grid; gap: 2px; margin: 22px 0 0; padding: 0; list-style: none; }
+.dx-phases li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 9px 0; border-top: 1px solid var(--ro-ink-06); color: var(--ro-ink-40); }
+.dx-phases li:first-child { border-top: 0; }
+.dx-phases li > span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ro-ink-06); font-family: var(--ro-font-mono); font-size: 9px; }
+.dx-phases b, .dx-phases small { display: block; }
+.dx-phases b { font-size: 13px; color: var(--ro-ink-60); }
+.dx-phases small { margin-top: 1px; font-size: 11px; color: var(--ro-ink-40); }
+.dx-phases em { font-family: var(--ro-font-mono); font-size: 10px; font-style: normal; text-transform: uppercase; letter-spacing: .04em; }
+.dx-phases .is-done > span { background: var(--ro-ink); color: var(--ro-white); }
+.dx-phases .is-done b { color: var(--ro-ink); }
+.dx-phases .is-done em { color: var(--ro-success); }
+.dx-phases .is-current { padding-inline: 8px; border-radius: 10px; background: var(--ro-secondary-soft); }
+.dx-phases .is-current > span { background: var(--ro-secondary); color: var(--ro-ink); }
+.dx-phases .is-current b { color: var(--ro-ink); }
+.dx-phases .is-current em { color: var(--ro-ink); font-weight: 700; }
+.dx-progress__foot { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.dx-note { margin: 14px 0 0; color: var(--ro-ink-50); font-size: 13px; line-height: 1.5; }
+.dx-command-list { gap: 8px; }
+@media (max-width: 560px) { .dx-progress { padding: 18px; } .dx-progress__head { display: block; } .dx-status { display: inline-block; margin-top: 14px; } .dx-phases li { grid-template-columns: 28px minmax(0, 1fr); } .dx-phases em { grid-column: 2; } }
+
 .dx-section { margin-top: 56px; }
 .dx-section > h2 { font-family: var(--ro-font-display); font-size: 24px; margin: 0 0 4px; letter-spacing: -.02em; }
 .dx-section > p { color: var(--ro-ink-60); margin: 0 0 20px; }
