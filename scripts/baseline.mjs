@@ -67,7 +67,7 @@ const report = {
     undefinedCustomProperties,
   },
   knownIssues: [
-    "No existen aun pruebas automatizadas de componentes o accesibilidad.",
+    "No existe aun matriz automatizada de navegador, axe o regresion visual.",
   ],
 };
 

@@ -5,6 +5,7 @@
   background: rgba(23, 23, 25, 0.45);
   animation: ro-fade 0.15s var(--ro-ease);
 }
+.ro-overlay[hidden] { display: none; }
 .ro-overlay.is-open { display: flex; }
 
 .ro-modal {
@@ -24,3 +25,7 @@
 .ro-modal__body { padding: 20px; color: var(--ro-ink-72); font-size: var(--ro-text-sm); line-height: 1.55; }
 .ro-modal__footer { display: flex; justify-content: flex-end; gap: 8px;
   padding: 16px 20px; border-top: 1px solid var(--ro-ink-06); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ro-overlay, .ro-modal { animation: none; }
+}

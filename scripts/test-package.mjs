@@ -67,6 +67,7 @@ const publicFiles = [
   "@robertcastro/roui/components/modal.css",
   "@robertcastro/roui/layouts/grid.css",
   "@robertcastro/roui/utilities.css",
+  "@robertcastro/roui/primitives/overlay-controller",
   "@robertcastro/roui/icons.svg",
   "@robertcastro/roui/tokens.json",
 ];
@@ -89,8 +90,12 @@ assert.throws(
   () => require.resolve("@robertcastro/roui/src/components/button.css"),
   (error) => error && error.code === "ERR_PACKAGE_PATH_NOT_EXPORTED",
 );
-import("@robertcastro/roui/tailwind").then((module) => {
-  assert.equal(module.default.theme.extend.colors.primary, "#f6f072");
+Promise.all([
+  import("@robertcastro/roui/tailwind"),
+  import("@robertcastro/roui/primitives/overlay-controller"),
+]).then(([tailwind, primitives]) => {
+  assert.equal(tailwind.default.theme.extend.colors.primary, "#f6f072");
+  assert.equal(typeof primitives.createOverlayController, "function");
   console.log("Entrypoints publicos: tarball, CJS y ESM correctos");
 }).catch((error) => { console.error(error); process.exitCode = 1; });
 `,

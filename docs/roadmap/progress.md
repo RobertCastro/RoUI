@@ -1,6 +1,6 @@
 # Estado del programa
 
-Ultima actualizacion: 2026-07-10
+Ultima actualizacion: 2026-07-12
 
 ## Fases
 
@@ -9,7 +9,7 @@ Ultima actualizacion: 2026-07-10
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
-| 3. Primitivas accesibles | in-progress | 20% | Verificar F3-001 en CI |
+| 3. Primitivas accesibles | in-progress | 40% | Completar F3-003: Menu, Popover y Tooltip |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
@@ -35,21 +35,22 @@ Ultima actualizacion: 2026-07-10
 
 - No hay consumidores estables; se permiten breaking changes en Fases 0-2. El
   riesgo se traslada a mantener documentacion y fixtures alineadas.
-- El contrato Tailwind fue integrado mediante PR #2.
-- Las fixtures esbuild y Tailwind compilan contra el tarball en F1-004; queda
-  pendiente su verificacion independiente en CI.
 - ADR-0004 mantiene el repositorio unico hasta que existan dos paquetes con
   responsabilidad y build independientes.
-- Temas dark y high-contrast todavía no existen.
-- No existe todavia suite automatizada de calidad.
+- F3-002 añade un controlador de overlays y pruebas Node; aún falta matriz de
+  navegador, axe y regresión visual para declarar primitivas estables.
+- El nuevo entrypoint público deja 6.6 KiB de margen descomprimido; nuevos
+  artefactos deberán justificar su tamaño o reducir el paquete.
 
-## Evidencia de la ultima ejecucion
+## Evidencia de la última ejecución
 
-- `npm run validate`: correcto.
-- `npm pack --dry-run`: correcto, 70 archivos y 240.3 KB descomprimidos.
-- `git diff --check`: correcto.
-- Baseline estructural: cero imports duplicados/inexistentes y cero custom
-  properties utilizadas sin definicion.
-- CI GitHub Actions: correcta en PR #1, job `baseline`, 11 segundos.
-- F2-001 establece tokens DTCG y generación de CSS/Tailwind desde una sola
-  fuente; queda pendiente su verificación independiente en CI.
+- `npm run validate`: correcto; incluye tokens, contraste, inventario de
+  literales, build, lint, baseline, primitivas, tarball, fixtures y tamaño.
+- Primitivas: tres pruebas Node cubren foco inicial, `Tab`/`Shift+Tab`,
+  `Escape`, cierre y restauración del disparador.
+- Navegador manual: Dialog y Drawer correctos en Chromium local con foco,
+  scroll lock, Escape y restauración.
+- Paquete: 57 070 / 65 536 bytes comprimidos y 271 802 / 278 528 bytes
+  descomprimidos.
+- CI GitHub Actions ejecuta `npm run validate`, `npm pack --dry-run` y auditoría
+  de dependencias de producción en cada PR y push a `main`.

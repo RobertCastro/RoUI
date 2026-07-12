@@ -1,6 +1,6 @@
 # F3-001: Contratos accesibles para Button y Form
 
-- Estado: review
+- Estado: done
 - Fase: 3
 - Dependencias: F2-003, F2-004
 
@@ -23,4 +23,5 @@ por RoUI, sin reemplazar semántica HTML con elementos genéricos.
   y asociación de ayudas con `aria-describedby`.
 - CSS: soporta `aria-busy`, `aria-disabled` y `aria-invalid` sin ocultar foco.
 - Comandos: `npm run validate`, `git diff --check`.
-- Siguiente tarea: Dialog y Drawer con foco y restauración.
+- Integración: PR #15, CI `baseline` aprobada.
+- Siguiente tarea: F3-002 Dialog y Drawer con foco y restauración.

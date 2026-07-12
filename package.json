@@ -35,6 +35,7 @@
     "./components/*.css": "./src/components/*.css",
     "./layouts/*.css": "./src/layouts/*.css",
     "./utilities.css": "./src/utilities/helpers.css",
+    "./primitives/overlay-controller": "./dist/primitives/overlay-controller.js",
     "./icons.svg": "./dist/icons.svg",
     "./tokens.json": "./tokens/tokens.json",
     "./tailwind": "./tokens/tailwind.preset.cjs"
@@ -54,7 +55,8 @@
     "check:size": "node scripts/check-package-size.mjs",
     "test:package": "node scripts/test-package.mjs",
     "test:consumers": "node scripts/test-consumers.mjs",
-    "validate": "npm run check:tokens && npm run check:contrast && npm run check:literals && npm run build && npm run lint && npm run baseline && npm run test:package && npm run test:consumers && npm run check:size",
+    "test:primitives": "node --test test/*.test.mjs",
+    "validate": "npm run check:tokens && npm run check:contrast && npm run check:literals && npm run build && npm run lint && npm run baseline && npm run test:primitives && npm run test:package && npm run test:consumers && npm run check:size",
     "prepare": "node scripts/build.mjs",
     "start": "python3 -m http.server 8799",
     "serve": "python3 -m http.server 8799",
