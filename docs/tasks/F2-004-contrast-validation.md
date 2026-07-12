@@ -1,6 +1,6 @@
 # F2-004: Validar contraste de tokens y temas
 
-- Estado: review
+- Estado: done
 - Fase: 2
 - Dependencias: F2-002, F2-003
 
@@ -25,3 +25,4 @@ antes de publicar cambios de tokens o componentes.
   para conservar contraste sobre el acento.
 - Comandos: `npm run check:contrast`, `npm run validate`, `git diff --check`.
 - Siguiente tarea: inventario y migración de valores literales restantes.
+- Integración: PR #12 fusionado en `main` con CI correcta.

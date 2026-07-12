@@ -1,6 +1,6 @@
 # F2-002: Generar temas desde DTCG
 
-- Estado: review
+- Estado: done
 - Fase: 2
 - Dependencias: F2-001, ADR-0006
 
@@ -26,3 +26,4 @@ mediante `data-ro-theme` sin alterar el tema predeterminado.
 - Riesgo pendiente: los componentes que aún usan primitivas directas se migran
   a roles semánticos en F2-003.
 - Siguiente tarea: tokens semánticos y de componente.
+- Integración: PR #10 fusionado en `main` con CI correcta.
