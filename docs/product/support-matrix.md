@@ -5,13 +5,13 @@ automatizaran durante Fase 1.
 
 | Superficie | Objetivo | Estado actual |
 |---|---|---|
-| Node para tooling | LTS activa y mantenimiento | Node 20 en workflows |
+| Node para tooling | Node 20 o superior | Node 20 en workflows |
 | Chromium | Dos versiones estables recientes | Sin pruebas |
 | Firefox | Dos versiones estables recientes | Sin pruebas |
 | WebKit/Safari | Dos versiones estables recientes | Sin pruebas |
 | Movil | iOS Safari y Chrome Android recientes | Demo responsive manual |
-| HTML/CSS vanilla | Soporte de primera clase | Bundle disponible |
-| Tailwind | Integracion versionada | Contrato CJS/ESM en validacion mediante F1-001 |
+| HTML/CSS vanilla | Soporte de primera clase | Fixture esbuild compilada desde tarball |
+| Tailwind | Integracion versionada | Fixture Tailwind 3 compilada desde tarball |
 | React/Next | Adaptador prioritario futuro | No implementado |
 | Vue/Svelte/Angular | Segun demanda validada | No implementado |
 | SSR | Sin errores de importacion o hidratacion | No evaluado |
