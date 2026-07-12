@@ -80,6 +80,9 @@ Temas disponibles: `light`, `dark` y `high-contrast`. Los temas redefinen los
 roles semánticos `--ro-bg`, `--ro-surface`, `--ro-text`, `--ro-text-muted`,
 `--ro-border-color`, `--ro-accent` y `--ro-focus-ring`.
 
+Las combinaciones críticas de cada tema se validan con `npm run check:contrast`
+y deben mantener al menos una relación 4.5:1 para texto y controles.
+
 Los controles principales consumen además tokens de componente generados. Para
 usarlos sin el bundle completo, importa `@robertcastro/roui/component-tokens.css`
 después de `tokens.css`.
