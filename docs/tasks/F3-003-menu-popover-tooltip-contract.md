@@ -1,6 +1,6 @@
 # F3-003: Contratos accesibles de Menu, Popover y Tooltip
 
-- Estado: review
+- Estado: done
 - Fase: 3
 - Dependencias: F3-002
 - ADR relacionados: ADR-0002, ADR-0005
@@ -66,5 +66,6 @@ git diff --check
 - Migración: sustituir `.ro-tooltip[data-tooltip]` por
   `.ro-tooltip-trigger` + un elemento `.ro-tooltip[role="tooltip"]` asociado
   al control con `aria-describedby`.
+- Integración: PR #18, CI `baseline` aprobada.
 - Riesgos pendientes: submenús, colisiones, axe y regresión visual se cubren en tareas posteriores y Fase 4.
 - Siguiente tarea desbloqueada: F3-004 Tabs, Accordion y navegación.
