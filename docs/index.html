@@ -39,6 +39,39 @@
       <h1>RoUI Design System</h1>
       <p class="dx-lead">Sistema de diseño <strong>RoUI</strong>: tokens, componentes y layouts en CSS modular — listo para usar en cualquier proyecto, con o sin Tailwind.</p>
 
+      <section class="dx-progress" aria-labelledby="progress-title">
+        <div class="dx-progress__head">
+          <div>
+            <p class="dx-eyebrow">Estado del sistema</p>
+            <h2 id="progress-title">Fase 3 · Primitivas accesibles</h2>
+            <p>Los fundamentos, tokens y temas ya están verificados. Ahora estamos convirtiendo los componentes visuales en contratos accesibles.</p>
+          </div>
+          <span class="dx-status dx-status--active">En curso · 20%</span>
+        </div>
+
+        <div class="dx-metrics" aria-label="Métricas actuales de RoUI">
+          <div class="dx-metric"><b>3 / 7</b><span>fases activadas</span></div>
+          <div class="dx-metric"><b>160</b><span>tokens DTCG</span></div>
+          <div class="dx-metric"><b>3</b><span>temas generados</span></div>
+          <div class="dx-metric"><b>15</b><span>pares AA verificados</span></div>
+        </div>
+
+        <ol class="dx-phases">
+          <li class="is-done"><span>01</span><div><b>Sistema de ejecución</b><small>Gobernanza, baseline y CI</small></div><em>Completada</em></li>
+          <li class="is-done"><span>02</span><div><b>Fundamentos</b><small>Exports, bundle, fixtures y quality gates</small></div><em>Completada</em></li>
+          <li class="is-done"><span>03</span><div><b>Tokens y temas</b><small>DTCG, contrastes y roles semánticos</small></div><em>Completada</em></li>
+          <li class="is-current"><span>04</span><div><b>Primitivas accesibles</b><small>Button y Form listos; Dialog y Drawer siguen</small></div><em>En curso</em></li>
+          <li><span>05</span><div><b>Pruebas integrales</b><small>Navegador, axe y regresión visual</small></div><em>Pendiente</em></li>
+          <li><span>06</span><div><b>Documentación como producto</b><small>API contractual y guías de migración</small></div><em>Pendiente</em></li>
+          <li><span>07</span><div><b>Release y adopción</b><small>Gobernanza, pilotos y soporte</small></div><em>Pendiente</em></li>
+        </ol>
+
+        <div class="dx-progress__foot">
+          <a class="ro-btn ro-btn--dark ro-btn--sm" href="https://github.com/RobertCastro/RoUI/blob/main/docs/roadmap/progress.md">Ver roadmap</a>
+          <a class="ro-btn ro-btn--soft ro-btn--sm" href="https://github.com/RobertCastro/RoUI/blob/main/docs/roadmap/phase-2-audit.md">Leer auditoría Fase 2</a>
+        </div>
+      </section>
+
       <div class="dx-section">
         <h2>Cómo usarlo</h2>
         <p class="dx-sub">Opción A · Un solo archivo (cualquier proyecto)</p>
@@ -49,7 +82,9 @@
 
         <p class="dx-sub">Opción B · Con bundler (Vite / PostCSS / Next)</p>
         <div class="dx-demo dx-demo--col dx-demo--soft">
-          <span class="dx-code">import 'roui/src';  /* o dist/roui.css */</span>
+          <span class="dx-code">import '@robertcastro/roui/tokens.css';</span>
+          <span class="dx-code">import '@robertcastro/roui/component-tokens.css';</span>
+          <span class="dx-code">import '@robertcastro/roui/components/button.css';</span>
         </div>
 
         <p class="dx-sub">Opción C · Tailwind</p>
@@ -60,11 +95,22 @@
       </div>
 
       <div class="dx-section">
+        <h2>Quality gates locales</h2>
+        <p>Antes de integrar un cambio, la misma puerta de calidad se ejecuta localmente y en CI.</p>
+        <div class="dx-demo dx-demo--col dx-demo--soft dx-command-list">
+          <span class="dx-code">nvm use 20</span>
+          <span class="dx-code">npm ci</span>
+          <span class="dx-code">npm run validate</span>
+        </div>
+        <p class="dx-note">Incluye generación DTCG, contraste, inventario de literales, build, lint, tarball, consumidores y presupuesto de tamaño.</p>
+      </div>
+
+      <div class="dx-section">
         <h2>Arquitectura</h2>
         <p>Estructura modular tipo Tailwind: tokens separados de componentes, y un bundle plano generado.</p>
         <div class="dx-demo dx-demo--col dx-demo--soft" style="font-family:var(--ro-font-mono);font-size:12.5px;line-height:1.9;color:var(--ro-ink-70)">
 <pre style="margin:0">src/
-├─ tokens/      colors · typography · spacing · effects · layout
+├─ tokens/      DTCG source · CSS generado · temas · roles de componente
 ├─ base/        reset
 ├─ layouts/     shell · grid · three-col
 ├─ components/  button · badge · card · form · nav · header · sidebar · …
