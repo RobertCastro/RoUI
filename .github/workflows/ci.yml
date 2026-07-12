@@ -28,3 +28,5 @@ jobs:
         run: npm run validate
       - name: Verify package contents
         run: npm pack --dry-run
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high

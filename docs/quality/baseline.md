@@ -31,11 +31,16 @@ sin definicion. Tambien reporta indicadores de deuda sin bloquear la Fase 0.
 
 ## Fallos conocidos
 
-- El baseline original detecto un preset Tailwind incompatible; F1-001 contiene
-  su remediacion y prueba consumidora.
-- Fuentes de tokens duplicadas entre CSS, JSON y Tailwind.
-- Reset y foco globales afectan elementos externos al sistema.
-- No existen pruebas de comportamiento, axe o regresion visual.
+- Fuentes de tokens duplicadas entre CSS, JSON y Tailwind: F2-001.
+- No existen pruebas de comportamiento, axe o regresion visual: Fase 3 y 4.
+
+## Gates incorporados en Fase 1
+
+- Stylelint para sintaxis y errores CSS de alto valor.
+- Build desde `src`, seguido de empaquetado del artefacto real.
+- Fixtures consumidoras esbuild y Tailwind instaladas desde el tarball.
+- Presupuesto de 64 KiB comprimidos y 256 KiB descomprimidos.
+- Auditoria de dependencias de produccion en CI.
 - Los componentes interactivos complejos solo tienen comportamiento de demo.
 
 Los valores detallados de colores y pixeles literales se obtienen del comando y

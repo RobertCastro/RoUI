@@ -1,6 +1,6 @@
 # F1-005: Decidir y preparar estructura de workspace
 
-- Estado: review
+- Estado: done
 - Fase: 1
 - Dependencias: F1-001 a F1-004
 
@@ -23,3 +23,4 @@ estructura minima que reduzca acoplamiento sin complejidad prematura.
 - Evidencia: ADR-0004 y `workspace-readiness.md`.
 - Comandos: `npm run validate`, `git diff --check`.
 - Siguiente tarea: F1-006, quality gates estaticos.
+- Integracion: PR #6 fusionado en `main` con CI correcta.
