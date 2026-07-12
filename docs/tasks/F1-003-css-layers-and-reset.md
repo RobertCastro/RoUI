@@ -1,6 +1,6 @@
 # F1-003: Aislar reset e introducir cascade layers
 
-- Estado: review
+- Estado: done
 - Fase: 1
 - Dependencias: F1-002
 - ADR relacionados: ADR-0002
@@ -24,3 +24,4 @@ Evitar efectos globales involuntarios y definir un orden de cascada estable.
   `reset.css`.
 - Comandos: `npm run validate`, `git diff --check`.
 - Siguiente tarea: F1-004, ampliar fixtures consumidoras.
+- Integracion: PR #4 fusionado en `main` con CI correcta.
