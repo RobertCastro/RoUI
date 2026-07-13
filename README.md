@@ -159,7 +159,7 @@ URL: `https://robertcastro.github.io/RoUI/`
 |---|---|
 | Color marca | `ink #171719` · `primary #f6f072` · `secondary #a9a0ec` · `ink-soft #f7f7f8` · `gray #d9e3e3` · `sky #d4e0ed` |
 | Semánticos | `success #10b981` · `warning #f59e0b` · `error #ef4444` · `info #3b82f6` |
-| Tipografía | display 44 · 4xl 36 · 2xl 24 · xl 20 · base 16 · sm 14 · xs 12. Fuentes: **StackSans** (fallback Inter) + **JetBrains Mono** |
+| Tipografía | display 44 · 4xl 36 · 2xl 24 · xl 20 · base 16 · sm 14 · xs 12. Fuentes: **Inter** (fallback sistema) + **JetBrains Mono** |
 | Radios | sm 4 · lg 8 · xl 12 · card 14 · 2xl 16 · banner 22 · full |
 | Layout | header 72 · rail-left 280 · rail-right 440 · content-max 1280 |
 | Iconos | **Lucide** (viewBox 24, `currentColor`, stroke 2, tamaños 14/16/18/20) |
@@ -206,7 +206,7 @@ interacción. Modificadores: `.ro-menu--end` (alinear derecha),
 ## Fidelidad / pendientes
 - Capturado de `/dashboard`, `/directory` y `/paths/.../modules/architecting`, con medición responsive (~600px y ~1440px).
 - `hover` inferido de clases Tailwind; `focus` usa el `--focus-ring` real.
-- StackSans es propietaria → fallback automático a Inter.
+- Inter es la familia pública actual; si no está disponible, cae al stack del sistema.
 - Header validado contra la app real: switcher, campana (con punto), idioma y avatar con dropdowns; avatar **sin borde** (el "borde negro" era el outline de foco del `<button>`, ahora reemplazado por el focus-ring de marca).
 - Tablas, modales, toasts, tooltips y paginación se añadieron como componentes propios siguiendo el lenguaje visual (no estaban en las vistas capturadas; son extensiones coherentes con los tokens).
 - El contenido de las plantillas/galería es **demo genérico** (workspaces *Acme Inc*/*Globex*, curso *Frontend · 4 semanas*), no datos reales del origen.

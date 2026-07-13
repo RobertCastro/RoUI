@@ -1,8 +1,8 @@
 /* Generado desde tokens/tokens.json. No editar a mano. */
 :root {
-  --ro-font-display: "StackSans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --ro-font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
   --ro-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --ro-font-sans: "StackSans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --ro-font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --ro-leading-none: 1;
   --ro-leading-normal: 1.5;
   --ro-leading-relaxed: 1.55;

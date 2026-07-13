@@ -16,14 +16,12 @@ module.exports = {
       },
       "fontFamily": {
         "display": [
-          "StackSans",
           "Inter",
           "ui-sans-serif",
           "system-ui",
           "sans-serif"
         ],
         "sans": [
-          "StackSans",
           "Inter",
           "ui-sans-serif",
           "system-ui",
