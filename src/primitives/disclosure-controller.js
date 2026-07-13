@@ -23,6 +23,11 @@ export function createDisclosureController(root, options = {}) {
   if (!trigger || !panel) throw new TypeError("El disclosure necesita trigger y panel declarados");
 
   const isMenu = panel.getAttribute("role") === "menu";
+  // Menu y Popover se descartan al interactuar fuera o con Escape. Un disclosure
+  // persistente (p. ej. Accordion) permanece abierto hasta togglear su disparador.
+  const dismissible = options.dismissOnOutside === undefined
+    ? !root.hasAttribute("data-ro-disclosure-persistent")
+    : Boolean(options.dismissOnOutside);
 
   function isOpen() {
     return !panel.hidden && panel.classList.contains("is-open");
@@ -42,8 +47,10 @@ export function createDisclosureController(root, options = {}) {
     panel.hidden = false;
     panel.classList.add("is-open");
     trigger.setAttribute("aria-expanded", "true");
-    document.addEventListener("pointerdown", onOutsidePointer);
-    document.addEventListener("keydown", onDocumentKeydown);
+    if (dismissible) {
+      document.addEventListener("pointerdown", onOutsidePointer);
+      document.addEventListener("keydown", onDocumentKeydown);
+    }
     if (isMenu && focus) focusItem(focus);
   }
 

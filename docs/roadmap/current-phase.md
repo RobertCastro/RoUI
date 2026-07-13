@@ -25,8 +25,8 @@ accesibles por teclado y utilizables desde distintos stacks frontend.
 1. F3-001: contratos para Button y Form nativos.
 2. F3-002: Dialog y Drawer con foco, Escape y restauración.
 3. F3-003: Menu, Popover y Tooltip.
-4. F3-004: Tabs, Accordion y navegación.
-5. F3-005: Combobox, Calendar y Command Palette.
+4. F3-004: Tabs, Accordion y navegación. (review)
+5. F3-005: Combobox, Calendar y Command Palette. (siguiente)
 
 ## Condiciones de salida
 

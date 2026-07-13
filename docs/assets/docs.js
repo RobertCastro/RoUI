@@ -1,5 +1,6 @@
 import { createOverlayController } from "../../dist/primitives/overlay-controller.js";
 import { createDisclosureController } from "../../dist/primitives/disclosure-controller.js";
+import { createTabsController } from "../../dist/primitives/tabs-controller.js";
 
 /* docs.js — Interactividad de demostración para la galería.
    Genérico y basado en data-attributes; no es parte de la librería (solo docs). */
@@ -25,23 +26,9 @@ import { createDisclosureController } from "../../dist/primitives/disclosure-con
     disclosures.set(root, createDisclosureController(root));
   });
 
-  /* TABS: [data-tabs="id"] con .ro-tab[data-tab=key]
-     + panel container [data-tab-panels="id"] con hijos [data-panel=key] */
-  document.querySelectorAll("[data-tabs]").forEach(function (tabs) {
-    var id = tabs.getAttribute("data-tabs");
-    var panels = document.querySelector('[data-tab-panels="' + id + '"]');
-    tabs.addEventListener("click", function (e) {
-      var btn = e.target.closest(".ro-tab");
-      if (!btn) return;
-      tabs.querySelectorAll(".ro-tab").forEach(function (b) {
-        b.classList.toggle("ro-tab--active", b === btn);
-      });
-      if (!panels) return;
-      var key = btn.getAttribute("data-tab");
-      panels.querySelectorAll("[data-panel]").forEach(function (p) {
-        p.hidden = p.getAttribute("data-panel") !== key;
-      });
-    });
+  /* TABS: patrón accesible con la primitiva pública (roving tabindex). */
+  document.querySelectorAll("[data-ro-tabs]").forEach(function (tablist) {
+    createTabsController(tablist);
   });
 
   /* GRUPOS DE SELECCIÓN ÚNICA: pills y nav-links.
@@ -119,18 +106,8 @@ import { createDisclosureController } from "../../dist/primitives/disclosure-con
     });
   });
 
-  /* ACCORDION: clic en .ro-accordion__head alterna .is-open del item. */
-  document.querySelectorAll(".ro-accordion").forEach(function (acc) {
-    var single = acc.hasAttribute("data-single");
-    acc.addEventListener("click", function (e) {
-      var head = e.target.closest(".ro-accordion__head");
-      if (!head) return;
-      var item = head.closest(".ro-accordion__item");
-      var willOpen = !item.classList.contains("is-open");
-      if (single) acc.querySelectorAll(".ro-accordion__item").forEach(function (i) { i.classList.remove("is-open"); });
-      item.classList.toggle("is-open", willOpen);
-    });
-  });
+  /* ACCORDION: cada sección es un disclosure persistente; se inicializa arriba
+     con el bucle de [data-ro-disclosure-root]. */
 
   /* COMBOBOX: filtra opciones al escribir; clic en opción rellena el input. */
   document.querySelectorAll(".ro-combobox").forEach(function (cb) {

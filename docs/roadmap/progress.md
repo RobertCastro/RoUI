@@ -1,6 +1,6 @@
 # Estado del programa
 
-Ultima actualizacion: 2026-07-12
+Ultima actualizacion: 2026-07-13
 
 ## Fases
 
@@ -9,7 +9,7 @@ Ultima actualizacion: 2026-07-12
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
-| 3. Primitivas accesibles | in-progress | 60% | Completar F3-004: Tabs, Accordion y navegación |
+| 3. Primitivas accesibles | in-progress | 75% | F3-004 en review; sigue F3-005: Combobox, Calendar y Command Palette |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
@@ -46,8 +46,13 @@ Ultima actualizacion: 2026-07-12
 
 - `npm run validate`: correcto; incluye tokens, contraste, inventario de
   literales, build, lint, baseline, primitivas, tarball, fixtures y tamaño.
-- Primitivas: tres pruebas Node cubren foco inicial, `Tab`/`Shift+Tab`,
-  `Escape`, cierre y restauración del disparador.
+- Primitivas: pruebas Node cubren foco inicial, `Tab`/`Shift+Tab`, `Escape`,
+  cierre, restauración del disparador y, con F3-004, el roving tabindex de Tabs
+  (flechas, `Home`/`End`, activación automática/manual) y el disclosure
+  persistente del Accordion. Total 12 pruebas verdes.
+- F3-004 (Tabs, Accordion, navegación): contratos ARIA aplicados, `tabs-controller`
+  publicado y demos/plantillas migradas; gates automáticos verdes. Pendiente la
+  verificación manual de navegador/axe antes de `verified`.
 - Navegador manual: Dialog y Drawer correctos en Chromium local con foco,
   scroll lock, Escape y restauración.
 - Paquete: 57 070 / 65 536 bytes comprimidos y 271 802 / 278 528 bytes

@@ -37,6 +37,7 @@
     "./utilities.css": "./src/utilities/helpers.css",
     "./primitives/overlay-controller": "./dist/primitives/overlay-controller.js",
     "./primitives/disclosure-controller": "./dist/primitives/disclosure-controller.js",
+    "./primitives/tabs-controller": "./dist/primitives/tabs-controller.js",
     "./icons.svg": "./dist/icons.svg",
     "./tokens.json": "./tokens/tokens.json",
     "./tailwind": "./tokens/tailwind.preset.cjs"

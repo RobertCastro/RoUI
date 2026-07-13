@@ -11,11 +11,12 @@
   transition: var(--ro-transition);
 }
 .ro-accordion__head:hover { background: var(--ro-ink-04); }
+.ro-accordion__heading { margin: 0; }
 .ro-accordion__chevron { margin-left: auto; color: var(--ro-ink-50);
   transition: transform 0.2s var(--ro-ease); }
-.ro-accordion__item.is-open .ro-accordion__chevron { transform: rotate(180deg); }
+.ro-accordion__head[aria-expanded="true"] .ro-accordion__chevron { transform: rotate(180deg); }
 .ro-accordion__panel {
-  display: none; padding: 0 16px 16px;
+  padding: 0 16px 16px;
   font-size: var(--ro-text-sm); line-height: 1.55; color: var(--ro-ink-70);
 }
-.ro-accordion__item.is-open .ro-accordion__panel { display: block; }
+/* Visibilidad gobernada por el atributo [hidden] del disclosure-controller. */

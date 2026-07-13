@@ -82,8 +82,8 @@
             </div>
 
             <!-- Nav (selección única) -->
-            <nav class="ro-header__nav" data-select="ro-nav-link--active" data-output="#hdrOut" data-output-prefix="Sección: ">
-              <a class="ro-nav-link ro-nav-link--active">Inicio</a>
+            <nav class="ro-header__nav" aria-label="Principal">
+              <a class="ro-nav-link" href="#header" aria-current="page">Inicio</a>
               <a class="ro-nav-link">Mis Proyectos</a>
               <a class="ro-nav-link">Sesiones</a>
               <a class="ro-nav-link">Directorio</a>
@@ -184,7 +184,7 @@
 
       <div class="dx-section" id="nav">
         <h2>Pills · Tabs · Nav <span class="dx-code">interactivo</span></h2>
-        <p>Funcionalidad de demo via <code>docs/assets/docs.js</code> (data-attributes). La librería solo aporta el estilo de los estados <code>--active</code>.</p>
+        <p>Los Tabs siguen el contrato accesible (<code>role=tablist</code> + roving tabindex vía la primitiva <code>tabs-controller</code>); Nav usa <code>aria-current</code>. Pills es un toggle de demostración.</p>
 
         <p class="dx-sub">Pills (selección única)</p>
         <div class="dx-demo dx-demo--col">
@@ -197,58 +197,56 @@
           <p class="ro-body" id="pillOut">Mostrando contenido de: Semana 1</p>
         </div>
 
-        <p class="dx-sub">Nav links (selección única)</p>
+        <p class="dx-sub">Nav links (landmark + aria-current)</p>
         <div class="dx-demo dx-demo--col">
-          <nav class="ro-row ro-row--wrap" data-select="ro-nav-link--active" data-output="#navOut" data-output-prefix="Sección activa: ">
-            <a class="ro-nav-link ro-nav-link--active">Inicio</a>
-            <a class="ro-nav-link">Mis Proyectos</a>
-            <a class="ro-nav-link">Sesiones</a>
-            <a class="ro-nav-link">Directorio</a>
+          <nav class="ro-row ro-row--wrap" aria-label="Ejemplo de navegación">
+            <a class="ro-nav-link" href="#nav" aria-current="page">Inicio</a>
+            <a class="ro-nav-link" href="#nav">Mis Proyectos</a>
+            <a class="ro-nav-link" href="#nav">Sesiones</a>
+            <a class="ro-nav-link" href="#nav">Directorio</a>
           </nav>
-          <p class="ro-body" id="navOut">Sección activa: Inicio</p>
+          <p class="ro-body ro-muted" style="font-size:13px">El estado activo se marca con <code>aria-current="page"</code>, no con una clase de demo.</p>
         </div>
 
-        <p class="dx-sub">Tabs con paneles (cambia el contenido)</p>
+        <p class="dx-sub">Tabs con paneles (<code>role=tablist</code>, roving tabindex)</p>
         <div class="dx-demo dx-demo--col" style="padding:0;overflow:hidden;align-items:stretch">
-          <div class="ro-tabs" data-tabs="demoTabs">
-            <button class="ro-tab ro-tab--active" data-tab="temario">Temario</button>
-            <button class="ro-tab" data-tab="discusion">Discusión <span class="ro-tab__count">2</span></button>
-            <button class="ro-tab" data-tab="checkpoints">Checkpoints <span class="ro-tab__count">3</span></button>
+          <div class="ro-tabs" role="tablist" aria-label="Detalle del módulo" data-ro-tabs>
+            <button class="ro-tab" role="tab" id="t-temario" aria-selected="true" aria-controls="p-temario">Temario</button>
+            <button class="ro-tab" role="tab" id="t-discusion" aria-selected="false" aria-controls="p-discusion" tabindex="-1">Discusión <span class="ro-tab__count">2</span></button>
+            <button class="ro-tab" role="tab" id="t-checkpoints" aria-selected="false" aria-controls="p-checkpoints" tabindex="-1">Checkpoints <span class="ro-tab__count">3</span></button>
           </div>
-          <div data-tab-panels="demoTabs" style="padding:22px">
-            <div data-panel="temario">
-              <h3 class="ro-h3">Recursos del módulo</h3>
-              <a class="ro-resource">🔗 10X Builder Code · GitHub</a>
-              <p class="ro-body" style="margin-top:10px">
-                Aprendes que la calidad del código generado por IA depende del contexto.
-                <strong>Contexto de calidad = código de calidad.</strong>
-              </p>
+          <div id="p-temario" role="tabpanel" aria-labelledby="t-temario" tabindex="0" style="padding:22px">
+            <h3 class="ro-h3">Recursos del módulo</h3>
+            <a class="ro-resource">🔗 10X Builder Code · GitHub</a>
+            <p class="ro-body" style="margin-top:10px">
+              Aprendes que la calidad del código generado por IA depende del contexto.
+              <strong>Contexto de calidad = código de calidad.</strong>
+            </p>
+          </div>
+          <div id="p-discusion" role="tabpanel" aria-labelledby="t-discusion" tabindex="0" hidden style="padding:22px">
+            <div class="ro-stack ro-stack--sm">
+              <div class="ro-row" style="align-items:flex-start;gap:10px">
+                <span class="ro-avatar ro-avatar--sm">M</span>
+                <div><div style="font-weight:600;font-size:14px">María · hace 2h</div>
+                  <p class="ro-body">¿El Technical Brief reemplaza al PRD completo o es un paso previo?</p></div>
+              </div>
+              <div class="ro-row" style="align-items:flex-start;gap:10px">
+                <span class="ro-avatar ro-avatar--sm" style="background:var(--ro-primary)">RC</span>
+                <div><div style="font-weight:600;font-size:14px">Robert · hace 1h</div>
+                  <p class="ro-body">Es un paso previo y más enfocado: contexto + DoD antes de pedir código.</p></div>
+              </div>
             </div>
-            <div data-panel="discusion" hidden>
-              <div class="ro-stack ro-stack--sm">
-                <div class="ro-row" style="align-items:flex-start;gap:10px">
-                  <span class="ro-avatar ro-avatar--sm">M</span>
-                  <div><div style="font-weight:600;font-size:14px">María · hace 2h</div>
-                    <p class="ro-body">¿El Technical Brief reemplaza al PRD completo o es un paso previo?</p></div>
-                </div>
-                <div class="ro-row" style="align-items:flex-start;gap:10px">
-                  <span class="ro-avatar ro-avatar--sm" style="background:var(--ro-primary)">RC</span>
-                  <div><div style="font-weight:600;font-size:14px">Robert · hace 1h</div>
-                    <p class="ro-body">Es un paso previo y más enfocado: contexto + DoD antes de pedir código.</p></div>
-                </div>
-              </div>
-              <div class="ro-field" style="margin-top:14px"><input class="ro-input" placeholder="Escribe un comentario…"><button class="ro-btn ro-btn--dark ro-btn--sm">Enviar</button></div>
+            <div class="ro-field" style="margin-top:14px"><input class="ro-input" placeholder="Escribe un comentario…" aria-label="Comentario"><button class="ro-btn ro-btn--dark ro-btn--sm">Enviar</button></div>
+          </div>
+          <div id="p-checkpoints" role="tabpanel" aria-labelledby="t-checkpoints" tabindex="0" hidden style="padding:22px">
+            <div class="ro-stack ro-stack--sm">
+              <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check" checked> Escribir el contexto del problema</label>
+              <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check" checked> Definir requerimientos y restricciones</label>
+              <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check"> Redactar la Definition of Done</label>
             </div>
-            <div data-panel="checkpoints" hidden>
-              <div class="ro-stack ro-stack--sm">
-                <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check" checked> Escribir el contexto del problema</label>
-                <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check" checked> Definir requerimientos y restricciones</label>
-                <label class="ro-row" style="gap:10px"><input type="checkbox" class="ro-check"> Redactar la Definition of Done</label>
-              </div>
-              <div class="ro-row" style="margin-top:14px;gap:10px">
-                <div style="flex:1"><div class="ro-progress"><div class="ro-progress__fill" style="width:66%"></div></div></div>
-                <span class="ro-badge ro-badge--soft">2/3</span>
-              </div>
+            <div class="ro-row" style="margin-top:14px;gap:10px">
+              <div style="flex:1"><div class="ro-progress"><div class="ro-progress__fill" style="width:66%"></div></div></div>
+              <span class="ro-badge ro-badge--soft">2/3</span>
             </div>
           </div>
         </div>
@@ -500,18 +498,24 @@ npm run build   # → dist/roui.css</code></pre>
 
       <div class="dx-section" id="accordion">
         <h2>Accordion</h2>
-        <div class="ro-accordion" data-single style="max-width:560px">
-          <div class="ro-accordion__item is-open">
-            <button class="ro-accordion__head">¿Qué incluye el curso?<svg class="ro-icon ro-icon--sm ro-accordion__chevron"><use href="#ro-i-chevron-down"></use></svg></button>
-            <div class="ro-accordion__panel">40 módulos en video, recursos descargables y checkpoints por semana.</div>
+        <div class="ro-accordion" style="max-width:560px">
+          <div class="ro-accordion__item" data-ro-disclosure-root data-ro-disclosure-persistent>
+            <h3 class="ro-accordion__heading">
+              <button class="ro-accordion__head" id="acc-h1" data-ro-disclosure-trigger aria-expanded="true" aria-controls="acc-p1">¿Qué incluye el curso?<svg class="ro-icon ro-icon--sm ro-accordion__chevron" aria-hidden="true"><use href="#ro-i-chevron-down"></use></svg></button>
+            </h3>
+            <div class="ro-accordion__panel is-open" id="acc-p1" role="region" aria-labelledby="acc-h1" data-ro-disclosure-panel>40 módulos en video, recursos descargables y checkpoints por semana.</div>
           </div>
-          <div class="ro-accordion__item">
-            <button class="ro-accordion__head">¿Necesito experiencia previa?<svg class="ro-icon ro-icon--sm ro-accordion__chevron"><use href="#ro-i-chevron-down"></use></svg></button>
-            <div class="ro-accordion__panel">No. Empezamos desde los fundamentos y subimos el nivel gradualmente.</div>
+          <div class="ro-accordion__item" data-ro-disclosure-root data-ro-disclosure-persistent>
+            <h3 class="ro-accordion__heading">
+              <button class="ro-accordion__head" id="acc-h2" data-ro-disclosure-trigger aria-expanded="false" aria-controls="acc-p2">¿Necesito experiencia previa?<svg class="ro-icon ro-icon--sm ro-accordion__chevron" aria-hidden="true"><use href="#ro-i-chevron-down"></use></svg></button>
+            </h3>
+            <div class="ro-accordion__panel" id="acc-p2" role="region" aria-labelledby="acc-h2" data-ro-disclosure-panel hidden>No. Empezamos desde los fundamentos y subimos el nivel gradualmente.</div>
           </div>
-          <div class="ro-accordion__item">
-            <button class="ro-accordion__head">¿Hay certificado?<svg class="ro-icon ro-icon--sm ro-accordion__chevron"><use href="#ro-i-chevron-down"></use></svg></button>
-            <div class="ro-accordion__panel">Sí, al completar todos los checkpoints del path.</div>
+          <div class="ro-accordion__item" data-ro-disclosure-root data-ro-disclosure-persistent>
+            <h3 class="ro-accordion__heading">
+              <button class="ro-accordion__head" id="acc-h3" data-ro-disclosure-trigger aria-expanded="false" aria-controls="acc-p3">¿Hay certificado?<svg class="ro-icon ro-icon--sm ro-accordion__chevron" aria-hidden="true"><use href="#ro-i-chevron-down"></use></svg></button>
+            </h3>
+            <div class="ro-accordion__panel" id="acc-p3" role="region" aria-labelledby="acc-h3" data-ro-disclosure-panel hidden>Sí, al completar todos los checkpoints del path.</div>
           </div>
         </div>
       </div>

@@ -109,3 +109,16 @@ test("popover cierra al interactuar fuera sin robar foco", () => {
   assert.equal(controller.isOpen(), false);
   assert.notEqual(document.activeElement, trigger);
 });
+
+test("un disclosure persistente ignora el pointer exterior (Accordion)", () => {
+  const document = new FakeDocument();
+  const root = new FakeElement(document);
+  root.setAttribute("data-ro-disclosure-persistent", "");
+  const trigger = root.append(new FakeElement(document));
+  const panel = root.append(new FakeElement(document, { hidden: true, role: "region" }));
+  const outside = new FakeElement(document);
+  const controller = createDisclosureController(root, { trigger, panel });
+  controller.open();
+  document.dispatch("pointerdown", outside);
+  assert.equal(controller.isOpen(), true);
+});

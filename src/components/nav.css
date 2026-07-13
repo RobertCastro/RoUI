@@ -6,7 +6,7 @@
   text-decoration: none; transition: var(--ro-transition);
 }
 .ro-nav-link:hover { background: var(--ro-ink-04); color: var(--ro-ink); }
-.ro-nav-link--active { background: var(--ro-ink-06); color: var(--ro-ink); font-weight: var(--ro-weight-bold); }
+.ro-nav-link[aria-current="page"] { background: var(--ro-ink-06); color: var(--ro-ink); font-weight: var(--ro-weight-bold); }
 
 .ro-pill {
   display: inline-flex; align-items: center; gap: var(--ro-space-2); white-space: nowrap;
@@ -28,6 +28,6 @@
   transition: var(--ro-transition);
 }
 .ro-tab:hover { background: var(--ro-ink-04); }
-.ro-tab--active { color: var(--ro-ink); font-weight: var(--ro-weight-bold); }
-.ro-tab--active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: var(--ro-ink); }
+.ro-tab[aria-selected="true"] { color: var(--ro-ink); font-weight: var(--ro-weight-bold); }
+.ro-tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: var(--ro-ink); }
 .ro-tab__count { font-family: var(--ro-font-mono); color: var(--ro-ink-40); }
