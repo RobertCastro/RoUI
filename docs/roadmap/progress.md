@@ -53,9 +53,11 @@ Ultima actualizacion: 2026-07-13
 - F3-004 (Tabs, Accordion, navegación): contratos ARIA aplicados, `tabs-controller`
   publicado y demos/plantillas migradas; gates automáticos verdes. Pendiente la
   verificación manual de navegador/axe antes de `verified`.
-- F3-005 (en progreso): `combobox-controller` publicado y Combobox migrado a
-  `role=combobox`/`listbox`/`option` con `aria-activedescendant` (5 pruebas).
-  Restan Command Palette (combobox en diálogo modal) y Calendar (role=grid).
+- F3-005 (en progreso, 2/3): `combobox-controller` publicado (con modo `inline`),
+  Combobox migrado a `role=combobox`/`listbox`/`option` con `aria-activedescendant`
+  y Command Palette convertido en combobox inline dentro de `role=dialog` modal
+  (`overlay-controller`), atajo `⌘K` (6 pruebas). Resta Calendar (`role=grid` con
+  navegación por teclado).
 - Navegador manual: Dialog y Drawer correctos en Chromium local con foco,
   scroll lock, Escape y restauración.
 - Paquete: 57 070 / 65 536 bytes comprimidos y 271 802 / 278 528 bytes
