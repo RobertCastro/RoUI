@@ -1,6 +1,6 @@
 # F3-005: Contratos accesibles de Combobox, Calendar y Command Palette
 
-- Estado: in-progress
+- Estado: review
 - Fase: 3
 - Dependencias: F3-004
 - ADR relacionados: ADR-0002, ADR-0005
@@ -36,19 +36,19 @@ teclado; la paleta abría un overlay propio sin `role=dialog` ni `role=listbox`.
   `aria-activedescendant`.
 - [x] Command Palette: combobox `inline` dentro de `role=dialog` modal
   (`overlay-controller` + `combobox-controller`), atajo `⌘K` y cierre con `Escape`.
-- [ ] Calendar con `role=grid` y navegación por teclado.
+- [x] Calendar con `role=grid` y navegación por teclado.
 
 ## Criterios de aceptación
 
-- [ ] Combobox: listbox con opciones `role=option`, `aria-expanded`,
+- [x] Combobox: listbox con opciones `role=option`, `aria-expanded`,
   `aria-controls`, `aria-activedescendant`; flechas, `Home`/`End`, `Enter`,
   `Escape` y filtrado sin mover el foco del input.
-- [ ] Command Palette: `role=dialog` modal con foco atrapado, combobox interno y
+- [x] Command Palette: `role=dialog` modal con foco atrapado, combobox interno y
   cierre con `Escape`.
-- [ ] Calendar: `role=grid`, celdas navegables por teclado y día seleccionado con
+- [x] Calendar: `role=grid`, celdas navegables por teclado y día seleccionado con
   `aria-selected`.
-- [ ] Controladores empaquetados, usados en las demos y con pruebas.
-- [ ] `npm run validate` y `git diff --check` verdes dentro del presupuesto.
+- [x] Controladores empaquetados, usados en las demos y con pruebas.
+- [x] `npm run validate` y `git diff --check` verdes dentro del presupuesto.
 
 ## Plan de validación
 
@@ -60,8 +60,20 @@ git diff --check
 
 ## Cierre
 
-- Resultado:
-- Archivos modificados:
-- Comandos ejecutados:
-- Riesgos pendientes:
-- Siguiente tarea desbloqueada:
+- Resultado: tres primitivas ESM accesibles — `combobox-controller` (con modo
+  `inline`) y `grid-controller` — que dan comportamiento a Combobox, Command
+  Palette (combobox inline en `role=dialog` modal vía `overlay-controller`) y
+  Calendar (`role=grid` con navegación por teclado).
+- Archivos modificados: `src/primitives/combobox-controller.js`,
+  `src/primitives/grid-controller.js`, `test/combobox-controller.test.mjs`,
+  `test/grid-controller.test.mjs`, `package.json` (exports),
+  `src/components/{combobox,command-palette,calendar}.css`,
+  `docs/components.html`, `docs/assets/docs.js`,
+  `docs/accessibility/combobox-calendar-command-palette.md`,
+  `docs/roadmap/{progress,current-phase}.md`.
+- Comandos ejecutados: `npm run build`, `npm run validate` y `git diff --check`.
+- Cambio incompatible: retirados los patrones de demo `is-open`/`is-active` del
+  combobox y la paleta, y `--selected` por clic del calendario.
+- Riesgos pendientes: verificación manual de navegador y axe antes de `verified`;
+  presupuesto de paquete cerca del límite (vigilar `check:size`).
+- Siguiente tarea desbloqueada: F3-006 (Toast) o la que fije `current-phase.md`.

@@ -66,14 +66,42 @@ paleta. Los encabezados de grupo son `role="presentation"`.
 
 ## Calendar / Date Picker
 
-Pendiente en F3-005: cuadrícula `role="grid"` con filas `role="row"` y celdas
-`role="gridcell"`; una sola celda es tabbable (roving tabindex), las flechas
-mueven por día, `Home`/`End` por semana y `PageUp`/`PageDown` por mes; el día
-elegido se marca con `aria-selected`. El date picker lo montará dentro de un
-popover con el disclosure persistente.
+La cuadrícula es `role="grid"` etiquetada por el título del mes; cada semana es un
+`role="row"` (con `display:contents` para no romper el CSS grid) y cada día un
+`button role="gridcell"`. Las cabeceras de día usan `role="columnheader"` y los
+huecos del mes son celdas vacías no enfocables.
+
+```html
+<div class="ro-calendar__grid" role="grid" aria-labelledby="cal-title">
+  <div class="ro-calendar__row" role="row">
+    <div class="ro-calendar__dow" role="columnheader" aria-label="Lunes">L</div> …
+  </div>
+  <div class="ro-calendar__row" role="row">
+    <div class="ro-calendar__pad" role="gridcell"></div>
+    <button class="ro-calendar__day" role="gridcell" tabindex="-1"
+      aria-selected="false" aria-label="1 de Junio de 2026">1</button> …
+  </div>
+</div>
+```
+
+```js
+import { createGridController } from "@robertcastro/roui/primitives/grid-controller";
+
+createGridController(grid, { onSelect: (dayButton) => { /* marca aria-selected */ } });
+```
+
+Una sola celda es tabbable (**roving tabindex**): el día seleccionado, el marcado
+`data-ro-grid-current` (hoy) o el primero. `ArrowLeft`/`ArrowRight` mueven por día,
+`ArrowUp`/`ArrowDown` por semana manteniendo la columna, `Home`/`End` van al inicio
+y fin de la semana, y `Enter`/`Espacio` seleccionan (`aria-selected="true"`). El
+date picker monta este calendario dentro de un popover; al elegir un día actualiza
+el campo y cierra el disclosure.
 
 ## Verificación manual
 
 - Combobox: `ArrowDown` abre y resalta sin perder el foco del input; escribir
   filtra; `Enter` selecciona; `Escape` cierra; clic exterior cierra.
-- Command Palette y Calendar: se documentarán al completar sus contratos.
+- Command Palette: `⌘K` abre; el foco entra al campo; `Escape` cierra el diálogo;
+  `Tab` queda atrapado dentro.
+- Calendar: una sola celda tabbable; flechas recorren días y semanas; `Home`/`End`
+  la semana; `Enter` selecciona y marca `aria-selected`.

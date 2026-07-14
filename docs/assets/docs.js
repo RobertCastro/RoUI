@@ -2,6 +2,7 @@ import { createOverlayController } from "../../dist/primitives/overlay-controlle
 import { createDisclosureController } from "../../dist/primitives/disclosure-controller.js";
 import { createTabsController } from "../../dist/primitives/tabs-controller.js";
 import { createComboboxController } from "../../dist/primitives/combobox-controller.js";
+import { createGridController } from "../../dist/primitives/grid-controller.js";
 
 /* docs.js — Interactividad de demostración para la galería.
    Genérico y basado en data-attributes; no es parte de la librería (solo docs). */
@@ -175,34 +176,53 @@ import { createComboboxController } from "../../dist/primitives/combobox-control
     sl.addEventListener("input", sync); sync();
   });
 
-  /* CALENDAR: renderiza [data-calendar] con year/month(0-based)/today/selected. */
+  /* CALENDAR: renderiza [data-calendar] como role=grid con navegación por teclado. */
   var MONTHS = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  var DOW = [["L","Lunes"],["M","Martes"],["X","Miércoles"],["J","Jueves"],["V","Viernes"],["S","Sábado"],["D","Domingo"]];
   document.querySelectorAll("[data-calendar]").forEach(function (cal) {
     var grid = cal.querySelector(".ro-calendar__grid");
     var title = cal.querySelector(".ro-calendar__title");
     var y = +cal.dataset.year, m = +cal.dataset.month;
     var today = +cal.dataset.today || 0, sel = +cal.dataset.selected || 0;
-    if (title) title.textContent = MONTHS[m] + " " + y;
-    var html = ["L","M","X","J","V","S","D"].map(function (d) { return '<div class="ro-calendar__dow">' + d + "</div>"; }).join("");
+    if (title) { title.id = title.id || ("cal-title-" + y + "-" + m); title.textContent = MONTHS[m] + " " + y; }
+    grid.setAttribute("role", "grid");
+    if (title && title.id) grid.setAttribute("aria-labelledby", title.id);
+
     var first = (new Date(y, m, 1).getDay() + 6) % 7;          // lunes primero
     var days = new Date(y, m + 1, 0).getDate();
-    for (var i = 0; i < first; i++) html += "<div></div>";
-    for (var d = 1; d <= days; d++) {
-      var cls = "ro-calendar__day";
-      if (d === today) cls += " ro-calendar__day--today";
-      if (d === sel) cls += " ro-calendar__day--selected";
-      html += '<button class="' + cls + '">' + d + "</button>";
+    var html = '<div class="ro-calendar__row" role="row">' + DOW.map(function (d) {
+      return '<div class="ro-calendar__dow" role="columnheader" aria-label="' + d[1] + '">' + d[0] + "</div>";
+    }).join("") + "</div>";
+    var cells = [];
+    for (var i = 0; i < first; i++) cells.push("");
+    for (var d = 1; d <= days; d++) cells.push(d);
+    while (cells.length % 7 !== 0) cells.push("");
+    for (var w = 0; w < cells.length; w += 7) {
+      html += '<div class="ro-calendar__row" role="row">';
+      for (var c = w; c < w + 7; c++) {
+        var v = cells[c];
+        if (v === "") { html += '<div class="ro-calendar__pad" role="gridcell"></div>'; continue; }
+        var cls = "ro-calendar__day" + (v === today ? " ro-calendar__day--today" : "");
+        html += '<button class="' + cls + '" role="gridcell" tabindex="-1" aria-selected="' + (v === sel)
+          + '"' + (v === today ? " data-ro-grid-current" : "")
+          + ' aria-label="' + v + " de " + MONTHS[m] + " de " + y + '">' + v + "</button>";
+      }
+      html += "</div>";
     }
     grid.innerHTML = html;
-    grid.addEventListener("click", function (e) {
-      var day = e.target.closest(".ro-calendar__day"); if (!day) return;
-      grid.querySelectorAll(".ro-calendar__day--selected").forEach(function (s) { s.classList.remove("ro-calendar__day--selected"); });
-      day.classList.add("ro-calendar__day--selected");
-      var dp = cal.closest("[data-datepicker]");
-      if (dp) { var value = dp.querySelector("[data-datepicker-value]"); if (value) value.textContent = day.textContent + " " + MONTHS[m] + " " + y;
+
+    createGridController(grid, {
+      onSelect: function (day) {
+        grid.querySelectorAll('[role="gridcell"][aria-selected="true"]').forEach(function (s) { s.setAttribute("aria-selected", "false"); });
+        day.setAttribute("aria-selected", "true");
+        var dp = cal.closest("[data-datepicker]");
+        if (!dp) return;
+        var value = dp.querySelector("[data-datepicker-value]");
+        if (value) value.textContent = day.textContent.trim() + " " + MONTHS[m] + " " + y;
         var root = cal.closest("[data-ro-disclosure-root]");
         var disclosure = root ? disclosures.get(root) : null;
-        if (disclosure) disclosure.close({ returnFocus: true }); }
+        if (disclosure) disclosure.close({ returnFocus: true });
+      },
     });
   });
 

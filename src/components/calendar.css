@@ -4,6 +4,7 @@
 .ro-calendar__title { font-weight: var(--ro-weight-bold); font-size: var(--ro-text-sm); }
 .ro-calendar__nav { display: flex; gap: 4px; }
 .ro-calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.ro-calendar__row { display: contents; } /* fila semántica (role=row) sin romper la cuadrícula */
 .ro-calendar__dow {
   text-align: center; padding: 4px 0;
   font-family: var(--ro-font-mono); font-size: 10px; text-transform: uppercase; color: var(--ro-ink-40);
@@ -18,5 +19,5 @@
 .ro-calendar__day--today { color: var(--ro-secondary); font-weight: var(--ro-weight-bold);
   box-shadow: inset 0 0 0 1px var(--ro-secondary); }
 .ro-calendar__day--in-range { background: var(--ro-secondary-tint); border-radius: 0; }
-.ro-calendar__day--selected { background: var(--ro-ink); color: var(--ro-white); }
+.ro-calendar__day[aria-selected="true"] { background: var(--ro-ink); color: var(--ro-white); }
 .ro-calendar__day:disabled { color: var(--ro-ink-20); cursor: not-allowed; }

@@ -39,6 +39,7 @@
     "./primitives/disclosure-controller": "./dist/primitives/disclosure-controller.js",
     "./primitives/tabs-controller": "./dist/primitives/tabs-controller.js",
     "./primitives/combobox-controller": "./dist/primitives/combobox-controller.js",
+    "./primitives/grid-controller": "./dist/primitives/grid-controller.js",
     "./icons.svg": "./dist/icons.svg",
     "./tokens.json": "./tokens/tokens.json",
     "./tailwind": "./tokens/tailwind.preset.cjs"
