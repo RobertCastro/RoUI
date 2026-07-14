@@ -1,6 +1,7 @@
 import { createOverlayController } from "../../dist/primitives/overlay-controller.js";
 import { createDisclosureController } from "../../dist/primitives/disclosure-controller.js";
 import { createTabsController } from "../../dist/primitives/tabs-controller.js";
+import { createComboboxController } from "../../dist/primitives/combobox-controller.js";
 
 /* docs.js — Interactividad de demostración para la galería.
    Genérico y basado en data-attributes; no es parte de la librería (solo docs). */
@@ -109,28 +110,20 @@ import { createTabsController } from "../../dist/primitives/tabs-controller.js";
   /* ACCORDION: cada sección es un disclosure persistente; se inicializa arriba
      con el bucle de [data-ro-disclosure-root]. */
 
-  /* COMBOBOX: filtra opciones al escribir; clic en opción rellena el input. */
-  document.querySelectorAll(".ro-combobox").forEach(function (cb) {
-    var input = cb.querySelector("input");
-    var list = cb.querySelector(".ro-combobox__list");
-    var empty = cb.querySelector(".ro-combobox__empty");
-    if (!input || !list) return;
-    function filter() {
-      var q = input.value.toLowerCase(); var visible = 0;
-      list.querySelectorAll(".ro-combobox__option").forEach(function (op) {
-        var match = op.textContent.toLowerCase().indexOf(q) !== -1;
-        op.hidden = !match; if (match) visible++;
-      });
-      if (empty) empty.hidden = visible !== 0;
-    }
-    input.addEventListener("focus", function () { cb.classList.add("is-open"); });
-    input.addEventListener("input", function () { cb.classList.add("is-open"); filter(); });
-    list.addEventListener("click", function (e) {
-      var op = e.target.closest(".ro-combobox__option");
-      if (!op) return;
-      input.value = op.textContent.trim(); cb.classList.remove("is-open");
+  /* COMBOBOX: patrón accesible con la primitiva pública (activedescendant + filtrado). */
+  document.querySelectorAll("[data-ro-combobox]").forEach(function (root) {
+    var list = root.querySelector(".ro-combobox__list");
+    var empty = root.querySelector(".ro-combobox__empty");
+    createComboboxController(root, {
+      onFilter: function (query) {
+        var q = query.toLowerCase(), visible = 0;
+        list.querySelectorAll('[role="option"]').forEach(function (op) {
+          var match = op.textContent.toLowerCase().indexOf(q) !== -1;
+          op.hidden = !match; if (match) visible++;
+        });
+        if (empty) empty.hidden = visible !== 0;
+      }
     });
-    document.addEventListener("click", function (e) { if (!cb.contains(e.target)) cb.classList.remove("is-open"); });
   });
 
   /* TAGS INPUT: Enter agrega un chip; Backspace en vacío borra el último. */

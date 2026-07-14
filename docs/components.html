@@ -594,14 +594,17 @@ npm run build</code></pre>
       <div class="dx-section" id="combobox">
         <h2>Combobox / Autocomplete</h2>
         <div class="dx-demo" style="align-items:flex-start">
-          <div class="ro-combobox" style="width:280px">
-            <div class="ro-field"><svg class="ro-icon ro-icon--sm" style="color:var(--ro-ink-40)"><use href="#ro-i-search"></use></svg><input class="ro-input" placeholder="Busca un lenguaje…"></div>
-            <div class="ro-combobox__list">
-              <div class="ro-combobox__option">JavaScript</div>
-              <div class="ro-combobox__option">TypeScript</div>
-              <div class="ro-combobox__option">Python</div>
-              <div class="ro-combobox__option">Go</div>
-              <div class="ro-combobox__option">Rust</div>
+          <div class="ro-combobox" style="width:280px" data-ro-combobox>
+            <div class="ro-field">
+              <svg class="ro-icon ro-icon--sm" style="color:var(--ro-ink-40)" aria-hidden="true"><use href="#ro-i-search"></use></svg>
+              <input class="ro-input" id="cb-lang" role="combobox" aria-expanded="false" aria-controls="cb-lang-list" aria-autocomplete="list" aria-label="Busca un lenguaje" placeholder="Busca un lenguaje…">
+            </div>
+            <div class="ro-combobox__list" id="cb-lang-list" role="listbox" aria-label="Lenguajes">
+              <div class="ro-combobox__option" role="option">JavaScript</div>
+              <div class="ro-combobox__option" role="option">TypeScript</div>
+              <div class="ro-combobox__option" role="option">Python</div>
+              <div class="ro-combobox__option" role="option">Go</div>
+              <div class="ro-combobox__option" role="option">Rust</div>
               <div class="ro-combobox__empty" hidden>Sin coincidencias</div>
             </div>
           </div>
