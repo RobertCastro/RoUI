@@ -52,6 +52,11 @@ cambie vision, arquitectura o alcance debe registrarse antes de implementarse.
   mayusculas o minusculas.
 - No incluir referencias a `codex` en los mensajes de commit, sin importar
   mayusculas o minusculas.
+- No incluir en los mensajes de commit ninguna referencia al modelo, agente o
+  herramienta de IA/LLM que ejecuta el commit: sin nombres de modelo o
+  proveedor, sin lineas de tipo `Co-Authored-By` de un LLM, sin frases como
+  "generado con", ni firmas o metadatos equivalentes. Los commits describen el
+  cambio, no quien lo tecleo.
 - Cuando el estado documentado y el repositorio difieran, detener la
   implementacion y reconciliar primero la discrepancia.
 
