@@ -206,24 +206,31 @@ import { createComboboxController } from "../../dist/primitives/combobox-control
     });
   });
 
-  /* COMMAND PALETTE: abre con [data-cmdk-open] o ⌘K/Ctrl+K; filtra; Esc cierra. */
-  document.querySelectorAll(".ro-cmdk-overlay").forEach(function (ov) {
-    var input = ov.querySelector("input");
-    function open() { ov.classList.add("is-open"); if (input) { input.value = ""; filter(); setTimeout(function () { input.focus(); }, 30); } }
-    function close() { ov.classList.remove("is-open"); }
-    function filter() {
-      var q = (input ? input.value : "").toLowerCase(); var any = false;
-      ov.querySelectorAll(".ro-cmdk__item").forEach(function (it) {
-        var match = it.textContent.toLowerCase().indexOf(q) !== -1; it.hidden = !match; if (match) any = true;
-      });
-      var empty = ov.querySelector(".ro-cmdk__empty"); if (empty) empty.hidden = any;
-    }
-    document.querySelectorAll('[data-cmdk-open="' + ov.id + '"]').forEach(function (b) { b.addEventListener("click", open); });
-    if (input) input.addEventListener("input", filter);
-    ov.addEventListener("click", function (e) { if (e.target === ov) close(); });
+  /* COMMAND PALETTE: combobox en línea dentro del diálogo modal (overlay-controller).
+     Escape lo maneja el diálogo; el combobox solo navega, filtra y ejecuta. */
+  document.querySelectorAll("[data-ro-cmdk]").forEach(function (cmdk) {
+    var overlayRoot = cmdk.closest("[data-ro-overlay-root]");
+    var overlay = overlayRoot ? overlays.get(overlayRoot.id) : null;
+    var empty = cmdk.querySelector(".ro-cmdk__empty");
+    var input = cmdk.querySelector('[role="combobox"]');
+    createComboboxController(cmdk, {
+      inline: true,
+      onFilter: function (query) {
+        var q = query.toLowerCase(), any = false;
+        cmdk.querySelectorAll('[role="option"]').forEach(function (op) {
+          var match = op.textContent.toLowerCase().indexOf(q) !== -1;
+          op.hidden = !match; if (match) any = true;
+        });
+        if (empty) empty.hidden = any;
+      },
+      onSelect: function () { if (overlay) overlay.close(); },
+    });
     document.addEventListener("keydown", function (e) {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); open(); }
-      if (e.key === "Escape") close();
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k" && overlay) {
+        e.preventDefault();
+        overlay.open();
+        if (input) { input.value = ""; input.dispatchEvent(new Event("input")); }
+      }
     });
   });
 

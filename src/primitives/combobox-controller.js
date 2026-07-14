@@ -19,6 +19,12 @@ export function createComboboxController(root, options = {}) {
   }
   const onFilter = typeof options.onFilter === "function" ? options.onFilter : null;
   const onSelect = typeof options.onSelect === "function" ? options.onSelect : null;
+  // Modo inline: la lista siempre está visible (p. ej. Command Palette dentro de
+  // un diálogo). No abre/cierra por sí misma, no captura Escape ni el pointer
+  // exterior; solo navega, filtra y ejecuta la selección.
+  const inline = options.inline === undefined
+    ? root.hasAttribute("data-ro-combobox-inline")
+    : Boolean(options.inline);
   let active = null;
 
   function visibleOptions() {
@@ -34,13 +40,13 @@ export function createComboboxController(root, options = {}) {
   }
   function isOpen() { return input.getAttribute("aria-expanded") === "true"; }
   function open() {
-    if (isOpen()) return;
+    if (inline || isOpen()) return;
     input.setAttribute("aria-expanded", "true");
     listbox.hidden = false;
     document.addEventListener("pointerdown", onOutside);
   }
   function close({ clearActive = true } = {}) {
-    if (!isOpen()) return;
+    if (inline || !isOpen()) return;
     input.setAttribute("aria-expanded", "false");
     listbox.hidden = true;
     if (clearActive) setActive(null);
@@ -49,8 +55,9 @@ export function createComboboxController(root, options = {}) {
   function selectOption(option, { focus = true } = {}) {
     if (!option) return;
     const value = (option.getAttribute("data-value") || option.textContent || "").trim();
-    input.value = value;
     if (onSelect) onSelect(option, value);
+    if (inline) return;
+    input.value = value;
     close();
     if (focus && typeof input.focus === "function") input.focus();
   }
@@ -76,8 +83,8 @@ export function createComboboxController(root, options = {}) {
     else if (event.key === "ArrowUp") { event.preventDefault(); move(-1); }
     else if (event.key === "Home" && isOpen()) { event.preventDefault(); const l = visibleOptions(); if (l[0]) setActive(l[0]); }
     else if (event.key === "End" && isOpen()) { event.preventDefault(); const l = visibleOptions(); if (l.length) setActive(l[l.length - 1]); }
-    else if (event.key === "Enter") { if (isOpen() && active) { event.preventDefault(); selectOption(active); } }
-    else if (event.key === "Escape") { if (isOpen()) { event.preventDefault(); close(); } }
+    else if (event.key === "Enter") { if (active && (inline || isOpen())) { event.preventDefault(); selectOption(active); } }
+    else if (event.key === "Escape") { if (!inline && isOpen()) { event.preventDefault(); close(); } }
   }
   function onListClick(event) {
     const option = event.target.closest(OPTION);
@@ -92,7 +99,8 @@ export function createComboboxController(root, options = {}) {
   [...listbox.querySelectorAll(OPTION)].forEach((option, i) => {
     if (!option.getAttribute("id")) option.setAttribute("id", (listId || "ro-listbox") + "-opt-" + i);
   });
-  listbox.hidden = !isOpen();
+  if (inline) { input.setAttribute("aria-expanded", "true"); listbox.hidden = false; }
+  else listbox.hidden = !isOpen();
 
   input.addEventListener("input", onInput);
   input.addEventListener("keydown", onKeydown);

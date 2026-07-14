@@ -111,3 +111,24 @@ test("Escape y pointer exterior cierran la lista", () => {
   document.dispatch("pointerdown", new FakeElement(document));
   assert.equal(input.getAttribute("aria-expanded"), "false");
 });
+
+test("modo inline (Command Palette): Enter ejecuta onSelect y Escape no se captura", () => {
+  const document = new FakeDocument();
+  const root = new FakeElement(document);
+  const input = root.append(new FakeElement(document, { role: "combobox", id: "cb" }));
+  const listbox = root.append(new FakeElement(document, { role: "listbox", id: "lb" }));
+  const o0 = listbox.append(new FakeElement(document, { role: "option", id: "c0" })); o0.textContent = "Ir a Inicio";
+  const o1 = listbox.append(new FakeElement(document, { role: "option", id: "c1" })); o1.textContent = "Ajustes";
+  listbox.items = [o0, o1];
+  let picked = null;
+  createComboboxController(root, { input, listbox, inline: true, onSelect: (op) => { picked = op; } });
+  assert.equal(input.getAttribute("aria-expanded"), "true");
+  assert.equal(listbox.hidden, false);
+  input.dispatch("keydown", input, "ArrowDown");
+  input.dispatch("keydown", input, "Enter");
+  assert.equal(picked, o0);
+  assert.equal(input.value, "");
+  assert.equal(input.getAttribute("aria-expanded"), "true");
+  const escape = input.dispatch("keydown", input, "Escape");
+  assert.equal(escape.defaultPrevented, false);
+});

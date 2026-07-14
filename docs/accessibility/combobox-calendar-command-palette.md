@@ -38,10 +38,31 @@ su texto como valor.
 
 ## Command Palette
 
-Pendiente en F3-005: será un combobox (mismo controlador) dentro de un
-`role="dialog"` modal gestionado por `overlay-controller` (foco atrapado, cierre
-con `Escape` y restauración del disparador). El resultado no usará overlay
-propio ni filtrado ad-hoc.
+Es un combobox **en línea** dentro de un `role="dialog"` modal. El diálogo lo
+gestiona `overlay-controller` (foco inicial en el campo, trap de `Tab`, `Escape`
+y restauración del disparador); la lista la gestiona `combobox-controller` con
+`inline: true`.
+
+```html
+<div class="ro-cmdk-overlay" id="cmdk" data-ro-overlay-root hidden>
+  <div class="ro-cmdk" role="dialog" aria-modal="true" aria-label="Paleta de comandos" data-ro-cmdk>
+    <div class="ro-cmdk__search">
+      <input id="cmdk-input" role="combobox" aria-expanded="true"
+        aria-controls="cmdk-list" aria-autocomplete="list" aria-label="Buscar comandos">
+    </div>
+    <div class="ro-cmdk__list" id="cmdk-list" role="listbox" aria-label="Comandos">
+      <div class="ro-cmdk__group" role="presentation">Navegar</div>
+      <div class="ro-cmdk__item" role="option">Ir a Inicio <span class="ro-kbd">G</span></div>
+    </div>
+  </div>
+</div>
+```
+
+En modo inline la lista está siempre visible: el combobox **no** captura `Escape`
+(lo maneja el diálogo) ni cierra por pointer exterior, y `Enter` ejecuta la
+acción (`onSelect`) sin rellenar el input. El disparador usa
+`data-ro-overlay-open` y `aria-haspopup="dialog"`; un atajo `⌘K`/`Ctrl+K` abre la
+paleta. Los encabezados de grupo son `role="presentation"`.
 
 ## Calendar / Date Picker
 

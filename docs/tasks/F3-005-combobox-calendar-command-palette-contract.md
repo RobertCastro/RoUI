@@ -34,7 +34,8 @@ teclado; la paleta abría un overlay propio sin `role=dialog` ni `role=listbox`.
 - [x] `combobox-controller` publicado, con pruebas de teclado, filtrado y cierre.
 - [x] Combobox migrado a `role=combobox`/`role=listbox`/`role=option` con
   `aria-activedescendant`.
-- [ ] Command Palette como combobox dentro de `role=dialog` modal.
+- [x] Command Palette: combobox `inline` dentro de `role=dialog` modal
+  (`overlay-controller` + `combobox-controller`), atajo `⌘K` y cierre con `Escape`.
 - [ ] Calendar con `role=grid` y navegación por teclado.
 
 ## Criterios de aceptación

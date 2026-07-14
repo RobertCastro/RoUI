@@ -757,7 +757,7 @@ npm run build</code></pre>
       <div class="dx-section" id="cmdk">
         <h2>Command palette <span class="dx-code">⌘K</span></h2>
         <div class="dx-demo">
-          <button class="ro-btn ro-btn--soft" data-cmdk-open="demoCmdk">Abrir <span class="ro-kbd" style="margin-left:6px">⌘</span><span class="ro-kbd">K</span></button>
+          <button class="ro-btn ro-btn--soft" data-ro-overlay-open="demoCmdk" aria-haspopup="dialog">Abrir <span class="ro-kbd" style="margin-left:6px">⌘</span><span class="ro-kbd">K</span></button>
           <span class="ro-muted" style="font-size:13px">o pulsa ⌘K / Ctrl+K</span>
         </div>
       </div>
@@ -879,20 +879,20 @@ npm run build</code></pre>
   </div>
 
   <!-- Command palette overlay -->
-  <div class="ro-cmdk-overlay" id="demoCmdk">
-    <div class="ro-cmdk" role="dialog" aria-modal="true">
+  <div class="ro-cmdk-overlay" id="demoCmdk" data-ro-overlay-root hidden>
+    <div class="ro-cmdk" role="dialog" aria-modal="true" aria-label="Paleta de comandos" data-ro-cmdk>
       <div class="ro-cmdk__search">
-        <svg class="ro-icon" style="color:var(--ro-ink-40)"><use href="#ro-i-search"></use></svg>
-        <input placeholder="Buscar comandos…">
+        <svg class="ro-icon" style="color:var(--ro-ink-40)" aria-hidden="true"><use href="#ro-i-search"></use></svg>
+        <input id="cmdk-input" role="combobox" aria-expanded="true" aria-controls="cmdk-list" aria-autocomplete="list" aria-label="Buscar comandos" placeholder="Buscar comandos…">
       </div>
-      <div class="ro-cmdk__list">
-        <div class="ro-cmdk__group">Navegar</div>
-        <div class="ro-cmdk__item is-active"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-book-open"></use></svg> Ir a Inicio <span class="ro-kbd">G</span></div>
-        <div class="ro-cmdk__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-user"></use></svg> Ir a Directorio</div>
-        <div class="ro-cmdk__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-calendar"></use></svg> Ir a Sesiones</div>
-        <div class="ro-cmdk__group">Acciones</div>
-        <div class="ro-cmdk__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-plus"></use></svg> Crear proyecto</div>
-        <div class="ro-cmdk__item"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-settings"></use></svg> Ajustes</div>
+      <div class="ro-cmdk__list" id="cmdk-list" role="listbox" aria-label="Comandos">
+        <div class="ro-cmdk__group" role="presentation">Navegar</div>
+        <div class="ro-cmdk__item" role="option"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-book-open"></use></svg> Ir a Inicio <span class="ro-kbd">G</span></div>
+        <div class="ro-cmdk__item" role="option"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-user"></use></svg> Ir a Directorio</div>
+        <div class="ro-cmdk__item" role="option"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-calendar"></use></svg> Ir a Sesiones</div>
+        <div class="ro-cmdk__group" role="presentation">Acciones</div>
+        <div class="ro-cmdk__item" role="option"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-plus"></use></svg> Crear proyecto</div>
+        <div class="ro-cmdk__item" role="option"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-settings"></use></svg> Ajustes</div>
         <div class="ro-cmdk__empty" hidden>Sin comandos</div>
       </div>
     </div>
