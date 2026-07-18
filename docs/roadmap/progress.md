@@ -10,7 +10,7 @@ Ultima actualizacion: 2026-07-18
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
 | 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
-| 4. Pruebas integrales | in-progress | 0% | Fase activa; axe, Playwright, regresion visual y matriz |
+| 4. Pruebas integrales | in-progress | 20% | F4-001 (axe) en review; sigue F4-002: Playwright |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
 | 7. Adopcion | backlog | 0% | Primera release candidata |
@@ -73,3 +73,10 @@ Ultima actualizacion: 2026-07-18
   descomprimidos.
 - CI GitHub Actions ejecuta `npm run validate`, `npm pack --dry-run` y auditoría
   de dependencias de producción en cada PR y push a `main`.
+- F4-001 (review): gate `check:axe` (axe-core + jsdom, sin navegador ni red)
+  integrado en `validate` y CI. Ejecuta axe sobre las 7 páginas de `docs/`;
+  detectó y se corrigieron 40 nodos (button-name, label, select-name,
+  landmark-unique, region, heading-order) en la galería y las plantillas. El
+  contraste sigue cubierto por `check:contrast`; estados dinámicos y reglas de
+  render quedan para F4-002/003 con navegador. Dev-deps `axe-core`/`jsdom` no
+  entran al tarball.

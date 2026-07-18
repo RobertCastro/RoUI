@@ -60,10 +60,11 @@
     "baseline": "node scripts/baseline.mjs",
     "lint": "stylelint \"src/**/*.css\" \"fixtures/**/*.css\"",
     "check:size": "node scripts/check-package-size.mjs",
+    "check:axe": "node scripts/check-axe.mjs",
     "test:package": "node scripts/test-package.mjs",
     "test:consumers": "node scripts/test-consumers.mjs",
     "test:primitives": "node --test test/*.test.mjs",
-    "validate": "npm run check:tokens && npm run check:contrast && npm run check:literals && npm run build && npm run lint && npm run baseline && npm run test:primitives && npm run test:package && npm run test:consumers && npm run check:size",
+    "validate": "npm run check:tokens && npm run check:contrast && npm run check:literals && npm run build && npm run lint && npm run baseline && npm run test:primitives && npm run test:package && npm run test:consumers && npm run check:axe && npm run check:size",
     "prepare": "node scripts/build.mjs",
     "start": "python3 -m http.server 8799",
     "serve": "python3 -m http.server 8799",
@@ -77,7 +78,9 @@
     "ui"
   ],
   "devDependencies": {
+    "axe-core": "^4.12.1",
     "esbuild": "0.25.0",
+    "jsdom": "^25.0.1",
     "stylelint": "16.13.0",
     "tailwindcss": "3.4.17"
   }

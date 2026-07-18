@@ -274,12 +274,12 @@
           <div class="ro-field"><span style="color:var(--ro-ink-40)">⌕</span><input class="ro-input" placeholder="Buscar…"></div>
           <div><label class="ro-label">Etiqueta</label><input class="ro-input-box" placeholder="Input con borde"></div>
           <div><label class="ro-label">Select</label>
-            <select class="ro-select-box"><option>Opción A</option><option>Opción B</option></select></div>
+            <select class="ro-select-box" aria-label="Selecciona una opción"><option>Opción A</option><option>Opción B</option></select></div>
           <div><label class="ro-label">Mensaje</label><textarea class="ro-textarea" placeholder="Textarea…"></textarea>
             <div class="ro-hint">Texto de ayuda.</div></div>
           <div class="ro-row">
             <label class="ro-row" style="gap:8px"><input type="checkbox" class="ro-check" checked> Acepto</label>
-            <label class="ro-switch"><input type="checkbox" checked><span class="ro-switch__track"></span></label>
+            <label class="ro-switch"><input type="checkbox" checked aria-label="Activar notificaciones"><span class="ro-switch__track"></span></label>
           </div>
         </div>
       </div>
@@ -360,7 +360,7 @@
       <div class="dx-section" id="pagination">
         <h2>Paginación</h2>
         <div class="dx-demo">
-          <nav class="ro-pagination" data-select="ro-page--active">
+          <nav class="ro-pagination" data-select="ro-page--active" aria-label="Paginación">
             <button class="ro-page" title="Anterior"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-left"></use></svg></button>
             <button class="ro-page ro-page--active">1</button>
             <button class="ro-page">2</button>
@@ -404,7 +404,7 @@
           <div class="ro-alert ro-alert--info">
             <svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-info"></use></svg>
             <div class="ro-alert__body"><span class="ro-alert__title">Heads up.</span> Tu cohort empieza el 27 de abril.</div>
-            <button class="ro-alert__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button>
+            <button class="ro-alert__close" aria-label="Cerrar aviso"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button>
           </div>
           <div class="ro-alert ro-alert--success"><svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-circle-check"></use></svg><div class="ro-alert__body">Módulo completado.</div></div>
           <div class="ro-alert ro-alert--warning"><svg class="ro-icon ro-icon--sm ro-alert__icon"><use href="#ro-i-triangle-alert"></use></svg><div class="ro-alert__body">Tu licencia caduca pronto.</div></div>
@@ -461,7 +461,7 @@
         <p>Inline: usa <code class="ro-code">npm run build</code> para generar el bundle. Atajo: <span class="ro-kbd">⌘</span> <span class="ro-kbd">K</span>.</p>
         <div class="dx-demo dx-demo--col" style="align-items:stretch">
           <div class="ro-codeblock">
-            <div class="ro-codeblock__bar"><span>bash</span><button class="ro-btn-icon" style="color:inherit;width:24px;height:24px"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-copy"></use></svg></button></div>
+            <div class="ro-codeblock__bar"><span>bash</span><button class="ro-btn-icon" aria-label="Copiar código" style="color:inherit;width:24px;height:24px"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-copy"></use></svg></button></div>
 <pre style="margin:0"><code>npm install
 npm run build   # → dist/roui.css</code></pre>
           </div>
@@ -482,9 +482,9 @@ npm run build   # → dist/roui.css</code></pre>
       <div class="dx-section" id="tag">
         <h2>Tags / Chips removibles</h2>
         <div class="dx-demo">
-          <span class="ro-tag">Frontend <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
-          <span class="ro-tag ro-tag--accent">IA <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
-          <span class="ro-tag ro-tag--outline">React <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
+          <span class="ro-tag">Frontend <button class="ro-tag__close" aria-label="Quitar etiqueta"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+          <span class="ro-tag ro-tag--accent">IA <button class="ro-tag__close" aria-label="Quitar etiqueta"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+          <span class="ro-tag ro-tag--outline">React <button class="ro-tag__close" aria-label="Quitar etiqueta"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
         </div>
       </div>
 
@@ -523,12 +523,12 @@ npm run build   # → dist/roui.css</code></pre>
       <div class="dx-section" id="breadcrumb">
         <h2>Breadcrumb</h2>
         <div class="dx-demo dx-demo--col" style="align-items:flex-start">
-          <nav class="ro-breadcrumbs">
+          <nav class="ro-breadcrumbs" aria-label="Ruta de navegación">
             <a>Inicio</a><span class="ro-breadcrumbs__sep">›</span>
             <a>Mis Proyectos</a><span class="ro-breadcrumbs__sep">›</span>
             <span class="ro-breadcrumbs__current">Frontend</span>
           </nav>
-          <nav class="ro-breadcrumbs ro-breadcrumbs--mono">
+          <nav class="ro-breadcrumbs ro-breadcrumbs--mono" aria-label="Ruta de navegación (mono)">
             <a>Frontend · 4 semanas</a><span class="ro-breadcrumbs__sep">›</span>
             <a>Semana 1</a><span class="ro-breadcrumbs__sep">›</span>
             <span class="ro-breadcrumbs__current">Mód. 04</span>
@@ -615,8 +615,8 @@ npm run build</code></pre>
         <h2>Tags input</h2>
         <div class="dx-demo" style="align-items:flex-start">
           <div class="ro-tags-input" style="width:340px">
-            <span class="ro-tag">React <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
-            <span class="ro-tag">IA <button class="ro-tag__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></span>
+            <span class="ro-tag">React <button class="ro-tag__close" aria-label="Quitar etiqueta"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+            <span class="ro-tag">IA <button class="ro-tag__close" aria-label="Quitar etiqueta"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
             <input class="ro-tags-input__field" placeholder="Añade y pulsa Enter…">
           </div>
         </div>
@@ -625,7 +625,7 @@ npm run build</code></pre>
       <div class="dx-section" id="slider">
         <h2>Slider / Range</h2>
         <div class="dx-demo" style="gap:16px">
-          <input type="range" class="ro-slider" min="0" max="100" value="65" data-output="#slVal" style="width:280px">
+          <input type="range" class="ro-slider" min="0" max="100" value="65" data-output="#slVal" aria-label="Nivel" style="width:280px">
           <span class="ro-badge ro-badge--soft"><span id="slVal">65</span>%</span>
         </div>
       </div>
@@ -654,12 +654,12 @@ npm run build</code></pre>
       <div class="dx-section" id="rating">
         <h2>Rating</h2>
         <div class="dx-demo">
-          <div class="ro-rating">
-            <button class="ro-rating__star is-active"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
-            <button class="ro-rating__star is-active"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
-            <button class="ro-rating__star is-active"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
-            <button class="ro-rating__star is-active"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
-            <button class="ro-rating__star"><svg class="ro-icon"><use href="#ro-i-star"></use></svg></button>
+          <div class="ro-rating" role="group" aria-label="Puntuación">
+            <button class="ro-rating__star is-active" aria-label="1 estrella" aria-pressed="true"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+            <button class="ro-rating__star is-active" aria-label="2 estrellas" aria-pressed="true"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+            <button class="ro-rating__star is-active" aria-label="3 estrellas" aria-pressed="true"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+            <button class="ro-rating__star is-active" aria-label="4 estrellas" aria-pressed="true"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+            <button class="ro-rating__star" aria-label="5 estrellas" aria-pressed="false"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
           </div>
           <span class="ro-muted" style="font-size:13px">Haz clic para puntuar</span>
         </div>
@@ -723,8 +723,8 @@ npm run build</code></pre>
               <div class="ro-calendar__header">
                 <span class="ro-calendar__title"></span>
                 <div class="ro-calendar__nav">
-                  <button class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-left"></use></svg></button>
-                  <button class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-right"></use></svg></button>
+                  <button class="ro-btn-icon" aria-label="Mes anterior"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
+                  <button class="ro-btn-icon" aria-label="Mes siguiente"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg></button>
                 </div>
               </div>
               <div class="ro-calendar__grid"></div>
@@ -742,8 +742,8 @@ npm run build</code></pre>
                   <div class="ro-calendar__header">
                     <span class="ro-calendar__title"></span>
                     <div class="ro-calendar__nav">
-                      <button class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-left"></use></svg></button>
-                      <button class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-right"></use></svg></button>
+                      <button class="ro-btn-icon" aria-label="Mes anterior"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
+                      <button class="ro-btn-icon" aria-label="Mes siguiente"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg></button>
                     </div>
                   </div>
                   <div class="ro-calendar__grid"></div>
@@ -788,7 +788,7 @@ npm run build</code></pre>
         <div class="dx-demo">
           <div class="ro-number">
             <button class="ro-number__btn" data-step="-">−</button>
-            <input type="number" value="3" min="0" max="40">
+            <input type="number" value="3" min="0" max="40" aria-label="Cantidad">
             <button class="ro-number__btn" data-step="+">+</button>
           </div>
         </div>
@@ -829,7 +829,7 @@ npm run build</code></pre>
       <div class="dx-section" id="banner">
         <h2>Banner / Announcement</h2>
         <div class="dx-demo dx-demo--col" style="align-items:stretch;padding:0;overflow:hidden">
-          <div class="ro-banner">🎉 Nuevo: RoUI 1.0 ya disponible. <a href="#">Ver novedades</a><button class="ro-banner__close"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button></div>
+          <div class="ro-banner">🎉 Nuevo: RoUI 1.0 ya disponible. <a href="#">Ver novedades</a><button class="ro-banner__close" aria-label="Cerrar aviso"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></div>
           <div class="ro-banner ro-banner--primary">Oferta de lanzamiento — 50% esta semana</div>
           <div class="ro-banner ro-banner--brand">Únete al cohort de abril</div>
         </div>
@@ -864,9 +864,9 @@ npm run build</code></pre>
                   <a class="ro-btn-icon"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-mail"></use></svg></a>
                 </div>
               </div>
-              <div class="ro-footer__col"><h4>Producto</h4><a href="#">Componentes</a><a href="#">Tokens</a><a href="#">Iconos</a></div>
-              <div class="ro-footer__col"><h4>Recursos</h4><a href="#">Docs</a><a href="#">Changelog</a><a href="#">GitHub</a></div>
-              <div class="ro-footer__col"><h4>Legal</h4><a href="#">Licencia MIT</a><a href="#">Privacidad</a></div>
+              <div class="ro-footer__col"><h3>Producto</h3><a href="#">Componentes</a><a href="#">Tokens</a><a href="#">Iconos</a></div>
+              <div class="ro-footer__col"><h3>Recursos</h3><a href="#">Docs</a><a href="#">Changelog</a><a href="#">GitHub</a></div>
+              <div class="ro-footer__col"><h3>Legal</h3><a href="#">Licencia MIT</a><a href="#">Privacidad</a></div>
             </div>
             <div class="ro-footer__bottom">
               <span>© 2026 RoUI · MIT</span>
