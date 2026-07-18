@@ -9,8 +9,8 @@ Ultima actualizacion: 2026-07-18
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
-| 3. Primitivas accesibles | in-progress | 90% | F3-004/005/006 en review; pendiente verificacion manual y auditoria de cierre |
-| 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
+| 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
+| 4. Pruebas integrales | in-progress | 0% | Fase activa; axe, Playwright, regresion visual y matriz |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
 | 7. Adopcion | backlog | 0% | Primera release candidata |
@@ -50,21 +50,23 @@ Ultima actualizacion: 2026-07-18
   cierre, restauración del disparador y, con F3-004, el roving tabindex de Tabs
   (flechas, `Home`/`End`, activación automática/manual) y el disclosure
   persistente del Accordion. Total 12 pruebas verdes.
+- Fase 3 cerrada (`done`): F3-001..006 verificados. Verificación manual de
+  navegador y lector de pantalla aprobada por el usuario el 2026-07-18 según
+  `manual-verification-f3.md`; auditoría en `phase-3-audit.md`. Integración de
+  F3-004/005/006 a `main` vía PR queda como paso mecánico pendiente.
 - F3-004 (Tabs, Accordion, navegación): contratos ARIA aplicados, `tabs-controller`
-  publicado y demos/plantillas migradas; gates automáticos verdes. Pendiente la
-  verificación manual de navegador/axe antes de `verified`.
-- F3-005 (review, 3/3): `combobox-controller` (con modo `inline`) y
+  publicado y demos/plantillas migradas; gates automáticos verdes.
+- F3-005 (done, 3/3): `combobox-controller` (con modo `inline`) y
   `grid-controller` publicados. Combobox usa `role=combobox`/`listbox`/`option`
   con `aria-activedescendant`; Command Palette es un combobox inline dentro de
   `role=dialog` modal (`overlay-controller`) con atajo `⌘K`; Calendar es
   `role=grid` con roving tabindex y navegación por teclado. 11 pruebas nuevas.
-  Pendiente verificación manual de navegador/axe antes de `verified`.
-- F3-006 (review): `toast-controller` publicado. Cada toast se inserta como
+- F3-006 (done): `toast-controller` publicado. Cada toast se inserta como
   región viva (`role=status` para éxito/info, `role=alert` para errores) sin robar
   el foco; cierre automático configurable con pausa en `pointer`/`focus`, botón de
   cierre accesible e icono inyectable. 7 pruebas nuevas. Para caber en presupuesto
   se excluyó del tarball `src/icons/icons.json` (fuente de build, no API pública);
-  el límite de `check:size` se mantiene. Pendiente verificación manual/axe.
+  el límite de `check:size` se mantiene.
 - Navegador manual: Dialog y Drawer correctos en Chromium local con foco,
   scroll lock, Escape y restauración.
 - Paquete: 57 070 / 65 536 bytes comprimidos y 271 802 / 278 528 bytes

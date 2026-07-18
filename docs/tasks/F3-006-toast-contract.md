@@ -1,6 +1,6 @@
 # F3-006: Contrato accesible de Toast / notificaciones
 
-- Estado: review
+- Estado: done
 - Fase: 3
 - Dependencias: F3-002 (overlay), F3-005
 - ADR relacionados: ADR-0002, ADR-0005

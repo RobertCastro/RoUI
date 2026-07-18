@@ -1,6 +1,6 @@
 # F3-004: Contratos accesibles de Tabs, Accordion y navegación
 
-- Estado: review
+- Estado: done
 - Fase: 3
 - Dependencias: F3-003
 - ADR relacionados: ADR-0002, ADR-0005

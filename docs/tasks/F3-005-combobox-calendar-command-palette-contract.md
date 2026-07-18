@@ -1,6 +1,6 @@
 # F3-005: Contratos accesibles de Combobox, Calendar y Command Palette
 
-- Estado: review
+- Estado: done
 - Fase: 3
 - Dependencias: F3-004
 - ADR relacionados: ADR-0002, ADR-0005

@@ -1,37 +1,42 @@
-# Fase activa: 3 — Primitivas accesibles
+# Fase activa: 4 — Sistema integral de pruebas
 
 ## Objetivo
 
-Convertir los componentes visuales en contratos de interacción completos,
-accesibles por teclado y utilizables desde distintos stacks frontend.
+Convertir la calidad visual, funcional y accesible en gates obligatorios,
+verificables de forma automatizada sobre las primitivas y componentes ya
+publicados.
+
+## Estado de entrada
+
+Fase 3 cerrada y aprobada (ver `phase-3-audit.md`): seis primitivas accesibles
+(`overlay`, `disclosure`, `tabs`, `combobox`, `grid`, `toast`) con contratos ARIA,
+teclado y foco, 30 pruebas de comportamiento verdes y verificación manual del
+usuario. Integración de F3-004/005/006 a `main` pendiente como paso mecánico.
 
 ## Trabajo permitido
 
-- Definir semántica HTML, ARIA, estados y teclado por componente.
-- Mejorar controles nativos antes de implementar patrones compuestos.
-- Crear primitivas de Dialog, Menu, Tabs, Popover, Combobox y Drawer.
-- Documentar gestión de foco, portales, scroll y anuncios dinámicos.
-- Añadir pruebas de comportamiento proporcionales; la matriz integral llega en
-  Fase 4.
+- axe automatizado sobre demos y fixtures (roles, nombres, contraste).
+- Pruebas de navegador (Playwright) para foco, teclado y overlays.
+- Regresión visual de componentes y plantillas.
+- Matriz de navegadores, RTL, temas, zoom y tamaños.
+- Presupuestos de bundle como gate ya existente; endurecer y documentar.
 
 ## Fuera de alcance
 
-- Añadir componentes visuales sin contrato de accesibilidad.
-- Crear adaptadores para todos los frameworks simultáneamente.
-- Declarar componentes `stable` sin pruebas de teclado y lector de pantalla.
+- Añadir componentes o primitivas nuevas sin necesidad de pruebas.
+- Documentación de producto (Fase 5) y adopción multi-proyecto (Fase 7).
 
 ## Orden inicial
 
-1. F3-001: contratos para Button y Form nativos.
-2. F3-002: Dialog y Drawer con foco, Escape y restauración.
-3. F3-003: Menu, Popover y Tooltip.
-4. F3-004: Tabs, Accordion y navegación. (review)
-5. F3-005: Combobox, Calendar y Command Palette. (review)
-6. F3-006: Toast / notificaciones con regiones vivas. (review)
+1. F4-001: axe automatizado sobre la galería y fixtures.
+2. F4-002: Playwright para Dialog, Drawer y Command Palette (foco y Escape).
+3. F4-003: navegación de teclado de Tabs, Combobox y Calendar en navegador.
+4. F4-004: regresión visual de componentes y plantillas.
+5. F4-005: matriz de navegadores, temas, RTL y zoom.
 
 ## Condiciones de salida
 
-- Cada componente estable define roles, teclado, foco y estados.
-- Los patrones complejos tienen primitivas o controladores verificables.
-- Las pruebas de comportamiento y accesibilidad requeridas están verdes.
-- Auditoría humana aprueba el cierre de Fase 3.
+- axe, Playwright y regresión visual corren en CI como gates obligatorios.
+- La matriz de navegadores/temas/RTL/zoom cubre los componentes estables.
+- Las primitivas de Fase 3 quedan cubiertas por pruebas de navegador.
+- Auditoría humana aprueba el cierre de Fase 4.
