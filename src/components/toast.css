@@ -11,12 +11,17 @@
   animation: ro-toast-in 0.2s var(--ro-ease-out);
 }
 .ro-toast.is-leaving { animation: ro-toast-out 0.15s var(--ro-ease) forwards; }
-.ro-toast__icon { flex-shrink: 0; color: var(--ro-on-dark-72); margin-top: 1px; }
+.ro-toast__icon { flex-shrink: 0; display: grid; place-items: center; color: var(--ro-on-dark-72); margin-top: 1px; }
 .ro-toast__body { flex: 1; font-size: var(--ro-text-sm); line-height: 1.4; }
 .ro-toast__close { border: 0; background: transparent; color: var(--ro-on-dark-60);
   cursor: pointer; padding: 0; display: grid; place-items: center; }
 .ro-toast__close:hover { color: var(--ro-on-dark); }
+.ro-toast__close:focus-visible { outline: none; box-shadow: var(--ro-focus-ring); border-radius: var(--ro-radius-sm); }
 
 .ro-toast--success .ro-toast__icon { color: var(--ro-success); }
 .ro-toast--error   .ro-toast__icon { color: var(--ro-error); }
 .ro-toast--info    .ro-toast__icon { color: var(--ro-secondary); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ro-toast, .ro-toast.is-leaving { animation: none; }
+}

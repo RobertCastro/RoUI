@@ -3,6 +3,7 @@ import { createDisclosureController } from "../../dist/primitives/disclosure-con
 import { createTabsController } from "../../dist/primitives/tabs-controller.js";
 import { createComboboxController } from "../../dist/primitives/combobox-controller.js";
 import { createGridController } from "../../dist/primitives/grid-controller.js";
+import { createToastController } from "../../dist/primitives/toast-controller.js";
 
 /* docs.js — Interactividad de demostración para la galería.
    Genérico y basado en data-attributes; no es parte de la librería (solo docs). */
@@ -68,28 +69,25 @@ import { createGridController } from "../../dist/primitives/grid-controller.js";
     });
   });
 
-  /* TOAST: [data-toast="success|error|info"] [data-toast-msg="..."] dispara un toast. */
-  var TOAST_ICONS = { success: "circle-check", error: "triangle-alert", info: "info" };
-  function ensureRegion() {
-    var r = document.querySelector(".ro-toast-region");
-    if (!r) { r = document.createElement("div"); r.className = "ro-toast-region"; document.body.appendChild(r); }
-    return r;
-  }
-  function toast(variant, msg) {
-    var el = document.createElement("div");
-    el.className = "ro-toast ro-toast--" + variant;
-    el.innerHTML =
-      '<svg class="ro-icon ro-icon--sm ro-toast__icon"><use href="#ro-i-' + (TOAST_ICONS[variant] || "info") + '"></use></svg>' +
-      '<div class="ro-toast__body">' + msg + '</div>' +
-      '<button class="ro-toast__close" aria-label="Cerrar"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button>';
-    ensureRegion().appendChild(el);
-    var remove = function () { el.classList.add("is-leaving"); setTimeout(function () { el.remove(); }, 160); };
-    el.querySelector(".ro-toast__close").addEventListener("click", remove);
-    setTimeout(remove, 3500);
-  }
+  /* TOAST: [data-toast="success|error|info"] [data-toast-msg="..."] dispara un toast.
+     La primitiva gestiona la región viva, el cierre automático y el teclado; aquí
+     solo aportamos el icono desde el sprite de RoUI. */
+  var TOAST_ICONS = { success: "circle-check", error: "triangle-alert", info: "info", close: "x" };
+  var toaster = createToastController({
+    reducedMotion: window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    icon: function (variant) {
+      var name = TOAST_ICONS[variant];
+      if (!name) return "";
+      var cls = variant === "close" ? "ro-icon ro-icon--xs" : "ro-icon ro-icon--sm";
+      return '<svg class="' + cls + '"><use href="#ro-i-' + name + '"></use></svg>';
+    },
+  });
   document.querySelectorAll("[data-toast]").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      toast(btn.getAttribute("data-toast"), btn.getAttribute("data-toast-msg") || "Notificación de ejemplo");
+      toaster.show({
+        variant: btn.getAttribute("data-toast"),
+        message: btn.getAttribute("data-toast-msg") || "Notificación de ejemplo",
+      });
     });
   });
 

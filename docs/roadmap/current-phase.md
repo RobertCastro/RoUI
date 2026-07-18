@@ -27,6 +27,7 @@ accesibles por teclado y utilizables desde distintos stacks frontend.
 3. F3-003: Menu, Popover y Tooltip.
 4. F3-004: Tabs, Accordion y navegación. (review)
 5. F3-005: Combobox, Calendar y Command Palette. (review)
+6. F3-006: Toast / notificaciones con regiones vivas. (review)
 
 ## Condiciones de salida
 

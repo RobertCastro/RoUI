@@ -1,6 +1,6 @@
 # Estado del programa
 
-Ultima actualizacion: 2026-07-13
+Ultima actualizacion: 2026-07-18
 
 ## Fases
 
@@ -9,7 +9,7 @@ Ultima actualizacion: 2026-07-13
 | 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
-| 3. Primitivas accesibles | in-progress | 75% | F3-004 en review; sigue F3-005: Combobox, Calendar y Command Palette |
+| 3. Primitivas accesibles | in-progress | 90% | F3-004/005/006 en review; pendiente verificacion manual y auditoria de cierre |
 | 4. Pruebas integrales | backlog | 0% | Se inicia parcialmente desde Fase 1 |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
@@ -59,6 +59,12 @@ Ultima actualizacion: 2026-07-13
   `role=dialog` modal (`overlay-controller`) con atajo `⌘K`; Calendar es
   `role=grid` con roving tabindex y navegación por teclado. 11 pruebas nuevas.
   Pendiente verificación manual de navegador/axe antes de `verified`.
+- F3-006 (review): `toast-controller` publicado. Cada toast se inserta como
+  región viva (`role=status` para éxito/info, `role=alert` para errores) sin robar
+  el foco; cierre automático configurable con pausa en `pointer`/`focus`, botón de
+  cierre accesible e icono inyectable. 7 pruebas nuevas. Para caber en presupuesto
+  se excluyó del tarball `src/icons/icons.json` (fuente de build, no API pública);
+  el límite de `check:size` se mantiene. Pendiente verificación manual/axe.
 - Navegador manual: Dialog y Drawer correctos en Chromium local con foco,
   scroll lock, Escape y restauración.
 - Paquete: 57 070 / 65 536 bytes comprimidos y 271 802 / 278 528 bytes

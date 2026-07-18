@@ -40,6 +40,7 @@
     "./primitives/tabs-controller": "./dist/primitives/tabs-controller.js",
     "./primitives/combobox-controller": "./dist/primitives/combobox-controller.js",
     "./primitives/grid-controller": "./dist/primitives/grid-controller.js",
+    "./primitives/toast-controller": "./dist/primitives/toast-controller.js",
     "./icons.svg": "./dist/icons.svg",
     "./tokens.json": "./tokens/tokens.json",
     "./tailwind": "./tokens/tailwind.preset.cjs"
@@ -48,6 +49,7 @@
     "dist",
     "src",
     "!src/primitives",
+    "!src/icons/icons.json",
     "tokens"
   ],
   "scripts": {
