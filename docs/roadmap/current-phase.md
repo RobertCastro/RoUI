@@ -1,42 +1,47 @@
-# Fase activa: 4 — Sistema integral de pruebas
+# Fase activa: 5 — Documentacion como producto
 
 ## Objetivo
 
-Convertir la calidad visual, funcional y accesible en gates obligatorios,
-verificables de forma automatizada sobre las primitivas y componentes ya
-publicados.
+Convertir la referencia del sistema en un producto usable: contrato por
+componente, ejemplos verificables y guias que permitan adoptar RoUI sin leer el
+codigo fuente.
 
 ## Estado de entrada
 
-Fase 3 cerrada y aprobada (ver `phase-3-audit.md`): seis primitivas accesibles
-(`overlay`, `disclosure`, `tabs`, `combobox`, `grid`, `toast`) con contratos ARIA,
-teclado y foco, 30 pruebas de comportamiento verdes y verificación manual del
-usuario. Integración de F3-004/005/006 a `main` pendiente como paso mecánico.
+Fase 4 cerrada y aprobada (ver `phase-4-audit.md`, PR #19 en `main`): gates de
+accesibilidad (axe), comportamiento en navegador (Playwright, 96 pruebas en tres
+motores), regresion visual y matriz de temas/RTL. Seis primitivas accesibles con
+contratos ARIA, teclado y foco.
 
 ## Trabajo permitido
 
-- axe automatizado sobre demos y fixtures (roles, nombres, contraste).
-- Pruebas de navegador (Playwright) para foco, teclado y overlays.
-- Regresión visual de componentes y plantillas.
-- Matriz de navegadores, RTL, temas, zoom y tamaños.
-- Presupuestos de bundle como gate ya existente; endurecer y documentar.
+- Referencia de API por componente y primitiva (props, data-attributes, eventos).
+- Documentar teclado, foco, roles y anuncios por patron.
+- Do/don't, estados y madurez por componente.
+- Ejemplos verificables por stack priorizado y guias de migracion.
+- Busqueda y navegacion por versiones en el sitio de docs.
 
 ## Fuera de alcance
 
-- Añadir componentes o primitivas nuevas sin necesidad de pruebas.
-- Documentación de producto (Fase 5) y adopción multi-proyecto (Fase 7).
+- Nuevas primitivas o componentes sin necesidad documental.
+- Adopcion multi-proyecto (Fase 7) y releases formales (Fase 6).
 
 ## Orden inicial
 
-1. F4-001: axe automatizado sobre la galería y fixtures. (review)
-2. F4-002: Playwright para Dialog, Drawer y Command Palette (foco y Escape). (review)
-3. F4-003: navegación de teclado de Tabs, Combobox y Calendar en navegador. (review)
-4. F4-004: regresión visual de componentes y plantillas. (review)
-5. F4-005: matriz de navegadores, temas, RTL y zoom. (review)
+1. F5-001: estructura de la referencia y plantilla de pagina por componente.
+2. F5-002: contratos de accesibilidad y teclado enlazados desde cada componente.
+3. F5-003: ejemplos verificables (copiar/pegar) por componente.
+4. F5-004: madurez, do/don't y guias de migracion.
+5. F5-005: busqueda y navegacion por versiones.
 
 ## Condiciones de salida
 
-- axe, Playwright y regresión visual corren en CI como gates obligatorios.
-- La matriz de navegadores/temas/RTL/zoom cubre los componentes estables.
-- Las primitivas de Fase 3 quedan cubiertas por pruebas de navegador.
-- Auditoría humana aprueba el cierre de Fase 4.
+- Cada componente estable tiene referencia de API, teclado y ejemplos.
+- Los ejemplos se verifican automaticamente (no divergen del codigo).
+- La documentacion enlaza los contratos de accesibilidad existentes.
+- Auditoria humana aprueba el cierre de Fase 5.
+
+## Tareas de seguimiento heredadas
+
+- Tematizacion de las demos (usar `--ro-text` en vez de `--ro-ink` crudo).
+- Responsividad de plantillas: RTL/reflow a 320 px (dashboard, `<pre>`).

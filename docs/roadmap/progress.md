@@ -10,8 +10,8 @@ Ultima actualizacion: 2026-07-18
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
 | 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
-| 4. Pruebas integrales | in-progress | 95% | F4-001..005 en review; pendiente auditoria de cierre |
-| 5. Documentacion | backlog | 0% | APIs estables iniciales |
+| 4. Pruebas integrales | done | 100% | Cerrada y aprobada (phase-4-audit); PR #19 en main |
+| 5. Documentacion | in-progress | 0% | Fase activa; referencia de API, teclado y do/don't |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
 | 7. Adopcion | backlog | 0% | Primera release candidata |
 
