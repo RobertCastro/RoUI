@@ -32,7 +32,7 @@ usuario. Integración de F3-004/005/006 a `main` pendiente como paso mecánico.
 2. F4-002: Playwright para Dialog, Drawer y Command Palette (foco y Escape). (review)
 3. F4-003: navegación de teclado de Tabs, Combobox y Calendar en navegador. (review)
 4. F4-004: regresión visual de componentes y plantillas. (review)
-5. F4-005: matriz de navegadores, temas, RTL y zoom.
+5. F4-005: matriz de navegadores, temas, RTL y zoom. (review)
 
 ## Condiciones de salida
 

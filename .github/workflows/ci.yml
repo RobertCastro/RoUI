@@ -43,7 +43,7 @@ jobs:
         run: npm ci
       - name: Build bundle and primitives
         run: npm run build
-      - name: Install Playwright browser
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
       - name: Run browser tests
         run: npm run test:e2e

@@ -80,6 +80,7 @@
     "ui"
   ],
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
     "@playwright/test": "^1.49.1",
     "axe-core": "^4.12.1",
     "esbuild": "0.25.0",
