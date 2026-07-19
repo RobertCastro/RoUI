@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es" data-ro-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue · RoUI</title>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/roui.min.css">
+  <style>
+    body { margin: 0; background: var(--ro-bg); color: var(--ro-text); font-family: var(--ro-font-sans); }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 24px; display: grid; gap: 20px; }
+  </style>
+</head>
+<body class="ro-root">
+  <div id="app"></div>
+
+  <!-- No-build: Vue desde esm.sh, RoUI desde jsDelivr. -->
+  <script type="module">
+    // Build completo (con compilador de plantillas) para usar `template` en línea.
+    import { createApp, ref, onMounted, onBeforeUnmount } from "https://cdn.jsdelivr.net/npm/vue@3.4.38/dist/vue.esm-browser.prod.js";
+    import { createOverlayController }
+      from "https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/primitives/overlay-controller.js";
+
+    createApp({
+      setup() {
+        const root = ref(null);      // ref al nodo del overlay
+        const trigger = ref(null);
+        let ctrl = null;
+
+        // Patrón de integración: instancia la primitiva en onMounted sobre la ref
+        // del nodo y destrúyela en onBeforeUnmount.
+        onMounted(() => { ctrl = createOverlayController(root.value); });
+        onBeforeUnmount(() => ctrl && ctrl.destroy());
+
+        return { root, trigger, open: () => ctrl.open(trigger.value) };
+      },
+      template: `
+        <main>
+          <h1 class="ro-display">RoUI · Vue</h1>
+          <p class="ro-body">Consumo de RoUI en Vue sin build (esm.sh + jsDelivr).</p>
+          <button class="ro-btn ro-btn--primary" type="button" ref="trigger"
+            aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false"
+            @click="open">Abrir diálogo</button>
+
+          <div class="ro-overlay" id="dlg" data-ro-overlay-root hidden ref="root">
+            <div class="ro-modal" role="dialog" aria-modal="true" aria-labelledby="dlg-t" tabindex="-1">
+              <div class="ro-modal__header">
+                <h2 class="ro-modal__title" id="dlg-t">Hola desde Vue</h2>
+                <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar">×</button>
+              </div>
+              <div class="ro-modal__body">Foco atrapado y cierre con Escape, gestionados por la primitiva.</div>
+              <div class="ro-modal__footer">
+                <button class="ro-btn ro-btn--soft" data-ro-overlay-close>Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </main>`,
+    }).mount("#app");
+  </script>
+</body>
+</html>

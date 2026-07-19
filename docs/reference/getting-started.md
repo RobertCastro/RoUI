@@ -72,6 +72,8 @@ restauración. Ver el contrato de cada patrón en la referencia.
   (`useEffect`, `onMounted`) sobre la ref del elemento y destrúyelas al desmontar.
 - El sistema es framework-agnóstico: no aporta componentes de un framework, sino
   CSS y controladores que envuelves a tu gusto.
+- Ejemplos ejecutables sin build en el repositorio: `examples/react/` y
+  `examples/vue/` (además del `examples/starter/` en vanilla).
 
 ## Siguiente
 
