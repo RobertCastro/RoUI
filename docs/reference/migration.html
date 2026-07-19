@@ -172,6 +172,11 @@ tu CSS/JS propio.</li>
 <li>Marca el estado inicial en el HTML con los atributos correctos (<code>aria-selected</code>,
 <code>aria-expanded</code>, <code>hidden</code>, <code>aria-current</code>).</li>
 </ol>
+<h2>Codemod</h2>
+<p>Las conversiones deterministas de clase de estado a atributo se automatizan con el
+codemod <code>legacy-states</code> (<code>ro-tab--active</code> → <code>aria-selected</code>, <code>ro-nav-link--active</code>
+→ <code>aria-current</code>, …). Ver <code>codemods/README.md</code>. Los cambios de comportamiento
+(paneles y listbox) se migran a mano.</p>
 
       </article>
     </main>
