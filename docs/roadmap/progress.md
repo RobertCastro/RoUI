@@ -10,7 +10,7 @@ Ultima actualizacion: 2026-07-18
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
 | 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
-| 4. Pruebas integrales | in-progress | 40% | F4-001/002 en review; sigue F4-003: teclado en navegador |
+| 4. Pruebas integrales | in-progress | 60% | F4-001/002/003 en review; sigue F4-004: regresion visual |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
 | 7. Adopcion | backlog | 0% | Primera release candidata |
@@ -85,3 +85,8 @@ Ultima actualizacion: 2026-07-18
   del foco y el atajo `Ctrl/Cmd+K` para Dialog, Drawer, Bottom-sheet y Command
   Palette. `test:e2e` corre en un job de CI separado que instala el navegador;
   `validate` sigue siendo el gate rápido sin navegador. Playwright es dev-only.
+- F4-003 (review): 13 specs de navegador para el teclado de los controladores no
+  modales — Tabs (roving, activación automática, `Home`/`End`, envoltura),
+  Combobox (filtrado, `aria-activedescendant` sin mover el foco, `Enter`/`Escape`)
+  y Calendar (`role=grid` 2D: día/semana, `Home`/`End`, selección). Suite e2e
+  total en 27, sin dependencias nuevas.
