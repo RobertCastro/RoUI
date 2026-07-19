@@ -80,7 +80,8 @@
     "serve": "python3 -m http.server 8799",
     "dev": "node scripts/build.mjs && echo '→ http://localhost:8799/docs/index.html' && python3 -m http.server 8799",
     "release": "npm run build && changeset publish",
-    "sbom": "cyclonedx-npm --omit dev --output-format JSON --output-file sbom.json"
+    "sbom": "cyclonedx-npm --omit dev --output-format JSON --output-file sbom.json",
+    "codemod:legacy-states": "node codemods/legacy-states.mjs"
   },
   "keywords": [
     "design-system",

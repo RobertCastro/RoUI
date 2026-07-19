@@ -71,3 +71,10 @@ controlador correspondiente gestione el estado.
 2. Inicializa el controlador de cada patrón (`@robertcastro/roui/primitives/*`).
 3. Marca el estado inicial en el HTML con los atributos correctos (`aria-selected`,
    `aria-expanded`, `hidden`, `aria-current`).
+
+## Codemod
+
+Las conversiones deterministas de clase de estado a atributo se automatizan con el
+codemod `legacy-states` (`ro-tab--active` → `aria-selected`, `ro-nav-link--active`
+→ `aria-current`, …). Ver `codemods/README.md`. Los cambios de comportamiento
+(paneles y listbox) se migran a mano.

@@ -13,7 +13,7 @@ Ultima actualizacion: 2026-07-19
 | 4. Pruebas integrales | done | 100% | Cerrada y aprobada (phase-4-audit); PR #19 en main |
 | 5. Documentacion | done | 100% | Cerrada y aprobada (phase-5-audit) |
 | 6. Releases y gobernanza | done | 100% | Cerrada y aprobada (phase-6-audit); 1.1.0 publicado |
-| 7. Adopcion | in-progress | 40% | F7-001/002 en review; sigue F7-003: codemods/migracion |
+| 7. Adopcion | in-progress | 60% | F7-001..003 en review; sigue F7-004: telemetria |
 
 ## Entregables de Fase 0
 
