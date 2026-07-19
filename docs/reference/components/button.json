@@ -1,0 +1,81 @@
+{
+  "name": "button",
+  "title": "Button",
+  "group": "Acciones",
+  "maturity": "experimental",
+  "summary": "Dispara una acción de la interfaz. Se apoya en el elemento nativo <button>.",
+  "whenToUse": [
+    "Ejecutar una acción en la página: enviar, guardar, abrir un diálogo.",
+    "Cuando el control no navega a otra URL."
+  ],
+  "whenNotToUse": [
+    "Para navegar a otra página o ancla: usa un enlace <a> con estilo de botón.",
+    "Para alternar un estado binario persistente: considera Switch o un botón con aria-pressed."
+  ],
+  "anatomy": {
+    "html": "<button class=\"ro-btn ro-btn--primary\" type=\"button\">Guardar cambios</button>",
+    "notes": [
+      "El elemento base es <button> nativo: aporta rol, foco y activación por teclado.",
+      "Declara siempre type (button|submit|reset) para evitar envíos accidentales.",
+      "Un botón solo de icono necesita nombre accesible (aria-label) y el svg con aria-hidden."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-btn", "desc": "Clase base obligatoria." },
+      { "name": "ro-btn--primary", "desc": "Énfasis principal (color de marca)." },
+      { "name": "ro-btn--dark", "desc": "Variante sólida sobre fondo claro." },
+      { "name": "ro-btn--soft", "desc": "Fondo tenue, énfasis medio." },
+      { "name": "ro-btn--subtle", "desc": "Sin fondo hasta el hover." },
+      { "name": "ro-btn--ghost", "desc": "Solo borde; acción secundaria." },
+      { "name": "ro-btn--sm", "desc": "Tamaño compacto." },
+      { "name": "ro-btn--lg", "desc": "Tamaño grande." },
+      { "name": "ro-btn-icon", "desc": "Botón cuadrado de solo icono (requiere aria-label)." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-button-primary-bg",
+      "--ro-button-primary-fg",
+      "--ro-radius-lg",
+      "--ro-focus-ring",
+      "--ro-transition"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Enter", "Activa el botón."],
+      ["Espacio", "Activa el botón."],
+      ["Tab / Shift+Tab", "Entra y sale del control."]
+    ],
+    "notes": [
+      "No se necesita role: <button> ya expone role=button.",
+      "El estado deshabilitado usa el atributo disabled nativo.",
+      "El anillo de foco visible proviene de --ro-focus-ring."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Variantes de énfasis",
+      "html": "<button class=\"ro-btn ro-btn--primary\">Primary</button>\n<button class=\"ro-btn ro-btn--dark\">Dark</button>\n<button class=\"ro-btn ro-btn--soft\">Soft</button>\n<button class=\"ro-btn ro-btn--ghost\">Ghost</button>"
+    },
+    {
+      "title": "Tamaños",
+      "html": "<button class=\"ro-btn ro-btn--primary ro-btn--sm\">Small</button>\n<button class=\"ro-btn ro-btn--primary\">Base</button>\n<button class=\"ro-btn ro-btn--primary ro-btn--lg\">Large</button>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa un verbo claro y corto como etiqueta (\"Guardar\", \"Enviar\").",
+      "Reserva una sola acción primaria por vista.",
+      "Da nombre accesible a los botones de solo icono."
+    ],
+    "dont": [
+      "No uses un <div> con click en lugar de <button>.",
+      "No dependas solo del color para distinguir la acción primaria.",
+      "No deshabilites sin explicar por qué o cómo habilitar."
+    ]
+  },
+  "related": ["button-group", "toolbar", "segmented"]
+}

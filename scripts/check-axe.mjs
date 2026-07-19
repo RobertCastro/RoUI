@@ -11,7 +11,7 @@
  * - Los estados dinámicos (diálogo abierto, panel expandido, listbox visible) y
  *   las reglas que dependen de geometría se verifican con navegador en F4-002/003.
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -30,6 +30,14 @@ const PAGES = [
   "docs/templates/dashboard.html",
   "docs/templates/module-3col.html",
 ];
+
+// Paginas de referencia generadas (F5-001): se cubren todas automaticamente.
+const refDir = resolve(root, "docs/reference");
+if (existsSync(refDir)) {
+  for (const file of readdirSync(refDir).filter((f) => f.endsWith(".html"))) {
+    PAGES.push(`docs/reference/${file}`);
+  }
+}
 
 // Reglas que exigen renderizado real; se delegan a otros gates o a Fase 4.
 const AXE_OPTIONS = {

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Button — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Acciones</p>
+      <div class="dx-ref-title"><h1>Button</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Dispara una acción de la interfaz. Se apoya en el elemento nativo &lt;button&gt;.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Ejecutar una acción en la página: enviar, guardar, abrir un diálogo.</li><li>Cuando el control no navega a otra URL.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para navegar a otra página o ancla: usa un enlace &lt;a&gt; con estilo de botón.</li><li>Para alternar un estado binario persistente: considera Switch o un botón con aria-pressed.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--primary&quot; type=&quot;button&quot;&gt;Guardar cambios&lt;/button&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El elemento base es &lt;button&gt; nativo: aporta rol, foco y activación por teclado.</li><li>Declara siempre type (button|submit|reset) para evitar envíos accidentales.</li><li>Un botón solo de icono necesita nombre accesible (aria-label) y el svg con aria-hidden.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-btn</code></td><td>Clase base obligatoria.</td></tr><tr><td><code>.ro-btn--primary</code></td><td>Énfasis principal (color de marca).</td></tr><tr><td><code>.ro-btn--dark</code></td><td>Variante sólida sobre fondo claro.</td></tr><tr><td><code>.ro-btn--soft</code></td><td>Fondo tenue, énfasis medio.</td></tr><tr><td><code>.ro-btn--subtle</code></td><td>Sin fondo hasta el hover.</td></tr><tr><td><code>.ro-btn--ghost</code></td><td>Solo borde; acción secundaria.</td></tr><tr><td><code>.ro-btn--sm</code></td><td>Tamaño compacto.</td></tr><tr><td><code>.ro-btn--lg</code></td><td>Tamaño grande.</td></tr><tr><td><code>.ro-btn-icon</code></td><td>Botón cuadrado de solo icono (requiere aria-label).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-button-primary-bg</code> <code>--ro-button-primary-fg</code> <code>--ro-radius-lg</code> <code>--ro-focus-ring</code> <code>--ro-transition</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Enter</kbd></td><td>Activa el botón.</td></tr><tr><td><kbd>Espacio</kbd></td><td>Activa el botón.</td></tr><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Entra y sale del control.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.md">native-controls.md</a></p><ul class="dx-ref-list"><li>No se necesita role: &lt;button&gt; ya expone role=button.</li><li>El estado deshabilitado usa el atributo disabled nativo.</li><li>El anillo de foco visible proviene de --ro-focus-ring.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Variantes de énfasis</div>
+  <div class="dx-demo"><button class="ro-btn ro-btn--primary">Primary</button>
+<button class="ro-btn ro-btn--dark">Dark</button>
+<button class="ro-btn ro-btn--soft">Soft</button>
+<button class="ro-btn ro-btn--ghost">Ghost</button></div>
+  <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--primary&quot;&gt;Primary&lt;/button&gt;
+&lt;button class=&quot;ro-btn ro-btn--dark&quot;&gt;Dark&lt;/button&gt;
+&lt;button class=&quot;ro-btn ro-btn--soft&quot;&gt;Soft&lt;/button&gt;
+&lt;button class=&quot;ro-btn ro-btn--ghost&quot;&gt;Ghost&lt;/button&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Tamaños</div>
+  <div class="dx-demo"><button class="ro-btn ro-btn--primary ro-btn--sm">Small</button>
+<button class="ro-btn ro-btn--primary">Base</button>
+<button class="ro-btn ro-btn--primary ro-btn--lg">Large</button></div>
+  <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--primary ro-btn--sm&quot;&gt;Small&lt;/button&gt;
+&lt;button class=&quot;ro-btn ro-btn--primary&quot;&gt;Base&lt;/button&gt;
+&lt;button class=&quot;ro-btn ro-btn--primary ro-btn--lg&quot;&gt;Large&lt;/button&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa un verbo claro y corto como etiqueta (&quot;Guardar&quot;, &quot;Enviar&quot;).</li><li>Reserva una sola acción primaria por vista.</li><li>Da nombre accesible a los botones de solo icono.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses un &lt;div&gt; con click en lugar de &lt;button&gt;.</li><li>No dependas solo del color para distinguir la acción primaria.</li><li>No deshabilites sin explicar por qué o cómo habilitar.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="button-group.html">button-group</a> · <a href="toolbar.html">toolbar</a> · <a href="segmented.html">segmented</a></p></section>
+    </main>
+  </div>
+</body>
+</html>
