@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Changelog — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Versiones</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Changelog</h1>
+<p>Todas las novedades relevantes de RoUI. El formato sigue
+<a href="https://keepachangelog.com/es-ES/1.1.0/">Keep a Changelog</a> y el versionado es
+<a href="https://semver.org/lang/es/">SemVer</a>. Releases y etiquetas en
+<a href="https://github.com/RobertCastro/RoUI/releases">GitHub</a>.</p>
+<h2><a href="https://github.com/RobertCastro/RoUI/compare/v1.0.0...HEAD">Sin publicar</a></h2>
+<h3>Añadido</h3>
+<ul>
+<li>Referencia por componente generada desde manifiesto (contrato, API, teclado,
+ejemplos, do/don&#39;t y madurez).</li>
+<li>Contratos de accesibilidad renderizados y enlazados desde cada componente.</li>
+<li>Guía de migración de los patrones de clase retirados en Fase 3.</li>
+<li>Búsqueda de componentes y navegación por versiones en el sitio de docs.</li>
+</ul>
+<h2><a href="https://github.com/RobertCastro/RoUI/releases/tag/v1.0.0">1.0.0</a></h2>
+<p>Primera versión pública: tokens, componentes y layouts en CSS, con primitivas
+accesibles y una batería de gates automatizados.</p>
+<h3>Añadido</h3>
+<ul>
+<li>Tokens de diseño (DTCG) como fuente única, con temas light, dark y
+high-contrast y preset de Tailwind.</li>
+<li>Bundle CSS por capas (<code>@layer</code>), reset, utilidades y 49 componentes.</li>
+<li>Primitivas ESM sin dependencias: overlay, disclosure, tabs, combobox, grid y
+toast, con contratos ARIA, teclado y foco.</li>
+<li>Sprite de iconos (<code>#ro-i-*</code>) generado desde una fuente única.</li>
+<li>Gates de calidad: tokens, contraste (WCAG AA), inventario de literales, lint,
+baseline, pruebas de comportamiento, axe, navegadores (Chromium/Firefox/WebKit),
+regresión visual y presupuesto de paquete.</li>
+</ul>
+<h3>Accesibilidad</h3>
+<ul>
+<li>Estados dirigidos por semántica ARIA (<code>aria-selected</code>, <code>aria-expanded</code>,
+<code>aria-current</code>, <code>hidden</code>) en lugar de clases de estado.</li>
+<li>Command Palette como combobox modal; Calendar como <code>role=grid</code>; Toast con
+regiones vivas.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>
