@@ -1,6 +1,6 @@
 # F6-005: Política de soporte, deprecaciones y vulnerabilidades
 
-- Estado: review
+- Estado: done
 - Fase: 6
 - Dependencias: F6-004
 - ADR relacionados: ADR-0005

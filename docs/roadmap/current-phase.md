@@ -1,50 +1,50 @@
-# Fase activa: 6 — Releases, seguridad y gobernanza
+# Fase activa: 7 — Adopción multi-proyecto
 
 ## Objetivo
 
-Convertir cada cambio en una release trazable, segura y de evolución predecible:
-versionado formal, publicación verificable y controles de seguridad y gobernanza.
+Validar RoUI en productos independientes y medir su impacto: que otros proyectos
+lo adopten con fricción baja y que se pueda cuantificar velocidad, defectos y
+migraciones.
 
 ## Estado de entrada
 
-Fase 5 cerrada y aprobada (ver `phase-5-audit.md`): documentación como producto
-con referencia por componente, contratos de accesibilidad, guía de migración,
-madurez, ejemplos verificables e interactivos, búsqueda y changelog. Gates de
-Fases 1-4 estables (tokens, contraste, literales, lint, baseline, primitivas,
-axe, navegadores, visual, presupuesto).
+Fase 6 cerrada y aprobada (ver `phase-6-audit.md`): `@robertcastro/roui@1.1.0`
+publicado con provenance, versionado con Changesets, seguridad de cadena (CodeQL,
+SBOM, dependency-review, Dependabot) y gobernanza del repositorio. Fases 0-5
+cerradas.
 
 ## Trabajo permitido
 
-- Versionado y notas de release automatizadas (Changesets o equivalente).
-- Publicación verificable: provenance de npm, canary/prerelease.
-- Seguridad de cadena: SBOM, análisis estático (CodeQL), auditoría de dependencias.
-- Gobernanza del repositorio: CODEOWNERS, protecciones de rama, política de
-  soporte, deprecaciones y gestión de vulnerabilidades.
+- Pilotos de adopción en uno o más productos reales.
+- Plantillas de arranque (starter) y ejemplos por stack priorizado.
+- Codemods o guías para migrar patrones existentes a RoUI.
+- Telemetría de adopción y métricas (velocidad, defectos, migraciones).
+- Soporte a los primeros consumidores y recogida de feedback.
 
 ## Fuera de alcance
 
-- Documentar componentes nuevos sin necesidad de release (continúa como trabajo
-  de Fase 5 en backlog).
-- Adopción multi-proyecto (Fase 7).
+- Reescribir la arquitectura del paquete (estable desde Fase 2).
+- Añadir componentes sin demanda de un piloto real.
 
 ## Orden inicial
 
-1. F6-001: versionado y changelog automatizados (Changesets). (review)
-2. F6-002: publicación con provenance y prerelease/canary. (review)
-3. F6-003: seguridad de cadena (SBOM, CodeQL, auditoría). (review)
-4. F6-004: gobernanza del repositorio (CODEOWNERS, protecciones de rama). (review)
-5. F6-005: política de soporte, deprecaciones y vulnerabilidades. (review)
+1. F7-001: piloto de adopción en un producto y guía de arranque.
+2. F7-002: plantillas/starters por stack priorizado.
+3. F7-003: codemods o guía de migración de patrones a RoUI.
+4. F7-004: telemetría y métricas de adopción.
+5. F7-005: soporte a consumidores y ciclo de feedback.
 
 ## Condiciones de salida
 
-- Cada release es trazable (versión, notas, artefactos verificables).
-- Los controles de seguridad y gobernanza corren en CI de forma obligatoria.
-- Existe una política pública de soporte, deprecación y vulnerabilidades.
-- Auditoría humana aprueba el cierre de Fase 6.
+- Al menos un producto adopta RoUI en producción.
+- Existen plantillas y guía de arranque reutilizables.
+- Se miden métricas de adopción y se actúa sobre el feedback.
+- Auditoría humana aprueba el cierre de Fase 7.
 
 ## Tareas de seguimiento heredadas
 
-- Llenado de los 40 manifiestos de referencia restantes (Fase 5, continuo).
-- Tematización de las demos (`--ro-text` en vez de `--ro-ink` crudo).
-- Responsividad de plantillas: RTL/reflow a 320 px.
-- Documentación multi-versión (depende del pipeline de release de esta fase).
+- Llenado de los 40 manifiestos de referencia restantes.
+- Tematización de las demos y responsividad de plantillas (RTL/reflow).
+- Documentación multi-versión.
+- Revisión de las PRs de Dependabot abiertas (#34-#39) y aplicación de la
+  protección de rama `main`.
