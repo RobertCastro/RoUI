@@ -56,6 +56,9 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:reference": "node scripts/build-reference.mjs",
+    "changeset": "changeset",
+    "changeset:status": "changeset status",
+    "changeset:version": "changeset version && node scripts/build-reference.mjs",
     "check:reference": "node scripts/build-reference.mjs --check",
     "check:examples": "node scripts/check-examples.mjs",
     "check:tokens": "node scripts/build-tokens.mjs --check",
@@ -85,6 +88,7 @@
   ],
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
+    "@changesets/cli": "^2.27.11",
     "@playwright/test": "^1.49.1",
     "axe-core": "^4.12.1",
     "esbuild": "0.25.0",

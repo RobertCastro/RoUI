@@ -1,21 +1,11 @@
 # Changelog
 
-Todas las novedades relevantes de RoUI. El formato sigue
-[Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/) y el versionado es
-[SemVer](https://semver.org/lang/es/). Releases y etiquetas en
-[GitHub](https://github.com/RobertCastro/RoUI/releases).
+Versionado [SemVer](https://semver.org/lang/es/). Los cambios sin publicar se
+gestionan con [Changesets](https://github.com/changesets/changesets) (viven en
+`.changeset/` y se consolidan aquí al preparar una versión). Releases y etiquetas
+en [GitHub](https://github.com/RobertCastro/RoUI/releases).
 
-## [Sin publicar]
-
-### Añadido
-
-- Referencia por componente generada desde manifiesto (contrato, API, teclado,
-  ejemplos, do/don't y madurez).
-- Contratos de accesibilidad renderizados y enlazados desde cada componente.
-- Guía de migración de los patrones de clase retirados en Fase 3.
-- Búsqueda de componentes y navegación por versiones en el sitio de docs.
-
-## [1.0.0]
+## 1.0.0
 
 Primera versión pública: tokens, componentes y layouts en CSS, con primitivas
 accesibles y una batería de gates automatizados.
@@ -39,5 +29,4 @@ accesibles y una batería de gates automatizados.
 - Command Palette como combobox modal; Calendar como `role=grid`; Toast con
   regiones vivas.
 
-[Sin publicar]: https://github.com/RobertCastro/RoUI/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/RobertCastro/RoUI/releases/tag/v1.0.0
