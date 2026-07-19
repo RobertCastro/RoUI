@@ -33,7 +33,7 @@ jobs:
           cp -r dist _site/dist
           printf '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=./docs/">' > _site/index.html
       - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
