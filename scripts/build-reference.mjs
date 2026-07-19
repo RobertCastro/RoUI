@@ -12,12 +12,14 @@
  *                                                 generado (guarda contra drift)
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
-import { resolve, dirname } from "node:path";
+import { resolve, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
+import { marked } from "marked";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const refDir = resolve(root, "docs/reference");
 const manifestDir = resolve(refDir, "components");
+const a11yDir = resolve(root, "docs/accessibility");
 const check = process.argv.includes("--check");
 
 // Familias y orden segun docs/inventory/components.md.
@@ -123,7 +125,9 @@ function keyboard(a11y) {
   const table = rows
     ? `<table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody>${rows}</tbody></table>`
     : "";
-  return `${table}<p class="dx-ref-note">Contrato de accesibilidad: <a href="../${esc(a11y.contract)}">${esc(a11y.contract.replace("accessibility/", ""))}</a></p>${list(a11y.notes)}`;
+  const href = a11y.contract.replace(/\.md$/, ".html");
+  const label = a11y.contract.replace("accessibility/", "").replace(/\.md$/, "");
+  return `${table}<p class="dx-ref-note">Contrato de accesibilidad: <a href="../${esc(href)}">${esc(label)}</a></p>${list(a11y.notes)}`;
 }
 
 function page(m) {
@@ -176,12 +180,23 @@ function page(m) {
       ${related ? `<section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related">${related}</p></section>` : ""}
     </main>
   </div>
+  <script>
+    fetch(new URL("../../dist/icons.svg", document.baseURI).href).then(function (r) { return r.ok ? r.text() : ""; }).then(function (svg) { if (!svg) return; var d = document.createElement("div"); d.style.display = "none"; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
+  </script>
 </body>
 </html>
 `;
 }
 
-function indexPage(byName) {
+function indexPage(byName, contractFiles = []) {
+  const contracts = contractFiles.length
+    ? `<section class="dx-section" aria-label="Contratos de accesibilidad"><h2>Contratos de accesibilidad</h2><div class="dx-ref-grid">${
+        contractFiles.map((f) => {
+          const name = basename(f, ".md");
+          return `<a class="dx-ref-card" href="../accessibility/${esc(name)}.html"><span class="dx-ref-card__name">${esc(name.replace(/-/g, " "))}</span></a>`;
+        }).join("")
+      }</div></section>`
+    : "";
   const groups = GROUPS.map(([name, comps]) => {
     const cards = comps.map((c) => {
       const m = byName.get(c);
@@ -205,6 +220,25 @@ function indexPage(byName) {
       <h1>Referencia de componentes</h1>
       <p class="dx-lead">Contrato, API, teclado y ejemplos por componente. ${done} de ${total} documentados.</p>
       ${groups}
+      ${contracts}
+    </main>
+  </div>
+</body>
+</html>
+`;
+}
+
+function contractPage(name, md) {
+  const body = marked.parse(md, { mangle: false, headerIds: false });
+  return `${head("Accesibilidad", "../")}
+<body class="ro-root">
+  <div class="dx">
+    ${nav("reference", "../")}
+    <main class="dx-main">
+      <p class="dx-eyebrow">Accesibilidad</p>
+      <article class="ro-prose dx-ref-contract">
+${body}
+      </article>
     </main>
   </div>
 </body>
@@ -223,9 +257,16 @@ const manifests = files.map((f) => {
 });
 const byName = new Map(manifests.map((m) => [m.name, m]));
 
+const contractFiles = existsSync(a11yDir)
+  ? readdirSync(a11yDir).filter((f) => f.endsWith(".md")).sort()
+  : [];
+
 const outputs = new Map();
 for (const m of manifests) outputs.set(resolve(refDir, `${m.name}.html`), page(m));
-outputs.set(resolve(refDir, "index.html"), indexPage(byName));
+outputs.set(resolve(refDir, "index.html"), indexPage(byName, contractFiles));
+for (const f of contractFiles) {
+  outputs.set(resolve(a11yDir, f.replace(/\.md$/, ".html")), contractPage(f, readFileSync(resolve(a11yDir, f), "utf8")));
+}
 
 let drift = 0;
 for (const [path, html] of outputs) {

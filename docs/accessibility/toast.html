@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accesibilidad — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Accesibilidad</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Toast / notificaciones accesibles</h1>
+<p>Los toasts anuncian eventos transitorios sin robar el foco. El marcado aporta la
+región contenedora; el <code>toast-controller</code> gestiona la inserción como región viva,
+el cierre automático, la pausa al interactuar y el botón de cierre.</p>
+<h2>Anuncio (regiones vivas)</h2>
+<p>Cada toast se inserta como su propia región viva, según el patrón <strong>Alert</strong> de
+WAI-ARIA: los avisos de éxito e info usan <code>role=&quot;status&quot;</code> (anuncio <em>cortés</em>, no
+interrumpe) y los errores usan <code>role=&quot;alert&quot;</code> (anuncio <em>asertivo</em>, interrumpe al
+lector). No se traslada el foco al toast; el usuario sigue en su tarea y el
+lector de pantalla lee el mensaje al insertarse el nodo.</p>
+<pre><code class="language-html">&lt;!-- La región contenedora es solo posicionamiento; la crea el controlador si
+     no existe. Cada toast lleva su propio role. --&gt;
+&lt;div class=&quot;ro-toast-region&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">import { createToastController } from &quot;@robertcastro/roui/primitives/toast-controller&quot;;
+
+const toaster = createToastController({
+  reducedMotion: matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;).matches,
+  icon: (variant) =&gt; spriteFor(variant), // opcional: markup de icono por variante
+});
+
+toaster.success(&quot;Cambios guardados&quot;);                 // role=status
+toaster.error(&quot;No se pudo guardar. Reintenta.&quot;);       // role=alert
+toaster.info(&quot;Tienes 2 notificaciones&quot;, { duration: 0 }); // persistente
+</code></pre>
+<h2>Comportamiento</h2>
+<ul>
+<li><strong>Cierre automático</strong>: por defecto a los 5000 ms. <code>duration: 0</code> (o <code>Infinity</code>)
+deja el toast persistente hasta que el usuario lo cierre.</li>
+<li><strong>Pausa al interactuar</strong>: al pasar el puntero (<code>pointerenter</code>) o enfocar dentro
+del toast (<code>focusin</code>) se detiene el temporizador; al salir (<code>pointerleave</code> /
+<code>focusout</code>) se reanuda. Así el usuario no pierde el mensaje mientras lo lee o
+usa el botón de cierre.</li>
+<li><strong>Cierre manual</strong>: cada toast incluye un <code>button.ro-toast__close</code> con
+<code>aria-label</code> (por defecto «Cerrar») y anillo de foco visible; <code>dismissible: false</code> lo omite. <code>dismiss()</code> en el handle y <code>dismissAll()</code> cierran por código.</li>
+<li><strong>Movimiento reducido</strong>: con <code>reducedMotion: true</code> se elimina la animación de
+entrada/salida (también cubierto por <code>@media (prefers-reduced-motion)</code> en CSS).</li>
+</ul>
+<h2>Contrato del marcado</h2>
+<ul>
+<li>El icono es decorativo: va en <code>.ro-toast__icon</code> con <code>aria-hidden=&quot;true&quot;</code>; el
+mensaje es el único contenido anunciado.</li>
+<li>La región no fija foco ni atrapa teclado: no es un diálogo. Para acciones que
+requieran decisión usa Dialog (ver <code>dialog-drawer.md</code>), no un toast.</li>
+<li>El controlador no depende de un set de iconos: <code>options.icon(variant)</code> devuelve
+el markup (o <code>&quot;&quot;</code>) para cada variante, incluida <code>&quot;close&quot;</code>.</li>
+</ul>
+<h2>Límites y verificación manual</h2>
+<ul>
+<li>Sin apilado con límite máximo, colas ni posicionamiento por colisiones.</li>
+<li>Comprueba con lector de pantalla: un <code>success</code>/<code>info</code> se anuncia sin
+interrumpir; un <code>error</code> interrumpe; el foco permanece en el disparador.</li>
+<li>Comprueba con teclado: <code>Tab</code> alcanza el botón de cierre (anillo visible) y
+<code>Enter</code>/<code>Espacio</code> lo descartan; al pasar el puntero el toast no desaparece.</li>
+<li>Axe, matriz de navegadores y regresión visual se incorporan en Fase 4.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

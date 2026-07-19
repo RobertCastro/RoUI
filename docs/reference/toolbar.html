@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toolbar — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Acciones</p>
+      <div class="dx-ref-title"><h1>Toolbar</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Barra que agrupa acciones y controles de una vista, con separadores y grupos.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Reunir las acciones de una tabla, editor o panel en una sola barra.</li><li>Separar visualmente grupos de controles relacionados.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para la navegación principal del sitio: usa un landmark nav.</li><li>Para una sola acción aislada: un botón suelto basta.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-toolbar&quot; role=&quot;toolbar&quot; aria-label=&quot;Acciones de la tabla&quot;&gt;
+  &lt;span class=&quot;ro-toolbar__title&quot;&gt;12 seleccionados&lt;/span&gt;
+  &lt;div class=&quot;ro-toolbar__group&quot;&gt;
+    &lt;button class=&quot;ro-btn ro-btn--soft ro-btn--sm&quot;&gt;Exportar&lt;/button&gt;
+    &lt;span class=&quot;ro-toolbar__sep&quot;&gt;&lt;/span&gt;
+    &lt;button class=&quot;ro-btn ro-btn--soft ro-btn--sm&quot;&gt;Eliminar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El contenedor lleva role=toolbar y un nombre accesible (aria-label).</li><li>ro-toolbar__sep es decorativo: no debe recibir foco ni anunciarse.</li><li>Los controles internos siguen siendo elementos nativos enfocables.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-toolbar</code></td><td>Barra contenedora.</td></tr><tr><td><code>.ro-toolbar--flush</code></td><td>Sin fondo ni borde (embebida).</td></tr><tr><td><code>.ro-toolbar__group</code></td><td>Agrupa controles relacionados.</td></tr><tr><td><code>.ro-toolbar__sep</code></td><td>Separador visual entre grupos.</td></tr><tr><td><code>.ro-toolbar__title</code></td><td>Rótulo o contexto de la barra.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-ink-10</code> <code>--ro-space-2</code> <code>--ro-white</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Recorre los controles de la barra.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Activa el control enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>role=toolbar agrupa semánticamente; requiere aria-label.</li><li>El patrón APG con flechas puede añadirse cuando la barra sea densa; por ahora usa foco por Tab.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Barra con grupos y separador</div>
+  <div class="dx-demo"><div class="ro-toolbar" role="toolbar" aria-label="Acciones">
+  <span class="ro-toolbar__title">12 seleccionados</span>
+  <div class="ro-toolbar__group">
+    <button class="ro-btn ro-btn--soft ro-btn--sm">Exportar</button>
+    <span class="ro-toolbar__sep"></span>
+    <button class="ro-btn ro-btn--soft ro-btn--sm">Eliminar</button>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-toolbar&quot; role=&quot;toolbar&quot; aria-label=&quot;Acciones&quot;&gt;
+  &lt;span class=&quot;ro-toolbar__title&quot;&gt;12 seleccionados&lt;/span&gt;
+  &lt;div class=&quot;ro-toolbar__group&quot;&gt;
+    &lt;button class=&quot;ro-btn ro-btn--soft ro-btn--sm&quot;&gt;Exportar&lt;/button&gt;
+    &lt;span class=&quot;ro-toolbar__sep&quot;&gt;&lt;/span&gt;
+    &lt;button class=&quot;ro-btn ro-btn--soft ro-btn--sm&quot;&gt;Eliminar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da a la barra un nombre accesible con aria-label.</li><li>Agrupa acciones afines y sepáralas con ro-toolbar__sep.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No metas la navegación del sitio en una toolbar.</li><li>No hagas enfocable el separador.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="button.html">button</a> · <a href="button-group.html">button-group</a> · <a href="menu.html">menu</a></p></section>
+    </main>
+  </div>
+  <script>
+    fetch(new URL("../../dist/icons.svg", document.baseURI).href).then(function (r) { return r.ok ? r.text() : ""; }).then(function (svg) { if (!svg) return; var d = document.createElement("div"); d.style.display = "none"; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
+  </script>
+</body>
+</html>

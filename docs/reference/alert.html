@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alert — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Feedback</p>
+      <div class="dx-ref-title"><h1>Alert</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Mensaje contextual inline que informa sobre el estado de una tarea o sección.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Comunicar un estado persistente en el flujo de la página (éxito, error, aviso).</li><li>Dar contexto junto al contenido relacionado, sin interrumpir.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para notificaciones efímeras y flotantes: usa Toast.</li><li>Para un anuncio global de producto en la parte superior: usa Banner.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-alert ro-alert--info&quot; role=&quot;status&quot;&gt;
+  &lt;svg class=&quot;ro-icon ro-icon--sm ro-alert__icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;div class=&quot;ro-alert__body&quot;&gt;&lt;span class=&quot;ro-alert__title&quot;&gt;Aviso.&lt;/span&gt; Tu cohort empieza el 27 de abril.&lt;/div&gt;
+  &lt;button class=&quot;ro-alert__close&quot; aria-label=&quot;Cerrar aviso&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Usa role=status (cortés) para info/éxito y role=alert (asertivo) solo para errores urgentes.</li><li>El icono es decorativo: aria-hidden. El significado va en el texto.</li><li>El botón de cierre necesita nombre accesible (aria-label).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-alert</code></td><td>Contenedor base.</td></tr><tr><td><code>.ro-alert--info</code></td><td>Variante informativa.</td></tr><tr><td><code>.ro-alert--success</code></td><td>Variante de éxito.</td></tr><tr><td><code>.ro-alert--warning</code></td><td>Variante de advertencia.</td></tr><tr><td><code>.ro-alert--error</code></td><td>Variante de error.</td></tr><tr><td><code>.ro-alert--brand</code></td><td>Variante de marca (primary).</td></tr><tr><td><code>.ro-alert__title</code></td><td>Título opcional en negrita.</td></tr><tr><td><code>.ro-alert__close</code></td><td>Botón de cierre.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-info</code> <code>--ro-success</code> <code>--ro-warning</code> <code>--ro-error</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab</kbd></td><td>Alcanza el botón de cierre (si existe).</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Cierra el aviso.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/toast.html">toast</a></p><ul class="dx-ref-list"><li>No dependas solo del color: usa icono y texto para el significado.</li><li>Reserva role=alert para errores que requieren atención inmediata.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Variantes semánticas</div>
+  <div class="dx-demo"><div class="ro-alert ro-alert--success" role="status"><svg class="ro-icon ro-icon--sm ro-alert__icon" aria-hidden="true"><use href="#ro-i-circle-check"></use></svg><div class="ro-alert__body">Módulo completado.</div></div>
+<div class="ro-alert ro-alert--error" role="alert"><svg class="ro-icon ro-icon--sm ro-alert__icon" aria-hidden="true"><use href="#ro-i-triangle-alert"></use></svg><div class="ro-alert__body">No se pudo guardar. Reintenta.</div></div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-alert ro-alert--success&quot; role=&quot;status&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm ro-alert__icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-circle-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;div class=&quot;ro-alert__body&quot;&gt;Módulo completado.&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;ro-alert ro-alert--error&quot; role=&quot;alert&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm ro-alert__icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-triangle-alert&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;div class=&quot;ro-alert__body&quot;&gt;No se pudo guardar. Reintenta.&lt;/div&gt;&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Empareja color, icono y texto para el significado.</li><li>Sé específico: di qué pasó y qué hacer.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses role=alert para mensajes no urgentes.</li><li>No comuniques el estado solo con color.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="toast.html">toast</a> · <a href="banner.html">banner</a> · <a href="empty.html">empty</a></p></section>
+    </main>
+  </div>
+  <script>
+    fetch(new URL("../../dist/icons.svg", document.baseURI).href).then(function (r) { return r.ok ? r.text() : ""; }).then(function (svg) { if (!svg) return; var d = document.createElement("div"); d.style.display = "none"; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
+  </script>
+</body>
+</html>

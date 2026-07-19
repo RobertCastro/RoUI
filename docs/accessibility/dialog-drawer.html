@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accesibilidad — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Accesibilidad</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Dialog y Drawer accesibles</h1>
+<p>Dialog y Drawer son overlays modales: detienen la interacción con el contenido
+de fondo mientras están abiertos. RoUI entrega el estilo CSS y un controlador
+ESM opcional para el comportamiento común; el consumidor conserva el control
+del marcado, los textos y el momento de apertura.</p>
+<h2>Contrato de marcado</h2>
+<ul>
+<li>El disparador es un <code>button</code> nativo con <code>aria-haspopup=&quot;dialog&quot;</code>,
+<code>aria-controls</code> y <code>aria-expanded=&quot;false&quot;</code>.</li>
+<li>El contenedor del overlay inicia con <code>hidden</code> y cubre la página.</li>
+<li>El panel tiene <code>role=&quot;dialog&quot;</code>, <code>aria-modal=&quot;true&quot;</code>, un nombre mediante
+<code>aria-labelledby</code> (o <code>aria-label</code>) y <code>tabindex=&quot;-1&quot;</code> como fallback de foco.</li>
+<li>Las acciones de cierre son botones nativos con <code>data-ro-overlay-close</code> y un
+nombre accesible. El backdrop lleva <code>data-ro-overlay-backdrop</code> cuando no es
+el propio contenedor.</li>
+<li>Drawer utiliza el mismo contrato. Elija <code>aside</code> cuando el panel sea una
+región complementaria; el rol modal sigue siendo <code>dialog</code>.</li>
+</ul>
+<pre><code class="language-html">&lt;button
+  id=&quot;edit-trigger&quot;
+  aria-haspopup=&quot;dialog&quot;
+  aria-controls=&quot;edit-dialog&quot;
+  aria-expanded=&quot;false&quot;&gt;
+  Editar perfil
+&lt;/button&gt;
+
+&lt;div class=&quot;ro-overlay&quot; id=&quot;edit-dialog&quot; hidden&gt;
+  &lt;section class=&quot;ro-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot;
+    aria-labelledby=&quot;edit-title&quot; tabindex=&quot;-1&quot;&gt;
+    &lt;header class=&quot;ro-modal__header&quot;&gt;
+      &lt;h2 class=&quot;ro-modal__title&quot; id=&quot;edit-title&quot;&gt;Editar perfil&lt;/h2&gt;
+      &lt;button type=&quot;button&quot; data-ro-overlay-close aria-label=&quot;Cerrar&quot;&gt;×&lt;/button&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;ro-modal__body&quot;&gt;…&lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+</code></pre>
+<h2>Controlador</h2>
+<pre><code class="language-js">import { createOverlayController } from &quot;@robertcastro/roui/primitives/overlay-controller&quot;;
+
+const trigger = document.querySelector(&quot;#edit-trigger&quot;);
+const overlay = createOverlayController(document.querySelector(&quot;#edit-dialog&quot;));
+
+trigger.addEventListener(&quot;click&quot;, () =&gt; overlay.open(trigger));
+</code></pre>
+<p>Al abrir, el controlador enfoca el primer control del panel; si no existe,
+enfoca el panel. Mantiene el foco dentro con <code>Tab</code> y <code>Shift+Tab</code>, bloquea el
+scroll del documento y actualiza <code>aria-expanded</code>. <code>Escape</code>, un control con
+<code>data-ro-overlay-close</code> o el backdrop cierran el overlay y devuelven el foco
+al disparador. Use <code>initialFocus</code> para seleccionar un control específico.</p>
+<pre><code class="language-js">const overlay = createOverlayController(root, {
+  initialFocus: &quot;[data-autofocus]&quot;,
+  closeOnBackdrop: false,
+});
+</code></pre>
+<h2>Límites y verificación manual</h2>
+<ul>
+<li>No abra un segundo overlay modal desde uno activo; el apilamiento se definirá
+como contrato explícito antes de soportarlo.</li>
+<li>No use un Drawer modal para navegación persistente de escritorio. En ese caso
+utilice un <code>aside</code> no modal sin este controlador.</li>
+<li>Pruebe el flujo con teclado: disparador → foco inicial → Tab/Shift+Tab →
+Escape → retorno al disparador. Repítalo con zoom al 200 %, reduced motion y
+contenido largo.</li>
+<li>La matriz de navegadores, axe y regresión visual se añade en Fase 4; estos
+casos no se declaran estables hasta disponer de esa evidencia.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

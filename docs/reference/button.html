@@ -43,7 +43,7 @@
 
       <section class="dx-section" aria-label="Teclado y accesibilidad">
         <h2>Teclado y accesibilidad</h2>
-        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Enter</kbd></td><td>Activa el botón.</td></tr><tr><td><kbd>Espacio</kbd></td><td>Activa el botón.</td></tr><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Entra y sale del control.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.md">native-controls.md</a></p><ul class="dx-ref-list"><li>No se necesita role: &lt;button&gt; ya expone role=button.</li><li>El estado deshabilitado usa el atributo disabled nativo.</li><li>El anillo de foco visible proviene de --ro-focus-ring.</li></ul>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Enter</kbd></td><td>Activa el botón.</td></tr><tr><td><kbd>Espacio</kbd></td><td>Activa el botón.</td></tr><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Entra y sale del control.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>No se necesita role: &lt;button&gt; ya expone role=button.</li><li>El estado deshabilitado usa el atributo disabled nativo.</li><li>El anillo de foco visible proviene de --ro-focus-ring.</li></ul>
       </section>
 
       <section class="dx-section" aria-label="Ejemplos">
@@ -81,5 +81,8 @@
       <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="button-group.html">button-group</a> · <a href="toolbar.html">toolbar</a> · <a href="segmented.html">segmented</a></p></section>
     </main>
   </div>
+  <script>
+    fetch(new URL("../../dist/icons.svg", document.baseURI).href).then(function (r) { return r.ok ? r.text() : ""; }).then(function (svg) { if (!svg) return; var d = document.createElement("div"); d.style.display = "none"; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
+  </script>
 </body>
 </html>

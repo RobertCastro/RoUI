@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accesibilidad — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Accesibilidad</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Contratos accesibles: Button y Form</h1>
+<h2>Button</h2>
+<p>Usa <code>&lt;button&gt;</code> para acciones y <code>&lt;a&gt;</code> solo para navegación real. Todo botón debe
+tener nombre accesible: texto visible o <code>aria-label</code> cuando solo contiene icono.</p>
+<pre><code class="language-html">&lt;button class=&quot;ro-btn ro-btn--primary&quot; type=&quot;button&quot;&gt;
+  Guardar cambios
+&lt;/button&gt;
+
+&lt;button class=&quot;ro-btn-icon&quot; type=&quot;button&quot; aria-label=&quot;Cerrar diálogo&quot;&gt;
+  &lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+&lt;/button&gt;
+</code></pre>
+<ul>
+<li><code>disabled</code> solo se aplica a controles nativos y evita interacción.</li>
+<li><code>aria-busy=&quot;true&quot;</code> comunica carga; conserva un nombre accesible.</li>
+<li><code>aria-disabled=&quot;true&quot;</code> en enlaces exige además impedir navegación en la
+aplicación; no sustituye <code>disabled</code> en un botón nativo.</li>
+<li>No uses <code>div</code>, <code>span</code> ni <code>role=&quot;button&quot;</code> si un <code>&lt;button&gt;</code> resuelve el caso.</li>
+</ul>
+<h2>Form</h2>
+<p>Cada control requiere un <code>&lt;label&gt;</code> asociado. Las ayudas y errores se conectan
+con <code>aria-describedby</code>; los errores usan <code>aria-invalid=&quot;true&quot;</code>.</p>
+<pre><code class="language-html">&lt;label class=&quot;ro-label&quot; for=&quot;email&quot;&gt;Correo electrónico&lt;/label&gt;
+&lt;input
+  id=&quot;email&quot;
+  class=&quot;ro-input-box&quot;
+  type=&quot;email&quot;
+  autocomplete=&quot;email&quot;
+  required
+  aria-describedby=&quot;email-help&quot;
+&gt;
+&lt;p id=&quot;email-help&quot; class=&quot;ro-hint&quot;&gt;Usaremos este correo para avisos.&lt;/p&gt;
+</code></pre>
+<pre><code class="language-html">&lt;label class=&quot;ro-label&quot; for=&quot;workspace&quot;&gt;Nombre del workspace&lt;/label&gt;
+&lt;input
+  id=&quot;workspace&quot;
+  class=&quot;ro-input-box&quot;
+  aria-invalid=&quot;true&quot;
+  aria-describedby=&quot;workspace-error&quot;
+&gt;
+&lt;p id=&quot;workspace-error&quot; class=&quot;ro-error-text&quot;&gt;El nombre ya está en uso.&lt;/p&gt;
+</code></pre>
+<ul>
+<li>Usa tipos nativos (<code>email</code>, <code>number</code>, <code>date</code>) y <code>autocomplete</code> correcto.</li>
+<li>Un placeholder no reemplaza un label.</li>
+<li>El error debe explicar cómo corregirlo, no solo indicar que existe.</li>
+<li>Los switch usan un <code>&lt;input type=&quot;checkbox&quot;&gt;</code> real asociado a su label.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

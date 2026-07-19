@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accesibilidad — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Accesibilidad</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Tabs, Accordion y navegación accesibles</h1>
+<p>Estos tres patrones comparten estilos con listas y botones, pero exponen
+semántica distinta. El marcado conserva roles, nombres y relaciones; los
+controladores solo gestionan foco, estado y teclado.</p>
+<h2>Tabs</h2>
+<p>Use Tabs para alternar vistas equivalentes dentro del mismo contexto. El
+contenedor es <code>role=&quot;tablist&quot;</code> con un nombre accesible; cada disparador es un
+<code>button role=&quot;tab&quot;</code> con <code>aria-selected</code> y <code>aria-controls</code>; cada vista es un
+<code>role=&quot;tabpanel&quot;</code> con <code>aria-labelledby</code> y <code>tabindex=&quot;0&quot;</code> cuando su contenido no
+es enfocable por sí mismo.</p>
+<pre><code class="language-html">&lt;div class=&quot;ro-tabs&quot; role=&quot;tablist&quot; aria-label=&quot;Detalle del módulo&quot; data-ro-tabs&gt;
+  &lt;button class=&quot;ro-tab&quot; role=&quot;tab&quot; id=&quot;t-temario&quot;
+    aria-selected=&quot;true&quot; aria-controls=&quot;p-temario&quot;&gt;Temario&lt;/button&gt;
+  &lt;button class=&quot;ro-tab&quot; role=&quot;tab&quot; id=&quot;t-discusion&quot;
+    aria-selected=&quot;false&quot; aria-controls=&quot;p-discusion&quot; tabindex=&quot;-1&quot;&gt;Discusión&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id=&quot;p-temario&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;t-temario&quot; tabindex=&quot;0&quot;&gt;…&lt;/div&gt;
+&lt;div id=&quot;p-discusion&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;t-discusion&quot; tabindex=&quot;0&quot; hidden&gt;…&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">import { createTabsController } from &quot;@robertcastro/roui/primitives/tabs-controller&quot;;
+
+document.querySelectorAll(&quot;[data-ro-tabs]&quot;).forEach(createTabsController);
+</code></pre>
+<p>Solo la pestaña activa es tabbable (<strong>roving tabindex</strong>): la seleccionada tiene
+<code>tabindex=&quot;0&quot;</code> y el resto <code>-1</code>. Desde la lista, <code>ArrowRight</code>/<code>ArrowLeft</code>
+(o <code>ArrowDown</code>/<code>ArrowUp</code> si <code>aria-orientation=&quot;vertical&quot;</code>) mueven el foco,
+<code>Home</code>/<code>End</code> van a la primera y última, y la <strong>activación automática</strong> muestra
+el panel al enfocar. Con <code>data-ro-tabs-manual</code>, la activación ocurre con <code>Enter</code>
+o <code>Espacio</code>. <code>Tab</code> sale de la lista hacia el panel activo.</p>
+<h2>Accordion</h2>
+<p>Cada sección es un <code>disclosure</code> independiente (se permite más de una abierta).
+El encabezado es un <code>button</code> con <code>aria-expanded</code> y <code>aria-controls</code>, envuelto en
+un elemento de encabezado real; el cuerpo es <code>role=&quot;region&quot;</code> etiquetado por el
+botón e inicia con <code>hidden</code>.</p>
+<pre><code class="language-html">&lt;div class=&quot;ro-accordion&quot;&gt;
+  &lt;div class=&quot;ro-accordion__item&quot; data-ro-disclosure-root&gt;
+    &lt;h3 class=&quot;ro-accordion__heading&quot;&gt;
+      &lt;button class=&quot;ro-accordion__head&quot; data-ro-disclosure-trigger
+        aria-expanded=&quot;false&quot; aria-controls=&quot;acc-1&quot;&gt;
+        ¿Qué incluye el curso?
+        &lt;svg class=&quot;ro-icon ro-icon--sm ro-accordion__chevron&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;use href=&quot;#ro-i-chevron-down&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/h3&gt;
+    &lt;div class=&quot;ro-accordion__panel&quot; id=&quot;acc-1&quot; role=&quot;region&quot;
+      aria-label=&quot;¿Qué incluye el curso?&quot; data-ro-disclosure-panel hidden&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Reutiliza el <code>disclosure-controller</code> con <code>data-ro-disclosure-persistent</code>:
+<code>Enter</code>/<code>Espacio</code> sobre el botón nativo alternan la sección. A diferencia de
+Menu y Popover, un accordion <strong>no</strong> se cierra al hacer clic fuera ni con
+<code>Escape</code>; permanece hasta que el usuario togglea su encabezado. No se usa
+<code>role=&quot;menu&quot;</code> ni navegación por flechas entre encabezados en este contrato.</p>
+<h2>Navegación</h2>
+<p>La navegación persistente <strong>no</strong> es un menú. Use un landmark <code>nav</code> con nombre y
+marque la página actual con <code>aria-current=&quot;page&quot;</code>; el breadcrumb usa el mismo
+atributo en su último tramo.</p>
+<pre><code class="language-html">&lt;nav class=&quot;ro-row&quot; aria-label=&quot;Principal&quot;&gt;
+  &lt;a class=&quot;ro-nav-link&quot; aria-current=&quot;page&quot;&gt;Inicio&lt;/a&gt;
+  &lt;a class=&quot;ro-nav-link&quot; href=&quot;/proyectos&quot;&gt;Mis Proyectos&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+<p>El estado activo se dibuja desde <code>[aria-current]</code>/<code>[aria-selected]</code>, no desde una
+clase de demostración. Reserve <code>role=&quot;menu&quot;</code> para listas de acciones (ver
+<code>menu-popover-tooltip.md</code>).</p>
+<h2>Límites y verificación manual</h2>
+<ul>
+<li>Sin tabs diferidos, submenús ni posicionamiento por colisiones.</li>
+<li>Compruebe con teclado: <code>Tab</code> entra a la lista, Flecha/<code>Home</code>/<code>End</code> recorren,
+el panel activo recibe foco y el resto queda <code>hidden</code>; en Accordion <code>Enter</code>
+abre y <code>Escape</code> cierra devolviendo el foco al encabezado.</li>
+<li>Axe, matriz de navegadores y regresión visual se incorporan en Fase 4.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

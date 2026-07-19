@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accesibilidad — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Accesibilidad</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Combobox, Calendar y Command Palette accesibles</h1>
+<p>Tres patrones de entrada asistida. El marcado conserva roles y relaciones; los
+controladores gestionan estado, opción activa y teclado sin robar el foco del
+campo de texto.</p>
+<h2>Combobox</h2>
+<p>Un <code>input role=&quot;combobox&quot;</code> controla un <code>role=&quot;listbox&quot;</code> de opciones
+<code>role=&quot;option&quot;</code>. La opción resaltada se comunica con <code>aria-activedescendant</code>
+(el foco permanece en el input), no moviendo el foco.</p>
+<pre><code class="language-html">&lt;div class=&quot;ro-combobox&quot; data-ro-combobox&gt;
+  &lt;div class=&quot;ro-field&quot;&gt;
+    &lt;input class=&quot;ro-input&quot; id=&quot;cb&quot; role=&quot;combobox&quot; aria-expanded=&quot;false&quot;
+      aria-controls=&quot;cb-list&quot; aria-autocomplete=&quot;list&quot; aria-label=&quot;Busca un lenguaje&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-combobox__list&quot; id=&quot;cb-list&quot; role=&quot;listbox&quot; aria-label=&quot;Lenguajes&quot;&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;JavaScript&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;TypeScript&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__empty&quot; hidden&gt;Sin coincidencias&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">import { createComboboxController } from &quot;@robertcastro/roui/primitives/combobox-controller&quot;;
+
+createComboboxController(root, { onFilter: (query) =&gt; { /* oculta opciones */ } });
+</code></pre>
+<p><code>ArrowDown</code>/<code>ArrowUp</code> recorren (con wrap), <code>Home</code>/<code>End</code> van a los extremos,
+<code>Enter</code> selecciona la opción activa y rellena el input, <code>Escape</code> cierra y un
+<code>pointerdown</code> exterior también. Al escribir se llama a <code>onFilter</code>; si la opción
+activa deja de ser visible se limpia. El <code>data-value</code> de una opción sobreescribe
+su texto como valor.</p>
+<h2>Command Palette</h2>
+<p>Es un combobox <strong>en línea</strong> dentro de un <code>role=&quot;dialog&quot;</code> modal. El diálogo lo
+gestiona <code>overlay-controller</code> (foco inicial en el campo, trap de <code>Tab</code>, <code>Escape</code>
+y restauración del disparador); la lista la gestiona <code>combobox-controller</code> con
+<code>inline: true</code>.</p>
+<pre><code class="language-html">&lt;div class=&quot;ro-cmdk-overlay&quot; id=&quot;cmdk&quot; data-ro-overlay-root hidden&gt;
+  &lt;div class=&quot;ro-cmdk&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Paleta de comandos&quot; data-ro-cmdk&gt;
+    &lt;div class=&quot;ro-cmdk__search&quot;&gt;
+      &lt;input id=&quot;cmdk-input&quot; role=&quot;combobox&quot; aria-expanded=&quot;true&quot;
+        aria-controls=&quot;cmdk-list&quot; aria-autocomplete=&quot;list&quot; aria-label=&quot;Buscar comandos&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-cmdk__list&quot; id=&quot;cmdk-list&quot; role=&quot;listbox&quot; aria-label=&quot;Comandos&quot;&gt;
+      &lt;div class=&quot;ro-cmdk__group&quot; role=&quot;presentation&quot;&gt;Navegar&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__item&quot; role=&quot;option&quot;&gt;Ir a Inicio &lt;span class=&quot;ro-kbd&quot;&gt;G&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>En modo inline la lista está siempre visible: el combobox <strong>no</strong> captura <code>Escape</code>
+(lo maneja el diálogo) ni cierra por pointer exterior, y <code>Enter</code> ejecuta la
+acción (<code>onSelect</code>) sin rellenar el input. El disparador usa
+<code>data-ro-overlay-open</code> y <code>aria-haspopup=&quot;dialog&quot;</code>; un atajo <code>⌘K</code>/<code>Ctrl+K</code> abre la
+paleta. Los encabezados de grupo son <code>role=&quot;presentation&quot;</code>.</p>
+<h2>Calendar / Date Picker</h2>
+<p>La cuadrícula es <code>role=&quot;grid&quot;</code> etiquetada por el título del mes; cada semana es un
+<code>role=&quot;row&quot;</code> (con <code>display:contents</code> para no romper el CSS grid) y cada día un
+<code>button role=&quot;gridcell&quot;</code>. Las cabeceras de día usan <code>role=&quot;columnheader&quot;</code> y los
+huecos del mes son celdas vacías no enfocables.</p>
+<pre><code class="language-html">&lt;div class=&quot;ro-calendar__grid&quot; role=&quot;grid&quot; aria-labelledby=&quot;cal-title&quot;&gt;
+  &lt;div class=&quot;ro-calendar__row&quot; role=&quot;row&quot;&gt;
+    &lt;div class=&quot;ro-calendar__dow&quot; role=&quot;columnheader&quot; aria-label=&quot;Lunes&quot;&gt;L&lt;/div&gt; …
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-calendar__row&quot; role=&quot;row&quot;&gt;
+    &lt;div class=&quot;ro-calendar__pad&quot; role=&quot;gridcell&quot;&gt;&lt;/div&gt;
+    &lt;button class=&quot;ro-calendar__day&quot; role=&quot;gridcell&quot; tabindex=&quot;-1&quot;
+      aria-selected=&quot;false&quot; aria-label=&quot;1 de Junio de 2026&quot;&gt;1&lt;/button&gt; …
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-js">import { createGridController } from &quot;@robertcastro/roui/primitives/grid-controller&quot;;
+
+createGridController(grid, { onSelect: (dayButton) =&gt; { /* marca aria-selected */ } });
+</code></pre>
+<p>Una sola celda es tabbable (<strong>roving tabindex</strong>): el día seleccionado, el marcado
+<code>data-ro-grid-current</code> (hoy) o el primero. <code>ArrowLeft</code>/<code>ArrowRight</code> mueven por día,
+<code>ArrowUp</code>/<code>ArrowDown</code> por semana manteniendo la columna, <code>Home</code>/<code>End</code> van al inicio
+y fin de la semana, y <code>Enter</code>/<code>Espacio</code> seleccionan (<code>aria-selected=&quot;true&quot;</code>). El
+date picker monta este calendario dentro de un popover; al elegir un día actualiza
+el campo y cierra el disclosure.</p>
+<h2>Verificación manual</h2>
+<ul>
+<li>Combobox: <code>ArrowDown</code> abre y resalta sin perder el foco del input; escribir
+filtra; <code>Enter</code> selecciona; <code>Escape</code> cierra; clic exterior cierra.</li>
+<li>Command Palette: <code>⌘K</code> abre; el foco entra al campo; <code>Escape</code> cierra el diálogo;
+<code>Tab</code> queda atrapado dentro.</li>
+<li>Calendar: una sola celda tabbable; flechas recorren días y semanas; <code>Home</code>/<code>End</code>
+la semana; <code>Enter</code> selecciona y marca <code>aria-selected</code>.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

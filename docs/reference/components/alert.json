@@ -1,0 +1,66 @@
+{
+  "name": "alert",
+  "title": "Alert",
+  "group": "Feedback",
+  "maturity": "experimental",
+  "summary": "Mensaje contextual inline que informa sobre el estado de una tarea o sección.",
+  "whenToUse": [
+    "Comunicar un estado persistente en el flujo de la página (éxito, error, aviso).",
+    "Dar contexto junto al contenido relacionado, sin interrumpir."
+  ],
+  "whenNotToUse": [
+    "Para notificaciones efímeras y flotantes: usa Toast.",
+    "Para un anuncio global de producto en la parte superior: usa Banner."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-alert ro-alert--info\" role=\"status\">\n  <svg class=\"ro-icon ro-icon--sm ro-alert__icon\" aria-hidden=\"true\"><use href=\"#ro-i-info\"></use></svg>\n  <div class=\"ro-alert__body\"><span class=\"ro-alert__title\">Aviso.</span> Tu cohort empieza el 27 de abril.</div>\n  <button class=\"ro-alert__close\" aria-label=\"Cerrar aviso\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button>\n</div>",
+    "notes": [
+      "Usa role=status (cortés) para info/éxito y role=alert (asertivo) solo para errores urgentes.",
+      "El icono es decorativo: aria-hidden. El significado va en el texto.",
+      "El botón de cierre necesita nombre accesible (aria-label)."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-alert", "desc": "Contenedor base." },
+      { "name": "ro-alert--info", "desc": "Variante informativa." },
+      { "name": "ro-alert--success", "desc": "Variante de éxito." },
+      { "name": "ro-alert--warning", "desc": "Variante de advertencia." },
+      { "name": "ro-alert--error", "desc": "Variante de error." },
+      { "name": "ro-alert--brand", "desc": "Variante de marca (primary)." },
+      { "name": "ro-alert__title", "desc": "Título opcional en negrita." },
+      { "name": "ro-alert__close", "desc": "Botón de cierre." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-xl", "--ro-info", "--ro-success", "--ro-warning", "--ro-error"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/toast.md",
+    "keyboard": [
+      ["Tab", "Alcanza el botón de cierre (si existe)."],
+      ["Enter / Espacio", "Cierra el aviso."]
+    ],
+    "notes": [
+      "No dependas solo del color: usa icono y texto para el significado.",
+      "Reserva role=alert para errores que requieren atención inmediata."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Variantes semánticas",
+      "html": "<div class=\"ro-alert ro-alert--success\" role=\"status\"><svg class=\"ro-icon ro-icon--sm ro-alert__icon\" aria-hidden=\"true\"><use href=\"#ro-i-circle-check\"></use></svg><div class=\"ro-alert__body\">Módulo completado.</div></div>\n<div class=\"ro-alert ro-alert--error\" role=\"alert\"><svg class=\"ro-icon ro-icon--sm ro-alert__icon\" aria-hidden=\"true\"><use href=\"#ro-i-triangle-alert\"></use></svg><div class=\"ro-alert__body\">No se pudo guardar. Reintenta.</div></div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Empareja color, icono y texto para el significado.",
+      "Sé específico: di qué pasó y qué hacer."
+    ],
+    "dont": [
+      "No uses role=alert para mensajes no urgentes.",
+      "No comuniques el estado solo con color."
+    ]
+  },
+  "related": ["toast", "banner", "empty"]
+}
