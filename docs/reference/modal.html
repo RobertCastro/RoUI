@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modal — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Overlays</p>
+      <div class="dx-ref-title"><h1>Modal</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Diálogo modal que interrumpe el flujo para una tarea o confirmación, con foco atrapado.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Confirmar una acción importante o destructiva.</li><li>Pedir un dato imprescindible antes de continuar.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para mensajes no bloqueantes: usa Alert o Toast.</li><li>Para contenido lateral navegable: usa Drawer.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;button data-ro-overlay-open=&quot;m1&quot; aria-haspopup=&quot;dialog&quot; aria-controls=&quot;m1&quot; aria-expanded=&quot;false&quot;&gt;Abrir&lt;/button&gt;
+&lt;div class=&quot;ro-overlay&quot; id=&quot;m1&quot; data-ro-overlay-root hidden&gt;
+  &lt;div class=&quot;ro-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;m1-t&quot; tabindex=&quot;-1&quot;&gt;
+    &lt;div class=&quot;ro-modal__header&quot;&gt;
+      &lt;h3 class=&quot;ro-modal__title&quot; id=&quot;m1-t&quot;&gt;Título&lt;/h3&gt;
+      &lt;button class=&quot;ro-btn-icon&quot; data-ro-overlay-close aria-label=&quot;Cerrar&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-modal__body&quot;&gt;Contenido…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El root (data-ro-overlay-root) inicia con hidden y cubre la página.</li><li>El panel es role=dialog aria-modal=true, con nombre por aria-labelledby y tabindex=-1.</li><li>El disparador declara aria-haspopup=dialog y aria-controls; el controlador togglea aria-expanded.</li><li>Los controles de cierre llevan data-ro-overlay-close.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-overlay</code></td><td>Capa que cubre la página (backdrop).</td></tr><tr><td><code>.ro-modal</code></td><td>Panel del diálogo.</td></tr><tr><td><code>.ro-modal__header</code></td><td>Cabecera con título y cierre.</td></tr><tr><td><code>.ro-modal__title</code></td><td>Título del diálogo (aria-labelledby).</td></tr><tr><td><code>.ro-modal__body</code></td><td>Cuerpo del diálogo.</td></tr><tr><td><code>.ro-modal__footer</code></td><td>Pie con acciones.</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-ro-overlay-root</code></td><td>Marca el contenedor del overlay (inicia hidden).</td></tr><tr><td><code>data-ro-overlay-open</code></td><td>En el disparador: id del overlay a abrir.</td></tr><tr><td><code>data-ro-overlay-close</code></td><td>En un control: lo cierra.</td></tr><tr><td><code>data-ro-overlay-backdrop</code></td><td>Zona de fondo que cierra al hacer clic (opcional).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-2xl</code> <code>--ro-shadow-md</code> <code>--ro-z-modal</code> <code>--ro-white</code></p>
+<h3>Primitiva</h3><pre class="dx-ref-code"><code>import { createOverlayController } from &quot;@robertcastro/roui/primitives/overlay-controller&quot;;</code></pre>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Cicla el foco dentro del diálogo (trap).</td></tr><tr><td><kbd>Escape</kbd></td><td>Cierra el diálogo y restaura el foco al disparador.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Activa el control enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/dialog-drawer.html">dialog-drawer</a></p><ul class="dx-ref-list"><li>Al abrir, el foco entra al diálogo; al cerrar, vuelve al disparador.</li><li>El fondo queda inerte: no se puede tabular fuera del diálogo.</li><li>Se bloquea el scroll del cuerpo mientras está abierto.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Diálogo de confirmación (interactivo)</div>
+  <div class="dx-demo"><button class="ro-btn ro-btn--dark" data-ro-overlay-open="ref-modal" aria-haspopup="dialog" aria-controls="ref-modal" aria-expanded="false">Abrir modal</button>
+<div class="ro-overlay" id="ref-modal" data-ro-overlay-root hidden>
+  <div class="ro-modal" role="dialog" aria-modal="true" aria-labelledby="ref-modal-t" tabindex="-1">
+    <div class="ro-modal__header">
+      <h3 class="ro-modal__title" id="ref-modal-t">Confirmar acción</h3>
+      <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-x"></use></svg></button>
+    </div>
+    <div class="ro-modal__body">¿Seguro que quieres continuar?</div>
+    <div class="ro-modal__footer">
+      <button class="ro-btn ro-btn--soft" data-ro-overlay-close>Cancelar</button>
+      <button class="ro-btn ro-btn--primary" data-ro-overlay-close>Confirmar</button>
+    </div>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--dark&quot; data-ro-overlay-open=&quot;ref-modal&quot; aria-haspopup=&quot;dialog&quot; aria-controls=&quot;ref-modal&quot; aria-expanded=&quot;false&quot;&gt;Abrir modal&lt;/button&gt;
+&lt;div class=&quot;ro-overlay&quot; id=&quot;ref-modal&quot; data-ro-overlay-root hidden&gt;
+  &lt;div class=&quot;ro-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;ref-modal-t&quot; tabindex=&quot;-1&quot;&gt;
+    &lt;div class=&quot;ro-modal__header&quot;&gt;
+      &lt;h3 class=&quot;ro-modal__title&quot; id=&quot;ref-modal-t&quot;&gt;Confirmar acción&lt;/h3&gt;
+      &lt;button class=&quot;ro-btn-icon&quot; data-ro-overlay-close aria-label=&quot;Cerrar&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-modal__body&quot;&gt;¿Seguro que quieres continuar?&lt;/div&gt;
+    &lt;div class=&quot;ro-modal__footer&quot;&gt;
+      &lt;button class=&quot;ro-btn ro-btn--soft&quot; data-ro-overlay-close&gt;Cancelar&lt;/button&gt;
+      &lt;button class=&quot;ro-btn ro-btn--primary&quot; data-ro-overlay-close&gt;Confirmar&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da un nombre accesible al diálogo con aria-labelledby.</li><li>Devuelve el foco al disparador al cerrar.</li><li>Ofrece siempre una salida clara (Escape y botón de cierre).</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No abras un modal sin motivo que interrumpa la tarea.</li><li>No dejes foco alcanzable detrás del diálogo.</li><li>No anides un modal dentro de otro.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="drawer.html">drawer</a> · <a href="popover.html">popover</a> · <a href="toast.html">toast</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

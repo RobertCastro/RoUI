@@ -180,9 +180,7 @@ function page(m) {
       ${related ? `<section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related">${related}</p></section>` : ""}
     </main>
   </div>
-  <script>
-    fetch(new URL("../../dist/icons.svg", document.baseURI).href).then(function (r) { return r.ok ? r.text() : ""; }).then(function (svg) { if (!svg) return; var d = document.createElement("div"); d.style.display = "none"; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
-  </script>
+  <script type="module" src="../assets/docs.js"></script>
 </body>
 </html>
 `;
