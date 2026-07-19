@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- ecdf672: Primitivas accesibles nuevas como entrypoints públicos: `tabs-controller`,
+  `combobox-controller`, `grid-controller` y `toast-controller`, con contratos ARIA,
+  teclado y foco. Documentación como producto (referencia por componente, contratos
+  de accesibilidad, guía de migración, madurez, búsqueda y changelog) y batería de
+  gates automatizados (axe, navegadores, regresión visual). Se publica `CHANGELOG.md`
+  en el paquete.
+
 Versionado [SemVer](https://semver.org/lang/es/). Los cambios sin publicar se
 gestionan con [Changesets](https://github.com/changesets/changesets) (viven en
 `.changeset/` y se consolidan aquí al preparar una versión). Releases y etiquetas
