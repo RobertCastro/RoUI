@@ -1,0 +1,61 @@
+{
+  "name": "tooltip",
+  "title": "Tooltip",
+  "group": "Overlays",
+  "maturity": "experimental",
+  "summary": "Etiqueta contextual breve que aparece al enfocar o pasar el puntero sobre su disparador.",
+  "whenToUse": [
+    "Aclarar la función de un control icónico.",
+    "Dar una pista corta sin ocupar espacio permanente."
+  ],
+  "whenNotToUse": [
+    "Para contenido interactivo o extenso: usa Popover.",
+    "Como único medio de dar información esencial: no es accesible en táctil."
+  ],
+  "anatomy": {
+    "html": "<span class=\"ro-tooltip-trigger\">\n  <button class=\"ro-btn-icon\" aria-label=\"Ajustes\" aria-describedby=\"tt-ajustes\">\n    <svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-settings\"></use></svg>\n  </button>\n  <span class=\"ro-tooltip\" id=\"tt-ajustes\" role=\"tooltip\">Ajustes</span>\n</span>",
+    "notes": [
+      "El disparador referencia el tooltip con aria-describedby.",
+      "El tooltip lleva role=tooltip; se muestra en :hover y :focus-within (sin JS).",
+      "El disparador debe ser enfocable para alcanzarlo por teclado."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-tooltip-trigger", "desc": "Envoltorio posicionador del disparador." },
+      { "name": "ro-tooltip", "desc": "Burbuja de la etiqueta (role=tooltip)." }
+    ],
+    "data": [],
+    "tokens": ["--ro-ink", "--ro-on-dark", "--ro-radius-lg", "--ro-shadow-md", "--ro-z-overlay"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/menu-popover-tooltip.md",
+    "keyboard": [
+      ["Tab", "Enfoca el disparador y muestra el tooltip."],
+      ["Escape", "Oculta el tooltip (recomendado) sin mover el foco."]
+    ],
+    "notes": [
+      "Se asocia con aria-describedby, no reemplaza el nombre accesible del control.",
+      "No pongas foco ni interacción dentro del tooltip.",
+      "En táctil el tooltip no aparece: no lo uses para información imprescindible."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Botón icónico con tooltip",
+      "html": "<span class=\"ro-tooltip-trigger\">\n  <button class=\"ro-btn-icon ro-btn-icon--outline\" aria-label=\"Ajustes\" aria-describedby=\"tt-demo\">\n    <svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-settings\"></use></svg>\n  </button>\n  <span class=\"ro-tooltip\" id=\"tt-demo\" role=\"tooltip\">Ajustes</span>\n</span>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Asócialo con aria-describedby a un control enfocable.",
+      "Mantén el texto en una línea corta."
+    ],
+    "dont": [
+      "No metas enlaces ni botones dentro del tooltip.",
+      "No lo uses como único canal de información esencial."
+    ]
+  },
+  "related": ["popover", "menu", "button"]
+}

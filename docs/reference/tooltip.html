@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tooltip — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Overlays</p>
+      <div class="dx-ref-title"><h1>Tooltip</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Etiqueta contextual breve que aparece al enfocar o pasar el puntero sobre su disparador.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Aclarar la función de un control icónico.</li><li>Dar una pista corta sin ocupar espacio permanente.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para contenido interactivo o extenso: usa Popover.</li><li>Como único medio de dar información esencial: no es accesible en táctil.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-tooltip-trigger&quot;&gt;
+  &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Ajustes&quot; aria-describedby=&quot;tt-ajustes&quot;&gt;
+    &lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-settings&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;span class=&quot;ro-tooltip&quot; id=&quot;tt-ajustes&quot; role=&quot;tooltip&quot;&gt;Ajustes&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El disparador referencia el tooltip con aria-describedby.</li><li>El tooltip lleva role=tooltip; se muestra en :hover y :focus-within (sin JS).</li><li>El disparador debe ser enfocable para alcanzarlo por teclado.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-tooltip-trigger</code></td><td>Envoltorio posicionador del disparador.</td></tr><tr><td><code>.ro-tooltip</code></td><td>Burbuja de la etiqueta (role=tooltip).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink</code> <code>--ro-on-dark</code> <code>--ro-radius-lg</code> <code>--ro-shadow-md</code> <code>--ro-z-overlay</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab</kbd></td><td>Enfoca el disparador y muestra el tooltip.</td></tr><tr><td><kbd>Escape</kbd></td><td>Oculta el tooltip (recomendado) sin mover el foco.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/menu-popover-tooltip.html">menu-popover-tooltip</a></p><ul class="dx-ref-list"><li>Se asocia con aria-describedby, no reemplaza el nombre accesible del control.</li><li>No pongas foco ni interacción dentro del tooltip.</li><li>En táctil el tooltip no aparece: no lo uses para información imprescindible.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Botón icónico con tooltip</div>
+  <div class="dx-demo"><span class="ro-tooltip-trigger">
+  <button class="ro-btn-icon ro-btn-icon--outline" aria-label="Ajustes" aria-describedby="tt-demo">
+    <svg class="ro-icon" aria-hidden="true"><use href="#ro-i-settings"></use></svg>
+  </button>
+  <span class="ro-tooltip" id="tt-demo" role="tooltip">Ajustes</span>
+</span></div>
+  <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-tooltip-trigger&quot;&gt;
+  &lt;button class=&quot;ro-btn-icon ro-btn-icon--outline&quot; aria-label=&quot;Ajustes&quot; aria-describedby=&quot;tt-demo&quot;&gt;
+    &lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-settings&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+  &lt;span class=&quot;ro-tooltip&quot; id=&quot;tt-demo&quot; role=&quot;tooltip&quot;&gt;Ajustes&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Asócialo con aria-describedby a un control enfocable.</li><li>Mantén el texto en una línea corta.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No metas enlaces ni botones dentro del tooltip.</li><li>No lo uses como único canal de información esencial.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="popover.html">popover</a> · <a href="menu.html">menu</a> · <a href="button.html">button</a></p></section>
+    </main>
+  </div>
+  <script>
+    fetch(new URL("../../dist/icons.svg", document.baseURI).href).then(function (r) { return r.ok ? r.text() : ""; }).then(function (svg) { if (!svg) return; var d = document.createElement("div"); d.style.display = "none"; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
+  </script>
+</body>
+</html>

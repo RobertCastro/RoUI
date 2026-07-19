@@ -31,11 +31,12 @@ const PAGES = [
   "docs/templates/module-3col.html",
 ];
 
-// Paginas de referencia generadas (F5-001): se cubren todas automaticamente.
-const refDir = resolve(root, "docs/reference");
-if (existsSync(refDir)) {
-  for (const file of readdirSync(refDir).filter((f) => f.endsWith(".html"))) {
-    PAGES.push(`docs/reference/${file}`);
+// Paginas generadas (F5-001/002): referencia y contratos de accesibilidad.
+for (const dir of ["docs/reference", "docs/accessibility"]) {
+  const abs = resolve(root, dir);
+  if (!existsSync(abs)) continue;
+  for (const file of readdirSync(abs).filter((f) => f.endsWith(".html"))) {
+    PAGES.push(`${dir}/${file}`);
   }
 }
 

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accesibilidad — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Accesibilidad</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Menu, Popover y Tooltip accesibles</h1>
+<p>RoUI separa tres patrones que antes compartían un toggle visual. Cada uno tiene
+semántica y teclado propios para no anunciar contenido ni comportamiento
+equivocado a tecnologías de asistencia.</p>
+<h2>Menu</h2>
+<p>Use Menu solo para una lista de acciones. El disparador es un <code>button</code> nativo
+con <code>aria-haspopup=&quot;menu&quot;</code>, <code>aria-controls</code> y <code>aria-expanded=&quot;false&quot;</code>. El
+panel inicia con <code>hidden</code>, usa <code>role=&quot;menu&quot;</code> y cada acción usa <code>role=&quot;menuitem&quot;</code>.</p>
+<pre><code class="language-html">&lt;div class=&quot;ro-dropdown&quot; data-ro-disclosure-root&gt;
+  &lt;button data-ro-disclosure-trigger aria-haspopup=&quot;menu&quot;
+    aria-controls=&quot;account-menu&quot; aria-expanded=&quot;false&quot;&gt;Cuenta&lt;/button&gt;
+  &lt;div class=&quot;ro-menu&quot; id=&quot;account-menu&quot; data-ro-disclosure-panel
+    role=&quot;menu&quot; aria-label=&quot;Cuenta&quot; hidden&gt;
+    &lt;a class=&quot;ro-menu__item&quot; role=&quot;menuitem&quot; href=&quot;/profile&quot;&gt;Mi perfil&lt;/a&gt;
+    &lt;button class=&quot;ro-menu__item&quot; role=&quot;menuitem&quot;&gt;Cerrar sesión&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p><code>ArrowDown</code> y <code>ArrowUp</code> desde el disparador abren y enfocan el primer o último
+item. Dentro del panel, Arrow, <code>Home</code> y <code>End</code> recorren las acciones; <code>Escape</code>
+cierra y devuelve el foco al disparador. <code>Tab</code> cierra sin interferir con el
+orden natural de foco. No use este patrón para navegación persistente ni para
+formularios complejos.</p>
+<h2>Popover</h2>
+<p>Popover sirve para contenido contextual no modal. El disparador tiene
+<code>aria-expanded</code> y <code>aria-controls</code>; use <code>aria-haspopup=&quot;dialog&quot;</code> y
+<code>role=&quot;dialog&quot;</code> si el panel ofrece interacción, con un nombre accesible. Para
+contenido estrictamente descriptivo, omita <code>role=&quot;dialog&quot;</code> y mantenga el
+contenido conciso. Cierra con <code>Escape</code> o una interacción fuera del patrón, sin
+trap de foco ni bloqueo de scroll.</p>
+<pre><code class="language-js">import { createDisclosureController } from &quot;@robertcastro/roui/primitives/disclosure-controller&quot;;
+
+createDisclosureController(document.querySelector(&quot;[data-ro-disclosure-root]&quot;));
+</code></pre>
+<p>El mismo controlador reconoce Menu por el <code>role</code> del panel y aplica solamente
+la navegación adicional que ese patrón requiere.</p>
+<h2>Tooltip</h2>
+<p>Tooltip comunica una descripción breve, nunca una acción ni contenido que el
+usuario deba recorrer. El disparador mantiene el foco; el mensaje es un elemento
+real con <code>role=&quot;tooltip&quot;</code> asociado por <code>aria-describedby</code>.</p>
+<pre><code class="language-html">&lt;span class=&quot;ro-tooltip-trigger&quot;&gt;
+  &lt;button aria-label=&quot;Filtrar&quot; aria-describedby=&quot;filter-tip&quot;&gt;…&lt;/button&gt;
+  &lt;span class=&quot;ro-tooltip&quot; id=&quot;filter-tip&quot; role=&quot;tooltip&quot;&gt;Filtrar&lt;/span&gt;
+&lt;/span&gt;
+</code></pre>
+<p>El estilo muestra el mensaje con hover o <code>:focus-within</code>, respeta reduced motion
+y no requiere JavaScript. Si el contenido necesita enlaces, botones, foco propio
+o permanecer abierto, use Popover o Dialog, no Tooltip.</p>
+<h2>Límites y verificación manual</h2>
+<ul>
+<li>No hay submenús ni posicionamiento por colisiones en este contrato.</li>
+<li>Compruebe con teclado: trigger → Arrow → items → Home/End → Escape; y que
+un clic fuera cierre sin desplazar el foco inesperadamente.</li>
+<li>Verifique que cada tooltip se anuncia como descripción del control y que no
+duplica su nombre accesible.</li>
+<li>Axe, matriz de navegadores y regresión visual se incorporan en Fase 4.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "name": "toolbar",
+  "title": "Toolbar",
+  "group": "Acciones",
+  "maturity": "experimental",
+  "summary": "Barra que agrupa acciones y controles de una vista, con separadores y grupos.",
+  "whenToUse": [
+    "Reunir las acciones de una tabla, editor o panel en una sola barra.",
+    "Separar visualmente grupos de controles relacionados."
+  ],
+  "whenNotToUse": [
+    "Para la navegación principal del sitio: usa un landmark nav.",
+    "Para una sola acción aislada: un botón suelto basta."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-toolbar\" role=\"toolbar\" aria-label=\"Acciones de la tabla\">\n  <span class=\"ro-toolbar__title\">12 seleccionados</span>\n  <div class=\"ro-toolbar__group\">\n    <button class=\"ro-btn ro-btn--soft ro-btn--sm\">Exportar</button>\n    <span class=\"ro-toolbar__sep\"></span>\n    <button class=\"ro-btn ro-btn--soft ro-btn--sm\">Eliminar</button>\n  </div>\n</div>",
+    "notes": [
+      "El contenedor lleva role=toolbar y un nombre accesible (aria-label).",
+      "ro-toolbar__sep es decorativo: no debe recibir foco ni anunciarse.",
+      "Los controles internos siguen siendo elementos nativos enfocables."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-toolbar", "desc": "Barra contenedora." },
+      { "name": "ro-toolbar--flush", "desc": "Sin fondo ni borde (embebida)." },
+      { "name": "ro-toolbar__group", "desc": "Agrupa controles relacionados." },
+      { "name": "ro-toolbar__sep", "desc": "Separador visual entre grupos." },
+      { "name": "ro-toolbar__title", "desc": "Rótulo o contexto de la barra." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-xl", "--ro-ink-10", "--ro-space-2", "--ro-white"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Recorre los controles de la barra."],
+      ["Enter / Espacio", "Activa el control enfocado."]
+    ],
+    "notes": [
+      "role=toolbar agrupa semánticamente; requiere aria-label.",
+      "El patrón APG con flechas puede añadirse cuando la barra sea densa; por ahora usa foco por Tab."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Barra con grupos y separador",
+      "html": "<div class=\"ro-toolbar\" role=\"toolbar\" aria-label=\"Acciones\">\n  <span class=\"ro-toolbar__title\">12 seleccionados</span>\n  <div class=\"ro-toolbar__group\">\n    <button class=\"ro-btn ro-btn--soft ro-btn--sm\">Exportar</button>\n    <span class=\"ro-toolbar__sep\"></span>\n    <button class=\"ro-btn ro-btn--soft ro-btn--sm\">Eliminar</button>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da a la barra un nombre accesible con aria-label.",
+      "Agrupa acciones afines y sepáralas con ro-toolbar__sep."
+    ],
+    "dont": [
+      "No metas la navegación del sitio en una toolbar.",
+      "No hagas enfocable el separador."
+    ]
+  },
+  "related": ["button", "button-group", "menu"]
+}

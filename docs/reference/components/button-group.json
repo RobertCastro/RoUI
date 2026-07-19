@@ -1,0 +1,61 @@
+{
+  "name": "button-group",
+  "title": "Button group",
+  "group": "Acciones",
+  "maturity": "experimental",
+  "summary": "Agrupa acciones relacionadas en un bloque continuo, o combina una acción con su menú (split).",
+  "whenToUse": [
+    "Ofrecer varias acciones relacionadas del mismo nivel juntas.",
+    "Combinar una acción principal con opciones secundarias (split button)."
+  ],
+  "whenNotToUse": [
+    "Para elegir una opción de un conjunto excluyente: usa Segmented.",
+    "Para acciones no relacionadas: sepáralas en la Toolbar."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-btn-group\">\n  <button class=\"ro-btn ro-btn--soft\">Editar</button>\n  <button class=\"ro-btn ro-btn--soft\">Duplicar</button>\n  <button class=\"ro-btn ro-btn--soft\">Archivar</button>\n</div>",
+    "notes": [
+      "Cada acción sigue siendo un <button> independiente y enfocable.",
+      "El split (ro-split) une una acción con un toggle que abre su menú.",
+      "Si el grupo representa navegación, envuélvelo en un <nav> con nombre."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-btn-group", "desc": "Contenedor que une los botones en un bloque." },
+      { "name": "ro-split", "desc": "Botón dividido: acción + toggle." },
+      { "name": "ro-split__toggle", "desc": "Disparador del menú del split." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-full", "--ro-ink-10"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Recorre los botones del grupo."],
+      ["Enter / Espacio", "Activa el botón enfocado."]
+    ],
+    "notes": [
+      "Son botones nativos: no se necesita role adicional.",
+      "El toggle del split usa aria-haspopup y aria-expanded sobre su menú."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Grupo continuo",
+      "html": "<div class=\"ro-btn-group\">\n  <button class=\"ro-btn ro-btn--soft\">Editar</button>\n  <button class=\"ro-btn ro-btn--soft\">Duplicar</button>\n  <button class=\"ro-btn ro-btn--soft\">Archivar</button>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Agrupa solo acciones del mismo contexto.",
+      "Mantén etiquetas cortas y paralelas."
+    ],
+    "dont": [
+      "No mezcles acciones destructivas y neutras sin distinción.",
+      "No uses el grupo para selección excluyente."
+    ]
+  },
+  "related": ["button", "toolbar", "segmented", "menu"]
+}
