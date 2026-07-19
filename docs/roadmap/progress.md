@@ -1,6 +1,6 @@
 # Estado del programa
 
-Ultima actualizacion: 2026-07-18
+Ultima actualizacion: 2026-07-19
 
 ## Fases
 
@@ -11,8 +11,8 @@ Ultima actualizacion: 2026-07-18
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
 | 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
 | 4. Pruebas integrales | done | 100% | Cerrada y aprobada (phase-4-audit); PR #19 en main |
-| 5. Documentacion | in-progress | 75% | F5-001..005 en review; pendiente auditoria de cierre |
-| 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
+| 5. Documentacion | done | 100% | Cerrada y aprobada (phase-5-audit) |
+| 6. Releases y gobernanza | in-progress | 0% | Fase activa; changesets, provenance, CodeQL, gobernanza |
 | 7. Adopcion | backlog | 0% | Primera release candidata |
 
 ## Entregables de Fase 0

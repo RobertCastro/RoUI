@@ -1,6 +1,6 @@
 # F5-005: Búsqueda y navegación por versiones
 
-- Estado: review
+- Estado: done
 - Fase: 5
 - Dependencias: F5-001..004
 - ADR relacionados: ADR-0005

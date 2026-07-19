@@ -1,6 +1,6 @@
 # F5-003: Ejemplos verificables y demos interactivas
 
-- Estado: review
+- Estado: done
 - Fase: 5
 - Dependencias: F5-001, F5-002
 - ADR relacionados: ADR-0005
