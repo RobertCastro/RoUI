@@ -152,3 +152,15 @@ kbd { font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 12px; ba
 .dx-ref-maturity-legend > div { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 14px; }
 .dx-ref-maturity-legend span { color: var(--ro-ink-70); font-size: 14px; }
 .dx-ref-contract table { width: 100%; border-collapse: collapse; }
+
+/* Buscador y versión (referencia) */
+.dx-ref-search { width: 100%; max-width: 480px; margin: 10px 0; padding: 10px 16px;
+  border: 1px solid var(--ro-ink-10); border-radius: var(--ro-radius-full);
+  font-family: inherit; font-size: 14px; color: var(--ro-ink); background: var(--ro-white); }
+.dx-ref-search::placeholder { color: var(--ro-ink-40); }
+.dx-ref-search:focus-visible { outline: none; border-color: var(--ro-secondary); box-shadow: var(--ro-focus-ring); }
+.dx-ref-version { flex: none; font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 12px;
+  padding: 4px 10px; border-radius: var(--ro-radius-full); background: var(--ro-ink-06);
+  color: var(--ro-ink-70); text-decoration: none; }
+.dx-ref-version:hover { background: var(--ro-ink-10); color: var(--ro-ink); }
+.dx-ref-card[hidden] { display: none; }

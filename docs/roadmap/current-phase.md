@@ -32,7 +32,7 @@ contratos ARIA, teclado y foco.
 2. F5-002: contratos de accesibilidad y teclado enlazados desde cada componente. (review)
 3. F5-003: ejemplos verificables (copiar/pegar) por componente. (review)
 4. F5-004: madurez, do/don't y guias de migracion. (review)
-5. F5-005: busqueda y navegacion por versiones.
+5. F5-005: busqueda y navegacion por versiones. (review)
 
 ## Condiciones de salida
 

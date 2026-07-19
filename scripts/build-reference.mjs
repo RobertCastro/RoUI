@@ -198,12 +198,12 @@ function page(m) {
 `;
 }
 
-function indexPage(byName, contractFiles = []) {
+function indexPage(byName, contractFiles = [], version = "") {
   const contracts = contractFiles.length
-    ? `<section class="dx-section" aria-label="Contratos de accesibilidad"><h2>Contratos de accesibilidad</h2><div class="dx-ref-grid">${
+    ? `<section class="dx-section" data-ref-group aria-label="Contratos de accesibilidad"><h2>Contratos de accesibilidad</h2><div class="dx-ref-grid">${
         contractFiles.map((f) => {
           const name = basename(f, ".md");
-          return `<a class="dx-ref-card" href="../accessibility/${esc(name)}.html"><span class="dx-ref-card__name">${esc(name.replace(/-/g, " "))}</span></a>`;
+          return `<a class="dx-ref-card" data-search="${esc(name.replace(/-/g, " "))}" href="../accessibility/${esc(name)}.html"><span class="dx-ref-card__name">${esc(name.replace(/-/g, " "))}</span></a>`;
         }).join("")
       }</div></section>`
     : "";
@@ -214,11 +214,13 @@ function indexPage(byName, contractFiles = []) {
       const title = m ? m.title : c;
       const mat = m ? badge(m.maturity) : "";
       const inner = `<span class="dx-ref-card__name">${esc(title)}</span>${mat}${status}`;
+      const hay = [c, title, name, m ? m.summary : "", m ? (m.api?.classes || []).map((k) => k.name).join(" ") : ""].join(" ").toLowerCase();
+      const attr = ` data-search="${esc(hay)}"`;
       return m
-        ? `<a class="dx-ref-card" href="${esc(c)}.html">${inner}</a>`
-        : `<div class="dx-ref-card dx-ref-card--pending">${inner}</div>`;
+        ? `<a class="dx-ref-card"${attr} href="${esc(c)}.html">${inner}</a>`
+        : `<div class="dx-ref-card dx-ref-card--pending"${attr}>${inner}</div>`;
     }).join("");
-    return `<section class="dx-section" aria-label="${esc(name)}"><h2>${esc(name)}</h2><div class="dx-ref-grid">${cards}</div></section>`;
+    return `<section class="dx-section" data-ref-group aria-label="${esc(name)}"><h2>${esc(name)}</h2><div class="dx-ref-grid">${cards}</div></section>`;
   }).join("\n");
   const total = GROUPS.reduce((a, [, c]) => a + c.length, 0);
   const done = byName.size;
@@ -227,9 +229,11 @@ function indexPage(byName, contractFiles = []) {
   <div class="dx">
     ${nav("reference", "../")}
     <main class="dx-main">
-      <h1>Referencia de componentes</h1>
+      <div class="dx-ref-title"><h1>Referencia de componentes</h1>${version ? `<a class="dx-ref-version" href="changelog.html">v${esc(version)}</a>` : ""}</div>
       <p class="dx-lead">Contrato, API, teclado y ejemplos por componente. ${done} de ${total} documentados.</p>
-      <p class="dx-ref-note"><a href="migration.html">Guía de migración</a> · cambios incompatibles hacia los contratos accesibles.</p>
+      <p class="dx-ref-note"><a href="migration.html">Guía de migración</a> · <a href="changelog.html">Changelog</a> · cambios incompatibles hacia los contratos accesibles.</p>
+      <input type="search" class="dx-ref-search" id="ref-search" aria-label="Buscar componente" placeholder="Buscar componente, clase o descripción…" autocomplete="off">
+      <p class="dx-ref-note dx-ref-search-empty" hidden>Sin resultados.</p>
       <section class="dx-section" id="madurez" aria-label="Niveles de madurez">
         <h2>Niveles de madurez</h2>
         <div class="dx-ref-maturity-legend">${
@@ -241,6 +245,27 @@ function indexPage(byName, contractFiles = []) {
       ${contracts}
     </main>
   </div>
+  <script>
+    (function () {
+      var input = document.getElementById("ref-search");
+      var empty = document.querySelector(".dx-ref-search-empty");
+      var cards = [].slice.call(document.querySelectorAll(".dx-ref-card"));
+      var groups = [].slice.call(document.querySelectorAll("[data-ref-group]"));
+      input.addEventListener("input", function () {
+        var q = input.value.trim().toLowerCase();
+        var total = 0;
+        cards.forEach(function (card) {
+          var hit = !q || (card.getAttribute("data-search") || "").indexOf(q) !== -1;
+          card.hidden = !hit;
+          if (hit) total += 1;
+        });
+        groups.forEach(function (g) {
+          g.hidden = ![].some.call(g.querySelectorAll(".dx-ref-card"), function (c) { return !c.hidden; });
+        });
+        if (empty) empty.hidden = total !== 0;
+      });
+    })();
+  </script>
 </body>
 </html>
 `;
@@ -279,15 +304,21 @@ const contractFiles = existsSync(a11yDir)
   ? readdirSync(a11yDir).filter((f) => f.endsWith(".md")).sort()
   : [];
 
+const version = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8")).version || "";
+
 const outputs = new Map();
 for (const m of manifests) outputs.set(resolve(refDir, `${m.name}.html`), page(m));
-outputs.set(resolve(refDir, "index.html"), indexPage(byName, contractFiles));
+outputs.set(resolve(refDir, "index.html"), indexPage(byName, contractFiles, version));
 for (const f of contractFiles) {
   outputs.set(resolve(a11yDir, f.replace(/\.md$/, ".html")), prosePage("Accesibilidad", "Accesibilidad", readFileSync(resolve(a11yDir, f), "utf8")));
 }
 const migrationMd = resolve(refDir, "migration.md");
 if (existsSync(migrationMd)) {
   outputs.set(resolve(refDir, "migration.html"), prosePage("Guía", "Migración", readFileSync(migrationMd, "utf8")));
+}
+const changelogMd = resolve(root, "CHANGELOG.md");
+if (existsSync(changelogMd)) {
+  outputs.set(resolve(refDir, "changelog.html"), prosePage("Versiones", "Changelog", readFileSync(changelogMd, "utf8")));
 }
 
 let drift = 0;

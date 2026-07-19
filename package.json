@@ -50,7 +50,8 @@
     "src",
     "!src/primitives",
     "!src/icons/icons.json",
-    "tokens"
+    "tokens",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
