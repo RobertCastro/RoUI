@@ -1,6 +1,6 @@
 # F6-002: Publicación con provenance y canary
 
-- Estado: review
+- Estado: done
 - Fase: 6
 - Dependencias: F6-001
 - ADR relacionados: ADR-0005

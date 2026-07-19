@@ -12,7 +12,7 @@ Ultima actualizacion: 2026-07-19
 | 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
 | 4. Pruebas integrales | done | 100% | Cerrada y aprobada (phase-4-audit); PR #19 en main |
 | 5. Documentacion | done | 100% | Cerrada y aprobada (phase-5-audit) |
-| 6. Releases y gobernanza | in-progress | 40% | F6-001/002 en review; sigue F6-003: SBOM y CodeQL |
+| 6. Releases y gobernanza | in-progress | 60% | F6-001/002 done (1.1.0 publicado); F6-003 en review |
 | 7. Adopcion | backlog | 0% | Primera release candidata |
 
 ## Entregables de Fase 0

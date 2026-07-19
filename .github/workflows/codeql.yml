@@ -1,0 +1,27 @@
+name: CodeQL
+
+# Analisis estatico de seguridad del codigo JavaScript (primitivas, scripts y
+# docs). Corre en cada push/PR a main y semanalmente.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+      - name: Analyze
+        uses: github/codeql-action/analyze@v3

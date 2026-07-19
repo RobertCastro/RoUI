@@ -1,0 +1,42 @@
+name: Supply chain
+
+# Revision de dependencias en cada PR y generacion de SBOM (CycloneDX) en main.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Review de dependencias
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+
+  sbom:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Generar SBOM (produccion)
+        run: npm run sbom
+      - name: Subir SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.json
+          retention-days: 30

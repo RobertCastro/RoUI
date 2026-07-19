@@ -31,7 +31,7 @@ axe, navegadores, visual, presupuesto).
 
 1. F6-001: versionado y changelog automatizados (Changesets). (review)
 2. F6-002: publicación con provenance y prerelease/canary. (review)
-3. F6-003: seguridad de cadena (SBOM, CodeQL, auditoría).
+3. F6-003: seguridad de cadena (SBOM, CodeQL, auditoría). (review)
 4. F6-004: gobernanza del repositorio (CODEOWNERS, protecciones de rama).
 5. F6-005: política de soporte, deprecaciones y vulnerabilidades.
 

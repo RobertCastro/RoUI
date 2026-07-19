@@ -1,6 +1,6 @@
 # F6-001: Versionado y changelog automatizados (Changesets)
 
-- Estado: review
+- Estado: done
 - Fase: 6
 - Dependencias: F5-005 (CHANGELOG)
 - ADR relacionados: ADR-0005
