@@ -1,6 +1,6 @@
 # F6-004: Gobernanza del repositorio
 
-- Estado: review
+- Estado: done
 - Fase: 6
 - Dependencias: F6-001..003
 - ADR relacionados: ADR-0005

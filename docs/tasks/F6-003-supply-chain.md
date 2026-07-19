@@ -1,6 +1,6 @@
 # F6-003: Seguridad de cadena (SBOM, CodeQL y auditoría)
 
-- Estado: review
+- Estado: done
 - Fase: 6
 - Dependencias: F6-001
 - ADR relacionados: ADR-0005
