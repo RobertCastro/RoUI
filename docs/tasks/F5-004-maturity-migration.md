@@ -1,6 +1,6 @@
 # F5-004: Madurez, do/don't y guía de migración
 
-- Estado: review
+- Estado: done
 - Fase: 5
 - Dependencias: F5-001, F5-002, F5-003
 - ADR relacionados: ADR-0005

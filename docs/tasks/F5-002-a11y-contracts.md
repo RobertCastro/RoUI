@@ -1,6 +1,6 @@
 # F5-002: Contratos de accesibilidad enlazados y primer lote de manifiestos
 
-- Estado: review
+- Estado: done
 - Fase: 5
 - Dependencias: F5-001
 - ADR relacionados: ADR-0005

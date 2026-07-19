@@ -1,47 +1,50 @@
-# Fase activa: 5 — Documentacion como producto
+# Fase activa: 6 — Releases, seguridad y gobernanza
 
 ## Objetivo
 
-Convertir la referencia del sistema en un producto usable: contrato por
-componente, ejemplos verificables y guias que permitan adoptar RoUI sin leer el
-codigo fuente.
+Convertir cada cambio en una release trazable, segura y de evolución predecible:
+versionado formal, publicación verificable y controles de seguridad y gobernanza.
 
 ## Estado de entrada
 
-Fase 4 cerrada y aprobada (ver `phase-4-audit.md`, PR #19 en `main`): gates de
-accesibilidad (axe), comportamiento en navegador (Playwright, 96 pruebas en tres
-motores), regresion visual y matriz de temas/RTL. Seis primitivas accesibles con
-contratos ARIA, teclado y foco.
+Fase 5 cerrada y aprobada (ver `phase-5-audit.md`): documentación como producto
+con referencia por componente, contratos de accesibilidad, guía de migración,
+madurez, ejemplos verificables e interactivos, búsqueda y changelog. Gates de
+Fases 1-4 estables (tokens, contraste, literales, lint, baseline, primitivas,
+axe, navegadores, visual, presupuesto).
 
 ## Trabajo permitido
 
-- Referencia de API por componente y primitiva (props, data-attributes, eventos).
-- Documentar teclado, foco, roles y anuncios por patron.
-- Do/don't, estados y madurez por componente.
-- Ejemplos verificables por stack priorizado y guias de migracion.
-- Busqueda y navegacion por versiones en el sitio de docs.
+- Versionado y notas de release automatizadas (Changesets o equivalente).
+- Publicación verificable: provenance de npm, canary/prerelease.
+- Seguridad de cadena: SBOM, análisis estático (CodeQL), auditoría de dependencias.
+- Gobernanza del repositorio: CODEOWNERS, protecciones de rama, política de
+  soporte, deprecaciones y gestión de vulnerabilidades.
 
 ## Fuera de alcance
 
-- Nuevas primitivas o componentes sin necesidad documental.
-- Adopcion multi-proyecto (Fase 7) y releases formales (Fase 6).
+- Documentar componentes nuevos sin necesidad de release (continúa como trabajo
+  de Fase 5 en backlog).
+- Adopción multi-proyecto (Fase 7).
 
 ## Orden inicial
 
-1. F5-001: estructura de la referencia y plantilla de pagina por componente. (review)
-2. F5-002: contratos de accesibilidad y teclado enlazados desde cada componente. (review)
-3. F5-003: ejemplos verificables (copiar/pegar) por componente. (review)
-4. F5-004: madurez, do/don't y guias de migracion. (review)
-5. F5-005: busqueda y navegacion por versiones. (review)
+1. F6-001: versionado y changelog automatizados (Changesets).
+2. F6-002: publicación con provenance y prerelease/canary.
+3. F6-003: seguridad de cadena (SBOM, CodeQL, auditoría).
+4. F6-004: gobernanza del repositorio (CODEOWNERS, protecciones de rama).
+5. F6-005: política de soporte, deprecaciones y vulnerabilidades.
 
 ## Condiciones de salida
 
-- Cada componente estable tiene referencia de API, teclado y ejemplos.
-- Los ejemplos se verifican automaticamente (no divergen del codigo).
-- La documentacion enlaza los contratos de accesibilidad existentes.
-- Auditoria humana aprueba el cierre de Fase 5.
+- Cada release es trazable (versión, notas, artefactos verificables).
+- Los controles de seguridad y gobernanza corren en CI de forma obligatoria.
+- Existe una política pública de soporte, deprecación y vulnerabilidades.
+- Auditoría humana aprueba el cierre de Fase 6.
 
 ## Tareas de seguimiento heredadas
 
-- Tematizacion de las demos (usar `--ro-text` en vez de `--ro-ink` crudo).
-- Responsividad de plantillas: RTL/reflow a 320 px (dashboard, `<pre>`).
+- Llenado de los 40 manifiestos de referencia restantes (Fase 5, continuo).
+- Tematización de las demos (`--ro-text` en vez de `--ro-ink` crudo).
+- Responsividad de plantillas: RTL/reflow a 320 px.
+- Documentación multi-versión (depende del pipeline de release de esta fase).

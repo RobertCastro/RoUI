@@ -1,6 +1,6 @@
 # F5-001: Estructura de referencia y plantilla por componente
 
-- Estado: review
+- Estado: done
 - Fase: 5
 - Dependencias: F4 (gates), inventario de componentes
 - ADR relacionados: ADR-0005
