@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es" data-ro-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Starter · RoUI</title>
+  <!-- RoUI desde CDN, sin build. Fija la version para reproducibilidad. -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/roui.min.css">
+  <style>
+    body { margin: 0; background: var(--ro-bg); color: var(--ro-text);
+      font-family: var(--ro-font-sans); }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 24px; display: grid; gap: 20px; }
+  </style>
+</head>
+<body class="ro-root">
+  <main>
+    <h1 class="ro-display">RoUI · Starter</h1>
+    <p class="ro-body">Página mínima que consume RoUI desde el CDN, sin paso de build.</p>
+
+    <div class="ro-row" style="gap:10px">
+      <button class="ro-btn ro-btn--primary" type="button">Primary</button>
+      <button class="ro-btn ro-btn--soft" type="button">Soft</button>
+      <button class="ro-btn ro-btn--dark" type="button" id="abrir"
+        aria-haspopup="dialog" aria-controls="dialogo" aria-expanded="false">Abrir diálogo</button>
+    </div>
+
+    <!-- Diálogo modal accesible: el marcado aporta roles/estado; la primitiva el foco. -->
+    <div class="ro-overlay" id="dialogo" data-ro-overlay-root hidden>
+      <div class="ro-modal" role="dialog" aria-modal="true" aria-labelledby="dialogo-t" tabindex="-1">
+        <div class="ro-modal__header">
+          <h2 class="ro-modal__title" id="dialogo-t">Hola desde RoUI</h2>
+          <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar">×</button>
+        </div>
+        <div class="ro-modal__body">Foco atrapado, cierre con Escape y restauración del foco.</div>
+        <div class="ro-modal__footer">
+          <button class="ro-btn ro-btn--soft" data-ro-overlay-close>Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { createOverlayController }
+      from "https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/primitives/overlay-controller.js";
+
+    const overlay = createOverlayController(document.getElementById("dialogo"));
+    const trigger = document.getElementById("abrir");
+    trigger.addEventListener("click", () => overlay.open(trigger));
+  </script>
+</body>
+</html>
