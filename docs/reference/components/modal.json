@@ -1,0 +1,74 @@
+{
+  "name": "modal",
+  "title": "Modal",
+  "group": "Overlays",
+  "maturity": "experimental",
+  "summary": "Diálogo modal que interrumpe el flujo para una tarea o confirmación, con foco atrapado.",
+  "whenToUse": [
+    "Confirmar una acción importante o destructiva.",
+    "Pedir un dato imprescindible antes de continuar."
+  ],
+  "whenNotToUse": [
+    "Para mensajes no bloqueantes: usa Alert o Toast.",
+    "Para contenido lateral navegable: usa Drawer."
+  ],
+  "anatomy": {
+    "html": "<button data-ro-overlay-open=\"m1\" aria-haspopup=\"dialog\" aria-controls=\"m1\" aria-expanded=\"false\">Abrir</button>\n<div class=\"ro-overlay\" id=\"m1\" data-ro-overlay-root hidden>\n  <div class=\"ro-modal\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"m1-t\" tabindex=\"-1\">\n    <div class=\"ro-modal__header\">\n      <h3 class=\"ro-modal__title\" id=\"m1-t\">Título</h3>\n      <button class=\"ro-btn-icon\" data-ro-overlay-close aria-label=\"Cerrar\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button>\n    </div>\n    <div class=\"ro-modal__body\">Contenido…</div>\n  </div>\n</div>",
+    "notes": [
+      "El root (data-ro-overlay-root) inicia con hidden y cubre la página.",
+      "El panel es role=dialog aria-modal=true, con nombre por aria-labelledby y tabindex=-1.",
+      "El disparador declara aria-haspopup=dialog y aria-controls; el controlador togglea aria-expanded.",
+      "Los controles de cierre llevan data-ro-overlay-close."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-overlay", "desc": "Capa que cubre la página (backdrop)." },
+      { "name": "ro-modal", "desc": "Panel del diálogo." },
+      { "name": "ro-modal__header", "desc": "Cabecera con título y cierre." },
+      { "name": "ro-modal__title", "desc": "Título del diálogo (aria-labelledby)." },
+      { "name": "ro-modal__body", "desc": "Cuerpo del diálogo." },
+      { "name": "ro-modal__footer", "desc": "Pie con acciones." }
+    ],
+    "data": [
+      { "name": "data-ro-overlay-root", "desc": "Marca el contenedor del overlay (inicia hidden)." },
+      { "name": "data-ro-overlay-open", "desc": "En el disparador: id del overlay a abrir." },
+      { "name": "data-ro-overlay-close", "desc": "En un control: lo cierra." },
+      { "name": "data-ro-overlay-backdrop", "desc": "Zona de fondo que cierra al hacer clic (opcional)." }
+    ],
+    "tokens": ["--ro-radius-2xl", "--ro-shadow-md", "--ro-z-modal", "--ro-white"],
+    "primitive": { "import": "createOverlayController", "module": "overlay-controller" }
+  },
+  "a11y": {
+    "contract": "accessibility/dialog-drawer.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Cicla el foco dentro del diálogo (trap)."],
+      ["Escape", "Cierra el diálogo y restaura el foco al disparador."],
+      ["Enter / Espacio", "Activa el control enfocado."]
+    ],
+    "notes": [
+      "Al abrir, el foco entra al diálogo; al cerrar, vuelve al disparador.",
+      "El fondo queda inerte: no se puede tabular fuera del diálogo.",
+      "Se bloquea el scroll del cuerpo mientras está abierto."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Diálogo de confirmación (interactivo)",
+      "html": "<button class=\"ro-btn ro-btn--dark\" data-ro-overlay-open=\"ref-modal\" aria-haspopup=\"dialog\" aria-controls=\"ref-modal\" aria-expanded=\"false\">Abrir modal</button>\n<div class=\"ro-overlay\" id=\"ref-modal\" data-ro-overlay-root hidden>\n  <div class=\"ro-modal\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"ref-modal-t\" tabindex=\"-1\">\n    <div class=\"ro-modal__header\">\n      <h3 class=\"ro-modal__title\" id=\"ref-modal-t\">Confirmar acción</h3>\n      <button class=\"ro-btn-icon\" data-ro-overlay-close aria-label=\"Cerrar\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button>\n    </div>\n    <div class=\"ro-modal__body\">¿Seguro que quieres continuar?</div>\n    <div class=\"ro-modal__footer\">\n      <button class=\"ro-btn ro-btn--soft\" data-ro-overlay-close>Cancelar</button>\n      <button class=\"ro-btn ro-btn--primary\" data-ro-overlay-close>Confirmar</button>\n    </div>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da un nombre accesible al diálogo con aria-labelledby.",
+      "Devuelve el foco al disparador al cerrar.",
+      "Ofrece siempre una salida clara (Escape y botón de cierre)."
+    ],
+    "dont": [
+      "No abras un modal sin motivo que interrumpa la tarea.",
+      "No dejes foco alcanzable detrás del diálogo.",
+      "No anides un modal dentro de otro."
+    ]
+  },
+  "related": ["drawer", "popover", "toast"]
+}

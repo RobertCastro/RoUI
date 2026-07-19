@@ -13,7 +13,9 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
   /* Inyecta el sprite de iconos para que <use href="#ro-i-..."> funcione
      en el mismo documento (sin fetch externo en cada <use>). */
   (function injectSprite() {
-    var url = new URL("../dist/icons.svg", document.baseURI).href;
+    // Se resuelve desde este módulo (docs/assets/), no desde la página, para que
+    // funcione a cualquier profundidad (docs/*.html y docs/reference/*.html).
+    var url = new URL("../../dist/icons.svg", import.meta.url).href;
     fetch(url).then(function (r) { return r.ok ? r.text() : ""; }).then(function (svg) {
       if (!svg) return;
       var holder = document.createElement("div");

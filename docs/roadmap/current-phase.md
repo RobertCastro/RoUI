@@ -30,7 +30,7 @@ contratos ARIA, teclado y foco.
 
 1. F5-001: estructura de la referencia y plantilla de pagina por componente. (review)
 2. F5-002: contratos de accesibilidad y teclado enlazados desde cada componente. (review)
-3. F5-003: ejemplos verificables (copiar/pegar) por componente.
+3. F5-003: ejemplos verificables (copiar/pegar) por componente. (review)
 4. F5-004: madurez, do/don't y guias de migracion.
 5. F5-005: busqueda y navegacion por versiones.
 
