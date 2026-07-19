@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drawer — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Overlays</p>
+      <div class="dx-ref-title"><h1>Drawer</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Panel deslizante lateral o inferior (off-canvas) para navegación o contenido secundario, modal.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Menú de navegación en móvil (lateral).</li><li>Panel de detalle o filtros que se abre desde un borde (bottom-sheet).</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para una confirmación puntual: usa Modal.</li><li>Para una pista breve: usa Popover o Tooltip.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;button data-ro-overlay-open=&quot;d1&quot; aria-haspopup=&quot;dialog&quot; aria-controls=&quot;d1&quot; aria-expanded=&quot;false&quot;&gt;Menú&lt;/button&gt;
+&lt;div class=&quot;ro-drawer-root&quot; id=&quot;d1&quot; data-ro-overlay-root hidden&gt;
+  &lt;div class=&quot;ro-drawer-overlay&quot; data-ro-overlay-backdrop&gt;&lt;/div&gt;
+  &lt;aside class=&quot;ro-drawer ro-drawer--left&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;d1-t&quot; tabindex=&quot;-1&quot;&gt;
+    &lt;div class=&quot;ro-drawer__header&quot;&gt;
+      &lt;h2 class=&quot;ro-drawer__title&quot; id=&quot;d1-t&quot;&gt;Menú&lt;/h2&gt;
+      &lt;button class=&quot;ro-btn-icon&quot; data-ro-overlay-close aria-label=&quot;Cerrar&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-drawer__body&quot;&gt;…&lt;/div&gt;
+  &lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Reutiliza el overlay-controller: mismo contrato que Modal (foco, Escape, restauración).</li><li>El backdrop (data-ro-overlay-backdrop) cierra al hacer clic fuera del panel.</li><li>El bottom-sheet añade ro-drawer__grip como asa visual.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-drawer-root</code></td><td>Contenedor del overlay (inicia hidden).</td></tr><tr><td><code>.ro-drawer-overlay</code></td><td>Backdrop de fondo.</td></tr><tr><td><code>.ro-drawer</code></td><td>Panel deslizante.</td></tr><tr><td><code>.ro-drawer--left</code></td><td>Variante lateral izquierda.</td></tr><tr><td><code>.ro-drawer--right</code></td><td>Variante lateral derecha.</td></tr><tr><td><code>.ro-drawer--bottom</code></td><td>Variante inferior (bottom-sheet).</td></tr><tr><td><code>.ro-drawer__grip</code></td><td>Asa del bottom-sheet.</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-ro-overlay-root</code></td><td>Contenedor del overlay.</td></tr><tr><td><code>data-ro-overlay-open</code></td><td>Disparador: id del drawer.</td></tr><tr><td><code>data-ro-overlay-close</code></td><td>Control de cierre.</td></tr><tr><td><code>data-ro-overlay-backdrop</code></td><td>Fondo que cierra al hacer clic.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-2xl</code> <code>--ro-shadow-md</code> <code>--ro-z-overlay</code> <code>--ro-white</code></p>
+<h3>Primitiva</h3><pre class="dx-ref-code"><code>import { createOverlayController } from &quot;@robertcastro/roui/primitives/overlay-controller&quot;;</code></pre>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Cicla el foco dentro del panel (trap).</td></tr><tr><td><kbd>Escape</kbd></td><td>Cierra el panel y restaura el foco.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/dialog-drawer.html">dialog-drawer</a></p><ul class="dx-ref-list"><li>role=dialog aria-modal=true, igual que Modal.</li><li>El backdrop cierra al hacer clic; el foco vuelve al disparador.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Drawer lateral (interactivo)</div>
+  <div class="dx-demo"><button class="ro-btn ro-btn--dark" data-ro-overlay-open="ref-drawer" aria-haspopup="dialog" aria-controls="ref-drawer" aria-expanded="false">Abrir menú</button>
+<div class="ro-drawer-root" id="ref-drawer" data-ro-overlay-root hidden>
+  <div class="ro-drawer-overlay" data-ro-overlay-backdrop></div>
+  <aside class="ro-drawer ro-drawer--left" role="dialog" aria-modal="true" aria-labelledby="ref-drawer-t" tabindex="-1">
+    <div class="ro-drawer__header">
+      <h2 class="ro-drawer__title" id="ref-drawer-t">Menú</h2>
+      <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-x"></use></svg></button>
+    </div>
+    <div class="ro-drawer__body">Contenido del panel lateral.</div>
+  </aside>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--dark&quot; data-ro-overlay-open=&quot;ref-drawer&quot; aria-haspopup=&quot;dialog&quot; aria-controls=&quot;ref-drawer&quot; aria-expanded=&quot;false&quot;&gt;Abrir menú&lt;/button&gt;
+&lt;div class=&quot;ro-drawer-root&quot; id=&quot;ref-drawer&quot; data-ro-overlay-root hidden&gt;
+  &lt;div class=&quot;ro-drawer-overlay&quot; data-ro-overlay-backdrop&gt;&lt;/div&gt;
+  &lt;aside class=&quot;ro-drawer ro-drawer--left&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;ref-drawer-t&quot; tabindex=&quot;-1&quot;&gt;
+    &lt;div class=&quot;ro-drawer__header&quot;&gt;
+      &lt;h2 class=&quot;ro-drawer__title&quot; id=&quot;ref-drawer-t&quot;&gt;Menú&lt;/h2&gt;
+      &lt;button class=&quot;ro-btn-icon&quot; data-ro-overlay-close aria-label=&quot;Cerrar&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-drawer__body&quot;&gt;Contenido del panel lateral.&lt;/div&gt;
+  &lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa el lateral para navegación y el inferior para acciones en móvil.</li><li>Cierra con Escape, backdrop y botón.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No pongas flujos largos de varios pasos en un drawer.</li><li>No dejes foco alcanzable detrás del panel.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="modal.html">modal</a> · <a href="menu.html">menu</a> · <a href="sidebar.html">sidebar</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

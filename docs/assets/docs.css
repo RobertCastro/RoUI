@@ -144,3 +144,11 @@ kbd { font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 12px; ba
 .dx-ref-card__name { font-weight: var(--ro-weight-semibold); font-size: 14px; }
 .dx-ref-pending { font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 9px; text-transform: uppercase;
   letter-spacing: .06em; color: var(--ro-ink-40); }
+
+/* Madurez (referencia) */
+.dx-ref-maturity { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dx-ref-maturity span { color: var(--ro-ink-70); font-size: 14px; }
+.dx-ref-maturity-legend { display: grid; gap: 10px; margin: 0 0 12px; }
+.dx-ref-maturity-legend > div { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 14px; }
+.dx-ref-maturity-legend span { color: var(--ro-ink-70); font-size: 14px; }
+.dx-ref-contract table { width: 100%; border-collapse: collapse; }

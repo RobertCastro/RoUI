@@ -37,6 +37,12 @@ const GROUPS = [
 ];
 
 const MATURITY = new Set(["experimental", "beta", "stable", "deprecated"]);
+const MATURITY_INFO = {
+  experimental: "Apariencia o API sin garantías completas; puede cambiar sin aviso.",
+  beta: "Contrato definido y pruebas parciales; aún puede cambiar.",
+  stable: "Contrato documentado, accesible y cubierto por los quality gates.",
+  deprecated: "Tiene reemplazo y fecha de retiro; evita adoptarlo.",
+};
 
 const esc = (s) => String(s == null ? "" : s)
   .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -177,6 +183,12 @@ function page(m) {
         </div>
       </section>
 
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity">${badge(m.maturity)} <span>${esc(MATURITY_INFO[m.maturity] || "")}</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
       ${related ? `<section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related">${related}</p></section>` : ""}
     </main>
   </div>
@@ -217,6 +229,14 @@ function indexPage(byName, contractFiles = []) {
     <main class="dx-main">
       <h1>Referencia de componentes</h1>
       <p class="dx-lead">Contrato, API, teclado y ejemplos por componente. ${done} de ${total} documentados.</p>
+      <p class="dx-ref-note"><a href="migration.html">Guía de migración</a> · cambios incompatibles hacia los contratos accesibles.</p>
+      <section class="dx-section" id="madurez" aria-label="Niveles de madurez">
+        <h2>Niveles de madurez</h2>
+        <div class="dx-ref-maturity-legend">${
+          Object.entries(MATURITY_INFO).map(([lvl, desc]) => `<div>${badge(lvl)}<span>${esc(desc)}</span></div>`).join("")
+        }</div>
+        <p class="dx-ref-note">Un componente solo cambia de nivel mediante una tarea que demuestre contrato, documentación, teclado, axe, navegadores y visuales (ver Definition of Done).</p>
+      </section>
       ${groups}
       ${contracts}
     </main>
@@ -226,14 +246,14 @@ function indexPage(byName, contractFiles = []) {
 `;
 }
 
-function contractPage(name, md) {
+function prosePage(eyebrow, title, md) {
   const body = marked.parse(md, { mangle: false, headerIds: false });
-  return `${head("Accesibilidad", "../")}
+  return `${head(title, "../")}
 <body class="ro-root">
   <div class="dx">
     ${nav("reference", "../")}
     <main class="dx-main">
-      <p class="dx-eyebrow">Accesibilidad</p>
+      <p class="dx-eyebrow">${esc(eyebrow)}</p>
       <article class="ro-prose dx-ref-contract">
 ${body}
       </article>
@@ -263,7 +283,11 @@ const outputs = new Map();
 for (const m of manifests) outputs.set(resolve(refDir, `${m.name}.html`), page(m));
 outputs.set(resolve(refDir, "index.html"), indexPage(byName, contractFiles));
 for (const f of contractFiles) {
-  outputs.set(resolve(a11yDir, f.replace(/\.md$/, ".html")), contractPage(f, readFileSync(resolve(a11yDir, f), "utf8")));
+  outputs.set(resolve(a11yDir, f.replace(/\.md$/, ".html")), prosePage("Accesibilidad", "Accesibilidad", readFileSync(resolve(a11yDir, f), "utf8")));
+}
+const migrationMd = resolve(refDir, "migration.md");
+if (existsSync(migrationMd)) {
+  outputs.set(resolve(refDir, "migration.html"), prosePage("Guía", "Migración", readFileSync(migrationMd, "utf8")));
 }
 
 let drift = 0;
