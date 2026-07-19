@@ -1,0 +1,36 @@
+name: Release
+
+# Al integrar en main, si hay changesets pendientes, abre/actualiza la PR
+# "Version Packages" que sube la version y consolida el CHANGELOG. La publicacion
+# a npm (con provenance) se anade en F6-002.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Create or update version PR
+        uses: changesets/action@v1
+        with:
+          version: npm run changeset:version
+          commit: "chore(release): version packages"
+          title: "chore(release): version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

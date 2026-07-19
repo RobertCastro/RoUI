@@ -29,7 +29,7 @@ axe, navegadores, visual, presupuesto).
 
 ## Orden inicial
 
-1. F6-001: versionado y changelog automatizados (Changesets).
+1. F6-001: versionado y changelog automatizados (Changesets). (review)
 2. F6-002: publicación con provenance y prerelease/canary.
 3. F6-003: seguridad de cadena (SBOM, CodeQL, auditoría).
 4. F6-004: gobernanza del repositorio (CODEOWNERS, protecciones de rama).
