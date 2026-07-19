@@ -10,7 +10,7 @@ Ultima actualizacion: 2026-07-18
 | 1. Fundamentos | done | 100% | Cerrada y aprobada |
 | 2. Tokens y temas | done | 100% | Cerrada y aprobada |
 | 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
-| 4. Pruebas integrales | in-progress | 60% | F4-001/002/003 en review; sigue F4-004: regresion visual |
+| 4. Pruebas integrales | in-progress | 80% | F4-001..004 en review; sigue F4-005: matriz navegadores/temas |
 | 5. Documentacion | backlog | 0% | APIs estables iniciales |
 | 6. Releases y gobernanza | backlog | 0% | Pipeline de calidad estable |
 | 7. Adopcion | backlog | 0% | Primera release candidata |
@@ -90,3 +90,8 @@ Ultima actualizacion: 2026-07-18
   Combobox (filtrado, `aria-activedescendant` sin mover el foco, `Enter`/`Escape`)
   y Calendar (`role=grid` 2D: día/semana, `Home`/`End`, selección). Suite e2e
   total en 27, sin dependencias nuevas.
+- F4-004 (review): regresión visual con Playwright sobre 7 páginas de docs a
+  página completa (`test:visual`, config separada). Baselines `darwin` versionadas
+  y estables; el gate visual queda fuera del CI de PR (sensible al SO) y un
+  workflow manual (`visual.yml`) lo corre en el contenedor Linux de Playwright
+  para generar/comparar baselines reproducibles.
