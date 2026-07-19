@@ -28,7 +28,7 @@ cerradas.
 
 ## Orden inicial
 
-1. F7-001: piloto de adopción en un producto y guía de arranque.
+1. F7-001: piloto de adopción en un producto y guía de arranque. (review)
 2. F7-002: plantillas/starters por stack priorizado.
 3. F7-003: codemods o guía de migración de patrones a RoUI.
 4. F7-004: telemetría y métricas de adopción.

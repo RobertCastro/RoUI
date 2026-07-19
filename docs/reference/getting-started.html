@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Empezar — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Adopción</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Empezar con RoUI</h1>
+<p>RoUI es un design system en CSS con primitivas accesibles sin dependencias. Puedes
+adoptarlo con un bundler (npm) o sin build (CDN).</p>
+<h2>Instalación (npm)</h2>
+<pre><code class="language-bash">npm install @robertcastro/roui
+</code></pre>
+<p>Importa el bundle una vez en tu entrada:</p>
+<pre><code class="language-js">import &quot;@robertcastro/roui&quot;;           // bundle completo (dist/roui.css)
+</code></pre>
+<p>O de forma granular:</p>
+<pre><code class="language-js">import &quot;@robertcastro/roui/tokens.css&quot;;
+import &quot;@robertcastro/roui/reset.css&quot;;
+import &quot;@robertcastro/roui/components/button.css&quot;;
+</code></pre>
+<h2>Sin build (CDN)</h2>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot;
+  href=&quot;https://cdn.jsdelivr.net/npm/@robertcastro/roui/dist/roui.min.css&quot;&gt;
+</code></pre>
+<h2>Usar un componente</h2>
+<p>Los componentes son HTML + clases <code>ro-</code>:</p>
+<pre><code class="language-html">&lt;button class=&quot;ro-btn ro-btn--primary&quot; type=&quot;button&quot;&gt;Guardar&lt;/button&gt;
+</code></pre>
+<h2>Temas</h2>
+<p>Activa un tema con <code>data-ro-theme</code> en un contenedor (o en <code>html</code>):</p>
+<pre><code class="language-html">&lt;html data-ro-theme=&quot;dark&quot;&gt; … &lt;/html&gt;
+</code></pre>
+<p>Temas disponibles: <code>light</code>, <code>dark</code>, <code>high-contrast</code>. Remapean los tokens
+semánticos (<code>--ro-bg</code>, <code>--ro-text</code>, <code>--ro-surface</code>, …).</p>
+<h2>Primitivas accesibles</h2>
+<p>Los patrones con comportamiento (Dialog, Combobox, Tabs, …) usan primitivas ESM
+sin dependencias. Ejemplo de un diálogo modal:</p>
+<pre><code class="language-js">import { createOverlayController }
+  from &quot;@robertcastro/roui/primitives/overlay-controller&quot;;
+
+const overlay = createOverlayController(document.getElementById(&quot;mi-dialogo&quot;));
+document.getElementById(&quot;abrir&quot;).addEventListener(&quot;click&quot;, () =&gt; overlay.open());
+</code></pre>
+<p>El marcado declara los roles y estados; el controlador gestiona foco, <code>Escape</code> y
+restauración. Ver el contrato de cada patrón en la referencia.</p>
+<h2>Con frameworks</h2>
+<ul>
+<li><strong>React / Vue / Svelte</strong>: importa el CSS una vez en la raíz y usa las clases
+<code>ro-</code> en tu marcado. Para las primitivas, instáncialas en un efecto de montaje
+(<code>useEffect</code>, <code>onMounted</code>) sobre la ref del elemento y destrúyelas al desmontar.</li>
+<li>El sistema es framework-agnóstico: no aporta componentes de un framework, sino
+CSS y controladores que envuelves a tu gusto.</li>
+</ul>
+<h2>Siguiente</h2>
+<ul>
+<li>Referencia por componente: <code>index.html</code>.</li>
+<li>Contratos de accesibilidad y guía de migración enlazados desde cada componente.</li>
+<li>Ejemplo mínimo sin build: <code>examples/starter/</code> en el repositorio.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

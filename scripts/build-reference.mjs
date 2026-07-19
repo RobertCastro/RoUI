@@ -231,7 +231,7 @@ function indexPage(byName, contractFiles = [], version = "") {
     <main class="dx-main">
       <div class="dx-ref-title"><h1>Referencia de componentes</h1>${version ? `<a class="dx-ref-version" href="changelog.html">v${esc(version)}</a>` : ""}</div>
       <p class="dx-lead">Contrato, API, teclado y ejemplos por componente. ${done} de ${total} documentados.</p>
-      <p class="dx-ref-note"><a href="migration.html">Guía de migración</a> · <a href="changelog.html">Changelog</a> · cambios incompatibles hacia los contratos accesibles.</p>
+      <p class="dx-ref-note"><a href="getting-started.html">Empezar</a> · <a href="migration.html">Guía de migración</a> · <a href="changelog.html">Changelog</a>.</p>
       <input type="search" class="dx-ref-search" id="ref-search" aria-label="Buscar componente" placeholder="Buscar componente, clase o descripción…" autocomplete="off">
       <p class="dx-ref-note dx-ref-search-empty" hidden>Sin resultados.</p>
       <section class="dx-section" id="madurez" aria-label="Niveles de madurez">
@@ -311,6 +311,10 @@ for (const m of manifests) outputs.set(resolve(refDir, `${m.name}.html`), page(m
 outputs.set(resolve(refDir, "index.html"), indexPage(byName, contractFiles, version));
 for (const f of contractFiles) {
   outputs.set(resolve(a11yDir, f.replace(/\.md$/, ".html")), prosePage("Accesibilidad", "Accesibilidad", readFileSync(resolve(a11yDir, f), "utf8")));
+}
+const gettingStartedMd = resolve(refDir, "getting-started.md");
+if (existsSync(gettingStartedMd)) {
+  outputs.set(resolve(refDir, "getting-started.html"), prosePage("Adopción", "Empezar", readFileSync(gettingStartedMd, "utf8")));
 }
 const migrationMd = resolve(refDir, "migration.md");
 if (existsSync(migrationMd)) {
