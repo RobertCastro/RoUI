@@ -12,7 +12,7 @@ Ultima actualizacion: 2026-07-19
 | 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
 | 4. Pruebas integrales | done | 100% | Cerrada y aprobada (phase-4-audit); PR #19 en main |
 | 5. Documentacion | done | 100% | Cerrada y aprobada (phase-5-audit) |
-| 6. Releases y gobernanza | in-progress | 80% | F6-001/002 done; F6-003/004 en review; sigue F6-005 |
+| 6. Releases y gobernanza | in-progress | 95% | F6-001..005 (F6-003/004/005 en review); pendiente auditoria de cierre |
 | 7. Adopcion | backlog | 0% | Primera release candidata |
 
 ## Entregables de Fase 0
