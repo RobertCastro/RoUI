@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Pregunta o discusión
+    url: https://github.com/RobertCastro/RoUI/discussions
+    about: Para dudas de uso o propuestas abiertas.
