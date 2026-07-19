@@ -4,6 +4,13 @@ node_modules/
 # Build generado (se regenera con `npm run build` o `npm install` → prepare)
 dist/
 
+# Artefactos de pruebas de navegador (Playwright)
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+.last-run.json
+
 # Logs
 *.log
 npm-debug.log*
