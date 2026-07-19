@@ -1,0 +1,38 @@
+name: Reporte de bug
+description: Algo no funciona como debería.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Qué ocurre
+      description: Describe el problema y qué esperabas.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Pasos para reproducir
+      description: Marcado mínimo, componente y navegador.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versión de RoUI
+      placeholder: "1.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - Componente / CSS
+        - Primitiva / JS
+        - Tokens / temas
+        - Accesibilidad
+        - Build / paquete
+        - Documentación
+    validations:
+      required: true
