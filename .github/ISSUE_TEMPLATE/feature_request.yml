@@ -1,0 +1,25 @@
+name: Propuesta
+description: Sugiere un componente, token o mejora.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema o necesidad
+      description: Qué caso de uso no está cubierto.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: Cómo debería resolverse. Incluye API o marcado si aplica.
+    validations:
+      required: true
+  - type: textarea
+    id: a11y
+    attributes:
+      label: Accesibilidad
+      description: Roles, teclado o foco esperados, si aplica.
+    validations:
+      required: false
