@@ -16,12 +16,12 @@
       <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg> Acme Inc
       <svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg>
     </button>
-    <nav class="ro-header__nav">
-      <a class="ro-nav-link ro-nav-link--active">Inicio</a>
-      <a class="ro-nav-link">Mis Proyectos</a>
-      <a class="ro-nav-link">Sesiones</a>
-      <a class="ro-nav-link">Directorio</a>
-      <a class="ro-nav-link">Explorar</a>
+    <nav class="ro-header__nav" aria-label="Principal">
+      <a class="ro-nav-link" href="#" aria-current="page">Inicio</a>
+      <a class="ro-nav-link" href="#">Mis Proyectos</a>
+      <a class="ro-nav-link" href="#">Sesiones</a>
+      <a class="ro-nav-link" href="#">Directorio</a>
+      <a class="ro-nav-link" href="#">Explorar</a>
     </nav>
     <div class="ro-header__title"></div>
     <div class="ro-header__actions">
@@ -29,11 +29,11 @@
       <button class="ro-btn-icon" title="Notificaciones" style="position:relative"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg><span class="ro-dot-badge"></span></button>
       <button class="ro-btn-icon" title="Idioma"><svg class="ro-icon"><use href="#ro-i-languages"></use></svg></button>
       <button class="ro-avatar">RC</button>
-      <button class="ro-btn-icon ro-burger"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-menu"></use></svg></button>
+      <button class="ro-btn-icon ro-burger" aria-label="Menú"><svg class="ro-icon ro-icon--lg" aria-hidden="true"><use href="#ro-i-menu"></use></svg></button>
     </div>
   </header>
 
-  <div class="ro-app__body">
+  <main class="ro-app__body">
     <div class="ro-container" style="padding-top:32px;padding-bottom:64px">
 
       <!-- Encabezado de página + stats -->
@@ -125,7 +125,7 @@
       </div>
 
     </div>
-  </div>
+  </main>
 
   <!-- Inyecta el sprite de iconos (en producción puedes inline-arlo en el HTML) -->
   <script>

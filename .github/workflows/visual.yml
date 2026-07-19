@@ -1,0 +1,42 @@
+name: Visual regression
+
+# Manual: la regresión visual es sensible al SO. Este job corre en el contenedor
+# oficial de Playwright (Linux) para producir/comparar snapshots reproducibles sin
+# bloquear los PR con diferencias de render entre plataformas.
+on:
+  workflow_dispatch:
+    inputs:
+      update:
+        description: "Regenerar baselines de Linux (--update-snapshots)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.49.1-jammy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Build bundle and primitives
+        run: npm run build
+      - name: Run visual regression
+        run: npm run test:visual ${{ inputs.update && '-- --update-snapshots' || '' }}
+      - name: Upload report and snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-report
+          path: |
+            playwright-report/
+            test/visual/**/*.png
+          retention-days: 14

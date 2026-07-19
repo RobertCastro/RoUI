@@ -20,7 +20,7 @@
   display: flex; align-items: center; gap: 10px; padding: 9px 10px;
   border-radius: var(--ro-radius-lg); font-size: var(--ro-text-sm); color: var(--ro-ink-70); cursor: pointer;
 }
-.ro-cmdk__item:hover, .ro-cmdk__item.is-active { background: var(--ro-secondary-soft); color: var(--ro-ink); }
+.ro-cmdk__item:hover, .ro-cmdk__item[aria-selected="true"] { background: var(--ro-secondary-soft); color: var(--ro-ink); }
 .ro-cmdk__item[hidden] { display: none; }
 .ro-cmdk__item .ro-kbd { margin-left: auto; }
 .ro-cmdk__empty { padding: 16px; text-align: center; color: var(--ro-ink-40); font-size: var(--ro-text-sm); }

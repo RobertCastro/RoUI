@@ -9,7 +9,7 @@
 @media (min-width: 768px) { .ro-footer__cols { grid-template-columns: 2fr repeat(3, 1fr); } }
 .ro-footer__brand { font-family: var(--ro-font-display); font-weight: var(--ro-weight-bold);
   font-size: var(--ro-text-xl); color: var(--ro-ink); letter-spacing: var(--ro-tracking-tight); }
-.ro-footer__col h4 {
+.ro-footer__col h3, .ro-footer__col h4 {
   margin: 0 0 10px; font-family: var(--ro-font-mono); font-size: var(--ro-text-xs);
   text-transform: uppercase; letter-spacing: var(--ro-tracking-wider); color: var(--ro-ink-50);
 }

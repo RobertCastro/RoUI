@@ -1,5 +1,9 @@
 import { createOverlayController } from "../../dist/primitives/overlay-controller.js";
 import { createDisclosureController } from "../../dist/primitives/disclosure-controller.js";
+import { createTabsController } from "../../dist/primitives/tabs-controller.js";
+import { createComboboxController } from "../../dist/primitives/combobox-controller.js";
+import { createGridController } from "../../dist/primitives/grid-controller.js";
+import { createToastController } from "../../dist/primitives/toast-controller.js";
 
 /* docs.js — Interactividad de demostración para la galería.
    Genérico y basado en data-attributes; no es parte de la librería (solo docs). */
@@ -25,23 +29,9 @@ import { createDisclosureController } from "../../dist/primitives/disclosure-con
     disclosures.set(root, createDisclosureController(root));
   });
 
-  /* TABS: [data-tabs="id"] con .ro-tab[data-tab=key]
-     + panel container [data-tab-panels="id"] con hijos [data-panel=key] */
-  document.querySelectorAll("[data-tabs]").forEach(function (tabs) {
-    var id = tabs.getAttribute("data-tabs");
-    var panels = document.querySelector('[data-tab-panels="' + id + '"]');
-    tabs.addEventListener("click", function (e) {
-      var btn = e.target.closest(".ro-tab");
-      if (!btn) return;
-      tabs.querySelectorAll(".ro-tab").forEach(function (b) {
-        b.classList.toggle("ro-tab--active", b === btn);
-      });
-      if (!panels) return;
-      var key = btn.getAttribute("data-tab");
-      panels.querySelectorAll("[data-panel]").forEach(function (p) {
-        p.hidden = p.getAttribute("data-panel") !== key;
-      });
-    });
+  /* TABS: patrón accesible con la primitiva pública (roving tabindex). */
+  document.querySelectorAll("[data-ro-tabs]").forEach(function (tablist) {
+    createTabsController(tablist);
   });
 
   /* GRUPOS DE SELECCIÓN ÚNICA: pills y nav-links.
@@ -79,28 +69,25 @@ import { createDisclosureController } from "../../dist/primitives/disclosure-con
     });
   });
 
-  /* TOAST: [data-toast="success|error|info"] [data-toast-msg="..."] dispara un toast. */
-  var TOAST_ICONS = { success: "circle-check", error: "triangle-alert", info: "info" };
-  function ensureRegion() {
-    var r = document.querySelector(".ro-toast-region");
-    if (!r) { r = document.createElement("div"); r.className = "ro-toast-region"; document.body.appendChild(r); }
-    return r;
-  }
-  function toast(variant, msg) {
-    var el = document.createElement("div");
-    el.className = "ro-toast ro-toast--" + variant;
-    el.innerHTML =
-      '<svg class="ro-icon ro-icon--sm ro-toast__icon"><use href="#ro-i-' + (TOAST_ICONS[variant] || "info") + '"></use></svg>' +
-      '<div class="ro-toast__body">' + msg + '</div>' +
-      '<button class="ro-toast__close" aria-label="Cerrar"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button>';
-    ensureRegion().appendChild(el);
-    var remove = function () { el.classList.add("is-leaving"); setTimeout(function () { el.remove(); }, 160); };
-    el.querySelector(".ro-toast__close").addEventListener("click", remove);
-    setTimeout(remove, 3500);
-  }
+  /* TOAST: [data-toast="success|error|info"] [data-toast-msg="..."] dispara un toast.
+     La primitiva gestiona la región viva, el cierre automático y el teclado; aquí
+     solo aportamos el icono desde el sprite de RoUI. */
+  var TOAST_ICONS = { success: "circle-check", error: "triangle-alert", info: "info", close: "x" };
+  var toaster = createToastController({
+    reducedMotion: window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    icon: function (variant) {
+      var name = TOAST_ICONS[variant];
+      if (!name) return "";
+      var cls = variant === "close" ? "ro-icon ro-icon--xs" : "ro-icon ro-icon--sm";
+      return '<svg class="' + cls + '"><use href="#ro-i-' + name + '"></use></svg>';
+    },
+  });
   document.querySelectorAll("[data-toast]").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      toast(btn.getAttribute("data-toast"), btn.getAttribute("data-toast-msg") || "Notificación de ejemplo");
+      toaster.show({
+        variant: btn.getAttribute("data-toast"),
+        message: btn.getAttribute("data-toast-msg") || "Notificación de ejemplo",
+      });
     });
   });
 
@@ -119,41 +106,23 @@ import { createDisclosureController } from "../../dist/primitives/disclosure-con
     });
   });
 
-  /* ACCORDION: clic en .ro-accordion__head alterna .is-open del item. */
-  document.querySelectorAll(".ro-accordion").forEach(function (acc) {
-    var single = acc.hasAttribute("data-single");
-    acc.addEventListener("click", function (e) {
-      var head = e.target.closest(".ro-accordion__head");
-      if (!head) return;
-      var item = head.closest(".ro-accordion__item");
-      var willOpen = !item.classList.contains("is-open");
-      if (single) acc.querySelectorAll(".ro-accordion__item").forEach(function (i) { i.classList.remove("is-open"); });
-      item.classList.toggle("is-open", willOpen);
-    });
-  });
+  /* ACCORDION: cada sección es un disclosure persistente; se inicializa arriba
+     con el bucle de [data-ro-disclosure-root]. */
 
-  /* COMBOBOX: filtra opciones al escribir; clic en opción rellena el input. */
-  document.querySelectorAll(".ro-combobox").forEach(function (cb) {
-    var input = cb.querySelector("input");
-    var list = cb.querySelector(".ro-combobox__list");
-    var empty = cb.querySelector(".ro-combobox__empty");
-    if (!input || !list) return;
-    function filter() {
-      var q = input.value.toLowerCase(); var visible = 0;
-      list.querySelectorAll(".ro-combobox__option").forEach(function (op) {
-        var match = op.textContent.toLowerCase().indexOf(q) !== -1;
-        op.hidden = !match; if (match) visible++;
-      });
-      if (empty) empty.hidden = visible !== 0;
-    }
-    input.addEventListener("focus", function () { cb.classList.add("is-open"); });
-    input.addEventListener("input", function () { cb.classList.add("is-open"); filter(); });
-    list.addEventListener("click", function (e) {
-      var op = e.target.closest(".ro-combobox__option");
-      if (!op) return;
-      input.value = op.textContent.trim(); cb.classList.remove("is-open");
+  /* COMBOBOX: patrón accesible con la primitiva pública (activedescendant + filtrado). */
+  document.querySelectorAll("[data-ro-combobox]").forEach(function (root) {
+    var list = root.querySelector(".ro-combobox__list");
+    var empty = root.querySelector(".ro-combobox__empty");
+    createComboboxController(root, {
+      onFilter: function (query) {
+        var q = query.toLowerCase(), visible = 0;
+        list.querySelectorAll('[role="option"]').forEach(function (op) {
+          var match = op.textContent.toLowerCase().indexOf(q) !== -1;
+          op.hidden = !match; if (match) visible++;
+        });
+        if (empty) empty.hidden = visible !== 0;
+      }
     });
-    document.addEventListener("click", function (e) { if (!cb.contains(e.target)) cb.classList.remove("is-open"); });
   });
 
   /* TAGS INPUT: Enter agrega un chip; Backspace en vacío borra el último. */
@@ -205,55 +174,81 @@ import { createDisclosureController } from "../../dist/primitives/disclosure-con
     sl.addEventListener("input", sync); sync();
   });
 
-  /* CALENDAR: renderiza [data-calendar] con year/month(0-based)/today/selected. */
+  /* CALENDAR: renderiza [data-calendar] como role=grid con navegación por teclado. */
   var MONTHS = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  var DOW = [["L","Lunes"],["M","Martes"],["X","Miércoles"],["J","Jueves"],["V","Viernes"],["S","Sábado"],["D","Domingo"]];
   document.querySelectorAll("[data-calendar]").forEach(function (cal) {
     var grid = cal.querySelector(".ro-calendar__grid");
     var title = cal.querySelector(".ro-calendar__title");
     var y = +cal.dataset.year, m = +cal.dataset.month;
     var today = +cal.dataset.today || 0, sel = +cal.dataset.selected || 0;
-    if (title) title.textContent = MONTHS[m] + " " + y;
-    var html = ["L","M","X","J","V","S","D"].map(function (d) { return '<div class="ro-calendar__dow">' + d + "</div>"; }).join("");
+    if (title) { title.id = title.id || ("cal-title-" + y + "-" + m); title.textContent = MONTHS[m] + " " + y; }
+    grid.setAttribute("role", "grid");
+    if (title && title.id) grid.setAttribute("aria-labelledby", title.id);
+
     var first = (new Date(y, m, 1).getDay() + 6) % 7;          // lunes primero
     var days = new Date(y, m + 1, 0).getDate();
-    for (var i = 0; i < first; i++) html += "<div></div>";
-    for (var d = 1; d <= days; d++) {
-      var cls = "ro-calendar__day";
-      if (d === today) cls += " ro-calendar__day--today";
-      if (d === sel) cls += " ro-calendar__day--selected";
-      html += '<button class="' + cls + '">' + d + "</button>";
+    var html = '<div class="ro-calendar__row" role="row">' + DOW.map(function (d) {
+      return '<div class="ro-calendar__dow" role="columnheader" aria-label="' + d[1] + '">' + d[0] + "</div>";
+    }).join("") + "</div>";
+    var cells = [];
+    for (var i = 0; i < first; i++) cells.push("");
+    for (var d = 1; d <= days; d++) cells.push(d);
+    while (cells.length % 7 !== 0) cells.push("");
+    for (var w = 0; w < cells.length; w += 7) {
+      html += '<div class="ro-calendar__row" role="row">';
+      for (var c = w; c < w + 7; c++) {
+        var v = cells[c];
+        if (v === "") { html += '<div class="ro-calendar__pad" role="gridcell"></div>'; continue; }
+        var cls = "ro-calendar__day" + (v === today ? " ro-calendar__day--today" : "");
+        html += '<button class="' + cls + '" role="gridcell" tabindex="-1" aria-selected="' + (v === sel)
+          + '"' + (v === today ? " data-ro-grid-current" : "")
+          + ' aria-label="' + v + " de " + MONTHS[m] + " de " + y + '">' + v + "</button>";
+      }
+      html += "</div>";
     }
     grid.innerHTML = html;
-    grid.addEventListener("click", function (e) {
-      var day = e.target.closest(".ro-calendar__day"); if (!day) return;
-      grid.querySelectorAll(".ro-calendar__day--selected").forEach(function (s) { s.classList.remove("ro-calendar__day--selected"); });
-      day.classList.add("ro-calendar__day--selected");
-      var dp = cal.closest("[data-datepicker]");
-      if (dp) { var value = dp.querySelector("[data-datepicker-value]"); if (value) value.textContent = day.textContent + " " + MONTHS[m] + " " + y;
+
+    createGridController(grid, {
+      onSelect: function (day) {
+        grid.querySelectorAll('[role="gridcell"][aria-selected="true"]').forEach(function (s) { s.setAttribute("aria-selected", "false"); });
+        day.setAttribute("aria-selected", "true");
+        var dp = cal.closest("[data-datepicker]");
+        if (!dp) return;
+        var value = dp.querySelector("[data-datepicker-value]");
+        if (value) value.textContent = day.textContent.trim() + " " + MONTHS[m] + " " + y;
         var root = cal.closest("[data-ro-disclosure-root]");
         var disclosure = root ? disclosures.get(root) : null;
-        if (disclosure) disclosure.close({ returnFocus: true }); }
+        if (disclosure) disclosure.close({ returnFocus: true });
+      },
     });
   });
 
-  /* COMMAND PALETTE: abre con [data-cmdk-open] o ⌘K/Ctrl+K; filtra; Esc cierra. */
-  document.querySelectorAll(".ro-cmdk-overlay").forEach(function (ov) {
-    var input = ov.querySelector("input");
-    function open() { ov.classList.add("is-open"); if (input) { input.value = ""; filter(); setTimeout(function () { input.focus(); }, 30); } }
-    function close() { ov.classList.remove("is-open"); }
-    function filter() {
-      var q = (input ? input.value : "").toLowerCase(); var any = false;
-      ov.querySelectorAll(".ro-cmdk__item").forEach(function (it) {
-        var match = it.textContent.toLowerCase().indexOf(q) !== -1; it.hidden = !match; if (match) any = true;
-      });
-      var empty = ov.querySelector(".ro-cmdk__empty"); if (empty) empty.hidden = any;
-    }
-    document.querySelectorAll('[data-cmdk-open="' + ov.id + '"]').forEach(function (b) { b.addEventListener("click", open); });
-    if (input) input.addEventListener("input", filter);
-    ov.addEventListener("click", function (e) { if (e.target === ov) close(); });
+  /* COMMAND PALETTE: combobox en línea dentro del diálogo modal (overlay-controller).
+     Escape lo maneja el diálogo; el combobox solo navega, filtra y ejecuta. */
+  document.querySelectorAll("[data-ro-cmdk]").forEach(function (cmdk) {
+    var overlayRoot = cmdk.closest("[data-ro-overlay-root]");
+    var overlay = overlayRoot ? overlays.get(overlayRoot.id) : null;
+    var empty = cmdk.querySelector(".ro-cmdk__empty");
+    var input = cmdk.querySelector('[role="combobox"]');
+    createComboboxController(cmdk, {
+      inline: true,
+      onFilter: function (query) {
+        var q = query.toLowerCase(), any = false;
+        cmdk.querySelectorAll('[role="option"]').forEach(function (op) {
+          var match = op.textContent.toLowerCase().indexOf(q) !== -1;
+          op.hidden = !match; if (match) any = true;
+        });
+        if (empty) empty.hidden = any;
+      },
+      onSelect: function () { if (overlay) overlay.close(); },
+    });
     document.addEventListener("keydown", function (e) {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); open(); }
-      if (e.key === "Escape") close();
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k" && overlay) {
+        e.preventDefault();
+        overlay.open();
+        if (input) { input.value = ""; input.dispatchEvent(new Event("input")); }
+      }
     });
   });
 

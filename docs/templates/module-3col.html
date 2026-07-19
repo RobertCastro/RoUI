@@ -16,24 +16,24 @@
       <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg> Acme Inc
       <svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg>
     </button>
-    <nav class="ro-header__nav">
-      <a class="ro-nav-link">Inicio</a>
-      <a class="ro-nav-link">Mis Proyectos</a>
-      <a class="ro-nav-link">Sesiones</a>
-      <a class="ro-nav-link ro-nav-link--active">Directorio</a>
-      <a class="ro-nav-link">Explorar</a>
+    <nav class="ro-header__nav" aria-label="Principal">
+      <a class="ro-nav-link" href="#">Inicio</a>
+      <a class="ro-nav-link" href="#">Mis Proyectos</a>
+      <a class="ro-nav-link" href="#">Sesiones</a>
+      <a class="ro-nav-link" href="#" aria-current="page">Directorio</a>
+      <a class="ro-nav-link" href="#">Explorar</a>
     </nav>
     <div class="ro-header__title ro-mono">El Arte del "Technical Brief"</div>
     <div class="ro-header__actions">
       <button class="ro-btn-icon" title="Tus herramientas"><svg class="ro-icon"><use href="#ro-i-wrench"></use></svg></button>
       <button class="ro-btn-icon" title="Notificaciones" style="position:relative"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg><span class="ro-dot-badge"></span></button>
       <button class="ro-avatar">RC</button>
-      <button class="ro-btn-icon ro-burger"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-menu"></use></svg></button>
+      <button class="ro-btn-icon ro-burger" aria-label="Menú"><svg class="ro-icon ro-icon--lg" aria-hidden="true"><use href="#ro-i-menu"></use></svg></button>
     </div>
   </header>
 
   <div class="ro-app__body">
-    <div class="ro-context-bar">
+    <div class="ro-context-bar" role="region" aria-label="Contexto del módulo">
       <div class="ro-breadcrumb"><b>Frontend · 4 semanas</b> › Semana 1 › <b>Mód. 04</b></div>
       <span class="ro-status-chip"><span class="ro-dot"></span> En curso</span>
       <div class="ro-spacer ro-hide-mobile"></div>
@@ -42,11 +42,11 @@
 
     <div class="ro-layout-3col">
       <!-- COLUMNA 1 -->
-      <aside class="ro-rail ro-rail--left">
+      <aside class="ro-rail ro-rail--left" aria-label="Clases del curso">
         <div class="ro-rail__head">
           <div class="ro-row ro-row--between">
             <span class="ro-rail__title">Clases del curso</span>
-            <button class="ro-btn-icon ro-avatar--sm"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-left"></use></svg></button>
+            <button class="ro-btn-icon ro-avatar--sm" aria-label="Colapsar panel"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
           </div>
           <div class="ro-row" style="margin-top:12px;gap:10px">
             <strong style="font-size:22px">8%</strong>
@@ -76,8 +76,8 @@
             <h1 class="ro-h2" style="margin-top:8px">El Arte del "Technical Brief"</h1>
           </div>
           <div class="ro-row">
-            <button class="ro-btn-icon ro-btn-icon--outline"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-left"></use></svg></button>
-            <button class="ro-btn-icon" style="background:var(--ro-ink);color:#fff"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-right"></use></svg></button>
+            <button class="ro-btn-icon ro-btn-icon--outline" aria-label="Módulo anterior"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
+            <button class="ro-btn-icon" style="background:var(--ro-ink);color:#fff" aria-label="Módulo siguiente"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg></button>
             <button class="ro-btn ro-btn--soft ro-btn--sm"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-share-2"></use></svg> Compartir</button>
           </div>
         </div>
@@ -96,14 +96,14 @@
       </main>
 
       <!-- COLUMNA 3 -->
-      <aside class="ro-rail ro-rail--right">
-        <div class="ro-tabs">
-          <button class="ro-tab ro-tab--active">Temario</button>
-          <button class="ro-tab">Discusión <span class="ro-tab__count">0</span></button>
-          <button class="ro-tab">Checkpoints <span class="ro-tab__count">0</span></button>
+      <aside class="ro-rail ro-rail--right" aria-label="Recursos del módulo">
+        <div class="ro-tabs" role="tablist" aria-label="Panel del módulo">
+          <button class="ro-tab" role="tab" aria-selected="true">Temario</button>
+          <button class="ro-tab" role="tab" aria-selected="false" tabindex="-1">Discusión <span class="ro-tab__count">0</span></button>
+          <button class="ro-tab" role="tab" aria-selected="false" tabindex="-1">Checkpoints <span class="ro-tab__count">0</span></button>
         </div>
         <div class="ro-rail__scroll" style="padding:20px">
-          <h3 class="ro-h3">Recursos</h3>
+          <h2 class="ro-h3">Recursos</h2>
           <a class="ro-resource"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-external-link"></use></svg> 10X Builder Code · GitHub</a>
           <div class="ro-eyebrow ro-eyebrow--ink" style="margin-top:20px">Módulo 04 · Temario</div>
           <p class="ro-body" style="margin-top:10px">
