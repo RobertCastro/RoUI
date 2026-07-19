@@ -79,7 +79,8 @@
     "start": "python3 -m http.server 8799",
     "serve": "python3 -m http.server 8799",
     "dev": "node scripts/build.mjs && echo '→ http://localhost:8799/docs/index.html' && python3 -m http.server 8799",
-    "release": "npm run build && changeset publish"
+    "release": "npm run build && changeset publish",
+    "sbom": "cyclonedx-npm --omit dev --output-format JSON --output-file sbom.json"
   },
   "keywords": [
     "design-system",
@@ -91,6 +92,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
     "@changesets/cli": "^2.27.11",
+    "@cyclonedx/cyclonedx-npm": "^1.19.3",
     "@playwright/test": "^1.49.1",
     "axe-core": "^4.12.1",
     "esbuild": "0.25.0",

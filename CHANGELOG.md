@@ -11,11 +11,6 @@
   gates automatizados (axe, navegadores, regresión visual). Se publica `CHANGELOG.md`
   en el paquete.
 
-Versionado [SemVer](https://semver.org/lang/es/). Los cambios sin publicar se
-gestionan con [Changesets](https://github.com/changesets/changesets) (viven en
-`.changeset/` y se consolidan aquí al preparar una versión). Releases y etiquetas
-en [GitHub](https://github.com/RobertCastro/RoUI/releases).
-
 ## 1.0.0
 
 Primera versión pública: tokens, componentes y layouts en CSS, con primitivas
