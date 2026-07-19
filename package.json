@@ -12,7 +12,8 @@
     "url": "https://github.com/RobertCastro/RoUI/issues"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "type": "module",
   "engines": {
@@ -77,7 +78,8 @@
     "prepare": "node scripts/build.mjs",
     "start": "python3 -m http.server 8799",
     "serve": "python3 -m http.server 8799",
-    "dev": "node scripts/build.mjs && echo '→ http://localhost:8799/docs/index.html' && python3 -m http.server 8799"
+    "dev": "node scripts/build.mjs && echo '→ http://localhost:8799/docs/index.html' && python3 -m http.server 8799",
+    "release": "npm run build && changeset publish"
   },
   "keywords": [
     "design-system",

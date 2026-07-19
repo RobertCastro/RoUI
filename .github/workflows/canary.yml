@@ -1,0 +1,33 @@
+name: Canary
+
+# Publicacion on-demand de una version snapshot bajo el dist-tag "canary", para
+# probar cambios antes de una release estable. Requiere changesets pendientes y el
+# secreto NPM_TOKEN.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # provenance (OIDC)
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: "https://registry.npmjs.org"
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Version snapshot
+        run: npx changeset version --snapshot canary
+      - name: Build bundle and primitives
+        run: npm run build
+      - name: Publish canary
+        run: npx changeset publish --tag canary --no-git-tag
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: "true"
