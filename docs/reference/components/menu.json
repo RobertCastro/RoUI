@@ -1,0 +1,70 @@
+{
+  "name": "menu",
+  "title": "Menu",
+  "group": "Overlays",
+  "maturity": "experimental",
+  "summary": "Menú flotante de acciones u opciones, abierto desde un disparador (dropdown).",
+  "whenToUse": [
+    "Agrupar acciones secundarias de un elemento (kebab, perfil).",
+    "Ofrecer opciones excluyentes marcadas con aria-current."
+  ],
+  "whenNotToUse": [
+    "Para navegación principal del sitio: usa un nav.",
+    "Para seleccionar de una lista larga con filtro: usa Combobox."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-dropdown\" data-ro-disclosure-root>\n  <button data-ro-disclosure-trigger aria-haspopup=\"menu\" aria-controls=\"m1\" aria-expanded=\"false\">Opciones</button>\n  <div class=\"ro-menu\" id=\"m1\" data-ro-disclosure-panel role=\"menu\" aria-label=\"Opciones\" hidden>\n    <button class=\"ro-menu__item\" role=\"menuitem\">Editar</button>\n    <button class=\"ro-menu__item ro-menu__item--danger\" role=\"menuitem\">Eliminar</button>\n  </div>\n</div>",
+    "notes": [
+      "El disparador declara aria-haspopup=menu y aria-expanded.",
+      "El panel es role=menu con nombre; los ítems son role=menuitem.",
+      "Los rótulos internos usan role=presentation; el separador es decorativo."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-dropdown", "desc": "Contenedor posicionador." },
+      { "name": "ro-menu", "desc": "Panel del menú (role=menu)." },
+      { "name": "ro-menu--end", "desc": "Alinea el menú a la derecha." },
+      { "name": "ro-menu__item", "desc": "Opción del menú (role=menuitem)." },
+      { "name": "ro-menu__item--danger", "desc": "Acción destructiva." },
+      { "name": "ro-menu__label", "desc": "Rótulo de grupo (role=presentation)." },
+      { "name": "ro-menu__sep", "desc": "Separador decorativo." }
+    ],
+    "data": [
+      { "name": "data-ro-disclosure-root", "desc": "Contenedor disparador + panel." },
+      { "name": "data-ro-disclosure-trigger", "desc": "Botón que abre/cierra." },
+      { "name": "data-ro-disclosure-panel", "desc": "Panel del menú." }
+    ],
+    "tokens": ["--ro-radius-xl", "--ro-shadow-md", "--ro-z-overlay", "--ro-white"],
+    "primitive": { "import": "createDisclosureController", "module": "disclosure-controller" }
+  },
+  "a11y": {
+    "contract": "accessibility/menu-popover-tooltip.md",
+    "keyboard": [
+      ["Enter / Espacio", "Abre y cierra el menú desde el disparador."],
+      ["Escape", "Cierra el menú y devuelve el foco al disparador."],
+      ["Tab", "Recorre los ítems mientras está abierto."]
+    ],
+    "notes": [
+      "Reserva role=menu para listas de acciones, no para navegación.",
+      "Marca la opción activa con aria-current, no con una clase de estado."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Menú de acciones (interactivo)",
+      "html": "<div class=\"ro-dropdown\" data-ro-disclosure-root>\n  <button class=\"ro-btn ro-btn--soft\" data-ro-disclosure-trigger aria-haspopup=\"menu\" aria-controls=\"ref-menu\" aria-expanded=\"false\">Opciones</button>\n  <div class=\"ro-menu\" id=\"ref-menu\" data-ro-disclosure-panel role=\"menu\" aria-label=\"Opciones\" hidden>\n    <button class=\"ro-menu__item\" role=\"menuitem\">Editar</button>\n    <button class=\"ro-menu__item\" role=\"menuitem\">Duplicar</button>\n    <div class=\"ro-menu__sep\" role=\"presentation\"></div>\n    <button class=\"ro-menu__item ro-menu__item--danger\" role=\"menuitem\">Eliminar</button>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da nombre al menú (aria-label) y roles a sus ítems.",
+      "Agrupa con rótulos y separadores cuando ayude."
+    ],
+    "dont": [
+      "No metas navegación del sitio en un role=menu.",
+      "No mezcles contenido no accionable entre los ítems."
+    ]
+  },
+  "related": ["popover", "button-group", "combobox"]
+}

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Migración — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Guía</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Guía de migración</h1>
+<p>RoUI dirige los estados desde la <strong>semántica</strong> (atributos ARIA), no desde clases
+de demostración. Al adoptar los contratos accesibles (Fase 3) se retiraron varios
+patrones basados en clases <code>.is-*</code> y <code>--active</code>. Esta guía resume los cambios
+incompatibles y su reemplazo.</p>
+<h2>Principio</h2>
+<p>El estado activo/abierto/seleccionado se dibuja desde el atributo, no desde una
+clase. Reemplaza los selectores de clase por selectores de atributo y deja que el
+controlador correspondiente gestione el estado.</p>
+<h2>Tabs</h2>
+<table>
+<thead>
+<tr>
+<th>Antes</th>
+<th>Ahora</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.ro-tab--active</code></td>
+<td><code>.ro-tab[aria-selected=&quot;true&quot;]</code></td>
+</tr>
+<tr>
+<td>Cambiar clase por JS propio</td>
+<td><code>createTabsController</code> (roving tabindex, flechas)</td>
+</tr>
+<tr>
+<td>Panel oculto con clase</td>
+<td>Panel con <code>role=&quot;tabpanel&quot;</code> y atributo <code>hidden</code></td>
+</tr>
+</tbody></table>
+<h2>Navegación</h2>
+<table>
+<thead>
+<tr>
+<th>Antes</th>
+<th>Ahora</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.ro-nav-link--active</code></td>
+<td><code>.ro-nav-link[aria-current=&quot;page&quot;]</code></td>
+</tr>
+<tr>
+<td>Breadcrumb con clase de estado</td>
+<td>Último tramo con <code>aria-current=&quot;page&quot;</code></td>
+</tr>
+</tbody></table>
+<h2>Accordion</h2>
+<table>
+<thead>
+<tr>
+<th>Antes</th>
+<th>Ahora</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.is-open</code> en el ítem</td>
+<td><code>createDisclosureController</code> con <code>data-ro-disclosure-persistent</code></td>
+</tr>
+<tr>
+<td>Panel mostrado por clase</td>
+<td><code>role=&quot;region&quot;</code> + atributo <code>hidden</code></td>
+</tr>
+<tr>
+<td>Sin estado en el encabezado</td>
+<td>Botón con <code>aria-expanded</code> y <code>aria-controls</code></td>
+</tr>
+</tbody></table>
+<h2>Combobox</h2>
+<table>
+<thead>
+<tr>
+<th>Antes</th>
+<th>Ahora</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.is-open</code> en la lista</td>
+<td><code>input[aria-expanded]</code> + <code>listbox</code> con <code>hidden</code></td>
+</tr>
+<tr>
+<td><code>.is-active</code> en la opción</td>
+<td><code>[role=&quot;option&quot;][aria-selected=&quot;true&quot;]</code></td>
+</tr>
+<tr>
+<td>Foco movido a la opción</td>
+<td>Foco en el input + <code>aria-activedescendant</code></td>
+</tr>
+</tbody></table>
+<h2>Command Palette</h2>
+<table>
+<thead>
+<tr>
+<th>Antes</th>
+<th>Ahora</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Overlay propio ad-hoc</td>
+<td><code>role=&quot;dialog&quot;</code> modal vía <code>createOverlayController</code></td>
+</tr>
+<tr>
+<td>Lista con clases de estado</td>
+<td>Combobox <code>inline</code> dentro del diálogo</td>
+</tr>
+<tr>
+<td>Sin atajo estándar</td>
+<td><code>Ctrl/Cmd+K</code>, cierre con <code>Escape</code></td>
+</tr>
+</tbody></table>
+<h2>Calendar</h2>
+<table>
+<thead>
+<tr>
+<th>Antes</th>
+<th>Ahora</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--selected</code> por clic</td>
+<td><code>role=&quot;grid&quot;</code> + <code>[role=&quot;gridcell&quot;][aria-selected=&quot;true&quot;]</code></td>
+</tr>
+<tr>
+<td>Sin teclado</td>
+<td><code>createGridController</code> (flechas por día/semana, <code>Home</code>/<code>End</code>)</td>
+</tr>
+</tbody></table>
+<h2>Toast</h2>
+<table>
+<thead>
+<tr>
+<th>Antes</th>
+<th>Ahora</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>setTimeout</code> fijo, sin roles</td>
+<td><code>createToastController</code> con <code>role=&quot;status&quot;</code>/<code>role=&quot;alert&quot;</code></td>
+</tr>
+<tr>
+<td>Sin pausa</td>
+<td>Pausa el cierre al pasar el puntero o enfocar</td>
+</tr>
+</tbody></table>
+<h2>Cómo actualizar</h2>
+<ol>
+<li>Sustituye los selectores de clase de estado por selectores de atributo ARIA en
+tu CSS/JS propio.</li>
+<li>Inicializa el controlador de cada patrón (<code>@robertcastro/roui/primitives/*</code>).</li>
+<li>Marca el estado inicial en el HTML con los atributos correctos (<code>aria-selected</code>,
+<code>aria-expanded</code>, <code>hidden</code>, <code>aria-current</code>).</li>
+</ol>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

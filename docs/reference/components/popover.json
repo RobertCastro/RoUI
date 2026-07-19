@@ -1,0 +1,69 @@
+{
+  "name": "popover",
+  "title": "Popover",
+  "group": "Overlays",
+  "maturity": "experimental",
+  "summary": "Panel flotante no modal, anclado a su disparador, para detalle o acciones contextuales.",
+  "whenToUse": [
+    "Mostrar detalle o controles secundarios junto a un elemento.",
+    "Contenido interactivo breve que no debe bloquear la página."
+  ],
+  "whenNotToUse": [
+    "Para una etiqueta de texto simple: usa Tooltip.",
+    "Para una tarea que exige atención total: usa Modal."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-dropdown\" data-ro-disclosure-root>\n  <button data-ro-disclosure-trigger aria-haspopup=\"dialog\" aria-controls=\"p1\" aria-expanded=\"false\">Ver detalles</button>\n  <div class=\"ro-popover\" id=\"p1\" data-ro-disclosure-panel role=\"dialog\" aria-labelledby=\"p1-t\" hidden>\n    <div class=\"ro-popover__arrow\"></div>\n    <div class=\"ro-popover__title\" id=\"p1-t\">Detalle</div>\n    <div class=\"ro-popover__body\">…</div>\n  </div>\n</div>",
+    "notes": [
+      "El disparador declara aria-haspopup, aria-controls y aria-expanded.",
+      "El panel es role=dialog no modal; inicia con hidden.",
+      "Se cierra con Escape o clic fuera (disclosure-controller)."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-dropdown", "desc": "Contenedor posicionador (relative)." },
+      { "name": "ro-popover", "desc": "Panel flotante." },
+      { "name": "ro-popover--end", "desc": "Alinea el panel a la derecha." },
+      { "name": "ro-popover__title", "desc": "Título del panel." },
+      { "name": "ro-popover__body", "desc": "Cuerpo del panel." },
+      { "name": "ro-popover__arrow", "desc": "Flecha decorativa hacia el disparador." }
+    ],
+    "data": [
+      { "name": "data-ro-disclosure-root", "desc": "Contenedor disparador + panel." },
+      { "name": "data-ro-disclosure-trigger", "desc": "Botón que abre/cierra." },
+      { "name": "data-ro-disclosure-panel", "desc": "Panel controlado." }
+    ],
+    "tokens": ["--ro-radius-xl", "--ro-shadow-md", "--ro-z-overlay", "--ro-white"],
+    "primitive": { "import": "createDisclosureController", "module": "disclosure-controller" }
+  },
+  "a11y": {
+    "contract": "accessibility/menu-popover-tooltip.md",
+    "keyboard": [
+      ["Enter / Espacio", "Abre y cierra el popover desde el disparador."],
+      ["Escape", "Cierra el popover y devuelve el foco al disparador."],
+      ["Tab", "Recorre el contenido del panel mientras está abierto."]
+    ],
+    "notes": [
+      "No es modal: no atrapa el foco ni bloquea el fondo.",
+      "El disclosure-controller cierra al hacer clic fuera y con Escape."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Popover con detalle (interactivo)",
+      "html": "<div class=\"ro-dropdown\" data-ro-disclosure-root>\n  <button class=\"ro-btn ro-btn--soft\" data-ro-disclosure-trigger aria-haspopup=\"dialog\" aria-controls=\"ref-popover\" aria-expanded=\"false\">Ver detalles</button>\n  <div class=\"ro-popover\" id=\"ref-popover\" data-ro-disclosure-panel role=\"dialog\" aria-labelledby=\"ref-popover-t\" hidden>\n    <div class=\"ro-popover__arrow\"></div>\n    <div class=\"ro-popover__title\" id=\"ref-popover-t\">Frontend · 4 semanas</div>\n    <div class=\"ro-popover__body\">Cohort de abril · 40 módulos.</div>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Ancla el popover a su disparador y ofrece cierre con Escape.",
+      "Manténlo breve; para tareas largas usa Modal."
+    ],
+    "dont": [
+      "No lo uses para información esencial permanente.",
+      "No lo trates como modal atrapando el foco."
+    ]
+  },
+  "related": ["tooltip", "menu", "modal"]
+}

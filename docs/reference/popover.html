@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Popover — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Overlays</p>
+      <div class="dx-ref-title"><h1>Popover</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Panel flotante no modal, anclado a su disparador, para detalle o acciones contextuales.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Mostrar detalle o controles secundarios junto a un elemento.</li><li>Contenido interactivo breve que no debe bloquear la página.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para una etiqueta de texto simple: usa Tooltip.</li><li>Para una tarea que exige atención total: usa Modal.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-dropdown&quot; data-ro-disclosure-root&gt;
+  &lt;button data-ro-disclosure-trigger aria-haspopup=&quot;dialog&quot; aria-controls=&quot;p1&quot; aria-expanded=&quot;false&quot;&gt;Ver detalles&lt;/button&gt;
+  &lt;div class=&quot;ro-popover&quot; id=&quot;p1&quot; data-ro-disclosure-panel role=&quot;dialog&quot; aria-labelledby=&quot;p1-t&quot; hidden&gt;
+    &lt;div class=&quot;ro-popover__arrow&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;ro-popover__title&quot; id=&quot;p1-t&quot;&gt;Detalle&lt;/div&gt;
+    &lt;div class=&quot;ro-popover__body&quot;&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El disparador declara aria-haspopup, aria-controls y aria-expanded.</li><li>El panel es role=dialog no modal; inicia con hidden.</li><li>Se cierra con Escape o clic fuera (disclosure-controller).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-dropdown</code></td><td>Contenedor posicionador (relative).</td></tr><tr><td><code>.ro-popover</code></td><td>Panel flotante.</td></tr><tr><td><code>.ro-popover--end</code></td><td>Alinea el panel a la derecha.</td></tr><tr><td><code>.ro-popover__title</code></td><td>Título del panel.</td></tr><tr><td><code>.ro-popover__body</code></td><td>Cuerpo del panel.</td></tr><tr><td><code>.ro-popover__arrow</code></td><td>Flecha decorativa hacia el disparador.</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-ro-disclosure-root</code></td><td>Contenedor disparador + panel.</td></tr><tr><td><code>data-ro-disclosure-trigger</code></td><td>Botón que abre/cierra.</td></tr><tr><td><code>data-ro-disclosure-panel</code></td><td>Panel controlado.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-shadow-md</code> <code>--ro-z-overlay</code> <code>--ro-white</code></p>
+<h3>Primitiva</h3><pre class="dx-ref-code"><code>import { createDisclosureController } from &quot;@robertcastro/roui/primitives/disclosure-controller&quot;;</code></pre>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Enter / Espacio</kbd></td><td>Abre y cierra el popover desde el disparador.</td></tr><tr><td><kbd>Escape</kbd></td><td>Cierra el popover y devuelve el foco al disparador.</td></tr><tr><td><kbd>Tab</kbd></td><td>Recorre el contenido del panel mientras está abierto.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/menu-popover-tooltip.html">menu-popover-tooltip</a></p><ul class="dx-ref-list"><li>No es modal: no atrapa el foco ni bloquea el fondo.</li><li>El disclosure-controller cierra al hacer clic fuera y con Escape.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Popover con detalle (interactivo)</div>
+  <div class="dx-demo"><div class="ro-dropdown" data-ro-disclosure-root>
+  <button class="ro-btn ro-btn--soft" data-ro-disclosure-trigger aria-haspopup="dialog" aria-controls="ref-popover" aria-expanded="false">Ver detalles</button>
+  <div class="ro-popover" id="ref-popover" data-ro-disclosure-panel role="dialog" aria-labelledby="ref-popover-t" hidden>
+    <div class="ro-popover__arrow"></div>
+    <div class="ro-popover__title" id="ref-popover-t">Frontend · 4 semanas</div>
+    <div class="ro-popover__body">Cohort de abril · 40 módulos.</div>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-dropdown&quot; data-ro-disclosure-root&gt;
+  &lt;button class=&quot;ro-btn ro-btn--soft&quot; data-ro-disclosure-trigger aria-haspopup=&quot;dialog&quot; aria-controls=&quot;ref-popover&quot; aria-expanded=&quot;false&quot;&gt;Ver detalles&lt;/button&gt;
+  &lt;div class=&quot;ro-popover&quot; id=&quot;ref-popover&quot; data-ro-disclosure-panel role=&quot;dialog&quot; aria-labelledby=&quot;ref-popover-t&quot; hidden&gt;
+    &lt;div class=&quot;ro-popover__arrow&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;ro-popover__title&quot; id=&quot;ref-popover-t&quot;&gt;Frontend · 4 semanas&lt;/div&gt;
+    &lt;div class=&quot;ro-popover__body&quot;&gt;Cohort de abril · 40 módulos.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Ancla el popover a su disparador y ofrece cierre con Escape.</li><li>Manténlo breve; para tareas largas usa Modal.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No lo uses para información esencial permanente.</li><li>No lo trates como modal atrapando el foco.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="tooltip.html">tooltip</a> · <a href="menu.html">menu</a> · <a href="modal.html">modal</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

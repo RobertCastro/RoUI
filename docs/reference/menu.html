@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Overlays</p>
+      <div class="dx-ref-title"><h1>Menu</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Menú flotante de acciones u opciones, abierto desde un disparador (dropdown).</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Agrupar acciones secundarias de un elemento (kebab, perfil).</li><li>Ofrecer opciones excluyentes marcadas con aria-current.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para navegación principal del sitio: usa un nav.</li><li>Para seleccionar de una lista larga con filtro: usa Combobox.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-dropdown&quot; data-ro-disclosure-root&gt;
+  &lt;button data-ro-disclosure-trigger aria-haspopup=&quot;menu&quot; aria-controls=&quot;m1&quot; aria-expanded=&quot;false&quot;&gt;Opciones&lt;/button&gt;
+  &lt;div class=&quot;ro-menu&quot; id=&quot;m1&quot; data-ro-disclosure-panel role=&quot;menu&quot; aria-label=&quot;Opciones&quot; hidden&gt;
+    &lt;button class=&quot;ro-menu__item&quot; role=&quot;menuitem&quot;&gt;Editar&lt;/button&gt;
+    &lt;button class=&quot;ro-menu__item ro-menu__item--danger&quot; role=&quot;menuitem&quot;&gt;Eliminar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El disparador declara aria-haspopup=menu y aria-expanded.</li><li>El panel es role=menu con nombre; los ítems son role=menuitem.</li><li>Los rótulos internos usan role=presentation; el separador es decorativo.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-dropdown</code></td><td>Contenedor posicionador.</td></tr><tr><td><code>.ro-menu</code></td><td>Panel del menú (role=menu).</td></tr><tr><td><code>.ro-menu--end</code></td><td>Alinea el menú a la derecha.</td></tr><tr><td><code>.ro-menu__item</code></td><td>Opción del menú (role=menuitem).</td></tr><tr><td><code>.ro-menu__item--danger</code></td><td>Acción destructiva.</td></tr><tr><td><code>.ro-menu__label</code></td><td>Rótulo de grupo (role=presentation).</td></tr><tr><td><code>.ro-menu__sep</code></td><td>Separador decorativo.</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-ro-disclosure-root</code></td><td>Contenedor disparador + panel.</td></tr><tr><td><code>data-ro-disclosure-trigger</code></td><td>Botón que abre/cierra.</td></tr><tr><td><code>data-ro-disclosure-panel</code></td><td>Panel del menú.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-shadow-md</code> <code>--ro-z-overlay</code> <code>--ro-white</code></p>
+<h3>Primitiva</h3><pre class="dx-ref-code"><code>import { createDisclosureController } from &quot;@robertcastro/roui/primitives/disclosure-controller&quot;;</code></pre>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Enter / Espacio</kbd></td><td>Abre y cierra el menú desde el disparador.</td></tr><tr><td><kbd>Escape</kbd></td><td>Cierra el menú y devuelve el foco al disparador.</td></tr><tr><td><kbd>Tab</kbd></td><td>Recorre los ítems mientras está abierto.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/menu-popover-tooltip.html">menu-popover-tooltip</a></p><ul class="dx-ref-list"><li>Reserva role=menu para listas de acciones, no para navegación.</li><li>Marca la opción activa con aria-current, no con una clase de estado.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Menú de acciones (interactivo)</div>
+  <div class="dx-demo"><div class="ro-dropdown" data-ro-disclosure-root>
+  <button class="ro-btn ro-btn--soft" data-ro-disclosure-trigger aria-haspopup="menu" aria-controls="ref-menu" aria-expanded="false">Opciones</button>
+  <div class="ro-menu" id="ref-menu" data-ro-disclosure-panel role="menu" aria-label="Opciones" hidden>
+    <button class="ro-menu__item" role="menuitem">Editar</button>
+    <button class="ro-menu__item" role="menuitem">Duplicar</button>
+    <div class="ro-menu__sep" role="presentation"></div>
+    <button class="ro-menu__item ro-menu__item--danger" role="menuitem">Eliminar</button>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-dropdown&quot; data-ro-disclosure-root&gt;
+  &lt;button class=&quot;ro-btn ro-btn--soft&quot; data-ro-disclosure-trigger aria-haspopup=&quot;menu&quot; aria-controls=&quot;ref-menu&quot; aria-expanded=&quot;false&quot;&gt;Opciones&lt;/button&gt;
+  &lt;div class=&quot;ro-menu&quot; id=&quot;ref-menu&quot; data-ro-disclosure-panel role=&quot;menu&quot; aria-label=&quot;Opciones&quot; hidden&gt;
+    &lt;button class=&quot;ro-menu__item&quot; role=&quot;menuitem&quot;&gt;Editar&lt;/button&gt;
+    &lt;button class=&quot;ro-menu__item&quot; role=&quot;menuitem&quot;&gt;Duplicar&lt;/button&gt;
+    &lt;div class=&quot;ro-menu__sep&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;
+    &lt;button class=&quot;ro-menu__item ro-menu__item--danger&quot; role=&quot;menuitem&quot;&gt;Eliminar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da nombre al menú (aria-label) y roles a sus ítems.</li><li>Agrupa con rótulos y separadores cuando ayude.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No metas navegación del sitio en un role=menu.</li><li>No mezcles contenido no accionable entre los ítems.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="popover.html">popover</a> · <a href="button-group.html">button-group</a> · <a href="combobox.html">combobox</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>
