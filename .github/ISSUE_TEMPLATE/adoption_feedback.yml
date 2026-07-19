@@ -1,0 +1,49 @@
+name: Feedback de adopción
+description: Cuéntanos cómo va adoptar RoUI en tu proyecto.
+labels: ["adoption", "feedback"]
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Proyecto / equipo
+      description: Identificador del proyecto (no de personas).
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Etapa
+      options:
+        - Evaluando
+        - Integrando
+        - En producción
+        - Migrando desde otro sistema
+    validations:
+      required: true
+  - type: checkboxes
+    id: used
+    attributes:
+      label: Qué usas
+      options:
+        - label: Tokens / temas
+        - label: Componentes (CSS)
+        - label: Primitivas (JS)
+        - label: Codemod de migración
+  - type: textarea
+    id: friction
+    attributes:
+      label: Fricción encontrada
+      description: Qué costó, qué faltó o qué confundió.
+    validations:
+      required: true
+  - type: textarea
+    id: wins
+    attributes:
+      label: Qué funcionó bien
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Versión de RoUI
+      placeholder: "1.1.0"
