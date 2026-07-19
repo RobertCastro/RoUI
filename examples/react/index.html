@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es" data-ro-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>React · RoUI</title>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/roui.min.css">
+  <style>
+    body { margin: 0; background: var(--ro-bg); color: var(--ro-text); font-family: var(--ro-font-sans); }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 24px; display: grid; gap: 20px; }
+  </style>
+</head>
+<body class="ro-root">
+  <div id="app"></div>
+
+  <!-- No-build: React desde esm.sh, RoUI desde jsDelivr. En un proyecto real
+       importa el CSS una vez y usa un bundler. -->
+  <script type="module">
+    import React, { useRef, useEffect } from "https://esm.sh/react@18.3.1";
+    import { createRoot } from "https://esm.sh/react-dom@18.3.1/client";
+    import htm from "https://esm.sh/htm@3.1.1";
+    import { createOverlayController }
+      from "https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/primitives/overlay-controller.js";
+
+    const html = htm.bind(React.createElement);
+
+    function App() {
+      const rootRef = useRef(null);
+      const triggerRef = useRef(null);
+      const ctrl = useRef(null);
+
+      // Patrón de integración: instancia la primitiva en el montaje sobre la ref
+      // del nodo, y destrúyela al desmontar. React no re-renderiza esos nodos, así
+      // que la primitiva puede mutar hidden/foco sin conflicto.
+      useEffect(() => {
+        ctrl.current = createOverlayController(rootRef.current);
+        return () => ctrl.current.destroy();
+      }, []);
+
+      return html`
+        <main>
+          <h1 class="ro-display">RoUI · React</h1>
+          <p class="ro-body">Consumo de RoUI en React sin build (esm.sh + jsDelivr).</p>
+          <button class="ro-btn ro-btn--primary" type="button" ref=${triggerRef}
+            aria-haspopup="dialog" aria-controls="dlg" aria-expanded="false"
+            onClick=${() => ctrl.current.open(triggerRef.current)}>Abrir diálogo</button>
+
+          <div class="ro-overlay" id="dlg" data-ro-overlay-root hidden ref=${rootRef}>
+            <div class="ro-modal" role="dialog" aria-modal="true" aria-labelledby="dlg-t" tabindex="-1">
+              <div class="ro-modal__header">
+                <h2 class="ro-modal__title" id="dlg-t">Hola desde React</h2>
+                <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar">×</button>
+              </div>
+              <div class="ro-modal__body">Foco atrapado y cierre con Escape, gestionados por la primitiva.</div>
+              <div class="ro-modal__footer">
+                <button class="ro-btn ro-btn--soft" data-ro-overlay-close>Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </main>`;
+    }
+
+    createRoot(document.getElementById("app")).render(html`<${App} />`);
+  </script>
+</body>
+</html>
