@@ -1,0 +1,9 @@
+# Propietarios por defecto de todo el repositorio.
+* @RobertCastro
+
+# Areas sensibles: tokens, primitivas, release y CI.
+/tokens/                 @RobertCastro
+/src/primitives/         @RobertCastro
+/.github/workflows/      @RobertCastro
+/.changeset/             @RobertCastro
+/package.json            @RobertCastro
