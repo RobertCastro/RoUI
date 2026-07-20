@@ -67,7 +67,8 @@ const report = {
     undefinedCustomProperties,
   },
   knownIssues: [
-    "No existe aun matriz automatizada de navegador, axe o regresion visual.",
+    "Fase 7 depende de seleccionar y ejecutar un producto piloto real.",
+    "Trabajo continuo: completar manifiestos de referencia, tematizacion de demos, reflow de plantillas y documentacion multi-version.",
   ],
 };
 
