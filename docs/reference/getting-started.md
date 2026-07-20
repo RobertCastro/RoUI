@@ -74,9 +74,12 @@ restauración. Ver el contrato de cada patrón en la referencia.
   CSS y controladores que envuelves a tu gusto.
 - Ejemplos ejecutables sin build en el repositorio: `examples/react/` y
   `examples/vue/` (además del `examples/starter/` en vanilla).
+- Piloto local de adopción: `examples/pilot-dashboard/` combina componentes,
+  temas y primitivas en un dashboard operativo sin build.
 
 ## Siguiente
 
 - Referencia por componente: `index.html`.
 - Contratos de accesibilidad y guía de migración enlazados desde cada componente.
 - Ejemplo mínimo sin build: `examples/starter/` en el repositorio.
+- Piloto de adopción: `examples/pilot-dashboard/`.

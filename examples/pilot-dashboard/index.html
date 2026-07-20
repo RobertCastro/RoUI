@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="es" data-ro-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Piloto Dashboard · RoUI</title>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/roui.min.css">
+  <style>
+    :root {
+      --pilot-max: 1180px;
+    }
+    body {
+      margin: 0;
+      background: var(--ro-bg);
+      color: var(--ro-text);
+      font-family: var(--ro-font-sans);
+    }
+    .pilot-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+    .pilot-header {
+      position: sticky;
+      top: 0;
+      z-index: var(--ro-z-header);
+      border-bottom: 1px solid var(--ro-border-color);
+      background: color-mix(in srgb, var(--ro-surface) 94%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    .pilot-header__inner {
+      max-width: var(--pilot-max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .pilot-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: var(--ro-weight-bold);
+      letter-spacing: var(--ro-tracking-tight);
+    }
+    .pilot-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--ro-radius-lg);
+      display: grid;
+      place-items: center;
+      background: var(--ro-secondary);
+      color: var(--ro-ink);
+      font-weight: var(--ro-weight-extrabold);
+    }
+    .pilot-header__nav {
+      display: none;
+      gap: 4px;
+    }
+    .pilot-header__actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pilot-main {
+      width: 100%;
+      max-width: var(--pilot-max);
+      margin: 0 auto;
+      padding: 22px 18px 48px;
+      display: grid;
+      gap: 18px;
+    }
+    .pilot-hero {
+      display: grid;
+      gap: 16px;
+      align-items: end;
+    }
+    .pilot-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: var(--ro-leading-tight);
+      letter-spacing: var(--ro-tracking-tight);
+    }
+    .pilot-lead {
+      max-width: 68ch;
+      margin: 8px 0 0;
+      color: var(--ro-text-muted);
+      font-size: var(--ro-text-base);
+      line-height: var(--ro-leading-relaxed);
+    }
+    .pilot-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    .pilot-card {
+      min-width: 0;
+    }
+    .pilot-metric {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .pilot-metric b {
+      display: block;
+      font-size: 1.75rem;
+      line-height: 1;
+      letter-spacing: var(--ro-tracking-tight);
+    }
+    .pilot-metric span {
+      display: block;
+      margin-top: 5px;
+      color: var(--ro-text-muted);
+      font-size: var(--ro-text-sm);
+    }
+    .pilot-panel {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .pilot-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .pilot-table {
+      min-width: 720px;
+    }
+    .pilot-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .pilot-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--ro-radius-full);
+      background: var(--ro-secondary);
+    }
+    .pilot-dot--ok {
+      background: var(--ro-success);
+    }
+    .pilot-dot--warn {
+      background: var(--ro-warning);
+    }
+    .pilot-form-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .pilot-theme-toggle {
+      min-width: 42px;
+    }
+    [role="tabpanel"][hidden] {
+      display: none;
+    }
+    @media (min-width: 720px) {
+      .pilot-header__nav {
+        display: flex;
+      }
+      .pilot-hero {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+      .pilot-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .pilot-panel {
+        grid-template-columns: minmax(0, 2fr) minmax(280px, 0.8fr);
+      }
+      .pilot-form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .pilot-form-grid .is-wide {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body class="ro-root">
+  <div class="pilot-shell">
+    <header class="pilot-header">
+      <div class="pilot-header__inner">
+        <div class="pilot-brand">
+          <span class="pilot-mark">R</span>
+          <span>RoUI Ops</span>
+        </div>
+        <nav class="pilot-header__nav" aria-label="Secciones principales">
+          <a class="ro-nav-link" href="#" aria-current="page">Programa</a>
+          <a class="ro-nav-link" href="#">Riesgos</a>
+          <a class="ro-nav-link" href="#">Soporte</a>
+        </nav>
+        <div class="pilot-header__actions">
+          <button class="ro-btn-icon pilot-theme-toggle" type="button" id="theme-toggle" aria-label="Cambiar tema">◐</button>
+          <button class="ro-btn ro-btn--primary ro-btn--sm" type="button" id="open-intake"
+            aria-haspopup="dialog" aria-controls="intake-dialog" aria-expanded="false">Nuevo piloto</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="pilot-main">
+      <section class="pilot-hero" aria-labelledby="pilot-title">
+        <div>
+          <p class="ro-eyebrow">Adopción multi-proyecto</p>
+          <h1 class="pilot-title" id="pilot-title">Dashboard piloto para validar RoUI en un producto consumidor</h1>
+          <p class="pilot-lead">Vista operativa que usa RoUI desde CDN, sin build local, con componentes, temas y primitivas accesibles trabajando juntas.</p>
+        </div>
+        <div class="ro-row ro-row--wrap">
+          <span class="ro-badge">v1.1.0</span>
+          <span class="ro-badge ro-badge--soft">CDN</span>
+          <span class="ro-badge ro-badge--soft">sin build</span>
+        </div>
+      </section>
+
+      <section class="pilot-grid" aria-label="Indicadores del piloto">
+        <article class="ro-card ro-card--plain pilot-card">
+          <div class="pilot-metric"><div><b>3</b><span>stacks listos</span></div><span class="ro-dot ro-dot--success"></span></div>
+        </article>
+        <article class="ro-card ro-card--plain pilot-card">
+          <div class="pilot-metric"><div><b>6</b><span>primitivas públicas</span></div><span class="ro-dot"></span></div>
+        </article>
+        <article class="ro-card ro-card--plain pilot-card">
+          <div class="pilot-metric"><div><b>35</b><span>pruebas Node</span></div><span class="ro-dot ro-dot--success"></span></div>
+        </article>
+        <article class="ro-card ro-card--plain pilot-card">
+          <div class="pilot-metric"><div><b>26</b><span>páginas axe</span></div><span class="ro-dot ro-dot--success"></span></div>
+        </article>
+      </section>
+
+      <section class="pilot-panel">
+        <article class="ro-card ro-card--plain">
+          <div class="pilot-toolbar">
+            <div>
+              <h2 class="ro-h3">Plan de adopción</h2>
+              <p class="ro-body ro-muted" style="margin-top:4px">Iniciativas de un consumidor candidato y señales para decidir el cierre de Fase 7.</p>
+            </div>
+            <button class="ro-btn ro-btn--soft ro-btn--sm" type="button" id="show-toast">Registrar avance</button>
+          </div>
+
+          <div class="ro-tabs" role="tablist" aria-label="Áreas del piloto" style="margin-top:18px" id="pilot-tabs">
+            <button class="ro-tab" type="button" role="tab" id="tab-adoption" aria-selected="true"
+              aria-controls="panel-adoption">Adopción <span class="ro-tab__count">4</span></button>
+            <button class="ro-tab" type="button" role="tab" id="tab-quality" aria-selected="false"
+              aria-controls="panel-quality">Calidad <span class="ro-tab__count">3</span></button>
+            <button class="ro-tab" type="button" role="tab" id="tab-feedback" aria-selected="false"
+              aria-controls="panel-feedback">Feedback <span class="ro-tab__count">2</span></button>
+          </div>
+
+          <div id="panel-adoption" role="tabpanel" aria-labelledby="tab-adoption" tabindex="0" style="padding-top:16px">
+            <div class="ro-table-wrap">
+              <table class="ro-table ro-table--hover pilot-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Iniciativa</th>
+                    <th scope="col">Stack</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col" class="ro-table__num">Fricción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Shell de operaciones</td>
+                    <td>Vanilla</td>
+                    <td><span class="pilot-status"><span class="pilot-dot pilot-dot--ok"></span> Integrado</span></td>
+                    <td class="ro-table__num">Baja</td>
+                  </tr>
+                  <tr>
+                    <td>Formulario de intake</td>
+                    <td>HTML</td>
+                    <td><span class="pilot-status"><span class="pilot-dot"></span> En validación</span></td>
+                    <td class="ro-table__num">Media</td>
+                  </tr>
+                  <tr>
+                    <td>Diálogo modal</td>
+                    <td>Primitiva ESM</td>
+                    <td><span class="pilot-status"><span class="pilot-dot pilot-dot--ok"></span> Verificado</span></td>
+                    <td class="ro-table__num">Baja</td>
+                  </tr>
+                  <tr>
+                    <td>Notificaciones</td>
+                    <td>Toast ESM</td>
+                    <td><span class="pilot-status"><span class="pilot-dot pilot-dot--warn"></span> Observando</span></td>
+                    <td class="ro-table__num">Baja</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="panel-quality" role="tabpanel" aria-labelledby="tab-quality" tabindex="0" hidden style="padding-top:16px">
+            <div class="ro-alert ro-alert--success">
+              <span class="ro-alert__icon" aria-hidden="true">✓</span>
+              <div class="ro-alert__body">
+                <div class="ro-alert__title">Gates verdes</div>
+                <div>El paquete publica CSS, primitivas y contratos con `validate`, axe y presupuesto dentro de límite.</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="panel-feedback" role="tabpanel" aria-labelledby="tab-feedback" tabindex="0" hidden style="padding-top:16px">
+            <div class="ro-stack">
+              <p class="ro-body">El piloto captura fricción de integración, componentes usados, bloqueos y cambios solicitados por consumidores.</p>
+              <p class="ro-body ro-muted">La ejecución real se completa cuando un producto externo adopte RoUI y reporte métricas.</p>
+            </div>
+          </div>
+        </article>
+
+        <aside class="ro-card ro-card--soft-yellow">
+          <h2 class="ro-h3">Checklist de cierre</h2>
+          <div class="ro-stack" style="margin-top:14px">
+            <label class="ro-row"><input class="ro-check" type="checkbox" checked> CSS por CDN cargado</label>
+            <label class="ro-row"><input class="ro-check" type="checkbox" checked> Primitivas ESM activas</label>
+            <label class="ro-row"><input class="ro-check" type="checkbox" checked> Tema con tokens semánticos</label>
+            <label class="ro-row"><input class="ro-check" type="checkbox"> Producto real en producción</label>
+          </div>
+          <div class="ro-divider"></div>
+          <p class="ro-body ro-muted">Este ejemplo reduce el riesgo técnico; no sustituye la adopción en un producto real.</p>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <div class="ro-overlay" id="intake-dialog" data-ro-overlay-root hidden>
+    <div class="ro-modal" role="dialog" aria-modal="true" aria-labelledby="intake-title" tabindex="-1">
+      <form id="intake-form">
+        <div class="ro-modal__header">
+          <h2 class="ro-modal__title" id="intake-title">Registrar piloto</h2>
+          <button class="ro-btn-icon" type="button" data-ro-overlay-close aria-label="Cerrar">×</button>
+        </div>
+        <div class="ro-modal__body">
+          <div class="pilot-form-grid">
+            <div>
+              <label class="ro-label" for="pilot-name">Producto</label>
+              <input class="ro-input-box" id="pilot-name" name="product" value="Portal Operaciones">
+            </div>
+            <div>
+              <label class="ro-label" for="pilot-stack">Stack</label>
+              <select class="ro-select-box" id="pilot-stack" name="stack">
+                <option>Vanilla</option>
+                <option>React</option>
+                <option>Vue</option>
+                <option>Next</option>
+              </select>
+            </div>
+            <div class="is-wide">
+              <label class="ro-label" for="pilot-notes">Objetivo</label>
+              <textarea class="ro-textarea" id="pilot-notes" name="notes">Validar integración de RoUI, foco de modales, tabs y notificaciones.</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="ro-modal__footer">
+          <button class="ro-btn ro-btn--soft" type="button" data-ro-overlay-close>Cancelar</button>
+          <button class="ro-btn ro-btn--primary" type="submit">Guardar piloto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createOverlayController } from "https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/primitives/overlay-controller.js";
+    import { createTabsController } from "https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/primitives/tabs-controller.js";
+    import { createToastController } from "https://cdn.jsdelivr.net/npm/@robertcastro/roui@1.1.0/dist/primitives/toast-controller.js";
+
+    const overlay = createOverlayController(document.getElementById("intake-dialog"));
+    const trigger = document.getElementById("open-intake");
+    const tabs = createTabsController(document.getElementById("pilot-tabs"));
+    const toasts = createToastController({ duration: 4200 });
+
+    trigger.addEventListener("click", () => overlay.open(trigger));
+
+    document.getElementById("show-toast").addEventListener("click", () => {
+      toasts.success("Avance registrado en el piloto local.");
+    });
+
+    document.getElementById("intake-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      overlay.close();
+      toasts.info("Piloto guardado para seguimiento.");
+    });
+
+    const themes = ["light", "dark", "high-contrast"];
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      const html = document.documentElement;
+      const current = html.getAttribute("data-ro-theme") || "light";
+      html.setAttribute("data-ro-theme", themes[(themes.indexOf(current) + 1) % themes.length]);
+    });
+
+    window.addEventListener("beforeunload", () => {
+      tabs.destroy();
+      overlay.destroy();
+      toasts.destroy();
+    });
+  </script>
+</body>
+</html>

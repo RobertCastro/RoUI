@@ -28,7 +28,7 @@ cerradas.
 
 ## Orden inicial
 
-1. F7-001: piloto de adopción en un producto y guía de arranque. (review)
+1. F7-001: piloto de adopción en un producto y guía de arranque. (review; piloto local listo)
 2. F7-002: plantillas/starters por stack priorizado. (review)
 3. F7-003: codemods o guía de migración de patrones a RoUI. (review)
 4. F7-004: telemetría y métricas de adopción. (review)
@@ -44,6 +44,8 @@ cerradas.
 ## Tareas de seguimiento heredadas
 
 - Llenado de los 40 manifiestos de referencia restantes.
+- Ejecutar el piloto en un producto real o interno en produccion; el piloto local
+  `examples/pilot-dashboard/` ya cubre la validacion tecnica inicial.
 - Tematización de las demos y responsividad de plantillas (RTL/reflow).
 - Documentación multi-versión.
 - Revisión de las PRs de Dependabot abiertas (#34-#39) y aplicación de la

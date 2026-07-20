@@ -13,7 +13,7 @@ Ultima actualizacion: 2026-07-20
 | 4. Pruebas integrales | done | 100% | Cerrada y aprobada (phase-4-audit); PR #19 en main |
 | 5. Documentacion | done | 100% | Cerrada y aprobada (phase-5-audit) |
 | 6. Releases y gobernanza | done | 100% | Cerrada y aprobada (phase-6-audit); 1.1.0 publicado |
-| 7. Adopcion | in-progress | 90% | F7-001..005 en review; plantillas listas, ejecucion depende de piloto |
+| 7. Adopcion | in-progress | 92% | Piloto local listo; cierre depende de producto real en produccion |
 
 ## Entregables de Fase 0
 
@@ -33,7 +33,7 @@ Ultima actualizacion: 2026-07-20
 
 ## Riesgos activos
 
-- Fase 7 no puede cerrarse sin un producto piloto real que adopte RoUI; la
+- Fase 7 no puede cerrarse sin un producto real en produccion que adopte RoUI; la
   instrumentacion de metricas y el ciclo de feedback dependen de esa decision.
 - Queda trabajo continuo de adopcion: documentar los 40 manifiestos restantes,
   tematizar demos, mejorar reflow/RTL de plantillas y preparar documentacion
@@ -62,6 +62,7 @@ Ultima actualizacion: 2026-07-20
 - Fase 6 incorporo releases y gobernanza: Changesets, publicacion npm,
   provenance, CodeQL, SBOM, dependency-review, Dependabot, CODEOWNERS,
   CONTRIBUTING, SECURITY y SUPPORT.
-- Fase 7 esta en `in-progress` al 90%: guia de arranque, starters vanilla/React/Vue,
-  codemod `legacy-states`, marco de metricas, esquema de telemetria y proceso de
-  soporte/feedback estan en `review`.
+- Fase 7 esta en `in-progress` al 92%: guia de arranque, starters vanilla/React/Vue,
+  piloto local `examples/pilot-dashboard`, codemod `legacy-states`, marco de
+  metricas, esquema de telemetria y proceso de soporte/feedback estan listos o
+  en `review`. El cierre requiere adopcion en produccion.

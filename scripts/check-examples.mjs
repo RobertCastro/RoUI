@@ -13,6 +13,7 @@ import { JSDOM } from "jsdom";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const manifestDir = resolve(root, "docs/reference/components");
+const pilotPath = resolve(root, "examples/pilot-dashboard/index.html");
 const css = readFileSync(resolve(root, "dist/roui.css"), "utf8");
 const sprite = readFileSync(resolve(root, "dist/icons.svg"), "utf8");
 
@@ -65,8 +66,33 @@ for (const file of files) {
   }
 }
 
+if (existsSync(pilotPath)) {
+  const html = readFileSync(pilotPath, "utf8");
+  const problems = snippetProblems(html);
+  const required = [
+    "@robertcastro/roui@1.1.0/dist/roui.min.css",
+    "@robertcastro/roui@1.1.0/dist/primitives/overlay-controller.js",
+    "@robertcastro/roui@1.1.0/dist/primitives/tabs-controller.js",
+    "@robertcastro/roui@1.1.0/dist/primitives/toast-controller.js",
+    "data-ro-theme=\"light\"",
+    "role=\"tablist\"",
+    "role=\"dialog\"",
+  ];
+  required.forEach((needle) => {
+    if (!html.includes(needle)) problems.push(`piloto sin contrato requerido: ${needle}`);
+  });
+  if (problems.length) {
+    failures += problems.length;
+    console.error("✗ examples/pilot-dashboard");
+    for (const p of problems) console.error(`    ${p}`);
+  }
+} else {
+  failures += 1;
+  console.error("✗ examples/pilot-dashboard no existe");
+}
+
 if (failures > 0) {
   console.error(`\nEjemplos con divergencias: ${failures} problema(s).`);
   process.exit(1);
 }
-console.log(`Ejemplos verificados: ${snippets} snippet(s) en ${files.length} componente(s), sin divergencias.`);
+console.log(`Ejemplos verificados: ${snippets} snippet(s) en ${files.length} componente(s) y piloto local, sin divergencias.`);
