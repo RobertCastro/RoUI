@@ -1,0 +1,59 @@
+{
+  "name": "description-list",
+  "title": "Description list",
+  "group": "Contenido y estructura",
+  "maturity": "experimental",
+  "summary": "Lista de pares término–descripción, construida sobre los elementos nativos <dl>/<dt>/<dd>.",
+  "whenToUse": [
+    "Mostrar los metadatos o propiedades de un único registro (ficha de usuario, resumen de un curso, detalle de un pedido).",
+    "Presentar pares clave–valor cortos junto a otro contenido, como dentro de una Card."
+  ],
+  "whenNotToUse": [
+    "Para datos comparables entre múltiples registros: usa Table.",
+    "Para una secuencia de pasos o eventos: usa Timeline o Stepper."
+  ],
+  "anatomy": {
+    "html": "<dl class=\"ro-dl\">\n  <dt>Cohort</dt><dd>Abril 2026</dd>\n  <dt>Duración</dt><dd>4 semanas · 40 módulos</dd>\n  <dt>Modalidad</dt><dd>Online · sesiones en vivo</dd>\n</dl>",
+    "notes": [
+      "<dl>/<dt>/<dd> nativos aportan la semántica de pares; ro-dl solo controla el layout (grid en dos columnas, una columna en mobile).",
+      "El orden del DOM debe mantenerse dt→dd; no reordenes visualmente con CSS de forma que invierta ese orden lógico.",
+      "Un <dt> puede ir seguido de varios <dd> si el término tiene más de un valor asociado."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-dl", "desc": "Contenedor <dl> con layout de grid término/descripción." }
+    ],
+    "data": [],
+    "tokens": ["--ro-text-sm"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "El lector de pantalla anuncia el par término/descripción por el orden real dt→dd del documento; no hay rol ARIA adicional que declarar.",
+      "En pantallas angostas (≤480px) el layout pasa a una columna, pero la semántica de lista de pares no cambia.",
+      "Si un valor incluye un badge de estado, el badge complementa el texto, no lo sustituye (ver contrato de badges en accessibility/content-and-status.md)."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Ficha de cohort",
+      "html": "<div class=\"ro-card ro-card--plain\" style=\"max-width:440px\">\n  <dl class=\"ro-dl\">\n    <dt>Cohort</dt><dd>Abril 2026</dd>\n    <dt>Duración</dt><dd>4 semanas · 40 módulos</dd>\n    <dt>Modalidad</dt><dd>Online · sesiones en vivo</dd>\n    <dt>Estado</dt><dd><span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--success\"></span> Activo</span></dd>\n  </dl>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa <dl>/<dt>/<dd> reales en vez de simular la estructura con <div>.",
+      "Agrupa varios <dt> antes de sus <dd> correspondientes solo si comparten semántica clara.",
+      "Mantén los valores (<dd>) cortos y escaneables."
+    ],
+    "dont": [
+      "No uses description-list para navegación secuencial o pasos con estado.",
+      "No sustituyas una tabla comparativa de varios registros por múltiples listas de descripción.",
+      "No reordenes dt/dd solo con CSS de forma que el orden visual contradiga el orden del DOM."
+    ]
+  },
+  "related": ["card", "table", "timeline"]
+}

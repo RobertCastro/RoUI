@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tags input — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Formularios</p>
+      <div class="dx-ref-title"><h1>Tags input</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Campo que añade y quita chips (tags) a medida que el usuario escribe y confirma valores.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Capturar una lista corta de valores discretos: destinatarios, habilidades, categorías.</li><li>Cuando cada valor debe verse y quitarse individualmente, no solo como texto separado por comas.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para elegir entre opciones predefinidas de una lista larga: usa Combobox.</li><li>Para un solo valor de texto libre: un ro-input-box normal es más simple.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-tags-input&quot;&gt;
+  &lt;span class=&quot;ro-tag&quot;&gt;React &lt;button class=&quot;ro-tag__close&quot; type=&quot;button&quot; aria-label=&quot;Quitar etiqueta React&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+  &lt;input class=&quot;ro-tags-input__field&quot; aria-label=&quot;Añadir etiqueta&quot; placeholder=&quot;Añade y pulsa Enter…&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Los chips ya confirmados usan ro-tag; cada uno lleva su propio botón ro-tag__close con aria-label específico (&quot;Quitar etiqueta X&quot;).</li><li>El input de escritura (ro-tags-input__field) vive al final de la lista de chips, dentro del mismo contenedor.</li><li>Confirmar un valor (Enter o coma, según implementación) lo convierte en chip y limpia el input para el siguiente.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-tags-input</code></td><td>Contenedor del campo (chips + input).</td></tr><tr><td><code>.ro-tags-input__field</code></td><td>Input de texto donde se escribe el siguiente tag.</td></tr><tr><td><code>.ro-tag</code></td><td>Chip de un tag ya confirmado (reusa el componente Tag).</td></tr><tr><td><code>.ro-tag__close</code></td><td>Botón para quitar el chip.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-focus-ring</code> <code>--ro-secondary</code> <code>--ro-ink-10</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Enter</kbd></td><td>Confirma el texto escrito y lo convierte en chip.</td></tr><tr><td><kbd>Retroceso (input vacío)</kbd></td><td>Quita el último chip añadido.</td></tr><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Recorre los botones de cierre de cada chip y el input.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>Da nombre accesible al input con aria-label (&quot;Añadir etiqueta&quot;) o un &lt;label&gt; externo asociado.</li><li>Cada ro-tag__close necesita un aria-label que identifique qué chip se quita, no un &quot;Quitar&quot; genérico repetido.</li><li>Anuncia los cambios (chip añadido/quitado) de forma perceptible; si usas una región aria-live, mantenla discreta (polite).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Campo con varios tags</div>
+  <div class="dx-demo"><div class="ro-tags-input" style="width:340px">
+  <span class="ro-tag">React <button class="ro-tag__close" type="button" aria-label="Quitar etiqueta React"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+  <span class="ro-tag">IA <button class="ro-tag__close" type="button" aria-label="Quitar etiqueta IA"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+  <input class="ro-tags-input__field" aria-label="Añadir etiqueta" placeholder="Añade y pulsa Enter…">
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-tags-input&quot; style=&quot;width:340px&quot;&gt;
+  &lt;span class=&quot;ro-tag&quot;&gt;React &lt;button class=&quot;ro-tag__close&quot; type=&quot;button&quot; aria-label=&quot;Quitar etiqueta React&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+  &lt;span class=&quot;ro-tag&quot;&gt;IA &lt;button class=&quot;ro-tag__close&quot; type=&quot;button&quot; aria-label=&quot;Quitar etiqueta IA&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+  &lt;input class=&quot;ro-tags-input__field&quot; aria-label=&quot;Añadir etiqueta&quot; placeholder=&quot;Añade y pulsa Enter…&quot;&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Campo con label externo</div>
+  <div class="dx-demo"><label class="ro-label" for="skills-field">Habilidades</label>
+<div class="ro-tags-input" style="width:340px">
+  <span class="ro-tag">TypeScript <button class="ro-tag__close" type="button" aria-label="Quitar etiqueta TypeScript"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+  <input id="skills-field" class="ro-tags-input__field" placeholder="Añade una habilidad…">
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-label&quot; for=&quot;skills-field&quot;&gt;Habilidades&lt;/label&gt;
+&lt;div class=&quot;ro-tags-input&quot; style=&quot;width:340px&quot;&gt;
+  &lt;span class=&quot;ro-tag&quot;&gt;TypeScript &lt;button class=&quot;ro-tag__close&quot; type=&quot;button&quot; aria-label=&quot;Quitar etiqueta TypeScript&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+  &lt;input id=&quot;skills-field&quot; class=&quot;ro-tags-input__field&quot; placeholder=&quot;Añade una habilidad…&quot;&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da a cada botón de cierre un aria-label que identifique el chip concreto que quita.</li><li>Deja claro cómo confirmar un tag (placeholder &quot;Añade y pulsa Enter…&quot; o texto de ayuda).</li><li>Valida y evita duplicados antes de crear el chip, no después.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses tags-input para una lista larga de opciones predefinidas: eso es un Combobox multi-selección.</li><li>No dejes chips sin botón de cierre accesible por teclado.</li><li>No reutilices un mismo aria-label genérico (&quot;Quitar&quot;) para todos los chips.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="combobox.html">combobox</a> · <a href="form.html">form</a> · <a href="file-upload.html">file-upload</a> · <a href="tag.html">tag</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

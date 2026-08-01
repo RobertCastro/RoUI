@@ -1,0 +1,70 @@
+{
+  "name": "header",
+  "title": "Header",
+  "group": "Contenido y estructura",
+  "maturity": "experimental",
+  "summary": "Cabecera de página o de sección que agrupa marca, navegación principal y acciones.",
+  "whenToUse": [
+    "Cabecera de aplicación con marca, navegación y acciones de usuario, fija en la parte superior.",
+    "Cabecera de una sección de contenido extensa (dentro de un article o section)."
+  ],
+  "whenNotToUse": [
+    "Para navegación lateral persistente: usa Sidebar.",
+    "Para una barra de acciones sobre una tabla o lista: usa Toolbar."
+  ],
+  "anatomy": {
+    "html": "<header class=\"ro-header\">\n  <a class=\"ro-header__brand\"><strong>RoUI</strong></a>\n  <nav class=\"ro-header__nav\" aria-label=\"Principal\">\n    <a class=\"ro-nav-link\" href=\"#\" aria-current=\"page\">Inicio</a>\n    <a class=\"ro-nav-link\" href=\"#\">Proyectos</a>\n  </nav>\n  <div class=\"ro-header__actions\">\n    <button class=\"ro-btn-icon\" aria-label=\"Notificaciones\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-bell\"></use></svg></button>\n    <button class=\"ro-avatar\" aria-label=\"Cuenta\">RC</button>\n  </div>\n</header>",
+    "notes": [
+      "Si <header> es hijo directo de <body>, es landmark banner implícito y no necesita role.",
+      "Si el mismo <header> está anidado dentro de <article> o <section> (cabecera de sección), pierde ese rol implícito: úsalo ahí solo por su semántica de agrupación, no esperes que un lector de pantalla lo anuncie como banner.",
+      "ro-header__nav lleva aria-label propio porque puede coexistir con otras <nav> en la misma página (breadcrumb, sidebar).",
+      "Los botones de solo icono dentro de ro-header__actions necesitan aria-label."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-header", "desc": "Contenedor flex de la cabecera; fija su altura con --ro-header-h." },
+      { "name": "ro-header__brand", "desc": "Zona del logotipo/nombre, siempre visible." },
+      { "name": "ro-header__nav", "desc": "Navegación principal; oculta en mobile por defecto." },
+      { "name": "ro-header__title", "desc": "Título centrado opcional (visible desde tablet)." },
+      { "name": "ro-header__actions", "desc": "Grupo de acciones a la derecha (notificaciones, cuenta, menú)." },
+      { "name": "ro-nav-link", "desc": "Enlace de la navegación principal." },
+      { "name": "ro-burger", "desc": "Botón de menú hamburguesa, visible solo en mobile." }
+    ],
+    "data": [],
+    "tokens": ["--ro-header-h", "--ro-white", "--ro-ink-10", "--ro-space-7"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "El landmark banner (o su ausencia al anidar) es la única semántica implícita en juego; el resto del comportamiento es el de los enlaces y botones nativos que contiene.",
+      "No dupliques el landmark banner: debe existir como máximo un <header> hijo directo de <body> por página.",
+      "Si necesitas dos navegaciones visibles a la vez (principal y de sección), dales aria-label distintos para diferenciarlas en el árbol de accesibilidad."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Header de aplicación (landmark banner)",
+      "html": "<header class=\"ro-header\">\n  <a class=\"ro-header__brand\"><strong>RoUI</strong></a>\n  <nav class=\"ro-header__nav\" aria-label=\"Principal\">\n    <a class=\"ro-nav-link\" href=\"#\" aria-current=\"page\">Inicio</a>\n    <a class=\"ro-nav-link\" href=\"#\">Mis Proyectos</a>\n    <a class=\"ro-nav-link\" href=\"#\">Directorio</a>\n  </nav>\n  <div class=\"ro-header__actions\">\n    <button class=\"ro-btn-icon\" aria-label=\"Notificaciones\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-bell\"></use></svg></button>\n    <button class=\"ro-avatar\" aria-label=\"Cuenta\">RC</button>\n    <button class=\"ro-btn-icon ro-burger\" aria-label=\"Menú\"><svg class=\"ro-icon ro-icon--lg\" aria-hidden=\"true\"><use href=\"#ro-i-menu\"></use></svg></button>\n  </div>\n</header>"
+    },
+    {
+      "title": "Header de sección (sin landmark banner)",
+      "html": "<article>\n  <header>\n    <p class=\"ro-eyebrow\">Módulo 4</p>\n    <h2 class=\"ro-h3\">El arte del technical brief</h2>\n  </header>\n  <p class=\"ro-body\">Contenido del módulo…</p>\n</article>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa un único <header> hijo directo de <body> como cabecera de la aplicación.",
+      "Da aria-label a cada <nav> cuando haya más de una en la página.",
+      "Da aria-label a los botones de solo icono dentro de las acciones."
+    ],
+    "dont": [
+      "No anides un <header> de página dentro de otro <header> o de un elemento con rol banner.",
+      "No dependas del landmark banner para un <header> de sección dentro de article/section: ahí no existe.",
+      "No conviertas ro-header__nav en el único medio de navegación si el contenido no cabe visualmente; expón el resto vía ro-burger."
+    ]
+  },
+  "related": ["footer", "nav", "breadcrumb"]
+}

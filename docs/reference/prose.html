@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prose — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Fundamentos visuales</p>
+      <div class="dx-ref-title"><h1>Prose</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Estiliza contenido HTML renderizado desde markdown (artículos, lecciones) con tipografía, listas, citas y código coherentes.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Renderizar contenido generado desde markdown: artículos, lecciones, descripciones largas.</li><li>Cuando el HTML interno lo produce un parser externo y no controlas cada clase, solo el contenedor.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para titulares o texto de UI puntual controlado a mano: usa las clases de Typography (ro-display, ro-h2, ro-body) directamente.</li><li>Para un único fragmento de código aislado fuera de un artículo: usa Code (ro-code / ro-codeblock) en vez de envolverlo en ro-prose.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-prose&quot;&gt;
+  &lt;h2&gt;El Arte del &quot;Technical Brief&quot;&lt;/h2&gt;
+  &lt;p&gt;La calidad del código generado por IA depende del &lt;strong&gt;contexto&lt;/strong&gt; que le das. Un brief claro define requerimientos, restricciones y &lt;a href=&quot;#&quot;&gt;Definition of Done&lt;/a&gt;.&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Contexto del problema&lt;/li&gt;
+    &lt;li&gt;Requerimientos y restricciones&lt;/li&gt;
+    &lt;li&gt;Criterio de aceptación&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;blockquote&gt;Contexto de calidad = código de calidad.&lt;/blockquote&gt;
+  &lt;p&gt;Usa &lt;code&gt;npm run build&lt;/code&gt; para generar el bundle:&lt;/p&gt;
+  &lt;pre&gt;&lt;code&gt;npm install
+npm run build&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>ro-prose es un contenedor de contexto: todos los estilos se aplican a elementos HTML nativos (h1–h4, p, ul, ol, blockquote, code, pre, a, img, hr) dentro de él, no a clases ro-* adicionales.</li><li>El espaciado vertical entre bloques lo da el selector &gt; * + *: no agregues margin manual a los hijos directos.</li><li>code y pre dentro de ro-prose ya heredan el estilo de código sin necesitar las clases ro-code / ro-codeblock.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-prose</code></td><td>Contenedor: aplica tipografía y espaciado a los elementos HTML nativos que contiene.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-text-sm</code> <code>--ro-ink-72</code> <code>--ro-font-display</code> <code>--ro-ink</code> <code>--ro-text-3xl</code> <code>--ro-text-2xl</code> <code>--ro-text-xl</code> <code>--ro-text-lg</code> <code>--ro-tracking-tight</code> <code>--ro-weight-bold</code> <code>--ro-secondary</code> <code>--ro-ink-40</code> <code>--ro-ink-70</code> <code>--ro-font-mono</code> <code>--ro-ink-05</code> <code>--ro-radius-sm</code> <code>--ro-radius-xl</code> <code>--ro-ink-10</code> <code>--ro-radius-lg</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Respeta una jerarquía de encabezados sin saltos dentro del contenido fuente (h1→h2→h3→h4); ro-prose no corrige saltos, solo da estilo al nivel que reciba.</li><li>Los bloques de código dentro de prose ya usan &lt;pre&gt;&lt;code&gt;, preservando espacios y permitiendo navegación por teclado del lector de pantalla.</li><li>Las imágenes dentro de prose necesitan alt descriptivo en el markdown de origen: el estilo de ro-prose img no aporta accesibilidad, solo max-width y radio.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Artículo con lista, cita y código</div>
+  <div class="dx-demo"><div class="ro-card ro-card--plain">
+  <div class="ro-prose">
+    <h2>El Arte del "Technical Brief"</h2>
+    <p>La calidad del código generado por IA depende del <strong>contexto</strong> que le das.</p>
+    <ul>
+      <li>Contexto del problema</li>
+      <li>Requerimientos y restricciones</li>
+    </ul>
+    <blockquote>Contexto de calidad = código de calidad.</blockquote>
+    <p>Corre <code>npm run build</code> para generar el bundle:</p>
+    <pre><code>npm install
+npm run build</code></pre>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-card ro-card--plain&quot;&gt;
+  &lt;div class=&quot;ro-prose&quot;&gt;
+    &lt;h2&gt;El Arte del &quot;Technical Brief&quot;&lt;/h2&gt;
+    &lt;p&gt;La calidad del código generado por IA depende del &lt;strong&gt;contexto&lt;/strong&gt; que le das.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Contexto del problema&lt;/li&gt;
+      &lt;li&gt;Requerimientos y restricciones&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;blockquote&gt;Contexto de calidad = código de calidad.&lt;/blockquote&gt;
+    &lt;p&gt;Corre &lt;code&gt;npm run build&lt;/code&gt; para generar el bundle:&lt;/p&gt;
+    &lt;pre&gt;&lt;code&gt;npm install
+npm run build&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Deja que el markdown de origen defina la jerarquía de encabezados; ro-prose solo la estiliza.</li><li>Envuelve el contenido renderizado completo en un único ro-prose, no fragmento por fragmento.</li><li>Usa ro-prose para contenido largo y mixto (texto + listas + código), no para un solo párrafo suelto.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No apliques ro-code o ro-codeblock a los &lt;code&gt;/&lt;pre&gt; internos de ro-prose: ya están estilizados, y duplicar clases genera inconsistencias.</li><li>No metas componentes interactivos complejos (modales, tablas de datos) dentro de ro-prose: está pensado para contenido de lectura, no UI de aplicación.</li><li>No fuerces un h1 adicional dentro de ro-prose si la página ya tiene su propio h1 fuera del contenedor: rompe la jerarquía de la página.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="typography.html">typography</a> · <a href="code.html">code</a> · <a href="card.html">card</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

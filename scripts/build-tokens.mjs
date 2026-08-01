@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -154,7 +154,13 @@ const outputs = new Map([
     resolve(root, "tokens/tailwind.preset.cjs"),
     `/** Generado desde tokens/tokens.json. No editar a mano. */\nmodule.exports = ${JSON.stringify(tailwind, null, 2)};\n`,
   ],
+  // Copia compacta de la fuente para el paquete publicado (mismo contenido que
+  // tokens/tokens.json, sin el formato legible que triplica su peso en el
+  // presupuesto). tokens/tokens.json sigue siendo la fuente editable del repo.
+  [resolve(root, "dist/tokens.json"), JSON.stringify(source)],
 ]);
+
+mkdirSync(resolve(root, "dist"), { recursive: true }); // build-tokens corre antes de build.mjs crear dist/
 
 const check = process.argv.includes("--check");
 const stale = [];

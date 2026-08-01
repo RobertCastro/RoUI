@@ -1,0 +1,77 @@
+{
+  "name": "list-group",
+  "title": "List group",
+  "group": "Seleccion y navegacion",
+  "maturity": "experimental",
+  "summary": "Tarjeta con filas de contenido divididas por líneas finas: entradas de un listado (módulos, notificaciones, resultados).",
+  "whenToUse": [
+    "Un conjunto corto de filas con avatar/icono, título y metadato, que pueden o no ser clicables.",
+    "Listas de selección o navegación donde cada fila lleva a un destino relacionado (p. ej. módulos de un curso)."
+  ],
+  "whenNotToUse": [
+    "Datos tabulares con múltiples columnas comparables entre filas: usa Table.",
+    "Una jerarquía de varios niveles: usa Tree.",
+    "Pares término-descripción (metadatos de un solo recurso): usa Description list."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-list\">\n  <a class=\"ro-list__item ro-list__item--active\" href=\"#\">\n    <span class=\"ro-avatar ro-avatar--sm\">M0</span>\n    <div style=\"flex:1\"><div class=\"ro-list__title\">Estado actual de AI</div><div class=\"ro-list__meta\">Módulo 0 · Video</div></div>\n  </a>\n  <a class=\"ro-list__item\" href=\"#\">\n    <span class=\"ro-avatar ro-avatar--sm\">M1</span>\n    <div style=\"flex:1\"><div class=\"ro-list__title\">Input &gt; Proceso &gt; Output</div><div class=\"ro-list__meta\">Módulo 1 · Video</div></div>\n  </a>\n</div>",
+    "notes": [
+      "El contenedor (ro-list) es una tarjeta visual, no una lista semántica <ul>: si el conteo y el orden de los ítems deben anunciarse como lista, envuélvelos en <ul>/<li> y aplica un reset de list-style propio (RoUI no lo incluye por defecto).",
+      "Cada fila clicable es un <a> con href real; si no navega, usa un <button class=\"ro-list__item ro-list__item--link\"> en su lugar para conservar el estado hover accesible por teclado.",
+      "El borde entre filas (ro-list__item + ro-list__item) depende de que las filas sean hermanas directas: no las envuelvas en un div intermedio."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-list", "desc": "Contenedor de la tarjeta (borde, radio, overflow)." },
+      { "name": "ro-list__item", "desc": "Fila individual." },
+      { "name": "ro-list__item--active", "desc": "Fila destacada como seleccionada/actual." },
+      { "name": "ro-list__item--link", "desc": "Aplica el estilo hover de enlace a una fila que no es <a> (p. ej. un <button>)." },
+      { "name": "ro-list__title", "desc": "Texto principal de la fila." },
+      { "name": "ro-list__meta", "desc": "Texto secundario de la fila." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-ink-10",
+      "--ro-radius-xl",
+      "--ro-white",
+      "--ro-ink-06",
+      "--ro-ink-02",
+      "--ro-secondary-soft",
+      "--ro-secondary",
+      "--ro-ink-50"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Recorre las filas clicables (enlaces o botones) en orden del documento."],
+      ["Enter / Espacio", "Activa la fila enfocada según sea <a> (Enter) o <button> (Enter/Espacio)."]
+    ],
+    "notes": [
+      "No hay controlador de teclado propio: la accesibilidad depende por completo de usar elementos nativos interactivos (<a>, <button>) para cada fila clicable, en vez de un <div> con onclick.",
+      "Si una fila combina texto y un badge de estado, el badge no debe ser la única forma de comunicar el estado: acompáñalo de texto.",
+      "Cuando la fila es puramente informativa (no navega ni activa nada), no la envuelvas en <a> ni <button>: usa un <div class=\"ro-list__item\"> simple."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Lista de módulos con estado activo",
+      "html": "<div class=\"ro-list\" style=\"max-width:480px\">\n  <a class=\"ro-list__item ro-list__item--active\" href=\"#\">\n    <span class=\"ro-avatar ro-avatar--sm\">M0</span>\n    <div style=\"flex:1\"><div class=\"ro-list__title\">Estado actual de AI</div><div class=\"ro-list__meta\">Módulo 0 · Video</div></div>\n    <span class=\"ro-badge ro-badge--soft\">Activo</span>\n  </a>\n  <a class=\"ro-list__item\" href=\"#\">\n    <span class=\"ro-avatar ro-avatar--sm\">M1</span>\n    <div style=\"flex:1\"><div class=\"ro-list__title\">Input &gt; Proceso &gt; Output</div><div class=\"ro-list__meta\">Módulo 1 · Video</div></div>\n  </a>\n  <a class=\"ro-list__item\" href=\"#\">\n    <span class=\"ro-avatar ro-avatar--sm\">M2</span>\n    <div style=\"flex:1\"><div class=\"ro-list__title\">El Síndrome del 80%</div><div class=\"ro-list__meta\">Módulo 2 · Video</div></div>\n  </a>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa <a href> para filas que navegan y <button> para filas que disparan una acción in situ.",
+      "Reserva ro-list__item--active para una única fila a la vez (la selección o posición actual).",
+      "Acompaña avatar/badge con texto: no comuniques estado solo por color o iniciales."
+    ],
+    "dont": [
+      "No uses un <div> con onclick como fila clicable: rompe teclado y lector de pantalla.",
+      "No mezcles filas de distinto propósito (navegación y formulario) en la misma lista sin separarlas visualmente.",
+      "No lo uses para datos que necesitan comparación por columnas: eso es Table."
+    ]
+  },
+  "related": ["table", "sidebar", "description-list"]
+}

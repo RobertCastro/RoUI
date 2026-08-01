@@ -1,0 +1,75 @@
+{
+  "name": "badge",
+  "title": "Badge",
+  "group": "Datos y estado",
+  "maturity": "experimental",
+  "summary": "Indicador visual pequeño para estado, categoría o conteo, con una variante de punto de estado.",
+  "whenToUse": [
+    "Etiquetar un valor con una categoría o estado breve junto a texto (\"Activo\", \"Beta\").",
+    "Mostrar un conteo compacto (notificaciones, resultados) con ro-badge--count."
+  ],
+  "whenNotToUse": [
+    "Para una etiqueta que el usuario puede quitar: usa Tag.",
+    "Para un mensaje con contexto y posible acción: usa Alert."
+  ],
+  "anatomy": {
+    "html": "<span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--success\"></span> Activo</span>",
+    "notes": [
+      "El badge es un <span> inline sin rol especial: es contenido textual, no un control.",
+      "El ro-dot es decorativo; el significado real vive en el texto (\"Activo\"), nunca solo en el color.",
+      "Un contador que cambia dinámicamente puede usar role=\"status\" en el propio badge para anunciarse."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-badge", "desc": "Contenedor base (píldora)." },
+      { "name": "ro-badge--soft", "desc": "Fondo tenue, menor énfasis." },
+      { "name": "ro-badge--count", "desc": "Variante compacta para contadores numéricos." },
+      { "name": "ro-dot", "desc": "Punto de estado independiente (sin texto)." },
+      { "name": "ro-dot--sm", "desc": "Punto más pequeño." },
+      { "name": "ro-dot--success", "desc": "Punto en color de éxito." },
+      { "name": "ro-dot--warning", "desc": "Punto en color de advertencia." },
+      { "name": "ro-dot--error", "desc": "Punto en color de error." },
+      { "name": "ro-status-chip", "desc": "Chip de estado sobre fondo oscuro (barras de contexto)." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-full", "--ro-secondary", "--ro-primary-soft", "--ro-primary", "--ro-ink-04"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Un badge que solo repite información visual con color debe llevar texto o un aria-label equivalente.",
+      "Un contador (badge--count) que cambia en tiempo real puede usar role=\"status\" opcional para anunciar el nuevo valor.",
+      "ro-dot suelto (sin texto adyacente) necesita contexto accesible: agrégalo dentro de un elemento con texto o aria-label."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Variantes",
+      "html": "<span class=\"ro-badge\">8%</span>\n<span class=\"ro-badge ro-badge--soft\">3/9 completados</span>\n<span class=\"ro-badge ro-badge--count\">40</span>"
+    },
+    {
+      "title": "Con punto de estado",
+      "html": "<span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--success\"></span> Activo</span>\n<span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--warning\"></span> Pausa</span>\n<span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--error\"></span> Error</span>"
+    },
+    {
+      "title": "Chip de estado sobre fondo oscuro",
+      "html": "<span class=\"ro-status-chip\"><span class=\"ro-dot ro-dot--sm ro-dot--success\"></span> En línea</span>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Combina un ro-dot con texto legible para no depender solo del color.",
+      "Usa ro-badge--count para números breves (notificaciones, resultados).",
+      "Reserva el badge para información corta y no interactiva."
+    ],
+    "dont": [
+      "No conviertas un badge en botón: si es clicable, envuélvelo o usa ro-btn con estilo propio.",
+      "No uses solo el color del punto para transmitir el estado.",
+      "No metas frases largas dentro de un badge; usa Alert para eso."
+    ]
+  },
+  "related": ["tag", "avatar", "table"]
+}

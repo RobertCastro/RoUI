@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Code — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Fundamentos visuales</p>
+      <div class="dx-ref-title"><h1>Code</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Código inline, bloques de código con barra opcional, y teclas (kbd) para representar atajos de teclado.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Referenciar un comando, nombre de archivo o valor literal dentro de una frase (código inline).</li><li>Mostrar un fragmento de código o salida de terminal como bloque independiente.</li><li>Indicar una combinación de teclas o atajo de teclado (ro-kbd).</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para prosa larga con múltiples bloques de código mezclados con markdown (artículos, lecciones): usa Prose, que ya estiliza code/pre dentro de contenido renderizado.</li><li>Para mostrar datos tabulares o JSON navegable de forma interactiva: considera Table u otro componente estructurado.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;p&gt;Inline: usa &lt;code class=&quot;ro-code&quot;&gt;npm run build&lt;/code&gt; para generar el bundle. Atajo: &lt;span class=&quot;ro-kbd&quot;&gt;⌘&lt;/span&gt; &lt;span class=&quot;ro-kbd&quot;&gt;K&lt;/span&gt;.&lt;/p&gt;
+&lt;div class=&quot;ro-codeblock&quot;&gt;
+  &lt;div class=&quot;ro-codeblock__bar&quot;&gt;&lt;span&gt;bash&lt;/span&gt;&lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Copiar código&quot; style=&quot;color:inherit;width:24px;height:24px&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-copy&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+  &lt;pre style=&quot;margin:0&quot;&gt;&lt;code&gt;npm install
+npm run build   # → dist/roui.css&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El código inline (ro-code) va sobre &lt;code&gt;, dentro del flujo de texto.</li><li>El bloque (ro-codeblock) envuelve un &lt;pre&gt;&lt;code&gt; real: preserva espacios y saltos de línea tal cual, y permite navegación por teclado del lector de pantalla dentro del bloque.</li><li>La barra superior (ro-codeblock__bar) es opcional: muestra el lenguaje y un botón de copiar; el botón necesita aria-label porque es de solo icono.</li><li>ro-kbd es independiente del resto: representa una tecla individual, se repiten instancias para combinaciones (⌘ + K).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-code</code></td><td>Código inline: fondo tenue, fuente mono, radio pequeño.</td></tr><tr><td><code>.ro-codeblock</code></td><td>Bloque de código oscuro con scroll horizontal.</td></tr><tr><td><code>.ro-codeblock--light</code></td><td>Variante clara del bloque, con borde en vez de fondo oscuro.</td></tr><tr><td><code>.ro-codeblock__bar</code></td><td>Barra superior opcional: lenguaje + acción de copiar.</td></tr><tr><td><code>.ro-kbd</code></td><td>Representa una tecla individual de un atajo de teclado.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-font-mono</code> <code>--ro-text-sm</code> <code>--ro-ink-05</code> <code>--ro-ink</code> <code>--ro-on-dark</code> <code>--ro-radius-sm</code> <code>--ro-radius-xl</code> <code>--ro-radius-md</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Usa siempre &lt;pre&gt;&lt;code&gt; para el bloque, nunca &lt;div&gt; con white-space forzado: preserva espacios y permite navegación por teclado del lector de pantalla.</li><li>Añade aria-label al contenedor del bloque si el código necesita contexto adicional que no está en el texto circundante (p. ej. el lenguaje, cuando no hay barra visible).</li><li>El botón de copiar dentro de ro-codeblock__bar es de solo icono: requiere aria-label (&quot;Copiar código&quot;), no basta el icono.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Código inline y kbd</div>
+  <div class="dx-demo"><p>Presiona <span class="ro-kbd">⌘</span> <span class="ro-kbd">K</span> para abrir la paleta de comandos, o corre <code class="ro-code">npm run dev</code>.</p></div>
+  <pre class="dx-ref-code"><code>&lt;p&gt;Presiona &lt;span class=&quot;ro-kbd&quot;&gt;⌘&lt;/span&gt; &lt;span class=&quot;ro-kbd&quot;&gt;K&lt;/span&gt; para abrir la paleta de comandos, o corre &lt;code class=&quot;ro-code&quot;&gt;npm run dev&lt;/code&gt;.&lt;/p&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Bloque claro sin barra</div>
+  <div class="dx-demo"><div class="ro-codeblock ro-codeblock--light"><pre style="margin:0"><code>GET /api/users/42</code></pre></div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-codeblock ro-codeblock--light&quot;&gt;&lt;pre style=&quot;margin:0&quot;&gt;&lt;code&gt;GET /api/users/42&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa ro-code para nombres de archivo, comandos cortos o valores literales dentro de una frase.</li><li>Da aria-label al botón de copiar dentro de la barra del bloque.</li><li>Elige ro-codeblock--light cuando el bloque vive sobre una superficie clara y el contraste con negro puro no aporta.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses ro-code para bloques multilínea: usa ro-codeblock, que maneja overflow y preserva formato.</li><li>No quites &lt;pre&gt; del bloque para &quot;simplificar&quot; el marcado: se pierde la preservación de espacios y la navegación por teclado del lector de pantalla.</li><li>No uses ro-kbd para texto que no representa una tecla real.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="prose.html">prose</a> · <a href="typography.html">typography</a> · <a href="toolbar.html">toolbar</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

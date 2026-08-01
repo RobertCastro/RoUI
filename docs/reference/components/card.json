@@ -1,0 +1,70 @@
+{
+  "name": "card",
+  "title": "Card",
+  "group": "Contenido y estructura",
+  "maturity": "experimental",
+  "summary": "Contenedor de superficie propia que agrupa contenido relacionado, con variantes planas, oscuras, degradadas y de fila clicable.",
+  "whenToUse": [
+    "Agrupar contenido relacionado (título, texto, acción) en una superficie con borde propio.",
+    "Presentar un recurso o ítem de lista como fila completa clicable."
+  ],
+  "whenNotToUse": [
+    "Para contenido que debe bloquear la interacción del resto de la página: usa Modal.",
+    "Para un único bloque de texto suelto sin necesidad de agrupación visual: no añadas el envoltorio."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-card\">\n  <div class=\"ro-card__header\">\n    <h3 class=\"ro-h3\">Título de la tarjeta</h3>\n  </div>\n  <p class=\"ro-body\">Contenido de apoyo.</p>\n  <div class=\"ro-card__footer\">\n    <button class=\"ro-btn ro-btn--soft ro-btn--sm\">Ver más</button>\n  </div>\n</div>",
+    "notes": [
+      "ro-card__header y ro-card__footer son opcionales: úsalos solo si hay acciones o metadatos que separar del cuerpo.",
+      "Para una tarjeta donde toda la superficie es un único destino, usa <a class=\"ro-card-row\"> envolviendo el contenido, no un <div> con onclick.",
+      "El heading interno (ro-h3) debe respetar la jerarquía real de la página, no elegirse por tamaño visual."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-card", "desc": "Contenedor base con borde y superficie propia." },
+      { "name": "ro-card--plain", "desc": "Variante neutra sobre fondo de página." },
+      { "name": "ro-card--soft-yellow", "desc": "Variante con borde y degradado de marca." },
+      { "name": "ro-card-dark", "desc": "Tarjeta sólida invertida (fondo oscuro)." },
+      { "name": "ro-card__header", "desc": "Fila superior: título y acción alineados." },
+      { "name": "ro-card__footer", "desc": "Fila inferior de acciones." },
+      { "name": "ro-card-row", "desc": "Fila completa clicable; aplícala sobre un <a>, no un <div>." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-card", "--ro-card-bg", "--ro-card-border", "--ro-card-fg", "--ro-radius-xl", "--ro-radius-2xl", "--ro-transition"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [
+      ["Enter", "Activa el enlace de la tarjeta (variante ro-card-row)."]
+    ],
+    "notes": [
+      "Una tarjeta íntegramente clicable usa un <a> que envuelve el contenido; evita anidar otro elemento interactivo (botón, enlace) dentro de esa misma área.",
+      "Si la tarjeta no es clicable en su totalidad, cualquier acción interna (botón, enlace) debe tener su propio nombre accesible; no dependas del contexto visual de la tarjeta."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Tarjeta con header y footer",
+      "html": "<div class=\"ro-card ro-card--plain\" style=\"max-width:320px\">\n  <div class=\"ro-card__header\">\n    <h3 class=\"ro-h3\">\"Optimizar procesos\"</h3>\n    <span class=\"ro-badge ro-badge--soft\">Nuevo</span>\n  </div>\n  <p class=\"ro-body\">Aún explorando este módulo.</p>\n  <div class=\"ro-card__footer\">\n    <button class=\"ro-btn ro-btn--soft ro-btn--sm\">Continuar</button>\n  </div>\n</div>"
+    },
+    {
+      "title": "Fila clicable (recurso)",
+      "html": "<a class=\"ro-card-row\" href=\"#\" style=\"background:var(--ro-ink-02)\">\n  <span class=\"ro-avatar\">O</span>\n  <div>\n    <div style=\"font-weight:600\">API Sandbox</div>\n    <div class=\"ro-muted\" style=\"font-size:13px\">Acceso a modelos vía API</div>\n  </div>\n  <span class=\"ro-badge\" style=\"margin-left:auto\">Activo</span>\n</a>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa <a class=\"ro-card-row\"> para una fila totalmente clicable, nunca un <div> con onclick.",
+      "Reserva ro-card__footer para acciones, no para texto de relleno.",
+      "Mantén el heading interno alineado con la jerarquía real del documento."
+    ],
+    "dont": [
+      "No anides una tarjeta clicable dentro de otro elemento interactivo (enlace o botón).",
+      "No uses ro-card-dark solo por estética si el contenido no necesita ese énfasis.",
+      "No apiles más de un enlace/botón principal ambiguo dentro de una tarjeta clicable completa."
+    ]
+  },
+  "related": ["avatar", "badge", "list-group", "empty"]
+}

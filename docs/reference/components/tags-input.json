@@ -1,0 +1,70 @@
+{
+  "name": "tags-input",
+  "title": "Tags input",
+  "group": "Formularios",
+  "maturity": "experimental",
+  "summary": "Campo que añade y quita chips (tags) a medida que el usuario escribe y confirma valores.",
+  "whenToUse": [
+    "Capturar una lista corta de valores discretos: destinatarios, habilidades, categorías.",
+    "Cuando cada valor debe verse y quitarse individualmente, no solo como texto separado por comas."
+  ],
+  "whenNotToUse": [
+    "Para elegir entre opciones predefinidas de una lista larga: usa Combobox.",
+    "Para un solo valor de texto libre: un ro-input-box normal es más simple."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-tags-input\">\n  <span class=\"ro-tag\">React <button class=\"ro-tag__close\" type=\"button\" aria-label=\"Quitar etiqueta React\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>\n  <input class=\"ro-tags-input__field\" aria-label=\"Añadir etiqueta\" placeholder=\"Añade y pulsa Enter…\">\n</div>",
+    "notes": [
+      "Los chips ya confirmados usan ro-tag; cada uno lleva su propio botón ro-tag__close con aria-label específico (\"Quitar etiqueta X\").",
+      "El input de escritura (ro-tags-input__field) vive al final de la lista de chips, dentro del mismo contenedor.",
+      "Confirmar un valor (Enter o coma, según implementación) lo convierte en chip y limpia el input para el siguiente."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-tags-input", "desc": "Contenedor del campo (chips + input)." },
+      { "name": "ro-tags-input__field", "desc": "Input de texto donde se escribe el siguiente tag." },
+      { "name": "ro-tag", "desc": "Chip de un tag ya confirmado (reusa el componente Tag)." },
+      { "name": "ro-tag__close", "desc": "Botón para quitar el chip." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-xl", "--ro-focus-ring", "--ro-secondary", "--ro-ink-10"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Enter", "Confirma el texto escrito y lo convierte en chip."],
+      ["Retroceso (input vacío)", "Quita el último chip añadido."],
+      ["Tab / Shift+Tab", "Recorre los botones de cierre de cada chip y el input."]
+    ],
+    "notes": [
+      "Da nombre accesible al input con aria-label (\"Añadir etiqueta\") o un <label> externo asociado.",
+      "Cada ro-tag__close necesita un aria-label que identifique qué chip se quita, no un \"Quitar\" genérico repetido.",
+      "Anuncia los cambios (chip añadido/quitado) de forma perceptible; si usas una región aria-live, mantenla discreta (polite)."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Campo con varios tags",
+      "html": "<div class=\"ro-tags-input\" style=\"width:340px\">\n  <span class=\"ro-tag\">React <button class=\"ro-tag__close\" type=\"button\" aria-label=\"Quitar etiqueta React\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>\n  <span class=\"ro-tag\">IA <button class=\"ro-tag__close\" type=\"button\" aria-label=\"Quitar etiqueta IA\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>\n  <input class=\"ro-tags-input__field\" aria-label=\"Añadir etiqueta\" placeholder=\"Añade y pulsa Enter…\">\n</div>"
+    },
+    {
+      "title": "Campo con label externo",
+      "html": "<label class=\"ro-label\" for=\"skills-field\">Habilidades</label>\n<div class=\"ro-tags-input\" style=\"width:340px\">\n  <span class=\"ro-tag\">TypeScript <button class=\"ro-tag__close\" type=\"button\" aria-label=\"Quitar etiqueta TypeScript\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>\n  <input id=\"skills-field\" class=\"ro-tags-input__field\" placeholder=\"Añade una habilidad…\">\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da a cada botón de cierre un aria-label que identifique el chip concreto que quita.",
+      "Deja claro cómo confirmar un tag (placeholder \"Añade y pulsa Enter…\" o texto de ayuda).",
+      "Valida y evita duplicados antes de crear el chip, no después."
+    ],
+    "dont": [
+      "No uses tags-input para una lista larga de opciones predefinidas: eso es un Combobox multi-selección.",
+      "No dejes chips sin botón de cierre accesible por teclado.",
+      "No reutilices un mismo aria-label genérico (\"Quitar\") para todos los chips."
+    ]
+  },
+  "related": ["combobox", "form", "file-upload", "tag"]
+}

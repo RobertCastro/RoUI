@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skeleton — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Datos y estado</p>
+      <div class="dx-ref-title"><h1>Skeleton</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Placeholder de carga con shimmer que anticipa la forma del contenido real mientras llega.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Sustituir temporalmente tarjetas, listas o texto mientras se resuelve una petición de datos.</li><li>Cuando conocer la forma aproximada del contenido reduce el salto de layout al terminar de cargar.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para una carga breve sin forma de contenido que anticipar: usa Spinner.</li><li>Cuando el avance es medible y relevante para el usuario: usa Progress.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-card ro-card--plain&quot; aria-busy=&quot;true&quot; style=&quot;width:280px&quot;&gt;
+  &lt;div class=&quot;ro-row&quot; style=&quot;gap:12px&quot;&gt;
+    &lt;div class=&quot;ro-skeleton ro-skeleton--circle&quot; style=&quot;width:40px;height:40px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+    &lt;div style=&quot;flex:1&quot;&gt;
+      &lt;div class=&quot;ro-skeleton ro-skeleton--title&quot; style=&quot;width:60%&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;ro-skeleton ro-skeleton--text&quot; style=&quot;width:90%;margin-top:8px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>aria-busy=&quot;true&quot; va en el contenedor real que se está cargando (la tarjeta), no en cada bloque de skeleton.</li><li>Cada rectángulo de skeleton lleva aria-hidden=&quot;true&quot;: es ruido visual, no contenido que deba anunciarse.</li><li>Al llegar el contenido real, quita aria-busy y reemplaza los bloques; si hace falta anunciar el resultado, usa una región aria-live aparte.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-skeleton</code></td><td>Bloque base con shimmer animado.</td></tr><tr><td><code>.ro-skeleton--text</code></td><td>Línea de texto (altura ~0.8em).</td></tr><tr><td><code>.ro-skeleton--title</code></td><td>Línea de título (altura ~1.4em).</td></tr><tr><td><code>.ro-skeleton--circle</code></td><td>Forma circular (avatar).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-06</code> <code>--ro-radius-md</code> <code>--ro-radius-sm</code> <code>--ro-radius-full</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>El contenedor real lleva aria-busy=&quot;true&quot;; los bloques individuales de skeleton llevan aria-hidden=&quot;true&quot;.</li><li>Al terminar de cargar, quita aria-busy del contenedor y anuncia el resultado si aplica (por ejemplo con una región aria-live cercana).</li><li>El shimmer respeta prefers-reduced-motion (se desactiva la animación).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Tarjeta cargando</div>
+  <div class="dx-demo"><div class="ro-card ro-card--plain" aria-busy="true" style="width:280px">
+  <div class="ro-row" style="gap:12px">
+    <div class="ro-skeleton ro-skeleton--circle" style="width:40px;height:40px" aria-hidden="true"></div>
+    <div style="flex:1">
+      <div class="ro-skeleton ro-skeleton--title" style="width:60%" aria-hidden="true"></div>
+      <div class="ro-skeleton ro-skeleton--text" style="width:90%;margin-top:8px" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div class="ro-skeleton ro-skeleton--text" style="width:100%;margin-top:14px" aria-hidden="true"></div>
+  <div class="ro-skeleton ro-skeleton--text" style="width:80%;margin-top:8px" aria-hidden="true"></div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-card ro-card--plain&quot; aria-busy=&quot;true&quot; style=&quot;width:280px&quot;&gt;
+  &lt;div class=&quot;ro-row&quot; style=&quot;gap:12px&quot;&gt;
+    &lt;div class=&quot;ro-skeleton ro-skeleton--circle&quot; style=&quot;width:40px;height:40px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+    &lt;div style=&quot;flex:1&quot;&gt;
+      &lt;div class=&quot;ro-skeleton ro-skeleton--title&quot; style=&quot;width:60%&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;ro-skeleton ro-skeleton--text&quot; style=&quot;width:90%;margin-top:8px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-skeleton ro-skeleton--text&quot; style=&quot;width:100%;margin-top:14px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-skeleton ro-skeleton--text&quot; style=&quot;width:80%;margin-top:8px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Líneas de texto sueltas</div>
+  <div class="dx-demo"><div aria-busy="true" style="max-width:320px">
+  <div class="ro-skeleton ro-skeleton--title" style="width:40%" aria-hidden="true"></div>
+  <div class="ro-skeleton ro-skeleton--text" style="width:100%;margin-top:10px" aria-hidden="true"></div>
+  <div class="ro-skeleton ro-skeleton--text" style="width:95%;margin-top:8px" aria-hidden="true"></div>
+  <div class="ro-skeleton ro-skeleton--text" style="width:70%;margin-top:8px" aria-hidden="true"></div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div aria-busy=&quot;true&quot; style=&quot;max-width:320px&quot;&gt;
+  &lt;div class=&quot;ro-skeleton ro-skeleton--title&quot; style=&quot;width:40%&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-skeleton ro-skeleton--text&quot; style=&quot;width:100%;margin-top:10px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-skeleton ro-skeleton--text&quot; style=&quot;width:95%;margin-top:8px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-skeleton ro-skeleton--text&quot; style=&quot;width:70%;margin-top:8px&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Pon aria-busy=&quot;true&quot; en el contenedor real, no en cada bloque de skeleton.</li><li>Aproxima el tamaño de cada bloque a las dimensiones del contenido final para evitar saltos de layout.</li><li>Quita aria-busy en cuanto el contenido real esté disponible.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No hagas los bloques de skeleton focalizables ni les agregues texto alternativo.</li><li>No dejes aria-busy=&quot;true&quot; indefinidamente tras haber cargado el contenido.</li><li>No lo uses para una espera brevísima sin forma que anticipar: usa Spinner.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="spinner.html">spinner</a> · <a href="progress.html">progress</a> · <a href="card.html">card</a> · <a href="empty.html">empty</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

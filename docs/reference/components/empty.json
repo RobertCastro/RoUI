@@ -1,0 +1,63 @@
+{
+  "name": "empty",
+  "title": "Empty state",
+  "group": "Feedback",
+  "maturity": "experimental",
+  "summary": "Marcador visual para cuando una lista, búsqueda o sección no tiene contenido que mostrar.",
+  "whenToUse": [
+    "Una búsqueda o filtro no devuelve resultados.",
+    "Una sección todavía no tiene datos (por ejemplo, un usuario nuevo sin proyectos) y quieres guiar el siguiente paso."
+  ],
+  "whenNotToUse": [
+    "Mientras el contenido está cargando: usa Skeleton o Spinner, no un estado vacío.",
+    "Para comunicar un error de red o de permisos: usa Alert, que puede explicar la causa."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-empty\">\n  <div class=\"ro-empty__icon\"><svg class=\"ro-icon ro-icon--lg\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg></div>\n  <div class=\"ro-empty__title\">Sin resultados</div>\n  <div class=\"ro-empty__text\">No encontramos builders que coincidan con tu búsqueda. Prueba con otros filtros.</div>\n  <div class=\"ro-empty__actions\"><button class=\"ro-btn ro-btn--soft ro-btn--sm\">Limpiar filtros</button></div>\n</div>",
+    "notes": [
+      "El icono es decorativo (aria-hidden): el significado lo llevan el título y el texto.",
+      "El título resume el estado (\"Sin resultados\") y el texto explica la causa o sugiere una salida.",
+      "Las acciones son opcionales: solo inclúyelas si hay algo útil que el usuario pueda hacer (limpiar filtros, crear el primer elemento)."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-empty", "desc": "Contenedor centrado." },
+      { "name": "ro-empty__icon", "desc": "Círculo con icono decorativo." },
+      { "name": "ro-empty__title", "desc": "Título breve del estado." },
+      { "name": "ro-empty__text", "desc": "Texto explicativo, ancho limitado a 38ch." },
+      { "name": "ro-empty__actions", "desc": "Fila de acciones opcionales." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-full", "--ro-ink-04", "--ro-ink-40", "--ro-ink-50", "--ro-weight-bold"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Sin comportamiento propio: es contenido presentacional sin foco ni teclado que gestionar.",
+      "Si el estado vacío sustituye contenido dinámicamente (por ejemplo, al filtrar una lista), asocia la región con aria-live=polite para que se anuncie el cambio.",
+      "Si incluye un botón de acción, ese botón sigue el contrato nativo de Button (foco y activación estándar)."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Sin resultados de búsqueda",
+      "html": "<div class=\"ro-empty\">\n  <div class=\"ro-empty__icon\"><svg class=\"ro-icon ro-icon--lg\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg></div>\n  <div class=\"ro-empty__title\">Sin resultados</div>\n  <div class=\"ro-empty__text\">No encontramos builders que coincidan con tu búsqueda. Prueba con otros filtros.</div>\n  <div class=\"ro-empty__actions\"><button class=\"ro-btn ro-btn--soft ro-btn--sm\">Limpiar filtros</button></div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Explica en una frase corta por qué está vacío y qué puede hacer el usuario.",
+      "Ofrece una acción cuando exista una salida clara (limpiar filtros, crear el primer registro).",
+      "Reutiliza el mismo patrón en toda la app para que \"vacío\" se reconozca de un vistazo."
+    ],
+    "dont": [
+      "No lo uses como pantalla de carga: eso confunde \"todavía no hay datos\" con \"aún están llegando\".",
+      "No satures el mensaje con jerga técnica o códigos de error.",
+      "No omitas el aria-live si el estado reemplaza contenido tras una interacción del usuario."
+    ]
+  },
+  "related": ["alert", "skeleton", "table"]
+}

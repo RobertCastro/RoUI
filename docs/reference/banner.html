@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banner — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Feedback</p>
+      <div class="dx-ref-title"><h1>Banner</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Franja de anuncio persistente en la parte superior de la página, visible hasta que el usuario la cierra.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Anunciar un cambio de producto, promoción o aviso relevante para toda la sesión.</li><li>Comunicar un mensaje que debe permanecer visible mientras el usuario navega, no solo un instante.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para confirmar el resultado de una acción puntual: usa Toast (desaparece solo).</li><li>Para un aviso contextual ligado a una sección o formulario: usa Alert.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-banner&quot;&gt;🎉 Nuevo: RoUI 1.0 ya disponible. &lt;a href=&quot;#&quot;&gt;Ver novedades&lt;/a&gt;&lt;button class=&quot;ro-banner__close&quot; aria-label=&quot;Cerrar aviso&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>No tiene primitiva JS propia: el marcado es estático y el consumidor decide cómo ocultar el banner al cerrarlo (por ejemplo removiendo el nodo o con display:none).</li><li>El enlace dentro del banner hereda color y usa subrayado para no depender solo del contraste de fondo.</li><li>El botón de cierre necesita nombre accesible (aria-label) y va al final con margin-left:auto.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-banner</code></td><td>Contenedor base (fondo oscuro por defecto).</td></tr><tr><td><code>.ro-banner--primary</code></td><td>Variante con fondo primario.</td></tr><tr><td><code>.ro-banner--brand</code></td><td>Variante con fondo de marca (secondary).</td></tr><tr><td><code>.ro-banner--soft</code></td><td>Variante tenue sobre fondo claro.</td></tr><tr><td><code>.ro-banner__close</code></td><td>Botón de cierre.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink</code> <code>--ro-on-dark</code> <code>--ro-primary</code> <code>--ro-secondary</code> <code>--ro-ink-04</code> <code>--ro-space-3</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab</kbd></td><td>Alcanza el enlace y el botón de cierre, en orden.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Activa el enlace o cierra el banner desde el botón enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/toast.html">toast</a></p><ul class="dx-ref-list"><li>A diferencia de Toast, el banner es persistente: no se cierra solo ni tiene temporizador; permanece hasta que el usuario pulsa el botón de cierre.</li><li>No usa role=status ni role=alert porque no es un anuncio dinámico transitorio; es contenido visible desde la carga de la página.</li><li>Si el banner se inserta dinámicamente después de la carga (por ejemplo tras una acción del usuario), considera aria-live=polite en su contenedor para que se anuncie.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Variantes de fondo</div>
+  <div class="dx-demo"><div class="ro-banner">🎉 Nuevo: RoUI 1.0 ya disponible. <a href="#">Ver novedades</a><button class="ro-banner__close" aria-label="Cerrar aviso"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></div>
+<div class="ro-banner ro-banner--primary">Oferta de lanzamiento — 50% esta semana</div>
+<div class="ro-banner ro-banner--brand">Únete al cohort de abril</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-banner&quot;&gt;🎉 Nuevo: RoUI 1.0 ya disponible. &lt;a href=&quot;#&quot;&gt;Ver novedades&lt;/a&gt;&lt;button class=&quot;ro-banner__close&quot; aria-label=&quot;Cerrar aviso&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;
+&lt;div class=&quot;ro-banner ro-banner--primary&quot;&gt;Oferta de lanzamiento — 50% esta semana&lt;/div&gt;
+&lt;div class=&quot;ro-banner ro-banner--brand&quot;&gt;Únete al cohort de abril&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Reserva el banner para un solo mensaje global a la vez.</li><li>Ofrece siempre una forma de cerrarlo si no es crítico para completar la tarea.</li><li>Usa un enlace real (no un botón que simula navegación) para &quot;Ver novedades&quot;.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No lo uses para mensajes que deben desaparecer solos: eso es Toast.</li><li>No apiles más de un banner a la vez en la misma página.</li><li>No pongas ahí una decisión bloqueante: eso es Modal.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="alert.html">alert</a> · <a href="toast.html">toast</a> · <a href="header.html">header</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

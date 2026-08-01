@@ -43,7 +43,8 @@ cerradas.
 
 ## Tareas de seguimiento heredadas
 
-- Llenado de los 40 manifiestos de referencia restantes.
+- ~~Llenado de los 40 manifiestos de referencia restantes.~~ Completo (F5-006):
+  referencia en 49/49.
 - Ejecutar el piloto en un producto real o interno en produccion; el piloto local
   `examples/pilot-dashboard/` ya cubre la validacion tecnica inicial.
 - Tematización de las demos y responsividad de plantillas (RTL/reflow).

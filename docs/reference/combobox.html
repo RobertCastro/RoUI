@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Combobox / Autocomplete — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Fecha y entrada compleja</p>
+      <div class="dx-ref-title"><h1>Combobox / Autocomplete</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Campo de texto que filtra y despliega una lista de opciones (WAI-ARIA Combobox), sin robar el foco del input.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Elegir un valor de una lista larga que conviene poder filtrar escribiendo (lenguaje, país, usuario).</li><li>Autocompletar mientras el usuario escribe, manteniendo el foco siempre en el campo de texto.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para una lista corta de opciones fijas: usa un &lt;select&gt; nativo o Segmented.</li><li>Para elegir varios valores a la vez: usa Tags input.</li><li>Para lanzar comandos o navegar dentro de un diálogo global: usa Command palette.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-combobox&quot; data-ro-combobox&gt;
+  &lt;div class=&quot;ro-field&quot;&gt;
+    &lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-search&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;input class=&quot;ro-input&quot; id=&quot;cb-lang&quot; role=&quot;combobox&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;cb-lang-list&quot; aria-autocomplete=&quot;list&quot; aria-label=&quot;Busca un lenguaje&quot; placeholder=&quot;Busca un lenguaje…&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-combobox__list&quot; id=&quot;cb-lang-list&quot; role=&quot;listbox&quot; aria-label=&quot;Lenguajes&quot;&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;JavaScript&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;TypeScript&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;Python&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__empty&quot; hidden&gt;Sin coincidencias&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El input lleva role=combobox con aria-expanded, aria-controls y (cuando hay opción activa) aria-activedescendant.</li><li>La lista es role=listbox oculta con [hidden] hasta que el controlador la abre; cada opción es role=option.</li><li>El foco nunca sale del input: la opción activa se comunica solo por aria-activedescendant, no moviendo el foco.</li><li>data-ro-combobox marca la raíz que envuelve campo y lista; combobox-controller la localiza por [role=combobox] y [role=listbox] dentro de ella.</li><li>Command palette reutiliza este mismo controlador en modo inline (data-ro-combobox-inline / options.inline), donde la lista siempre está visible y no se abre/cierra por sí misma.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-combobox</code></td><td>Raíz posicionada (relative) que ancla la lista flotante.</td></tr><tr><td><code>.ro-field</code></td><td>Envoltorio del campo de texto (icono + input).</td></tr><tr><td><code>.ro-combobox__list</code></td><td>Panel flotante de opciones (listbox), oculto por [hidden].</td></tr><tr><td><code>.ro-combobox__option</code></td><td>Opción individual (role=option).</td></tr><tr><td><code>.ro-combobox__empty</code></td><td>Mensaje de &quot;sin coincidencias&quot;, oculto por defecto.</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-ro-combobox</code></td><td>Marca la raíz que envuelve el campo y la lista.</td></tr><tr><td><code>data-ro-combobox-inline</code></td><td>Modo inline (usado por Command palette): la lista siempre está visible, sin abrir/cerrar propio ni captura de Escape.</td></tr><tr><td><code>data-value</code></td><td>En una opción: valor a usar en vez de su texto visible al seleccionarla.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-radius-lg</code> <code>--ro-shadow-md</code> <code>--ro-z-overlay</code> <code>--ro-ink-05</code> <code>--ro-ink-10</code></p>
+<h3>Primitiva</h3><pre class="dx-ref-code"><code>import { createComboboxController } from &quot;@robertcastro/roui/primitives/combobox-controller&quot;;</code></pre>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>ArrowDown / ArrowUp</kbd></td><td>Abre la lista si está cerrada y mueve la opción activa (con wrap).</td></tr><tr><td><kbd>Home / End</kbd></td><td>Con la lista abierta, salta a la primera o última opción visible.</td></tr><tr><td><kbd>Enter</kbd></td><td>Selecciona la opción activa: rellena el input y cierra la lista.</td></tr><tr><td><kbd>Escape</kbd></td><td>Cierra la lista sin seleccionar (no aplica en modo inline).</td></tr><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Sale del campo; no hay trap de foco.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/combobox-calendar-command-palette.html">combobox-calendar-command-palette</a></p><ul class="dx-ref-list"><li>La opción activa se marca con aria-selected=&quot;true&quot; y se referencia desde el input vía aria-activedescendant; el foco DOM permanece en el input en todo momento.</li><li>Al escribir se dispara onFilter; si la opción activa queda oculta por el filtro, se limpia la selección activa.</li><li>Un pointerdown fuera de la raíz (data-ro-combobox) cierra la lista.</li><li>Cada opción recibe un id autogenerado si no lo trae, para poder ser referenciada por aria-activedescendant.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Autocompletar lenguaje (interactivo)</div>
+  <div class="dx-demo"><div class="ro-combobox" style="width:280px" data-ro-combobox>
+  <div class="ro-field">
+    <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-search"></use></svg>
+    <input class="ro-input" id="ref-cb" role="combobox" aria-expanded="false" aria-controls="ref-cb-list" aria-autocomplete="list" aria-label="Busca un lenguaje" placeholder="Busca un lenguaje…">
+  </div>
+  <div class="ro-combobox__list" id="ref-cb-list" role="listbox" aria-label="Lenguajes">
+    <div class="ro-combobox__option" role="option">JavaScript</div>
+    <div class="ro-combobox__option" role="option">TypeScript</div>
+    <div class="ro-combobox__option" role="option">Python</div>
+    <div class="ro-combobox__option" role="option">Go</div>
+    <div class="ro-combobox__option" role="option">Rust</div>
+    <div class="ro-combobox__empty" hidden>Sin coincidencias</div>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-combobox&quot; style=&quot;width:280px&quot; data-ro-combobox&gt;
+  &lt;div class=&quot;ro-field&quot;&gt;
+    &lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-search&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;input class=&quot;ro-input&quot; id=&quot;ref-cb&quot; role=&quot;combobox&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;ref-cb-list&quot; aria-autocomplete=&quot;list&quot; aria-label=&quot;Busca un lenguaje&quot; placeholder=&quot;Busca un lenguaje…&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-combobox__list&quot; id=&quot;ref-cb-list&quot; role=&quot;listbox&quot; aria-label=&quot;Lenguajes&quot;&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;JavaScript&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;TypeScript&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;Python&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;Go&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;Rust&lt;/div&gt;
+    &lt;div class=&quot;ro-combobox__empty&quot; hidden&gt;Sin coincidencias&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da nombre accesible al input con aria-label o un &lt;label&gt; asociado.</li><li>Mantén el foco siempre en el input; nunca lo muevas a las opciones.</li><li>Muestra el estado &quot;sin coincidencias&quot; cuando el filtro no encuentra nada.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No dupliques el patrón para elegir varios valores: usa Tags input.</li><li>No captures Escape ni el pointer exterior si construyes una variante inline (rompe el contrato del diálogo contenedor).</li><li>No omitas aria-controls ni aria-expanded: son los que anuncian la relación input↔listbox.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="command-palette.html">command-palette</a> · <a href="calendar.html">calendar</a> · <a href="tags-input.html">tags-input</a> · <a href="popover.html">popover</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

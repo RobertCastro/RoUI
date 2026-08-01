@@ -1,0 +1,73 @@
+{
+  "name": "accordion",
+  "title": "Accordion",
+  "group": "Disclosure",
+  "maturity": "experimental",
+  "summary": "Lista de secciones colapsables; cada una es un disclosure independiente y persistente.",
+  "whenToUse": [
+    "Preguntas frecuentes u otro contenido largo que el usuario expande solo cuando lo necesita.",
+    "Permitir más de una sección abierta a la vez, cada una controlada por su propio encabezado."
+  ],
+  "whenNotToUse": [
+    "Para alternar entre vistas equivalentes del mismo contexto: usa Tabs.",
+    "Para un menú de acciones o navegación flotante que se cierra al hacer clic fuera: usa Menu o Popover."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-accordion\">\n  <div class=\"ro-accordion__item\" data-ro-disclosure-root data-ro-disclosure-persistent>\n    <h3 class=\"ro-accordion__heading\">\n      <button class=\"ro-accordion__head\" id=\"acc-h1\" data-ro-disclosure-trigger aria-expanded=\"true\" aria-controls=\"acc-p1\">\n        ¿Qué incluye el curso?\n        <svg class=\"ro-icon ro-icon--sm ro-accordion__chevron\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-down\"></use></svg>\n      </button>\n    </h3>\n    <div class=\"ro-accordion__panel is-open\" id=\"acc-p1\" role=\"region\" aria-labelledby=\"acc-h1\" data-ro-disclosure-panel>40 módulos en video, recursos descargables y checkpoints por semana.</div>\n  </div>\n  <div class=\"ro-accordion__item\" data-ro-disclosure-root data-ro-disclosure-persistent>\n    <h3 class=\"ro-accordion__heading\">\n      <button class=\"ro-accordion__head\" id=\"acc-h2\" data-ro-disclosure-trigger aria-expanded=\"false\" aria-controls=\"acc-p2\">\n        ¿Necesito experiencia previa?\n        <svg class=\"ro-icon ro-icon--sm ro-accordion__chevron\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-down\"></use></svg>\n      </button>\n    </h3>\n    <div class=\"ro-accordion__panel\" id=\"acc-p2\" role=\"region\" aria-labelledby=\"acc-h2\" data-ro-disclosure-panel hidden>No. Empezamos desde los fundamentos y subimos el nivel gradualmente.</div>\n  </div>\n</div>",
+    "notes": [
+      "Cada sección es su propio data-ro-disclosure-root con data-ro-disclosure-persistent: el controlador no la cierra al hacer clic fuera ni con Escape.",
+      "El botón va envuelto en un encabezado real (h3) para que quede en el árbol de navegación por encabezados del lector de pantalla.",
+      "El panel es role=region con aria-labelledby apuntando al botón; inicia con hidden salvo la sección que abre por defecto.",
+      "El chevron es decorativo y rota vía CSS cuando el botón tiene aria-expanded=true."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-accordion", "desc": "Contenedor con borde que agrupa los items." },
+      { "name": "ro-accordion__item", "desc": "Una sección (root del disclosure)." },
+      { "name": "ro-accordion__heading", "desc": "Elemento de encabezado real que envuelve el botón." },
+      { "name": "ro-accordion__head", "desc": "Botón disparador (data-ro-disclosure-trigger)." },
+      { "name": "ro-accordion__chevron", "desc": "Icono que rota según aria-expanded." },
+      { "name": "ro-accordion__panel", "desc": "Cuerpo de la sección (data-ro-disclosure-panel)." }
+    ],
+    "data": [
+      { "name": "data-ro-disclosure-root", "desc": "Marca el contenedor de cada sección independiente." },
+      { "name": "data-ro-disclosure-persistent", "desc": "Evita el cierre al hacer clic fuera o con Escape (comportamiento de accordion, distinto de menu/popover)." },
+      { "name": "data-ro-disclosure-trigger", "desc": "En el botón: alterna el panel asociado." },
+      { "name": "data-ro-disclosure-panel", "desc": "En el panel: contenido que se muestra u oculta." }
+    ],
+    "tokens": ["--ro-radius-xl", "--ro-ink-10", "--ro-ink-06", "--ro-text-sm", "--ro-weight-semibold"],
+    "primitive": { "import": "createDisclosureController", "module": "disclosure-controller" }
+  },
+  "a11y": {
+    "contract": "accessibility/tabs-accordion-navigation.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Mueve el foco entre encabezados y hacia/desde el contenido de la página."],
+      ["Enter / Espacio", "Alterna (abre o cierra) la sección del encabezado enfocado, vía el botón nativo."]
+    ],
+    "notes": [
+      "Es persistente (data-ro-disclosure-persistent): a diferencia de Menu y Popover, NO se cierra al hacer clic fuera ni con la tecla Escape; permanece abierta hasta que el usuario vuelve a togglear su encabezado.",
+      "No hay navegación por flechas entre encabezados ni role=menu: cada encabezado es un botón independiente que se alcanza con Tab.",
+      "Permite más de una sección abierta a la vez; el controlador no cierra las demás al abrir una nueva."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Preguntas frecuentes",
+      "html": "<div class=\"ro-accordion\" style=\"max-width:560px\">\n  <div class=\"ro-accordion__item\" data-ro-disclosure-root data-ro-disclosure-persistent>\n    <h3 class=\"ro-accordion__heading\">\n      <button class=\"ro-accordion__head\" id=\"acc-h3\" data-ro-disclosure-trigger aria-expanded=\"false\" aria-controls=\"acc-p3\">\n        ¿Hay certificado?\n        <svg class=\"ro-icon ro-icon--sm ro-accordion__chevron\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-down\"></use></svg>\n      </button>\n    </h3>\n    <div class=\"ro-accordion__panel\" id=\"acc-p3\" role=\"region\" aria-labelledby=\"acc-h3\" data-ro-disclosure-panel hidden>Sí, al completar todos los checkpoints del path.</div>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Envuelve cada botón disparador en un encabezado real (h2-h6) acorde a la jerarquía de la página.",
+      "Deja que el usuario abra varias secciones a la vez si el contenido lo permite.",
+      "Sincroniza aria-expanded en el botón con la visibilidad real del panel."
+    ],
+    "dont": [
+      "No esperes que Escape cierre la sección: en accordion es persistente por diseño.",
+      "No uses accordion para alternar vistas mutuamente excluyentes del mismo contexto: eso es Tabs.",
+      "No quites el encabezado semántico (h3) para \"ahorrar\" marcado: rompe la navegación por encabezados."
+    ]
+  },
+  "related": ["menu", "popover", "description-list"]
+}

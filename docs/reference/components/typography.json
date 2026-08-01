@@ -1,0 +1,84 @@
+{
+  "name": "typography",
+  "title": "Typography",
+  "group": "Fundamentos visuales",
+  "maturity": "experimental",
+  "summary": "Escala de clases de texto (display, encabezados, cuerpo, eyebrow) para construir jerarquía visual consistente sin CSS ad-hoc.",
+  "whenToUse": [
+    "Titular una página, sección o tarjeta con un peso y tamaño ya calibrados en la escala.",
+    "Etiquetar una sección con un eyebrow corto en mayúsculas antes de un título.",
+    "Dar estilo a texto de cuerpo o texto secundario/atenuado de forma consistente."
+  ],
+  "whenNotToUse": [
+    "Para prosa larga renderizada desde markdown (artículos, lecciones): usa Prose, que ya define h1–h4, listas y citas.",
+    "Como sustituto de la jerarquía semántica de encabezados: la clase visual no reemplaza elegir h1/h2/h3 según la estructura del documento."
+  ],
+  "anatomy": {
+    "html": "<span class=\"ro-eyebrow\">Cohort · Abril 2026</span>\n<h1 class=\"ro-display\">Bienvenido, Robert.</h1>\n<p class=\"ro-body\">Semana 3 de 4 · 2 módulos completados</p>",
+    "notes": [
+      "Las clases son puramente visuales: no cambian el elemento HTML ni su semántica. Elige la etiqueta (h1, h2, p, span) según la estructura, no según el tamaño deseado.",
+      "ro-display y ro-h2 usan la fuente display; ro-h3 y ro-body usan la fuente base del documento.",
+      "ro-muted y ro-eyebrow--ink son modificadores de color, combinables con cualquier clase de texto."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-display", "desc": "Titular más grande, para heros y encabezados de dashboard." },
+      { "name": "ro-h2", "desc": "Título de sección grande (fuente display)." },
+      { "name": "ro-h3", "desc": "Título de subsección o tarjeta." },
+      { "name": "ro-body", "desc": "Texto de cuerpo por defecto." },
+      { "name": "ro-muted", "desc": "Modificador: atenúa el color del texto (--ro-text-muted)." },
+      { "name": "ro-eyebrow", "desc": "Etiqueta corta en mayúsculas, color de marca, para preceder un título." },
+      { "name": "ro-eyebrow--ink", "desc": "Variante de eyebrow en tono neutro (ink) en vez de color de marca." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-font-display",
+      "--ro-font-sans",
+      "--ro-text-display",
+      "--ro-text-4xl",
+      "--ro-weight-bold",
+      "--ro-weight-medium",
+      "--ro-weight-normal",
+      "--ro-leading-tight",
+      "--ro-leading-snug",
+      "--ro-leading-relaxed",
+      "--ro-tracking-tight",
+      "--ro-tracking-wider",
+      "--ro-text-muted"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Respeta una jerarquía de encabezados sin saltos (h1→h2→h3): el nivel del elemento lo decide la estructura del documento, no el tamaño visual que necesitas.",
+      "ro-eyebrow suele ir junto a un encabezado, no en su lugar: no lo uses como único título de una sección.",
+      "El contraste de ro-muted (--ro-text-muted) es menor a propósito; no lo apliques a texto que transmita información crítica o de error."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Escala completa",
+      "html": "<span class=\"ro-eyebrow\">Continuar</span>\n<h1 class=\"ro-display\">Technical Brief</h1>\n<h2 class=\"ro-h2\">El Arte del \"Technical Brief\"</h2>\n<h3 class=\"ro-h3\">Recursos del módulo</h3>\n<p class=\"ro-body\">La calidad del código generado por IA depende del contexto que le das.</p>\n<p class=\"ro-body ro-muted\">Última actualización hace 3 días.</p>"
+    },
+    {
+      "title": "Eyebrow sobre fondo oscuro",
+      "html": "<div style=\"background:var(--ro-ink);padding:16px;border-radius:var(--ro-radius-lg)\">\n  <span class=\"ro-eyebrow ro-eyebrow--ink\" style=\"color:var(--ro-on-dark-60)\">Aún explorando</span>\n  <h3 class=\"ro-h3\" style=\"color:#fff;margin-top:8px\">\"Optimizar procesos\"</h3>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Elige la etiqueta HTML por jerarquía semántica y la clase ro-* por el tamaño visual que necesitas; pueden no coincidir (ej. <h2 class=\"ro-h3\">).",
+      "Usa ro-eyebrow para dar contexto breve antes de un título, no como reemplazo de un encabezado.",
+      "Reserva ro-display para un único titular por vista."
+    ],
+    "dont": [
+      "No saltes niveles de encabezado (de h1 a h3) solo porque el h2 visual no encaja en el diseño.",
+      "No uses ro-muted en texto de error o de advertencia: reduce el contraste que ese contenido necesita.",
+      "No abuses de ro-display para titulares secundarios: pierde jerarquía si se repite en la misma vista."
+    ]
+  },
+  "related": ["prose", "icon", "divider"]
+}

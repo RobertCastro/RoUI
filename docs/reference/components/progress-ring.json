@@ -1,0 +1,67 @@
+{
+  "name": "progress-ring",
+  "title": "Progress ring",
+  "group": "Datos y estado",
+  "maturity": "experimental",
+  "summary": "Progreso determinado en formato circular, CSS-only con conic-gradient.",
+  "whenToUse": [
+    "Mostrar un avance único y compacto (tarjeta de resumen, dashboard) donde el espacio horizontal es limitado.",
+    "Cuando el porcentaje es el dato principal a destacar visualmente."
+  ],
+  "whenNotToUse": [
+    "Para progreso dentro de un flujo lineal (checklist, formulario): usa Progress.",
+    "Para carga indeterminada sin valor conocido: usa Spinner."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-ring\" style=\"--val:65\" role=\"progressbar\" aria-valuenow=\"65\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progreso del módulo\">\n  <div class=\"ro-ring__hole\" aria-hidden=\"true\">65%</div>\n</div>",
+    "notes": [
+      "El anillo se dibuja con conic-gradient controlado por la variable --val (0–100), sin SVG.",
+      "role=\"progressbar\" y aria-valuenow/min/max van en el contenedor .ro-ring, igual que en Progress.",
+      "El texto dentro de .ro-ring__hole es redundante con el valor accesible del progressbar, por eso lleva aria-hidden=\"true\"; el nombre y valor reales los da aria-label + aria-valuenow.",
+      "--val y aria-valuenow deben mantenerse sincronizados manualmente: son dos atributos separados."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-ring", "desc": "Anillo circular; usa la variable --val (0–100) y opcionalmente --size." },
+      { "name": "ro-ring--ink", "desc": "Variante en color de tinta (ink) en vez de la lavanda de marca." },
+      { "name": "ro-ring--lg", "desc": "Tamaño grande (88px) con texto interior mayor." },
+      { "name": "ro-ring__hole", "desc": "Círculo interior que oculta el centro del conic-gradient y aloja el texto." }
+    ],
+    "data": [],
+    "tokens": ["--ro-secondary", "--ro-ink-06", "--ro-white", "--ro-ink"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Mismo contrato que Progress: role=\"progressbar\" con aria-valuenow, aria-valuemin, aria-valuemax y nombre accesible.",
+      "El número visual dentro del anillo es decorativo (aria-hidden) porque duplica lo que ya anuncia el progressbar; no elimines el aria-label pensando que el texto visible basta.",
+      "Si el anillo representa varias métricas a la vez, usa aria-label distintos por instancia, no un texto genérico compartido."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Valores y tamaños",
+      "html": "<div class=\"ro-row\" style=\"gap:16px;align-items:center\">\n  <div class=\"ro-ring\" style=\"--val:8\" role=\"progressbar\" aria-valuenow=\"8\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progreso: introducción\"><div class=\"ro-ring__hole\" aria-hidden=\"true\">8%</div></div>\n  <div class=\"ro-ring\" style=\"--val:65\" role=\"progressbar\" aria-valuenow=\"65\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progreso: módulo 4\"><div class=\"ro-ring__hole\" aria-hidden=\"true\">65%</div></div>\n  <div class=\"ro-ring ro-ring--lg\" style=\"--val:100\" role=\"progressbar\" aria-valuenow=\"100\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progreso: cohort completo\"><div class=\"ro-ring__hole\" aria-hidden=\"true\">100%</div></div>\n</div>"
+    },
+    {
+      "title": "Variante ink",
+      "html": "<div class=\"ro-ring ro-ring--ink\" style=\"--val:42\" role=\"progressbar\" aria-valuenow=\"42\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progreso: revisión de código\"><div class=\"ro-ring__hole\" aria-hidden=\"true\">42%</div></div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Sincroniza --val con aria-valuenow cada vez que actualices el progreso.",
+      "Usa ro-ring--lg cuando el anillo sea el elemento principal de una tarjeta de resumen.",
+      "Da un aria-label específico por instancia cuando haya varios anillos en la misma vista."
+    ],
+    "dont": [
+      "No dejes el texto visual como única fuente accesible del valor; el progressbar necesita sus propios atributos aria.",
+      "No anides otro indicador de progreso dentro del anillo.",
+      "No confíes solo en el color para distinguir variantes: el porcentaje visible debe bastar sin --ro-ring--ink."
+    ]
+  },
+  "related": ["progress", "spinner", "skeleton"]
+}

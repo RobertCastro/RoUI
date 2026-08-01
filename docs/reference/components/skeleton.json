@@ -1,0 +1,66 @@
+{
+  "name": "skeleton",
+  "title": "Skeleton",
+  "group": "Datos y estado",
+  "maturity": "experimental",
+  "summary": "Placeholder de carga con shimmer que anticipa la forma del contenido real mientras llega.",
+  "whenToUse": [
+    "Sustituir temporalmente tarjetas, listas o texto mientras se resuelve una petición de datos.",
+    "Cuando conocer la forma aproximada del contenido reduce el salto de layout al terminar de cargar."
+  ],
+  "whenNotToUse": [
+    "Para una carga breve sin forma de contenido que anticipar: usa Spinner.",
+    "Cuando el avance es medible y relevante para el usuario: usa Progress."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-card ro-card--plain\" aria-busy=\"true\" style=\"width:280px\">\n  <div class=\"ro-row\" style=\"gap:12px\">\n    <div class=\"ro-skeleton ro-skeleton--circle\" style=\"width:40px;height:40px\" aria-hidden=\"true\"></div>\n    <div style=\"flex:1\">\n      <div class=\"ro-skeleton ro-skeleton--title\" style=\"width:60%\" aria-hidden=\"true\"></div>\n      <div class=\"ro-skeleton ro-skeleton--text\" style=\"width:90%;margin-top:8px\" aria-hidden=\"true\"></div>\n    </div>\n  </div>\n</div>",
+    "notes": [
+      "aria-busy=\"true\" va en el contenedor real que se está cargando (la tarjeta), no en cada bloque de skeleton.",
+      "Cada rectángulo de skeleton lleva aria-hidden=\"true\": es ruido visual, no contenido que deba anunciarse.",
+      "Al llegar el contenido real, quita aria-busy y reemplaza los bloques; si hace falta anunciar el resultado, usa una región aria-live aparte."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-skeleton", "desc": "Bloque base con shimmer animado." },
+      { "name": "ro-skeleton--text", "desc": "Línea de texto (altura ~0.8em)." },
+      { "name": "ro-skeleton--title", "desc": "Línea de título (altura ~1.4em)." },
+      { "name": "ro-skeleton--circle", "desc": "Forma circular (avatar)." }
+    ],
+    "data": [],
+    "tokens": ["--ro-ink-06", "--ro-radius-md", "--ro-radius-sm", "--ro-radius-full"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "El contenedor real lleva aria-busy=\"true\"; los bloques individuales de skeleton llevan aria-hidden=\"true\".",
+      "Al terminar de cargar, quita aria-busy del contenedor y anuncia el resultado si aplica (por ejemplo con una región aria-live cercana).",
+      "El shimmer respeta prefers-reduced-motion (se desactiva la animación)."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Tarjeta cargando",
+      "html": "<div class=\"ro-card ro-card--plain\" aria-busy=\"true\" style=\"width:280px\">\n  <div class=\"ro-row\" style=\"gap:12px\">\n    <div class=\"ro-skeleton ro-skeleton--circle\" style=\"width:40px;height:40px\" aria-hidden=\"true\"></div>\n    <div style=\"flex:1\">\n      <div class=\"ro-skeleton ro-skeleton--title\" style=\"width:60%\" aria-hidden=\"true\"></div>\n      <div class=\"ro-skeleton ro-skeleton--text\" style=\"width:90%;margin-top:8px\" aria-hidden=\"true\"></div>\n    </div>\n  </div>\n  <div class=\"ro-skeleton ro-skeleton--text\" style=\"width:100%;margin-top:14px\" aria-hidden=\"true\"></div>\n  <div class=\"ro-skeleton ro-skeleton--text\" style=\"width:80%;margin-top:8px\" aria-hidden=\"true\"></div>\n</div>"
+    },
+    {
+      "title": "Líneas de texto sueltas",
+      "html": "<div aria-busy=\"true\" style=\"max-width:320px\">\n  <div class=\"ro-skeleton ro-skeleton--title\" style=\"width:40%\" aria-hidden=\"true\"></div>\n  <div class=\"ro-skeleton ro-skeleton--text\" style=\"width:100%;margin-top:10px\" aria-hidden=\"true\"></div>\n  <div class=\"ro-skeleton ro-skeleton--text\" style=\"width:95%;margin-top:8px\" aria-hidden=\"true\"></div>\n  <div class=\"ro-skeleton ro-skeleton--text\" style=\"width:70%;margin-top:8px\" aria-hidden=\"true\"></div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Pon aria-busy=\"true\" en el contenedor real, no en cada bloque de skeleton.",
+      "Aproxima el tamaño de cada bloque a las dimensiones del contenido final para evitar saltos de layout.",
+      "Quita aria-busy en cuanto el contenido real esté disponible."
+    ],
+    "dont": [
+      "No hagas los bloques de skeleton focalizables ni les agregues texto alternativo.",
+      "No dejes aria-busy=\"true\" indefinidamente tras haber cargado el contenido.",
+      "No lo uses para una espera brevísima sin forma que anticipar: usa Spinner."
+    ]
+  },
+  "related": ["spinner", "progress", "card", "empty"]
+}

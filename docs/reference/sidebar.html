@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sidebar — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Seleccion y navegacion</p>
+      <div class="dx-ref-title"><h1>Sidebar</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Panel lateral persistente con navegación de items (curso, módulos, secciones), agrupados y con el ítem actual marcado.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Navegación secundaria persistente junto al contenido principal (rail izquierdo en layouts de 2-3 columnas).</li><li>Listas largas de destinos relacionados donde el usuario necesita ver el conjunto y su progreso, no solo el destino actual.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>En pantallas angostas donde el rail no cabe permanentemente: usa Drawer para exponerlo bajo demanda.</li><li>Para una ruta jerárquica corta: usa Breadcrumb.</li><li>Para una lista de acciones sobre un ítem: usa Menu, no un nav-item del sidebar.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;aside class=&quot;ro-rail ro-rail--left&quot; aria-label=&quot;Clases del curso&quot;&gt;
+  &lt;div class=&quot;ro-rail__head&quot;&gt;
+    &lt;span class=&quot;ro-rail__title&quot;&gt;Clases del curso&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;nav aria-label=&quot;Módulos&quot;&gt;
+    &lt;a class=&quot;ro-nav-item ro-nav-item--active&quot; href=&quot;#&quot; aria-current=&quot;page&quot;&gt;
+      &lt;span class=&quot;ro-step ro-step--current&quot;&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;ro-nav-item__meta&quot;&gt;Mód 04 · Video&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;ro-nav-item__label&quot;&gt;Technical Brief&lt;/span&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a class=&quot;ro-nav-item&quot; href=&quot;#&quot;&gt;
+      &lt;span class=&quot;ro-step&quot;&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;ro-nav-item__meta&quot;&gt;Mód 05 · Video&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;ro-nav-item__label&quot;&gt;Siguiente módulo&lt;/span&gt;&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/aside&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El rail es un &lt;aside&gt; con aria-label; dentro, la lista de destinos vive en un &lt;nav&gt; propio con su propio nombre (más específico que el del aside).</li><li>El ítem actual combina la clase ro-nav-item--active (estilo) con aria-current=&quot;page&quot; (semántica); uno no sustituye al otro.</li><li>ro-step / ro-step--done / ro-step--current son indicadores de progreso decorativos junto al ítem: no reemplazan el texto del label.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-rail</code></td><td>Panel lateral (columna del layout de 2-3 columnas).</td></tr><tr><td><code>.ro-rail--left</code></td><td>Variante con borde a la derecha, para el rail izquierdo.</td></tr><tr><td><code>.ro-rail--right</code></td><td>Variante con borde a la izquierda, para el rail derecho.</td></tr><tr><td><code>.ro-rail__head</code></td><td>Cabecera del rail (título, progreso).</td></tr><tr><td><code>.ro-rail__title</code></td><td>Título mono en mayúsculas de la cabecera.</td></tr><tr><td><code>.ro-accordion-head</code></td><td>Cabecera plegable para agrupar items (p. ej. por semana).</td></tr><tr><td><code>.ro-nav-item</code></td><td>Fila de navegación individual dentro del rail.</td></tr><tr><td><code>.ro-nav-item--active</code></td><td>Ítem actualmente seleccionado.</td></tr><tr><td><code>.ro-nav-item__meta</code></td><td>Texto secundario mono (p. ej. &quot;Mód 04 · Video&quot;).</td></tr><tr><td><code>.ro-nav-item__label</code></td><td>Texto principal del ítem.</td></tr><tr><td><code>.ro-step</code></td><td>Indicador circular de progreso del ítem.</td></tr><tr><td><code>.ro-step--done</code></td><td>Ítem completado.</td></tr><tr><td><code>.ro-step--current</code></td><td>Ítem en curso.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-06</code> <code>--ro-ink-04</code> <code>--ro-radius-xl</code> <code>--ro-radius-full</code> <code>--ro-ink</code> <code>--ro-white</code> <code>--ro-font-mono</code> <code>--ro-tracking-wider</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Recorre los items del rail en orden del documento.</td></tr><tr><td><kbd>Enter</kbd></td><td>Sigue el ítem de navegación enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/tabs-accordion-navigation.html">tabs-accordion-navigation</a></p><ul class="dx-ref-list"><li>El rail entero es un landmark (aside con aria-label); la lista de navegación dentro es otro landmark nav con su propio nombre, más preciso que &quot;panel lateral&quot;.</li><li>El ítem activo se marca con aria-current=&quot;page&quot;, igual que Nav y Breadcrumb, no solo con la clase ro-nav-item--active.</li><li>Si agrupas items bajo un ro-accordion-head plegable, ese encabezado sigue el contrato de Accordion (aria-expanded + aria-controls), no el de un ítem de navegación.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Rail de curso con progreso</div>
+  <div class="dx-demo"><aside class="ro-rail ro-rail--left" aria-label="Clases del curso" style="max-width:280px">
+  <div class="ro-rail__head">
+    <div class="ro-row ro-row--between">
+      <span class="ro-rail__title">Clases del curso</span>
+    </div>
+    <div class="ro-row" style="margin-top:12px;gap:10px">
+      <strong style="font-size:22px">8%</strong>
+      <div style="flex:1"><div class="ro-progress"><div class="ro-progress__fill" style="width:8%"></div></div></div>
+    </div>
+  </div>
+  <nav aria-label="Módulos">
+    <a class="ro-nav-item" href="#">
+      <span class="ro-step ro-step--done"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-check"></use></svg></span>
+      <span><span class="ro-nav-item__meta">Mód 00 · Video</span><br><span class="ro-nav-item__label">Estado actual de AI</span></span>
+    </a>
+    <a class="ro-nav-item ro-nav-item--active" href="#" aria-current="page">
+      <span class="ro-step ro-step--current"></span>
+      <span><span class="ro-nav-item__meta">Mód 04 · Video</span><br><span class="ro-nav-item__label">Technical Brief</span></span>
+    </a>
+    <a class="ro-nav-item" href="#">
+      <span class="ro-step"></span>
+      <span><span class="ro-nav-item__meta">Mód 05 · Video</span><br><span class="ro-nav-item__label">Siguiente módulo</span></span>
+    </a>
+  </nav>
+</aside></div>
+  <pre class="dx-ref-code"><code>&lt;aside class=&quot;ro-rail ro-rail--left&quot; aria-label=&quot;Clases del curso&quot; style=&quot;max-width:280px&quot;&gt;
+  &lt;div class=&quot;ro-rail__head&quot;&gt;
+    &lt;div class=&quot;ro-row ro-row--between&quot;&gt;
+      &lt;span class=&quot;ro-rail__title&quot;&gt;Clases del curso&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-row&quot; style=&quot;margin-top:12px;gap:10px&quot;&gt;
+      &lt;strong style=&quot;font-size:22px&quot;&gt;8%&lt;/strong&gt;
+      &lt;div style=&quot;flex:1&quot;&gt;&lt;div class=&quot;ro-progress&quot;&gt;&lt;div class=&quot;ro-progress__fill&quot; style=&quot;width:8%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;nav aria-label=&quot;Módulos&quot;&gt;
+    &lt;a class=&quot;ro-nav-item&quot; href=&quot;#&quot;&gt;
+      &lt;span class=&quot;ro-step ro-step--done&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;ro-nav-item__meta&quot;&gt;Mód 00 · Video&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;ro-nav-item__label&quot;&gt;Estado actual de AI&lt;/span&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a class=&quot;ro-nav-item ro-nav-item--active&quot; href=&quot;#&quot; aria-current=&quot;page&quot;&gt;
+      &lt;span class=&quot;ro-step ro-step--current&quot;&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;ro-nav-item__meta&quot;&gt;Mód 04 · Video&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;ro-nav-item__label&quot;&gt;Technical Brief&lt;/span&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a class=&quot;ro-nav-item&quot; href=&quot;#&quot;&gt;
+      &lt;span class=&quot;ro-step&quot;&gt;&lt;/span&gt;
+      &lt;span&gt;&lt;span class=&quot;ro-nav-item__meta&quot;&gt;Mód 05 · Video&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;ro-nav-item__label&quot;&gt;Siguiente módulo&lt;/span&gt;&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/aside&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da nombre al aside y, dentro, un nombre más específico al nav de items.</li><li>Marca el ítem actual con aria-current=&quot;page&quot; además de la clase activa.</li><li>Muestra progreso (ro-step) como refuerzo visual, nunca como único indicador del estado.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses el rail como único acceso a una sección crítica en pantallas angostas donde queda oculto: ofrece una alternativa (Drawer, nav superior).</li><li>No pongas acciones destructivas (eliminar, salir) como ro-nav-item: son navegación, no comandos.</li><li>No dupliques el mismo destino activo en dos items distintos del mismo nav.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="nav.html">nav</a> · <a href="tree.html">tree</a> · <a href="accordion.html">accordion</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

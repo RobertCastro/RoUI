@@ -1,0 +1,76 @@
+{
+  "name": "breadcrumb",
+  "title": "Breadcrumb",
+  "group": "Seleccion y navegacion",
+  "maturity": "experimental",
+  "summary": "Muestra la ruta jerárquica desde el inicio hasta la página actual, con el tramo final marcado como posición activa.",
+  "whenToUse": [
+    "Contenido anidado en varios niveles (curso › semana › módulo) donde el usuario se beneficia de subir un nivel rápido.",
+    "Reforzar la ubicación dentro de una jerarquía profunda, además del nav principal."
+  ],
+  "whenNotToUse": [
+    "En sitios planos de uno o dos niveles: el breadcrumb no aporta información nueva.",
+    "Como sustituto del nav principal: el breadcrumb muestra jerarquía, no las secciones disponibles.",
+    "Para pasos de un flujo (cuenta → perfil → pago): usa Stepper, que expresa progreso, no jerarquía."
+  ],
+  "anatomy": {
+    "html": "<nav class=\"ro-breadcrumbs\" aria-label=\"Ruta de navegación\">\n  <a href=\"/\">Inicio</a>\n  <span class=\"ro-breadcrumbs__sep\">›</span>\n  <a href=\"/proyectos\">Mis Proyectos</a>\n  <span class=\"ro-breadcrumbs__sep\">›</span>\n  <span class=\"ro-breadcrumbs__current\" aria-current=\"page\">Frontend</span>\n</nav>",
+    "notes": [
+      "El contenedor es un landmark <nav> con aria-label (\"Ruta de navegación\" o equivalente); sin nombre se confunde con el nav principal.",
+      "Todos los tramos salvo el último son enlaces reales; el tramo final es texto plano (no enlace a sí mismo) con aria-current=\"page\".",
+      "El separador (ro-breadcrumbs__sep) es puramente visual: no lleva rol ni se anuncia como contenido."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-breadcrumbs", "desc": "Contenedor base." },
+      { "name": "ro-breadcrumbs--mono", "desc": "Variante mono/mayúsculas usada en barras de contexto compactas." },
+      { "name": "ro-breadcrumbs__sep", "desc": "Separador visual entre tramos." },
+      { "name": "ro-breadcrumbs__current", "desc": "Tramo final: la página actual (texto, no enlace)." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-text-sm",
+      "--ro-ink-60",
+      "--ro-ink-40",
+      "--ro-weight-semibold",
+      "--ro-font-mono",
+      "--ro-tracking-wider"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/tabs-accordion-navigation.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Recorre los enlaces de los tramos anteriores; el tramo actual no es enfocable por no ser interactivo."],
+      ["Enter", "Sigue el enlace del tramo enfocado."]
+    ],
+    "notes": [
+      "Mismo patrón que Nav: landmark con nombre y aria-current=\"page\" en el tramo activo, sin depender solo de la clase ro-breadcrumbs__current.",
+      "El separador no debe anunciarse como parte del contenido: no le pongas texto significativo ni aria-label."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Breadcrumb estándar",
+      "html": "<nav class=\"ro-breadcrumbs\" aria-label=\"Ruta de navegación\">\n  <a href=\"#\">Inicio</a><span class=\"ro-breadcrumbs__sep\">›</span>\n  <a href=\"#\">Mis Proyectos</a><span class=\"ro-breadcrumbs__sep\">›</span>\n  <span class=\"ro-breadcrumbs__current\" aria-current=\"page\">Frontend</span>\n</nav>"
+    },
+    {
+      "title": "Variante mono (barra de contexto)",
+      "html": "<nav class=\"ro-breadcrumbs ro-breadcrumbs--mono\" aria-label=\"Ruta de navegación (mono)\">\n  <a href=\"#\">Frontend · 4 semanas</a><span class=\"ro-breadcrumbs__sep\">›</span>\n  <a href=\"#\">Semana 1</a><span class=\"ro-breadcrumbs__sep\">›</span>\n  <span class=\"ro-breadcrumbs__current\" aria-current=\"page\">Mód. 04</span>\n</nav>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da nombre al landmark con aria-label para diferenciarlo del nav principal.",
+      "Deja el último tramo como texto con aria-current=\"page\", no como enlace a la propia página.",
+      "Ordena los tramos de más general a más específico."
+    ],
+    "dont": [
+      "No lo uses como único mecanismo de navegación: complementa al nav, no lo reemplaza.",
+      "No conviertas el tramo actual en un enlace clicable hacia sí mismo.",
+      "No abuses de rutas de un solo nivel: si no hay jerarquía, omite el breadcrumb."
+    ]
+  },
+  "related": ["nav", "sidebar", "pagination"]
+}

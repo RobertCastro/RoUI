@@ -1,0 +1,66 @@
+{
+  "name": "divider",
+  "title": "Divider",
+  "group": "Fundamentos visuales",
+  "maturity": "experimental",
+  "summary": "Separador visual horizontal o vertical, con o sin etiqueta centrada, para dividir grupos de contenido.",
+  "whenToUse": [
+    "Separar secciones de contenido dentro de una tarjeta, menú o formulario.",
+    "Separar dos acciones o bloques en una fila horizontal (variante vertical).",
+    "Marcar una alternativa explícita entre dos bloques (\"o\") con ro-divider-text."
+  ],
+  "whenNotToUse": [
+    "Para crear espacio en blanco entre secciones: usa margin/gap en vez de un divisor visible.",
+    "Para separar elementos de una lista de datos con estructura propia: usa los bordes de la tabla o list-group en vez de insertar dividers manuales."
+  ],
+  "anatomy": {
+    "html": "<span>Arriba</span>\n<hr class=\"ro-divider\">\n<span>Abajo</span>",
+    "notes": [
+      "El caso base usa <hr>, que ya aporta role=separator implícito de forma nativa.",
+      "La variante vertical (ro-divider--vertical) se aplica sobre un <span>, no un <hr>, y necesita un contenedor flex que la haga estirarse.",
+      "ro-divider-text es un contenedor propio (no modifica ro-divider): envuelve un <span> con la etiqueta y dibuja las líneas con pseudo-elementos."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-divider", "desc": "Línea horizontal de 1px. Se usa sobre <hr>." },
+      { "name": "ro-divider--vertical", "desc": "Variante vertical, para separar elementos en una fila." },
+      { "name": "ro-divider-text", "desc": "Contenedor con etiqueta centrada y líneas a los lados (p. ej. \"o\")." }
+    ],
+    "data": [],
+    "tokens": ["--ro-ink-10", "--ro-space-3", "--ro-space-4", "--ro-font-mono", "--ro-text-xs", "--ro-tracking-wider"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Un divisor puramente decorativo no necesita rol adicional; usar <hr> ya es suficiente y semánticamente correcto.",
+      "Si el divisor separa contenido semánticamente relevante (no solo un corte visual), usa role=\"separator\" explícito en el elemento.",
+      "La variante vertical sobre <span> es decorativa por defecto: no lleva rol ni texto accesible propio."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Horizontal y con etiqueta",
+      "html": "<div style=\"max-width:420px\">\n  <span>Arriba</span>\n  <hr class=\"ro-divider\">\n  <span>Abajo</span>\n  <div class=\"ro-divider-text\"><span>o</span></div>\n</div>"
+    },
+    {
+      "title": "Vertical entre acciones",
+      "html": "<div class=\"ro-row\">Izquierda <span class=\"ro-divider ro-divider--vertical\" style=\"height:20px\"></span> Derecha</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa <hr> para el caso horizontal por defecto: ya trae semántica de separador.",
+      "Reserva ro-divider-text para una alternativa real (\"o\"), no como decoración genérica.",
+      "Da altura explícita a la variante vertical dentro de contenedores que no sean flex con align-stretch."
+    ],
+    "dont": [
+      "No uses múltiples dividers seguidos para simular espaciado: ajusta el margin/gap del layout.",
+      "No pongas contenido interactivo dentro de ro-divider-text: es solo una etiqueta de texto.",
+      "No reemplaces bordes de tabla o list-group por dividers sueltos: rompe la estructura visual de esos componentes."
+    ]
+  },
+  "related": ["typography", "list-group", "menu"]
+}

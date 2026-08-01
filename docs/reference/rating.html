@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rating — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Formularios</p>
+      <div class="dx-ref-title"><h1>Rating</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Selector de estrellas para capturar o mostrar una puntuación dentro de un rango pequeño y fijo.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Pedir o mostrar una puntuación de satisfacción o calidad (1 a 5 estrellas, por ejemplo).</li><li>Cuando el rango es corto y cada opción tiene el mismo peso visual (no un valor continuo).</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para un rango continuo o amplio de valores: usa Slider.</li><li>Para elegir una única opción entre etiquetas de texto: usa Segmented.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-rating&quot; role=&quot;group&quot; aria-label=&quot;Puntuación&quot;&gt;
+  &lt;button class=&quot;ro-rating__star is-active&quot; type=&quot;button&quot; aria-label=&quot;1 estrella&quot; aria-pressed=&quot;true&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class=&quot;ro-rating__star&quot; type=&quot;button&quot; aria-label=&quot;2 estrellas&quot; aria-pressed=&quot;false&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El contenedor es role=&quot;group&quot; con aria-label describiendo qué se puntúa.</li><li>Cada estrella es un &lt;button&gt; con aria-pressed que refleja si esa posición (y las anteriores) están seleccionadas.</li><li>La clase is-active pinta la estrella con el amarillo de marca; aria-pressed es la fuente de verdad, no el color.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-rating</code></td><td>Contenedor del grupo de estrellas.</td></tr><tr><td><code>.ro-rating__star</code></td><td>Botón de una estrella individual.</td></tr><tr><td><code>.ro-rating--readonly</code></td><td>Variante de solo lectura (sin cursor de interacción).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-20</code> <code>--ro-primary</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Mueve el foco entre estrellas.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Selecciona la estrella enfocada como nueva puntuación.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>Cada botón lleva aria-label con el valor que representa (&quot;3 estrellas&quot;), no solo un icono mudo.</li><li>aria-pressed=&quot;true&quot; en cada estrella hasta la puntuación actual comunica el estado sin depender del color.</li><li>En modo solo lectura (ro-rating--readonly), usa role=&quot;img&quot; con un aria-label del total en vez de botones interactivos.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Puntuación interactiva (4 de 5)</div>
+  <div class="dx-demo"><div class="ro-rating" role="group" aria-label="Puntuación">
+  <button class="ro-rating__star is-active" type="button" aria-label="1 estrella" aria-pressed="true"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+  <button class="ro-rating__star is-active" type="button" aria-label="2 estrellas" aria-pressed="true"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+  <button class="ro-rating__star is-active" type="button" aria-label="3 estrellas" aria-pressed="true"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+  <button class="ro-rating__star is-active" type="button" aria-label="4 estrellas" aria-pressed="true"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+  <button class="ro-rating__star" type="button" aria-label="5 estrellas" aria-pressed="false"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></button>
+</div>
+<span class="ro-muted" style="font-size:13px">Haz clic para puntuar</span></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-rating&quot; role=&quot;group&quot; aria-label=&quot;Puntuación&quot;&gt;
+  &lt;button class=&quot;ro-rating__star is-active&quot; type=&quot;button&quot; aria-label=&quot;1 estrella&quot; aria-pressed=&quot;true&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class=&quot;ro-rating__star is-active&quot; type=&quot;button&quot; aria-label=&quot;2 estrellas&quot; aria-pressed=&quot;true&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class=&quot;ro-rating__star is-active&quot; type=&quot;button&quot; aria-label=&quot;3 estrellas&quot; aria-pressed=&quot;true&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class=&quot;ro-rating__star is-active&quot; type=&quot;button&quot; aria-label=&quot;4 estrellas&quot; aria-pressed=&quot;true&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class=&quot;ro-rating__star&quot; type=&quot;button&quot; aria-label=&quot;5 estrellas&quot; aria-pressed=&quot;false&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;/div&gt;
+&lt;span class=&quot;ro-muted&quot; style=&quot;font-size:13px&quot;&gt;Haz clic para puntuar&lt;/span&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Solo lectura</div>
+  <div class="dx-demo"><div class="ro-rating ro-rating--readonly" role="img" aria-label="3 de 5 estrellas">
+  <span class="ro-rating__star is-active"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></span>
+  <span class="ro-rating__star is-active"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></span>
+  <span class="ro-rating__star is-active"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></span>
+  <span class="ro-rating__star"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></span>
+  <span class="ro-rating__star"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg></span>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-rating ro-rating--readonly&quot; role=&quot;img&quot; aria-label=&quot;3 de 5 estrellas&quot;&gt;
+  &lt;span class=&quot;ro-rating__star is-active&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;span class=&quot;ro-rating__star is-active&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;span class=&quot;ro-rating__star is-active&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;span class=&quot;ro-rating__star&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;span class=&quot;ro-rating__star&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa role=&quot;group&quot; con aria-label describiendo qué se puntúa.</li><li>Da a cada estrella un aria-label con su valor numérico (&quot;3 estrellas&quot;), no solo un icono.</li><li>Refleja la selección con aria-pressed, no solo con color.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses rating para escalas de más de 10 puntos: se vuelve difícil de escanear y de tabular.</li><li>No dependas solo del relleno amarillo para comunicar la puntuación a quien no distingue color.</li><li>No mezcles botones interactivos y de solo lectura dentro del mismo grupo.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="slider.html">slider</a> · <a href="form.html">form</a> · <a href="tag.html">tag</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

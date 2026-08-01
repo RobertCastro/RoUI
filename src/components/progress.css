@@ -4,4 +4,4 @@
 .ro-progress__fill { position: absolute; inset: 0 auto 0 0; height: 100%;
   border-radius: var(--ro-radius-md); background: var(--ro-secondary);
   transition: width 0.3s var(--ro-ease); }
-.ro-progress--on-dark { height: 4px; background: rgba(255,255,255,0.20); }
+.ro-progress--on-dark { height: 4px; background: var(--ro-on-dark-20); }

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Header — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Contenido y estructura</p>
+      <div class="dx-ref-title"><h1>Header</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Cabecera de página o de sección que agrupa marca, navegación principal y acciones.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Cabecera de aplicación con marca, navegación y acciones de usuario, fija en la parte superior.</li><li>Cabecera de una sección de contenido extensa (dentro de un article o section).</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para navegación lateral persistente: usa Sidebar.</li><li>Para una barra de acciones sobre una tabla o lista: usa Toolbar.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;header class=&quot;ro-header&quot;&gt;
+  &lt;a class=&quot;ro-header__brand&quot;&gt;&lt;strong&gt;RoUI&lt;/strong&gt;&lt;/a&gt;
+  &lt;nav class=&quot;ro-header__nav&quot; aria-label=&quot;Principal&quot;&gt;
+    &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot; aria-current=&quot;page&quot;&gt;Inicio&lt;/a&gt;
+    &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot;&gt;Proyectos&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;div class=&quot;ro-header__actions&quot;&gt;
+    &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Notificaciones&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-bell&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;button class=&quot;ro-avatar&quot; aria-label=&quot;Cuenta&quot;&gt;RC&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Si &lt;header&gt; es hijo directo de &lt;body&gt;, es landmark banner implícito y no necesita role.</li><li>Si el mismo &lt;header&gt; está anidado dentro de &lt;article&gt; o &lt;section&gt; (cabecera de sección), pierde ese rol implícito: úsalo ahí solo por su semántica de agrupación, no esperes que un lector de pantalla lo anuncie como banner.</li><li>ro-header__nav lleva aria-label propio porque puede coexistir con otras &lt;nav&gt; en la misma página (breadcrumb, sidebar).</li><li>Los botones de solo icono dentro de ro-header__actions necesitan aria-label.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-header</code></td><td>Contenedor flex de la cabecera; fija su altura con --ro-header-h.</td></tr><tr><td><code>.ro-header__brand</code></td><td>Zona del logotipo/nombre, siempre visible.</td></tr><tr><td><code>.ro-header__nav</code></td><td>Navegación principal; oculta en mobile por defecto.</td></tr><tr><td><code>.ro-header__title</code></td><td>Título centrado opcional (visible desde tablet).</td></tr><tr><td><code>.ro-header__actions</code></td><td>Grupo de acciones a la derecha (notificaciones, cuenta, menú).</td></tr><tr><td><code>.ro-nav-link</code></td><td>Enlace de la navegación principal.</td></tr><tr><td><code>.ro-burger</code></td><td>Botón de menú hamburguesa, visible solo en mobile.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-header-h</code> <code>--ro-white</code> <code>--ro-ink-10</code> <code>--ro-space-7</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>El landmark banner (o su ausencia al anidar) es la única semántica implícita en juego; el resto del comportamiento es el de los enlaces y botones nativos que contiene.</li><li>No dupliques el landmark banner: debe existir como máximo un &lt;header&gt; hijo directo de &lt;body&gt; por página.</li><li>Si necesitas dos navegaciones visibles a la vez (principal y de sección), dales aria-label distintos para diferenciarlas en el árbol de accesibilidad.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Header de aplicación (landmark banner)</div>
+  <div class="dx-demo"><header class="ro-header">
+  <a class="ro-header__brand"><strong>RoUI</strong></a>
+  <nav class="ro-header__nav" aria-label="Principal">
+    <a class="ro-nav-link" href="#" aria-current="page">Inicio</a>
+    <a class="ro-nav-link" href="#">Mis Proyectos</a>
+    <a class="ro-nav-link" href="#">Directorio</a>
+  </nav>
+  <div class="ro-header__actions">
+    <button class="ro-btn-icon" aria-label="Notificaciones"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-bell"></use></svg></button>
+    <button class="ro-avatar" aria-label="Cuenta">RC</button>
+    <button class="ro-btn-icon ro-burger" aria-label="Menú"><svg class="ro-icon ro-icon--lg" aria-hidden="true"><use href="#ro-i-menu"></use></svg></button>
+  </div>
+</header></div>
+  <pre class="dx-ref-code"><code>&lt;header class=&quot;ro-header&quot;&gt;
+  &lt;a class=&quot;ro-header__brand&quot;&gt;&lt;strong&gt;RoUI&lt;/strong&gt;&lt;/a&gt;
+  &lt;nav class=&quot;ro-header__nav&quot; aria-label=&quot;Principal&quot;&gt;
+    &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot; aria-current=&quot;page&quot;&gt;Inicio&lt;/a&gt;
+    &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot;&gt;Mis Proyectos&lt;/a&gt;
+    &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot;&gt;Directorio&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;div class=&quot;ro-header__actions&quot;&gt;
+    &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Notificaciones&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-bell&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;button class=&quot;ro-avatar&quot; aria-label=&quot;Cuenta&quot;&gt;RC&lt;/button&gt;
+    &lt;button class=&quot;ro-btn-icon ro-burger&quot; aria-label=&quot;Menú&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--lg&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-menu&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Header de sección (sin landmark banner)</div>
+  <div class="dx-demo"><article>
+  <header>
+    <p class="ro-eyebrow">Módulo 4</p>
+    <h2 class="ro-h3">El arte del technical brief</h2>
+  </header>
+  <p class="ro-body">Contenido del módulo…</p>
+</article></div>
+  <pre class="dx-ref-code"><code>&lt;article&gt;
+  &lt;header&gt;
+    &lt;p class=&quot;ro-eyebrow&quot;&gt;Módulo 4&lt;/p&gt;
+    &lt;h2 class=&quot;ro-h3&quot;&gt;El arte del technical brief&lt;/h2&gt;
+  &lt;/header&gt;
+  &lt;p class=&quot;ro-body&quot;&gt;Contenido del módulo…&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa un único &lt;header&gt; hijo directo de &lt;body&gt; como cabecera de la aplicación.</li><li>Da aria-label a cada &lt;nav&gt; cuando haya más de una en la página.</li><li>Da aria-label a los botones de solo icono dentro de las acciones.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No anides un &lt;header&gt; de página dentro de otro &lt;header&gt; o de un elemento con rol banner.</li><li>No dependas del landmark banner para un &lt;header&gt; de sección dentro de article/section: ahí no existe.</li><li>No conviertas ro-header__nav en el único medio de navegación si el contenido no cabe visualmente; expón el resto vía ro-burger.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="footer.html">footer</a> · <a href="nav.html">nav</a> · <a href="breadcrumb.html">breadcrumb</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

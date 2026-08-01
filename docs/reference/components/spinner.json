@@ -1,0 +1,70 @@
+{
+  "name": "spinner",
+  "title": "Spinner",
+  "group": "Datos y estado",
+  "maturity": "experimental",
+  "summary": "Indicador de carga indeterminado: un círculo animado con texto oculto para lectores de pantalla.",
+  "whenToUse": [
+    "Comunicar que algo está cargando cuando no se conoce el avance real ni el tiempo restante.",
+    "Estados de carga breves dentro de un botón, tarjeta o zona pequeña de la interfaz."
+  ],
+  "whenNotToUse": [
+    "Cuando sí conoces el avance (%): usa Progress o Progress ring.",
+    "Para simular el layout final mientras carga contenido estructurado: usa Skeleton."
+  ],
+  "anatomy": {
+    "html": "<span class=\"ro-spinner\" role=\"status\"><span class=\"ro-sr-only\">Cargando…</span></span>",
+    "notes": [
+      "role=\"status\" hace el anuncio de forma cortés (no interrumpe al usuario) apenas el spinner entra al DOM.",
+      "El nombre accesible viene del texto oculto (ro-sr-only), no de la animación visual, que no se anuncia por sí sola.",
+      "La animación respeta prefers-reduced-motion (se hace más lenta en vez de detenerse abruptamente)."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-spinner", "desc": "Círculo animado base (20px)." },
+      { "name": "ro-spinner--sm", "desc": "Tamaño compacto (14px)." },
+      { "name": "ro-spinner--lg", "desc": "Tamaño grande (28px), trazo más grueso." },
+      { "name": "ro-spinner--light", "desc": "Variante clara para fondos oscuros." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-full", "--ro-ink"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Un spinner indeterminado usa role=\"status\" con texto oculto (\"Cargando…\") en vez de depender solo de la animación.",
+      "No dupliques anuncios: si el spinner vive dentro de un botón con estado is-loading, el botón ya comunica su propio estado (aria-busy o texto), evita dos role=status compitiendo.",
+      "Al terminar la carga, retira el spinner del DOM (o su role=status) y anuncia el resultado en el elemento correspondiente."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Tamaños",
+      "html": "<div class=\"ro-row\" style=\"gap:16px;align-items:center\">\n  <span class=\"ro-spinner ro-spinner--sm\" role=\"status\"><span class=\"ro-sr-only\">Cargando…</span></span>\n  <span class=\"ro-spinner\" role=\"status\"><span class=\"ro-sr-only\">Cargando…</span></span>\n  <span class=\"ro-spinner ro-spinner--lg\" role=\"status\"><span class=\"ro-sr-only\">Cargando…</span></span>\n</div>"
+    },
+    {
+      "title": "Sobre fondo oscuro",
+      "html": "<div style=\"background:var(--ro-ink);padding:16px;border-radius:12px;display:inline-block\">\n  <span class=\"ro-spinner ro-spinner--light\" role=\"status\"><span class=\"ro-sr-only\">Cargando…</span></span>\n</div>"
+    },
+    {
+      "title": "Botón en estado de carga",
+      "html": "<button class=\"ro-btn ro-btn--primary is-loading\" type=\"button\" aria-busy=\"true\">Guardar</button>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Incluye siempre texto oculto (\"Cargando…\", \"Guardando…\") dentro del role=status.",
+      "Combina con is-loading en ro-btn (ver Button) en vez de anidar un spinner completo dentro del botón.",
+      "Usa el tamaño (sm/lg) proporcional al contexto donde aparece."
+    ],
+    "dont": [
+      "No reemplaces role=\"status\" por un aria-live manual duplicado en el mismo nodo.",
+      "No quites el texto oculto asumiendo que el spinner es \"obviamente\" de carga.",
+      "No lo uses cuando sí tienes un valor de avance conocido: usa Progress."
+    ]
+  },
+  "related": ["progress", "skeleton", "button"]
+}

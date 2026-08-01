@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stepper — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Disclosure</p>
+      <div class="dx-ref-title"><h1>Stepper</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Indicador visual de progreso por pasos (wizard), horizontal o vertical.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Mostrar en qué paso de un flujo multi-etapa está el usuario (por ejemplo, un formulario de registro en varias pantallas).</li><li>Dar contexto de cuánto falta, con pasos completados, el actual y los pendientes.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>No es un componente navegable por sí mismo: los pasos son solo visuales (div, no button/link), sin clic ni teclado propio. Si el flujo permite saltar entre pasos, esa navegación va en los botones de acción del formulario o wizard que envuelve al stepper, no en el stepper.</li><li>Para una lista de eventos cronológicos ya ocurridos (no un flujo en progreso): usa Timeline.</li><li>Para un progreso continuo sin pasos discretos (porcentaje, carga): usa Progress.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-stepper&quot;&gt;
+  &lt;div class=&quot;ro-step-item is-done&quot;&gt;&lt;span class=&quot;ro-step-dot&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class=&quot;ro-step-label&quot;&gt;Cuenta&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-step-item is-done&quot;&gt;&lt;span class=&quot;ro-step-dot&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class=&quot;ro-step-label&quot;&gt;Perfil&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-step-item is-current&quot;&gt;&lt;span class=&quot;ro-step-dot&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;ro-step-label&quot;&gt;Plan&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-step-item&quot;&gt;&lt;span class=&quot;ro-step-dot&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;ro-step-label&quot;&gt;Pago&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Cada .ro-step-item es un div simple: is-done marca completado (con icono de check), is-current marca el paso activo; sin clase es un paso pendiente.</li><li>El número o check dentro de .ro-step-dot es contenido visual; no hay marcado ARIA de progreso (no es role=progressbar) porque representa pasos discretos, no un porcentaje.</li><li>El conector entre puntos (::before) es puramente decorativo vía CSS, sin nodo en el DOM.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-stepper</code></td><td>Contenedor horizontal (fila) de pasos.</td></tr><tr><td><code>.ro-stepper--vertical</code></td><td>Variante vertical, con el conector a la izquierda.</td></tr><tr><td><code>.ro-step-item</code></td><td>Un paso individual.</td></tr><tr><td><code>.ro-step-item.is-done</code></td><td>Paso completado.</td></tr><tr><td><code>.ro-step-item.is-current</code></td><td>Paso activo.</td></tr><tr><td><code>.ro-step-dot</code></td><td>Círculo con número o icono de check.</td></tr><tr><td><code>.ro-step-label</code></td><td>Etiqueta corta del paso (horizontal).</td></tr><tr><td><code>.ro-step-body</code></td><td>Bloque de título y descripción (vertical).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-10</code> <code>--ro-ink-20</code> <code>--ro-secondary</code> <code>--ro-secondary-ring</code> <code>--ro-radius-full</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/tabs-accordion-navigation.html">tabs-accordion-navigation</a></p><ul class="dx-ref-list"><li>No es interactivo: no expone foco ni teclado propio, porque los pasos no son botones ni enlaces en el marcado actual.</li><li>El estado (completado/actual/pendiente) se comunica solo por color, posición e icono de check; si necesita ser accesible a lector de pantalla, añade un texto visualmente oculto por paso (por ejemplo &quot;Paso 3 de 4, actual: Plan&quot;) o expón el progreso con un elemento aparte.</li><li>Si en el futuro los pasos se vuelven clicables (navegación real entre pasos completados), deben marcarse como button o a con aria-current=&quot;step&quot; en el activo, siguiendo el patrón de aria-current documentado para navegación.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Vertical con descripción</div>
+  <div class="dx-demo"><div class="ro-stepper ro-stepper--vertical" style="max-width:320px">
+  <div class="ro-step-item is-done"><span class="ro-step-dot"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-check"></use></svg></span><div class="ro-step-body"><div style="font-weight:600;font-size:14px">Crear cuenta</div><div class="ro-muted" style="font-size:13px">Completado</div></div></div>
+  <div class="ro-step-item is-current"><span class="ro-step-dot">2</span><div class="ro-step-body"><div style="font-weight:600;font-size:14px">Elegir plan</div><div class="ro-muted" style="font-size:13px">En curso</div></div></div>
+  <div class="ro-step-item"><span class="ro-step-dot">3</span><div class="ro-step-body"><div style="font-weight:600;font-size:14px">Confirmar</div></div></div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-stepper ro-stepper--vertical&quot; style=&quot;max-width:320px&quot;&gt;
+  &lt;div class=&quot;ro-step-item is-done&quot;&gt;&lt;span class=&quot;ro-step-dot&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;&lt;div class=&quot;ro-step-body&quot;&gt;&lt;div style=&quot;font-weight:600;font-size:14px&quot;&gt;Crear cuenta&lt;/div&gt;&lt;div class=&quot;ro-muted&quot; style=&quot;font-size:13px&quot;&gt;Completado&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-step-item is-current&quot;&gt;&lt;span class=&quot;ro-step-dot&quot;&gt;2&lt;/span&gt;&lt;div class=&quot;ro-step-body&quot;&gt;&lt;div style=&quot;font-weight:600;font-size:14px&quot;&gt;Elegir plan&lt;/div&gt;&lt;div class=&quot;ro-muted&quot; style=&quot;font-size:13px&quot;&gt;En curso&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-step-item&quot;&gt;&lt;span class=&quot;ro-step-dot&quot;&gt;3&lt;/span&gt;&lt;div class=&quot;ro-step-body&quot;&gt;&lt;div style=&quot;font-weight:600;font-size:14px&quot;&gt;Confirmar&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa etiquetas cortas y claras por paso (un sustantivo o frase de 1-2 palabras).</li><li>Marca is-done en cuanto el usuario complete el paso, no solo al final del flujo.</li><li>Combina el stepper con botones reales de &quot;Anterior&quot;/&quot;Siguiente&quot; en el formulario que envuelve el flujo.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No agregues onclick a los .ro-step-item esperando que naveguen: el componente no incluye ese comportamiento.</li><li>No lo uses como único indicador de error de validación; usa Alert o mensajes inline en el formulario.</li><li>No mezcles más de 5-6 pasos horizontales: se vuelve difícil de leer en pantallas angostas.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="progress.html">progress</a> · <a href="timeline.html">timeline</a> · <a href="form.html">form</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

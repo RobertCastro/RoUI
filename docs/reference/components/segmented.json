@@ -1,0 +1,72 @@
+{
+  "name": "segmented",
+  "title": "Segmented control",
+  "group": "Seleccion y navegacion",
+  "maturity": "experimental",
+  "summary": "Grupo compacto de opciones mutuamente excluyentes que cambian una vista o filtro, sin navegar a otra URL.",
+  "whenToUse": [
+    "Alternar entre 2-5 vistas cortas y equivalentes del mismo dato (p. ej. Semana / Mes / Año).",
+    "Reemplazar un select de pocas opciones cuando conviene ver todas las alternativas a la vez."
+  ],
+  "whenNotToUse": [
+    "Con más de 5-6 opciones o etiquetas largas: usa un select o Tabs, que escalan mejor.",
+    "Cuando necesites el modelo de teclado completo tipo radiogroup (flechas para moverse entre opciones, Home/End): esta primitiva todavía no existe en RoUI — ver notas de accesibilidad.",
+    "Para navegar a otra URL o vista con su propia ruta: usa Nav o Tabs, no Segmented."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-segmented\">\n  <button class=\"ro-segmented__item ro-segmented__item--active\">Semana</button>\n  <button class=\"ro-segmented__item\">Mes</button>\n  <button class=\"ro-segmented__item\">Año</button>\n</div>",
+    "notes": [
+      "Cada opción es un <button> nativo: aporta foco y activación por teclado sin marcado adicional.",
+      "La opción activa se distingue hoy solo con la clase ro-segmented__item--active; no hay rol de grupo ni estado ARIA todavía (ver a11y.notes).",
+      "El contenedor no lleva rol explícito: es un grupo visual, no un radiogroup accesible."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-segmented", "desc": "Contenedor del grupo de opciones." },
+      { "name": "ro-segmented__item", "desc": "Opción individual." },
+      { "name": "ro-segmented__item--active", "desc": "Opción seleccionada." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-radius-full",
+      "--ro-ink-06",
+      "--ro-ink-60",
+      "--ro-white",
+      "--ro-shadow-sm",
+      "--ro-transition"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Entra y sale del grupo (cada botón es tabbable por separado; no hay roving tabindex)."],
+      ["Enter / Espacio", "Activa la opción enfocada (comportamiento nativo del <button>)."]
+    ],
+    "notes": [
+      "Estado actual, tal cual: no existe un controlador de teclado tipo radiogroup (flechas Left/Right, Home/End, un solo tab-stop) para este componente todavía; queda pendiente de una primitiva futura, igual que Tree.",
+      "Mientras tanto, cada opción es un botón independiente en el orden de tabulación; añade aria-pressed=\"true\"/\"false\" en cada botón (patrón de toggle button) para que el estado se anuncie, ya que hoy solo se comunica por color.",
+      "Si tu caso de uso requiere semántica de radiogroup completa hoy mismo, usa un <fieldset> con inputs type=radio nativos en vez de Segmented."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Selector de rango",
+      "html": "<div class=\"ro-segmented\">\n  <button class=\"ro-segmented__item ro-segmented__item--active\" aria-pressed=\"true\">Semana</button>\n  <button class=\"ro-segmented__item\" aria-pressed=\"false\">Mes</button>\n  <button class=\"ro-segmented__item\" aria-pressed=\"false\">Año</button>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa etiquetas de una palabra y mantén el grupo entre 2 y 5 opciones.",
+      "Añade aria-pressed en cada botón mientras no exista el controlador de radiogroup.",
+      "Reserva Segmented para cambios inmediatos de vista, sin botón de confirmar."
+    ],
+    "dont": [
+      "No lo uses para envíos de formulario donde la selección deba confirmarse: ahí un radio nativo es más claro.",
+      "No asumas navegación por flechas: hoy no existe: cada opción se alcanza con Tab.",
+      "No mezcles Segmented con opciones de texto largo o con envoltura de línea."
+    ]
+  },
+  "related": ["button-group", "toolbar", "tag"]
+}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accordion — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Disclosure</p>
+      <div class="dx-ref-title"><h1>Accordion</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Lista de secciones colapsables; cada una es un disclosure independiente y persistente.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Preguntas frecuentes u otro contenido largo que el usuario expande solo cuando lo necesita.</li><li>Permitir más de una sección abierta a la vez, cada una controlada por su propio encabezado.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para alternar entre vistas equivalentes del mismo contexto: usa Tabs.</li><li>Para un menú de acciones o navegación flotante que se cierra al hacer clic fuera: usa Menu o Popover.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-accordion&quot;&gt;
+  &lt;div class=&quot;ro-accordion__item&quot; data-ro-disclosure-root data-ro-disclosure-persistent&gt;
+    &lt;h3 class=&quot;ro-accordion__heading&quot;&gt;
+      &lt;button class=&quot;ro-accordion__head&quot; id=&quot;acc-h1&quot; data-ro-disclosure-trigger aria-expanded=&quot;true&quot; aria-controls=&quot;acc-p1&quot;&gt;
+        ¿Qué incluye el curso?
+        &lt;svg class=&quot;ro-icon ro-icon--sm ro-accordion__chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-down&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/h3&gt;
+    &lt;div class=&quot;ro-accordion__panel is-open&quot; id=&quot;acc-p1&quot; role=&quot;region&quot; aria-labelledby=&quot;acc-h1&quot; data-ro-disclosure-panel&gt;40 módulos en video, recursos descargables y checkpoints por semana.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-accordion__item&quot; data-ro-disclosure-root data-ro-disclosure-persistent&gt;
+    &lt;h3 class=&quot;ro-accordion__heading&quot;&gt;
+      &lt;button class=&quot;ro-accordion__head&quot; id=&quot;acc-h2&quot; data-ro-disclosure-trigger aria-expanded=&quot;false&quot; aria-controls=&quot;acc-p2&quot;&gt;
+        ¿Necesito experiencia previa?
+        &lt;svg class=&quot;ro-icon ro-icon--sm ro-accordion__chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-down&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/h3&gt;
+    &lt;div class=&quot;ro-accordion__panel&quot; id=&quot;acc-p2&quot; role=&quot;region&quot; aria-labelledby=&quot;acc-h2&quot; data-ro-disclosure-panel hidden&gt;No. Empezamos desde los fundamentos y subimos el nivel gradualmente.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Cada sección es su propio data-ro-disclosure-root con data-ro-disclosure-persistent: el controlador no la cierra al hacer clic fuera ni con Escape.</li><li>El botón va envuelto en un encabezado real (h3) para que quede en el árbol de navegación por encabezados del lector de pantalla.</li><li>El panel es role=region con aria-labelledby apuntando al botón; inicia con hidden salvo la sección que abre por defecto.</li><li>El chevron es decorativo y rota vía CSS cuando el botón tiene aria-expanded=true.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-accordion</code></td><td>Contenedor con borde que agrupa los items.</td></tr><tr><td><code>.ro-accordion__item</code></td><td>Una sección (root del disclosure).</td></tr><tr><td><code>.ro-accordion__heading</code></td><td>Elemento de encabezado real que envuelve el botón.</td></tr><tr><td><code>.ro-accordion__head</code></td><td>Botón disparador (data-ro-disclosure-trigger).</td></tr><tr><td><code>.ro-accordion__chevron</code></td><td>Icono que rota según aria-expanded.</td></tr><tr><td><code>.ro-accordion__panel</code></td><td>Cuerpo de la sección (data-ro-disclosure-panel).</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-ro-disclosure-root</code></td><td>Marca el contenedor de cada sección independiente.</td></tr><tr><td><code>data-ro-disclosure-persistent</code></td><td>Evita el cierre al hacer clic fuera o con Escape (comportamiento de accordion, distinto de menu/popover).</td></tr><tr><td><code>data-ro-disclosure-trigger</code></td><td>En el botón: alterna el panel asociado.</td></tr><tr><td><code>data-ro-disclosure-panel</code></td><td>En el panel: contenido que se muestra u oculta.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-ink-10</code> <code>--ro-ink-06</code> <code>--ro-text-sm</code> <code>--ro-weight-semibold</code></p>
+<h3>Primitiva</h3><pre class="dx-ref-code"><code>import { createDisclosureController } from &quot;@robertcastro/roui/primitives/disclosure-controller&quot;;</code></pre>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Mueve el foco entre encabezados y hacia/desde el contenido de la página.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Alterna (abre o cierra) la sección del encabezado enfocado, vía el botón nativo.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/tabs-accordion-navigation.html">tabs-accordion-navigation</a></p><ul class="dx-ref-list"><li>Es persistente (data-ro-disclosure-persistent): a diferencia de Menu y Popover, NO se cierra al hacer clic fuera ni con la tecla Escape; permanece abierta hasta que el usuario vuelve a togglear su encabezado.</li><li>No hay navegación por flechas entre encabezados ni role=menu: cada encabezado es un botón independiente que se alcanza con Tab.</li><li>Permite más de una sección abierta a la vez; el controlador no cierra las demás al abrir una nueva.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Preguntas frecuentes</div>
+  <div class="dx-demo"><div class="ro-accordion" style="max-width:560px">
+  <div class="ro-accordion__item" data-ro-disclosure-root data-ro-disclosure-persistent>
+    <h3 class="ro-accordion__heading">
+      <button class="ro-accordion__head" id="acc-h3" data-ro-disclosure-trigger aria-expanded="false" aria-controls="acc-p3">
+        ¿Hay certificado?
+        <svg class="ro-icon ro-icon--sm ro-accordion__chevron" aria-hidden="true"><use href="#ro-i-chevron-down"></use></svg>
+      </button>
+    </h3>
+    <div class="ro-accordion__panel" id="acc-p3" role="region" aria-labelledby="acc-h3" data-ro-disclosure-panel hidden>Sí, al completar todos los checkpoints del path.</div>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-accordion&quot; style=&quot;max-width:560px&quot;&gt;
+  &lt;div class=&quot;ro-accordion__item&quot; data-ro-disclosure-root data-ro-disclosure-persistent&gt;
+    &lt;h3 class=&quot;ro-accordion__heading&quot;&gt;
+      &lt;button class=&quot;ro-accordion__head&quot; id=&quot;acc-h3&quot; data-ro-disclosure-trigger aria-expanded=&quot;false&quot; aria-controls=&quot;acc-p3&quot;&gt;
+        ¿Hay certificado?
+        &lt;svg class=&quot;ro-icon ro-icon--sm ro-accordion__chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-down&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/h3&gt;
+    &lt;div class=&quot;ro-accordion__panel&quot; id=&quot;acc-p3&quot; role=&quot;region&quot; aria-labelledby=&quot;acc-h3&quot; data-ro-disclosure-panel hidden&gt;Sí, al completar todos los checkpoints del path.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Envuelve cada botón disparador en un encabezado real (h2-h6) acorde a la jerarquía de la página.</li><li>Deja que el usuario abra varias secciones a la vez si el contenido lo permite.</li><li>Sincroniza aria-expanded en el botón con la visibilidad real del panel.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No esperes que Escape cierre la sección: en accordion es persistente por diseño.</li><li>No uses accordion para alternar vistas mutuamente excluyentes del mismo contexto: eso es Tabs.</li><li>No quites el encabezado semántico (h3) para &quot;ahorrar&quot; marcado: rompe la navegación por encabezados.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="menu.html">menu</a> · <a href="popover.html">popover</a> · <a href="description-list.html">description-list</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

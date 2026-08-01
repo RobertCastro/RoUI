@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagination — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Seleccion y navegacion</p>
+      <div class="dx-ref-title"><h1>Pagination</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Controles para moverse entre páginas de un conjunto de resultados, con la página actual marcada por aria-current.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Resultados o registros divididos en páginas discretas (tablas, listados, búsquedas).</li><li>Cuando el usuario necesita saltar a una página concreta, no solo avanzar secuencialmente.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para cargar más elementos del mismo listado sin cambiar de &quot;página&quot;: usa un botón &quot;Cargar más&quot; o scroll infinito.</li><li>Para pasos de un asistente o flujo: usa Stepper, que expresa progreso, no un índice de contenido.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;nav class=&quot;ro-pagination&quot; aria-label=&quot;Paginación&quot;&gt;
+  &lt;button class=&quot;ro-page&quot; aria-label=&quot;Página anterior&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-left&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class=&quot;ro-page ro-page--active&quot; aria-current=&quot;page&quot;&gt;1&lt;/button&gt;
+  &lt;button class=&quot;ro-page&quot;&gt;2&lt;/button&gt;
+  &lt;button class=&quot;ro-page&quot;&gt;3&lt;/button&gt;
+  &lt;button class=&quot;ro-page&quot; aria-label=&quot;Página siguiente&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;/nav&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El contenedor es &lt;nav&gt; con aria-label (&quot;Paginación&quot; o equivalente): sin nombre, un lector de pantalla no distingue este landmark de otros.</li><li>La página activa lleva aria-current=&quot;page&quot; además de la clase ro-page--active que dibuja el estilo.</li><li>Los botones de anterior/siguiente son de solo icono: necesitan aria-label propio (el icono es aria-hidden).</li><li>Los números de página son &lt;button&gt; porque cambian el contenido de la misma vista sin navegar a otra URL; si tu ruteo genera una URL por página, usa &lt;a&gt; en su lugar.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-pagination</code></td><td>Contenedor en fila de los controles de página.</td></tr><tr><td><code>.ro-page</code></td><td>Botón de página o de navegación (anterior/siguiente).</td></tr><tr><td><code>.ro-page--active</code></td><td>Página actual.</td></tr><tr><td><code>.ro-page__ellipsis</code></td><td>Marcador de páginas omitidas (…), no interactivo.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-lg</code> <code>--ro-ink-70</code> <code>--ro-ink-05</code> <code>--ro-ink</code> <code>--ro-white</code> <code>--ro-transition</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Recorre los botones de página en orden del documento.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Activa el botón enfocado (va a esa página).</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/tabs-accordion-navigation.html">tabs-accordion-navigation</a></p><ul class="dx-ref-list"><li>Mismo patrón de aria-current que Nav y Breadcrumb, aplicado a la página activa.</li><li>El &lt;nav&gt; contenedor necesita aria-label propio además del aria-current en el ítem activo; uno no sustituye al otro.</li><li>El botón deshabilitado (p. ej. &quot;Anterior&quot; en la página 1) usa el atributo disabled nativo, no solo opacidad.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Paginación con elipsis</div>
+  <div class="dx-demo"><nav class="ro-pagination" aria-label="Paginación">
+  <button class="ro-page" title="Anterior" aria-label="Página anterior" disabled><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
+  <button class="ro-page ro-page--active" aria-current="page">1</button>
+  <button class="ro-page">2</button>
+  <button class="ro-page">3</button>
+  <span class="ro-page__ellipsis">…</span>
+  <button class="ro-page">9</button>
+  <button class="ro-page" title="Siguiente" aria-label="Página siguiente"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg></button>
+</nav></div>
+  <pre class="dx-ref-code"><code>&lt;nav class=&quot;ro-pagination&quot; aria-label=&quot;Paginación&quot;&gt;
+  &lt;button class=&quot;ro-page&quot; title=&quot;Anterior&quot; aria-label=&quot;Página anterior&quot; disabled&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-left&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+  &lt;button class=&quot;ro-page ro-page--active&quot; aria-current=&quot;page&quot;&gt;1&lt;/button&gt;
+  &lt;button class=&quot;ro-page&quot;&gt;2&lt;/button&gt;
+  &lt;button class=&quot;ro-page&quot;&gt;3&lt;/button&gt;
+  &lt;span class=&quot;ro-page__ellipsis&quot;&gt;…&lt;/span&gt;
+  &lt;button class=&quot;ro-page&quot;&gt;9&lt;/button&gt;
+  &lt;button class=&quot;ro-page&quot; title=&quot;Siguiente&quot; aria-label=&quot;Página siguiente&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da aria-label al &lt;nav&gt; y aria-current=&quot;page&quot; a la página activa.</li><li>Da nombre accesible a los botones anterior/siguiente (son de solo icono).</li><li>Deshabilita anterior/siguiente en los extremos con el atributo disabled nativo.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No indiques la página activa solo con color: usa también aria-current.</li><li>No uses ro-page__ellipsis como botón: es un marcador visual, no un control.</li><li>No mezcles paginación con scroll infinito en la misma lista: confunde el modelo mental del usuario.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="table.html">table</a> · <a href="nav.html">nav</a> · <a href="list-group.html">list-group</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

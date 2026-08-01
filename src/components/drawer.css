@@ -1,7 +1,7 @@
 /* components/drawer.css — Off-canvas: menú mobile, bottom-sheet, paneles laterales. */
 .ro-drawer-overlay {
   position: fixed; inset: 0; z-index: var(--ro-z-overlay);
-  background: rgba(23,23,25,0.45); display: none;
+  background: var(--ro-ink-45); display: none;
 }
 .ro-drawer {
   position: fixed; z-index: calc(var(--ro-z-overlay) + 1);

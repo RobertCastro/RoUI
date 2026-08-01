@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Typography — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Fundamentos visuales</p>
+      <div class="dx-ref-title"><h1>Typography</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Escala de clases de texto (display, encabezados, cuerpo, eyebrow) para construir jerarquía visual consistente sin CSS ad-hoc.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Titular una página, sección o tarjeta con un peso y tamaño ya calibrados en la escala.</li><li>Etiquetar una sección con un eyebrow corto en mayúsculas antes de un título.</li><li>Dar estilo a texto de cuerpo o texto secundario/atenuado de forma consistente.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para prosa larga renderizada desde markdown (artículos, lecciones): usa Prose, que ya define h1–h4, listas y citas.</li><li>Como sustituto de la jerarquía semántica de encabezados: la clase visual no reemplaza elegir h1/h2/h3 según la estructura del documento.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-eyebrow&quot;&gt;Cohort · Abril 2026&lt;/span&gt;
+&lt;h1 class=&quot;ro-display&quot;&gt;Bienvenido, Robert.&lt;/h1&gt;
+&lt;p class=&quot;ro-body&quot;&gt;Semana 3 de 4 · 2 módulos completados&lt;/p&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Las clases son puramente visuales: no cambian el elemento HTML ni su semántica. Elige la etiqueta (h1, h2, p, span) según la estructura, no según el tamaño deseado.</li><li>ro-display y ro-h2 usan la fuente display; ro-h3 y ro-body usan la fuente base del documento.</li><li>ro-muted y ro-eyebrow--ink son modificadores de color, combinables con cualquier clase de texto.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-display</code></td><td>Titular más grande, para heros y encabezados de dashboard.</td></tr><tr><td><code>.ro-h2</code></td><td>Título de sección grande (fuente display).</td></tr><tr><td><code>.ro-h3</code></td><td>Título de subsección o tarjeta.</td></tr><tr><td><code>.ro-body</code></td><td>Texto de cuerpo por defecto.</td></tr><tr><td><code>.ro-muted</code></td><td>Modificador: atenúa el color del texto (--ro-text-muted).</td></tr><tr><td><code>.ro-eyebrow</code></td><td>Etiqueta corta en mayúsculas, color de marca, para preceder un título.</td></tr><tr><td><code>.ro-eyebrow--ink</code></td><td>Variante de eyebrow en tono neutro (ink) en vez de color de marca.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-font-display</code> <code>--ro-font-sans</code> <code>--ro-text-display</code> <code>--ro-text-4xl</code> <code>--ro-weight-bold</code> <code>--ro-weight-medium</code> <code>--ro-weight-normal</code> <code>--ro-leading-tight</code> <code>--ro-leading-snug</code> <code>--ro-leading-relaxed</code> <code>--ro-tracking-tight</code> <code>--ro-tracking-wider</code> <code>--ro-text-muted</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Respeta una jerarquía de encabezados sin saltos (h1→h2→h3): el nivel del elemento lo decide la estructura del documento, no el tamaño visual que necesitas.</li><li>ro-eyebrow suele ir junto a un encabezado, no en su lugar: no lo uses como único título de una sección.</li><li>El contraste de ro-muted (--ro-text-muted) es menor a propósito; no lo apliques a texto que transmita información crítica o de error.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Escala completa</div>
+  <div class="dx-demo"><span class="ro-eyebrow">Continuar</span>
+<h1 class="ro-display">Technical Brief</h1>
+<h2 class="ro-h2">El Arte del "Technical Brief"</h2>
+<h3 class="ro-h3">Recursos del módulo</h3>
+<p class="ro-body">La calidad del código generado por IA depende del contexto que le das.</p>
+<p class="ro-body ro-muted">Última actualización hace 3 días.</p></div>
+  <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-eyebrow&quot;&gt;Continuar&lt;/span&gt;
+&lt;h1 class=&quot;ro-display&quot;&gt;Technical Brief&lt;/h1&gt;
+&lt;h2 class=&quot;ro-h2&quot;&gt;El Arte del &quot;Technical Brief&quot;&lt;/h2&gt;
+&lt;h3 class=&quot;ro-h3&quot;&gt;Recursos del módulo&lt;/h3&gt;
+&lt;p class=&quot;ro-body&quot;&gt;La calidad del código generado por IA depende del contexto que le das.&lt;/p&gt;
+&lt;p class=&quot;ro-body ro-muted&quot;&gt;Última actualización hace 3 días.&lt;/p&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Eyebrow sobre fondo oscuro</div>
+  <div class="dx-demo"><div style="background:var(--ro-ink);padding:16px;border-radius:var(--ro-radius-lg)">
+  <span class="ro-eyebrow ro-eyebrow--ink" style="color:var(--ro-on-dark-60)">Aún explorando</span>
+  <h3 class="ro-h3" style="color:#fff;margin-top:8px">"Optimizar procesos"</h3>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div style=&quot;background:var(--ro-ink);padding:16px;border-radius:var(--ro-radius-lg)&quot;&gt;
+  &lt;span class=&quot;ro-eyebrow ro-eyebrow--ink&quot; style=&quot;color:var(--ro-on-dark-60)&quot;&gt;Aún explorando&lt;/span&gt;
+  &lt;h3 class=&quot;ro-h3&quot; style=&quot;color:#fff;margin-top:8px&quot;&gt;&quot;Optimizar procesos&quot;&lt;/h3&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Elige la etiqueta HTML por jerarquía semántica y la clase ro-* por el tamaño visual que necesitas; pueden no coincidir (ej. &lt;h2 class=&quot;ro-h3&quot;&gt;).</li><li>Usa ro-eyebrow para dar contexto breve antes de un título, no como reemplazo de un encabezado.</li><li>Reserva ro-display para un único titular por vista.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No saltes niveles de encabezado (de h1 a h3) solo porque el h2 visual no encaja en el diseño.</li><li>No uses ro-muted en texto de error o de advertencia: reduce el contraste que ese contenido necesita.</li><li>No abuses de ro-display para titulares secundarios: pierde jerarquía si se repite en la misma vista.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="prose.html">prose</a> · <a href="icon.html">icon</a> · <a href="divider.html">divider</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

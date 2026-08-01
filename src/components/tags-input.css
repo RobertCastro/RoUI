@@ -14,5 +14,5 @@
 
 /* Los chips ya agregados usan el lavanda de marca */
 .ro-tags-input .ro-tag { background: var(--ro-secondary); color: var(--ro-ink); }
-.ro-tags-input .ro-tag__close { background: rgba(23,23,25,0.14); color: var(--ro-ink); }
-.ro-tags-input .ro-tag__close:hover { background: rgba(23,23,25,0.28); }
+.ro-tags-input .ro-tag__close { background: var(--ro-ink-14); color: var(--ro-ink); }
+.ro-tags-input .ro-tag__close:hover { background: var(--ro-ink-28); }

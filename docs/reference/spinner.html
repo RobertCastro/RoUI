@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spinner — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Datos y estado</p>
+      <div class="dx-ref-title"><h1>Spinner</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Indicador de carga indeterminado: un círculo animado con texto oculto para lectores de pantalla.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Comunicar que algo está cargando cuando no se conoce el avance real ni el tiempo restante.</li><li>Estados de carga breves dentro de un botón, tarjeta o zona pequeña de la interfaz.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Cuando sí conoces el avance (%): usa Progress o Progress ring.</li><li>Para simular el layout final mientras carga contenido estructurado: usa Skeleton.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-spinner&quot; role=&quot;status&quot;&gt;&lt;span class=&quot;ro-sr-only&quot;&gt;Cargando…&lt;/span&gt;&lt;/span&gt;</code></pre>
+        <ul class="dx-ref-list"><li>role=&quot;status&quot; hace el anuncio de forma cortés (no interrumpe al usuario) apenas el spinner entra al DOM.</li><li>El nombre accesible viene del texto oculto (ro-sr-only), no de la animación visual, que no se anuncia por sí sola.</li><li>La animación respeta prefers-reduced-motion (se hace más lenta en vez de detenerse abruptamente).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-spinner</code></td><td>Círculo animado base (20px).</td></tr><tr><td><code>.ro-spinner--sm</code></td><td>Tamaño compacto (14px).</td></tr><tr><td><code>.ro-spinner--lg</code></td><td>Tamaño grande (28px), trazo más grueso.</td></tr><tr><td><code>.ro-spinner--light</code></td><td>Variante clara para fondos oscuros.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-full</code> <code>--ro-ink</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Un spinner indeterminado usa role=&quot;status&quot; con texto oculto (&quot;Cargando…&quot;) en vez de depender solo de la animación.</li><li>No dupliques anuncios: si el spinner vive dentro de un botón con estado is-loading, el botón ya comunica su propio estado (aria-busy o texto), evita dos role=status compitiendo.</li><li>Al terminar la carga, retira el spinner del DOM (o su role=status) y anuncia el resultado en el elemento correspondiente.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Tamaños</div>
+  <div class="dx-demo"><div class="ro-row" style="gap:16px;align-items:center">
+  <span class="ro-spinner ro-spinner--sm" role="status"><span class="ro-sr-only">Cargando…</span></span>
+  <span class="ro-spinner" role="status"><span class="ro-sr-only">Cargando…</span></span>
+  <span class="ro-spinner ro-spinner--lg" role="status"><span class="ro-sr-only">Cargando…</span></span>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-row&quot; style=&quot;gap:16px;align-items:center&quot;&gt;
+  &lt;span class=&quot;ro-spinner ro-spinner--sm&quot; role=&quot;status&quot;&gt;&lt;span class=&quot;ro-sr-only&quot;&gt;Cargando…&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;ro-spinner&quot; role=&quot;status&quot;&gt;&lt;span class=&quot;ro-sr-only&quot;&gt;Cargando…&lt;/span&gt;&lt;/span&gt;
+  &lt;span class=&quot;ro-spinner ro-spinner--lg&quot; role=&quot;status&quot;&gt;&lt;span class=&quot;ro-sr-only&quot;&gt;Cargando…&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Sobre fondo oscuro</div>
+  <div class="dx-demo"><div style="background:var(--ro-ink);padding:16px;border-radius:12px;display:inline-block">
+  <span class="ro-spinner ro-spinner--light" role="status"><span class="ro-sr-only">Cargando…</span></span>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div style=&quot;background:var(--ro-ink);padding:16px;border-radius:12px;display:inline-block&quot;&gt;
+  &lt;span class=&quot;ro-spinner ro-spinner--light&quot; role=&quot;status&quot;&gt;&lt;span class=&quot;ro-sr-only&quot;&gt;Cargando…&lt;/span&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Botón en estado de carga</div>
+  <div class="dx-demo"><button class="ro-btn ro-btn--primary is-loading" type="button" aria-busy="true">Guardar</button></div>
+  <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--primary is-loading&quot; type=&quot;button&quot; aria-busy=&quot;true&quot;&gt;Guardar&lt;/button&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Incluye siempre texto oculto (&quot;Cargando…&quot;, &quot;Guardando…&quot;) dentro del role=status.</li><li>Combina con is-loading en ro-btn (ver Button) en vez de anidar un spinner completo dentro del botón.</li><li>Usa el tamaño (sm/lg) proporcional al contexto donde aparece.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No reemplaces role=&quot;status&quot; por un aria-live manual duplicado en el mismo nodo.</li><li>No quites el texto oculto asumiendo que el spinner es &quot;obviamente&quot; de carga.</li><li>No lo uses cuando sí tienes un valor de avance conocido: usa Progress.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="progress.html">progress</a> · <a href="skeleton.html">skeleton</a> · <a href="button.html">button</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

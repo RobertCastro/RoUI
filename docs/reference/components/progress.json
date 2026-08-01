@@ -1,0 +1,65 @@
+{
+  "name": "progress",
+  "title": "Progress",
+  "group": "Datos y estado",
+  "maturity": "experimental",
+  "summary": "Barra de progreso determinada (track + fill) para tareas con un avance medible.",
+  "whenToUse": [
+    "Mostrar el avance de una tarea con un valor conocido (checklist, subida de archivo, onboarding).",
+    "Cuando el usuario se beneficia de ver cuánto falta, no solo que algo está cargando."
+  ],
+  "whenNotToUse": [
+    "Cuando no se conoce el avance real (carga indeterminada): usa Spinner.",
+    "Para mostrar el avance como número circular compacto: usa Progress ring."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-progress\" role=\"progressbar\" aria-valuenow=\"42\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progreso del checklist\">\n  <div class=\"ro-progress__fill\" style=\"width:42%\"></div>\n</div>",
+    "notes": [
+      "role=\"progressbar\" con aria-valuenow/aria-valuemin/aria-valuemax es obligatorio; sin ellos el valor no se anuncia.",
+      "El ancho inline (%) del fill debe coincidir siempre con aria-valuenow.",
+      "Dale nombre accesible con aria-label o aria-labelledby que describa qué mide la barra."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-progress", "desc": "Track (contenedor) de la barra." },
+      { "name": "ro-progress__fill", "desc": "Relleno; su ancho inline representa el % de avance." },
+      { "name": "ro-progress--on-dark", "desc": "Variante más delgada para fondos oscuros." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-md", "--ro-ink-06", "--ro-secondary"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Indicadores de progreso usan role=\"progressbar\" con aria-valuenow, aria-valuemin, aria-valuemax y nombre accesible.",
+      "Si el valor cambia con frecuencia, evita anuncios excesivos: actualiza el DOM sin recrear el nodo con role=progressbar.",
+      "Para progreso indeterminado no reutilices esta barra: usa Spinner con role=\"status\"."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Con badge de fracción",
+      "html": "<div class=\"ro-row\" style=\"gap:10px;align-items:center\">\n  <div style=\"flex:1\">\n    <div class=\"ro-progress\" role=\"progressbar\" aria-valuenow=\"66\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progreso del checklist\">\n      <div class=\"ro-progress__fill\" style=\"width:66%\"></div>\n    </div>\n  </div>\n  <span class=\"ro-badge ro-badge--soft\">2/3</span>\n</div>"
+    },
+    {
+      "title": "Variante on-dark",
+      "html": "<div style=\"background:var(--ro-ink);padding:16px;border-radius:12px\">\n  <div class=\"ro-progress ro-progress--on-dark\" role=\"progressbar\" aria-valuenow=\"42\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progreso de subida\">\n    <div class=\"ro-progress__fill\" style=\"width:42%\"></div>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Sincroniza siempre el ancho visual del fill con aria-valuenow.",
+      "Da un nombre accesible claro con aria-label o aria-labelledby.",
+      "Acompaña la barra con el valor en texto (badge, porcentaje) cuando el espacio lo permita."
+    ],
+    "dont": [
+      "No la uses para estados indeterminados; usa Spinner.",
+      "No omitas aria-valuenow aunque el valor inicial sea 0.",
+      "No animes el fill de forma que no refleje el valor real anunciado."
+    ]
+  },
+  "related": ["progress-ring", "spinner", "skeleton"]
+}

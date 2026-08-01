@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Icon — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Fundamentos visuales</p>
+      <div class="dx-ref-title"><h1>Icon</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Aplica tamaño y trazo consistentes a un &lt;svg&gt; que referencia el sprite de iconos (Lucide) vía &lt;use&gt;.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Reforzar visualmente una acción, estado o categoría junto a texto (botón, alerta, tag, menú).</li><li>Como único contenido de un control interactivo pequeño (botón de solo icono).</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para ilustraciones grandes o gráficos complejos: usa una imagen o SVG dedicado, no el sprite de iconos.</li><li>Como portador único de significado sin texto ni aria-label: un icono aislado sin nombre accesible es ambiguo para lectores de pantalla.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El sprite vive en dist/icons.svg; cada icono se referencia por id (#ro-i-&lt;nombre&gt;) vía &lt;use&gt;, nunca inline.</li><li>El icono hereda color con currentColor: el color se controla desde el elemento padre o con style/color directo.</li><li>Si el icono es decorativo (acompaña texto visible), lleva aria-hidden=&quot;true&quot;. Si es el único contenido de un control, el nombre accesible va en el control (aria-label), no en el svg.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-icon</code></td><td>Clase base: tamaño medio (--ro-icon-md), stroke currentColor.</td></tr><tr><td><code>.ro-icon--xs</code></td><td>Tamaño extra pequeño (--ro-icon-xs).</td></tr><tr><td><code>.ro-icon--sm</code></td><td>Tamaño pequeño (--ro-icon-sm).</td></tr><tr><td><code>.ro-icon--lg</code></td><td>Tamaño grande (--ro-icon-lg).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-icon-xs</code> <code>--ro-icon-sm</code> <code>--ro-icon-md</code> <code>--ro-icon-lg</code> <code>--ro-icon-stroke</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Icono decorativo junto a texto: aria-hidden=&quot;true&quot; en el svg, sin rol adicional.</li><li>Icono como único contenido de un botón: aria-label descriptivo en el &lt;button&gt;, y aria-hidden=&quot;true&quot; en el svg (el nombre no debe duplicarse en ambos).</li><li>No comuniques estado (error, éxito, advertencia) solo con la forma del icono: acompáñalo siempre de texto o color semántico redundante.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Tamaños</div>
+  <div class="dx-demo"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-star"></use></svg>
+<svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-star"></use></svg>
+<svg class="ro-icon" aria-hidden="true"><use href="#ro-i-star"></use></svg>
+<svg class="ro-icon ro-icon--lg" aria-hidden="true"><use href="#ro-i-star"></use></svg></div>
+  <pre class="dx-ref-code"><code>&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+&lt;svg class=&quot;ro-icon ro-icon--lg&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Icono en botón (decorativo) vs. botón de solo icono</div>
+  <div class="dx-demo"><button class="ro-btn ro-btn--primary"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-plus"></use></svg> Nuevo</button>
+<button class="ro-btn-icon" aria-label="Buscar"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-search"></use></svg></button></div>
+  <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--primary&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-plus&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Nuevo&lt;/button&gt;
+&lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Buscar&quot;&gt;&lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-search&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa siempre &lt;use href=&quot;#ro-i-...&quot;&gt; contra el sprite en vez de pegar el path SVG inline.</li><li>Marca aria-hidden=&quot;true&quot; en todo icono decorativo.</li><li>Da aria-label al control cuando el icono es su único contenido.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No mezcles tamaños de icono dentro del mismo grupo de acciones sin motivo.</li><li>No dejes un icono interactivo sin nombre accesible en el control que lo envuelve.</li><li>No inventes ids de icono que no existen en el sprite: usa solo los ids reales (dist/icons.svg).</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="button.html">button</a> · <a href="alert.html">alert</a> · <a href="tag.html">tag</a> · <a href="tooltip.html">tooltip</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

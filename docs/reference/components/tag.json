@@ -1,0 +1,70 @@
+{
+  "name": "tag",
+  "title": "Tag",
+  "group": "Datos y estado",
+  "maturity": "experimental",
+  "summary": "Etiqueta removible para filtros activos, skills o selección múltiple.",
+  "whenToUse": [
+    "Mostrar filtros activos o valores seleccionados que el usuario puede quitar uno a uno.",
+    "Listar skills, categorías u opciones elegidas en un formulario (combobox, tags-input)."
+  ],
+  "whenNotToUse": [
+    "Para un indicador de solo lectura sin acción de quitar: usa Badge.",
+    "Para navegar a una sección o filtro (sin opción de remover): usa un link o Breadcrumb."
+  ],
+  "anatomy": {
+    "html": "<span class=\"ro-tag\">Frontend <button class=\"ro-tag__close\" aria-label=\"Quitar etiqueta\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>",
+    "notes": [
+      "El tag en sí no es focalizable: solo el botón de cierre entra al orden de tabulación.",
+      "El icono del botón es aria-hidden; el nombre accesible vive en el aria-label del botón.",
+      "Idealmente el aria-label incluye el valor (\"Quitar Frontend\") cuando hay varios tags en la misma zona."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-tag", "desc": "Contenedor base (píldora)." },
+      { "name": "ro-tag--accent", "desc": "Fondo de acento (lavanda suave)." },
+      { "name": "ro-tag--brand", "desc": "Fondo de marca (secondary)." },
+      { "name": "ro-tag--outline", "desc": "Solo borde, fondo transparente." },
+      { "name": "ro-tag__close", "desc": "Botón circular de quitar; requiere aria-label." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-full", "--ro-ink-06", "--ro-primary-soft", "--ro-secondary", "--ro-ink-20"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Entra y sale del botón de cierre."],
+      ["Enter / Espacio", "Quita la etiqueta."]
+    ],
+    "notes": [
+      "El botón de cierre necesita nombre accesible propio (aria-label), no basta con el icono.",
+      "Al quitar un tag, mueve el foco a un elemento coherente (el siguiente tag o el campo asociado) en vez de perderlo.",
+      "Si el grupo de tags representa una selección que cambia (p. ej. dentro de Tags input), considera anunciar el cambio con una región aria-live cercana."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Variantes",
+      "html": "<span class=\"ro-tag\">Frontend <button class=\"ro-tag__close\" aria-label=\"Quitar Frontend\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>\n<span class=\"ro-tag ro-tag--accent\">IA <button class=\"ro-tag__close\" aria-label=\"Quitar IA\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>\n<span class=\"ro-tag ro-tag--outline\">React <button class=\"ro-tag__close\" aria-label=\"Quitar React\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>"
+    },
+    {
+      "title": "Grupo de filtros activos",
+      "html": "<div class=\"ro-row\" style=\"gap:8px;flex-wrap:wrap\">\n  <span class=\"ro-tag ro-tag--brand\">Ubicación: Remoto <button class=\"ro-tag__close\" aria-label=\"Quitar filtro Ubicación: Remoto\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>\n  <span class=\"ro-tag\">Nivel: Senior <button class=\"ro-tag__close\" aria-label=\"Quitar filtro Nivel: Senior\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-x\"></use></svg></button></span>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da al botón de cierre un aria-label específico, idealmente con el valor del tag.",
+      "Usa tag para selección o filtros que el usuario puede deshacer.",
+      "Agrupa varios tags con espaciado y wrap para que no se corten en móvil."
+    ],
+    "dont": [
+      "No uses tag para navegación permanente: usa un link o Breadcrumb.",
+      "No quites el aria-label del botón de cierre confiando solo en el icono.",
+      "No pongas texto largo dentro de un tag; resúmelo o usa Badge/Alert."
+    ]
+  },
+  "related": ["badge", "combobox", "tags-input"]
+}

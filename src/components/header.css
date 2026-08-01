@@ -27,7 +27,7 @@
 .ro-context-bar {
   display: flex; flex-wrap: wrap; align-items: center; gap: 0.625rem 1.75rem;
   padding: 0.75rem 1rem; background: var(--ro-ink); color: var(--ro-on-dark);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--ro-on-dark-06);
 }
 @media (min-width: 640px) { .ro-context-bar { padding: 0.75rem 2rem; } }
 .ro-breadcrumb { display: flex; align-items: center; gap: 0.625rem;

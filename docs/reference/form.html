@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form field — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Formularios</p>
+      <div class="dx-ref-title"><h1>Form field</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Agrupa label, control, texto de ayuda y error para construir campos de formulario accesibles y consistentes.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Capturar datos del usuario: texto, selección, texto largo, booleanos.</li><li>Cuando un campo necesita comunicar ayuda o un error de validación junto al control.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para un campo de búsqueda suelto sin formulario alrededor: usa .ro-field directamente.</li><li>Para un campo con prefijo/sufijo visual (moneda, icono, botón): usa Input group.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div&gt;
+  &lt;label class=&quot;ro-label&quot; for=&quot;email&quot;&gt;Correo electrónico&lt;/label&gt;
+  &lt;input id=&quot;email&quot; class=&quot;ro-input-box&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; required aria-describedby=&quot;email-hint&quot;&gt;
+  &lt;p id=&quot;email-hint&quot; class=&quot;ro-hint&quot;&gt;Usaremos este correo para avisos.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El wrapper es un &lt;div&gt; simple: el sistema no impone una clase de contenedor, solo el orden label → control → ayuda/error.</li><li>El &lt;label&gt; se asocia al control por for/id; nunca sustituyas el label por un placeholder.</li><li>aria-describedby conecta el control con su ro-hint y/o ro-error-text (puede listar ambos ids separados por espacio).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-label</code></td><td>Etiqueta del campo.</td></tr><tr><td><code>.ro-input-box</code></td><td>Input de texto con borde completo.</td></tr><tr><td><code>.ro-textarea</code></td><td>Área de texto multilínea.</td></tr><tr><td><code>.ro-select-box</code></td><td>Select nativo con borde y chevron.</td></tr><tr><td><code>.ro-field</code></td><td>Variante compacta tipo pastilla (p. ej. búsqueda inline).</td></tr><tr><td><code>.ro-hint</code></td><td>Texto de ayuda bajo el control.</td></tr><tr><td><code>.ro-error-text</code></td><td>Mensaje de error bajo el control.</td></tr><tr><td><code>.ro-check</code></td><td>Checkbox nativo estilizado.</td></tr><tr><td><code>.ro-radio</code></td><td>Radio nativo estilizado.</td></tr><tr><td><code>.ro-switch</code></td><td>Contenedor del switch (envuelve un checkbox real).</td></tr><tr><td><code>.ro-switch__track</code></td><td>Riel visual del switch.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-control-border</code> <code>--ro-control-bg</code> <code>--ro-control-fg</code> <code>--ro-control-focus-border</code> <code>--ro-focus-ring</code> <code>--ro-error</code> <code>--ro-radius-xl</code> <code>--ro-radius-full</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Mueve el foco entre controles del formulario.</td></tr><tr><td><kbd>Espacio</kbd></td><td>Marca/desmarca checkbox, radio o switch enfocado.</td></tr><tr><td><kbd>Flechas</kbd></td><td>Cambia de opción dentro de un grupo de radios nativo.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>Todo control requiere un &lt;label&gt; asociado por for/id; el placeholder no es un sustituto.</li><li>Un campo inválido usa aria-invalid=&quot;true&quot; en el control y aria-describedby apuntando al ro-error-text.</li><li>El error debe explicar cómo corregirlo, no solo señalar que existe.</li><li>Los switch usan un &lt;input type=&quot;checkbox&quot;&gt; real; su nombre accesible viene del label que lo envuelve.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Campo con error</div>
+  <div class="dx-demo"><div>
+  <label class="ro-label" for="workspace">Nombre del workspace</label>
+  <input id="workspace" class="ro-input-box" aria-invalid="true" aria-describedby="workspace-error">
+  <p id="workspace-error" class="ro-error-text">El nombre ya está en uso.</p>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div&gt;
+  &lt;label class=&quot;ro-label&quot; for=&quot;workspace&quot;&gt;Nombre del workspace&lt;/label&gt;
+  &lt;input id=&quot;workspace&quot; class=&quot;ro-input-box&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;workspace-error&quot;&gt;
+  &lt;p id=&quot;workspace-error&quot; class=&quot;ro-error-text&quot;&gt;El nombre ya está en uso.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Select y textarea</div>
+  <div class="dx-demo"><div>
+  <label class="ro-label" for="topic">Tema</label>
+  <select id="topic" class="ro-select-box"><option>Facturación</option><option>Soporte técnico</option></select>
+</div>
+<div>
+  <label class="ro-label" for="message">Mensaje</label>
+  <textarea id="message" class="ro-textarea" aria-describedby="message-hint" placeholder="Cuéntanos qué pasó…"></textarea>
+  <p id="message-hint" class="ro-hint">Máximo 500 caracteres.</p>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div&gt;
+  &lt;label class=&quot;ro-label&quot; for=&quot;topic&quot;&gt;Tema&lt;/label&gt;
+  &lt;select id=&quot;topic&quot; class=&quot;ro-select-box&quot;&gt;&lt;option&gt;Facturación&lt;/option&gt;&lt;option&gt;Soporte técnico&lt;/option&gt;&lt;/select&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;label class=&quot;ro-label&quot; for=&quot;message&quot;&gt;Mensaje&lt;/label&gt;
+  &lt;textarea id=&quot;message&quot; class=&quot;ro-textarea&quot; aria-describedby=&quot;message-hint&quot; placeholder=&quot;Cuéntanos qué pasó…&quot;&gt;&lt;/textarea&gt;
+  &lt;p id=&quot;message-hint&quot; class=&quot;ro-hint&quot;&gt;Máximo 500 caracteres.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Checkbox y switch</div>
+  <div class="dx-demo"><label style="display:flex;align-items:center;gap:8px"><input type="checkbox" class="ro-check" checked> Acepto los términos</label>
+<label class="ro-switch"><input type="checkbox" checked aria-label="Activar notificaciones"><span class="ro-switch__track"></span></label></div>
+  <pre class="dx-ref-code"><code>&lt;label style=&quot;display:flex;align-items:center;gap:8px&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;ro-check&quot; checked&gt; Acepto los términos&lt;/label&gt;
+&lt;label class=&quot;ro-switch&quot;&gt;&lt;input type=&quot;checkbox&quot; checked aria-label=&quot;Activar notificaciones&quot;&gt;&lt;span class=&quot;ro-switch__track&quot;&gt;&lt;/span&gt;&lt;/label&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Campo tipo pastilla (búsqueda inline)</div>
+  <div class="dx-demo"><div class="ro-field">
+  <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-search"></use></svg>
+  <input class="ro-input" aria-label="Buscar" placeholder="Buscar…">
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-field&quot;&gt;
+  &lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-search&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;input class=&quot;ro-input&quot; aria-label=&quot;Buscar&quot; placeholder=&quot;Buscar…&quot;&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa siempre un &lt;label&gt; real asociado por for/id, visible en el flujo del formulario.</li><li>Conecta ayuda y error con aria-describedby para que el lector de pantalla los anuncie.</li><li>Marca aria-invalid=&quot;true&quot; solo cuando el campo tiene un error activo.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses el placeholder como único texto de ayuda o como reemplazo del label.</li><li>No muestres un error genérico (&quot;Campo inválido&quot;): explica qué corregir.</li><li>No mezcles ro-input-box y ro-field en el mismo campo; son dos estilos distintos de control.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="input-group.html">input-group</a> · <a href="number-input.html">number-input</a> · <a href="tags-input.html">tags-input</a> · <a href="slider.html">slider</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{
+  "name": "calendar",
+  "title": "Calendar / Date picker",
+  "group": "Fecha y entrada compleja",
+  "maturity": "experimental",
+  "summary": "Cuadrícula de mes navegable por teclado (WAI-ARIA grid) para elegir un día; el date picker la monta dentro de un popover.",
+  "whenToUse": [
+    "Elegir una fecha concreta con contexto visual del mes (día de la semana, hoy, seleccionado).",
+    "Como panel de un date picker: campo + popover con el calendario dentro."
+  ],
+  "whenNotToUse": [
+    "Para un rango relativo simple (hoy, últimos 7 días): usa Segmented o botones predefinidos junto al calendario.",
+    "Para introducir una fecha ya conocida de memoria: un input de texto con máscara puede ser más rápido."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-calendar\" data-calendar data-year=\"2026\" data-month=\"5\" data-today=\"27\" data-selected=\"12\">\n  <div class=\"ro-calendar__header\">\n    <span class=\"ro-calendar__title\" id=\"cal-title\">Junio 2026</span>\n    <div class=\"ro-calendar__nav\">\n      <button class=\"ro-btn-icon\" aria-label=\"Mes anterior\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-left\"></use></svg></button>\n      <button class=\"ro-btn-icon\" aria-label=\"Mes siguiente\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg></button>\n    </div>\n  </div>\n  <div class=\"ro-calendar__grid\" role=\"grid\" aria-labelledby=\"cal-title\">\n    <div class=\"ro-calendar__row\" role=\"row\">\n      <div class=\"ro-calendar__dow\" role=\"columnheader\" aria-label=\"Lunes\">L</div>\n      <div class=\"ro-calendar__dow\" role=\"columnheader\" aria-label=\"Martes\">M</div>\n    </div>\n    <div class=\"ro-calendar__row\" role=\"row\">\n      <div class=\"ro-calendar__pad\" role=\"gridcell\"></div>\n      <button class=\"ro-calendar__day\" role=\"gridcell\" tabindex=\"-1\" aria-selected=\"false\" aria-label=\"1 de Junio de 2026\">1</button>\n    </div>\n  </div>\n</div>",
+    "notes": [
+      "data-calendar marca el nodo que el renderer de la documentación rellena en tiempo de carga; en una integración real, el HTML de la cuadrícula (título, filas, celdas) se genera igual con datos propios y luego se inicializa con grid-controller.",
+      "role=grid va en .ro-calendar__grid, etiquetado por el título del mes vía aria-labelledby.",
+      "Cada semana es .ro-calendar__row con role=row y display:contents, para no romper el CSS grid de 7 columnas.",
+      "Las cabeceras de día de la semana son role=columnheader; los huecos antes/después del mes son .ro-calendar__pad con role=gridcell pero sin ser <button> (no enfocables).",
+      "Cada día es un <button role=gridcell> con aria-selected y aria-label con la fecha completa; el día de hoy lleva data-ro-grid-current.",
+      "El date picker envuelve este calendario en un ro-popover mostrado por un disclosure (ro-field--disclosure como disparador); al elegir un día se actualiza el campo y se cierra el popover."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-calendar", "desc": "Raíz del calendario (ancho fijo)." },
+      { "name": "ro-calendar__header", "desc": "Cabecera con título del mes y navegación." },
+      { "name": "ro-calendar__title", "desc": "Texto \"Mes Año\", referenciado por aria-labelledby." },
+      { "name": "ro-calendar__nav", "desc": "Grupo de botones mes anterior/siguiente." },
+      { "name": "ro-calendar__grid", "desc": "Cuadrícula (role=grid) de 7 columnas." },
+      { "name": "ro-calendar__row", "desc": "Fila semántica (role=row, display:contents)." },
+      { "name": "ro-calendar__dow", "desc": "Cabecera de día de la semana (role=columnheader)." },
+      { "name": "ro-calendar__day", "desc": "Botón de día (role=gridcell)." },
+      { "name": "ro-calendar__day--today", "desc": "Resalta el día actual." },
+      { "name": "ro-calendar__day--muted", "desc": "Día de un mes adyacente, tono atenuado." },
+      { "name": "ro-calendar__day--in-range", "desc": "Día dentro de un rango seleccionado." }
+    ],
+    "data": [
+      { "name": "data-calendar", "desc": "Marca el contenedor a inicializar (usado por el renderer de referencia)." },
+      { "name": "data-year / data-month", "desc": "Año y mes (0-indexado) a renderizar." },
+      { "name": "data-today / data-selected", "desc": "Día del mes marcado como hoy / como seleccionado." },
+      { "name": "data-ro-grid-current", "desc": "En una celda de día: la marca como \"hoy\" para el roving tabindex inicial." },
+      { "name": "data-datepicker", "desc": "En el disclosure contenedor: indica que es un date picker (campo + popover)." },
+      { "name": "data-datepicker-value", "desc": "Elemento del campo donde se escribe la fecha elegida." }
+    ],
+    "tokens": ["--ro-secondary", "--ro-secondary-tint", "--ro-ink", "--ro-ink-05", "--ro-ink-20", "--ro-ink-40", "--ro-white"],
+    "primitive": { "import": "createGridController", "module": "grid-controller" }
+  },
+  "a11y": {
+    "contract": "accessibility/combobox-calendar-command-palette.md",
+    "keyboard": [
+      ["ArrowRight / ArrowLeft", "Mueve al día siguiente/anterior."],
+      ["ArrowDown / ArrowUp", "Mueve una semana abajo/arriba manteniendo la columna (día de la semana)."],
+      ["Home / End", "Va al primer/último día enfocable de la semana actual."],
+      ["Enter / Espacio", "Selecciona el día enfocado (marca aria-selected=\"true\")."],
+      ["Tab / Shift+Tab", "Entra y sale de la cuadrícula por un único día (roving tabindex)."]
+    ],
+    "notes": [
+      "Solo una celda es tabbable a la vez (roving tabindex): el día seleccionado, si no el marcado data-ro-grid-current (hoy), si no el primero.",
+      "Las celdas vacías (.ro-calendar__pad) no son <button> y quedan fuera de la navegación por flechas.",
+      "En el date picker, elegir un día actualiza el texto del campo y cierra el popover devolviendo el foco al disparador.",
+      "El título del mes (aria-labelledby) da nombre accesible a toda la cuadrícula; cambiar de mes debe actualizar ese texto."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Calendario standalone (interactivo)",
+      "html": "<div class=\"ro-card ro-card--plain\">\n  <div class=\"ro-calendar\" data-calendar data-year=\"2026\" data-month=\"5\" data-today=\"27\" data-selected=\"12\">\n    <div class=\"ro-calendar__header\">\n      <span class=\"ro-calendar__title\"></span>\n      <div class=\"ro-calendar__nav\">\n        <button class=\"ro-btn-icon\" aria-label=\"Mes anterior\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-left\"></use></svg></button>\n        <button class=\"ro-btn-icon\" aria-label=\"Mes siguiente\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg></button>\n      </div>\n    </div>\n    <div class=\"ro-calendar__grid\"></div>\n  </div>\n</div>"
+    },
+    {
+      "title": "Date picker (campo + popover)",
+      "html": "<div class=\"ro-dropdown\" data-ro-disclosure-root data-datepicker style=\"width:240px\">\n  <button type=\"button\" class=\"ro-field ro-field--disclosure\" data-ro-disclosure-trigger aria-haspopup=\"dialog\" aria-controls=\"ref-datepicker-popover\" aria-expanded=\"false\">\n    <svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-calendar\"></use></svg>\n    <span class=\"ro-input\" data-datepicker-value>Selecciona fecha</span>\n  </button>\n  <div class=\"ro-popover\" id=\"ref-datepicker-popover\" data-ro-disclosure-panel role=\"dialog\" aria-label=\"Seleccionar fecha\" hidden style=\"min-width:300px\">\n    <div class=\"ro-calendar\" data-calendar data-year=\"2026\" data-month=\"5\" data-today=\"27\">\n      <div class=\"ro-calendar__header\">\n        <span class=\"ro-calendar__title\"></span>\n        <div class=\"ro-calendar__nav\">\n          <button class=\"ro-btn-icon\" aria-label=\"Mes anterior\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-left\"></use></svg></button>\n          <button class=\"ro-btn-icon\" aria-label=\"Mes siguiente\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg></button>\n        </div>\n      </div>\n      <div class=\"ro-calendar__grid\"></div>\n    </div>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Actualiza el título del mes (y su id referenciado por aria-labelledby) cada vez que cambies de mes.",
+      "Marca el día de hoy con data-ro-grid-current para que el roving tabindex arranque ahí cuando no hay selección.",
+      "Devuelve el foco al disparador del date picker al cerrar el popover tras seleccionar."
+    ],
+    "dont": [
+      "No hagas focuseables los huecos de días de meses adyacentes si no son seleccionables.",
+      "No muevas el foco fuera de la cuadrícula al navegar con flechas: usa roving tabindex, no cambies de elemento raíz.",
+      "No dupliques mes/año en el aria-label del día si ya están en el título del grid; sé conciso pero completo (\"1 de Junio de 2026\")."
+    ]
+  },
+  "related": ["combobox", "command-palette", "popover", "form"]
+}

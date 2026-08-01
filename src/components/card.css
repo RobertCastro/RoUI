@@ -7,7 +7,7 @@
 .ro-card--plain { background: var(--ro-card-bg); border-color: var(--ro-card-border); }
 .ro-card--soft-yellow {
   border: 1px solid var(--ro-primary);
-  background: linear-gradient(135deg, rgba(246,240,114,0.40), rgba(246,240,114,0.13) 60%, rgba(0,0,0,0));
+  background: linear-gradient(135deg, var(--ro-primary-40), var(--ro-primary-13) 60%, transparent);
 }
 .ro-card__header { display: flex; align-items: center; justify-content: space-between; gap: var(--ro-space-3); }
 .ro-card__footer { margin-top: var(--ro-space-4); display: flex; align-items: center; gap: var(--ro-space-2); }
@@ -33,7 +33,7 @@
   color: var(--ro-card-fg); padding: 1.25rem 1.75rem;
 }
 .ro-callout--soft {
-  background: linear-gradient(135deg, rgba(246,240,114,0.40), rgba(246,240,114,0.13) 60%, rgba(0,0,0,0));
+  background: linear-gradient(135deg, var(--ro-primary-40), var(--ro-primary-13) 60%, transparent);
   border: 1px solid var(--ro-primary);
 }
 

@@ -1,0 +1,95 @@
+{
+  "name": "form",
+  "title": "Form field",
+  "group": "Formularios",
+  "maturity": "experimental",
+  "summary": "Agrupa label, control, texto de ayuda y error para construir campos de formulario accesibles y consistentes.",
+  "whenToUse": [
+    "Capturar datos del usuario: texto, selección, texto largo, booleanos.",
+    "Cuando un campo necesita comunicar ayuda o un error de validación junto al control."
+  ],
+  "whenNotToUse": [
+    "Para un campo de búsqueda suelto sin formulario alrededor: usa .ro-field directamente.",
+    "Para un campo con prefijo/sufijo visual (moneda, icono, botón): usa Input group."
+  ],
+  "anatomy": {
+    "html": "<div>\n  <label class=\"ro-label\" for=\"email\">Correo electrónico</label>\n  <input id=\"email\" class=\"ro-input-box\" type=\"email\" autocomplete=\"email\" required aria-describedby=\"email-hint\">\n  <p id=\"email-hint\" class=\"ro-hint\">Usaremos este correo para avisos.</p>\n</div>",
+    "notes": [
+      "El wrapper es un <div> simple: el sistema no impone una clase de contenedor, solo el orden label → control → ayuda/error.",
+      "El <label> se asocia al control por for/id; nunca sustituyas el label por un placeholder.",
+      "aria-describedby conecta el control con su ro-hint y/o ro-error-text (puede listar ambos ids separados por espacio)."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-label", "desc": "Etiqueta del campo." },
+      { "name": "ro-input-box", "desc": "Input de texto con borde completo." },
+      { "name": "ro-textarea", "desc": "Área de texto multilínea." },
+      { "name": "ro-select-box", "desc": "Select nativo con borde y chevron." },
+      { "name": "ro-field", "desc": "Variante compacta tipo pastilla (p. ej. búsqueda inline)." },
+      { "name": "ro-hint", "desc": "Texto de ayuda bajo el control." },
+      { "name": "ro-error-text", "desc": "Mensaje de error bajo el control." },
+      { "name": "ro-check", "desc": "Checkbox nativo estilizado." },
+      { "name": "ro-radio", "desc": "Radio nativo estilizado." },
+      { "name": "ro-switch", "desc": "Contenedor del switch (envuelve un checkbox real)." },
+      { "name": "ro-switch__track", "desc": "Riel visual del switch." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-control-border",
+      "--ro-control-bg",
+      "--ro-control-fg",
+      "--ro-control-focus-border",
+      "--ro-focus-ring",
+      "--ro-error",
+      "--ro-radius-xl",
+      "--ro-radius-full"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Mueve el foco entre controles del formulario."],
+      ["Espacio", "Marca/desmarca checkbox, radio o switch enfocado."],
+      ["Flechas", "Cambia de opción dentro de un grupo de radios nativo."]
+    ],
+    "notes": [
+      "Todo control requiere un <label> asociado por for/id; el placeholder no es un sustituto.",
+      "Un campo inválido usa aria-invalid=\"true\" en el control y aria-describedby apuntando al ro-error-text.",
+      "El error debe explicar cómo corregirlo, no solo señalar que existe.",
+      "Los switch usan un <input type=\"checkbox\"> real; su nombre accesible viene del label que lo envuelve."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Campo con error",
+      "html": "<div>\n  <label class=\"ro-label\" for=\"workspace\">Nombre del workspace</label>\n  <input id=\"workspace\" class=\"ro-input-box\" aria-invalid=\"true\" aria-describedby=\"workspace-error\">\n  <p id=\"workspace-error\" class=\"ro-error-text\">El nombre ya está en uso.</p>\n</div>"
+    },
+    {
+      "title": "Select y textarea",
+      "html": "<div>\n  <label class=\"ro-label\" for=\"topic\">Tema</label>\n  <select id=\"topic\" class=\"ro-select-box\"><option>Facturación</option><option>Soporte técnico</option></select>\n</div>\n<div>\n  <label class=\"ro-label\" for=\"message\">Mensaje</label>\n  <textarea id=\"message\" class=\"ro-textarea\" aria-describedby=\"message-hint\" placeholder=\"Cuéntanos qué pasó…\"></textarea>\n  <p id=\"message-hint\" class=\"ro-hint\">Máximo 500 caracteres.</p>\n</div>"
+    },
+    {
+      "title": "Checkbox y switch",
+      "html": "<label style=\"display:flex;align-items:center;gap:8px\"><input type=\"checkbox\" class=\"ro-check\" checked> Acepto los términos</label>\n<label class=\"ro-switch\"><input type=\"checkbox\" checked aria-label=\"Activar notificaciones\"><span class=\"ro-switch__track\"></span></label>"
+    },
+    {
+      "title": "Campo tipo pastilla (búsqueda inline)",
+      "html": "<div class=\"ro-field\">\n  <svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg>\n  <input class=\"ro-input\" aria-label=\"Buscar\" placeholder=\"Buscar…\">\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa siempre un <label> real asociado por for/id, visible en el flujo del formulario.",
+      "Conecta ayuda y error con aria-describedby para que el lector de pantalla los anuncie.",
+      "Marca aria-invalid=\"true\" solo cuando el campo tiene un error activo."
+    ],
+    "dont": [
+      "No uses el placeholder como único texto de ayuda o como reemplazo del label.",
+      "No muestres un error genérico (\"Campo inválido\"): explica qué corregir.",
+      "No mezcles ro-input-box y ro-field en el mismo campo; son dos estilos distintos de control."
+    ]
+  },
+  "related": ["input-group", "number-input", "tags-input", "slider"]
+}

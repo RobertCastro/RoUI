@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Command palette — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Overlays</p>
+      <div class="dx-ref-title"><h1>Command palette</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Diálogo modal de acceso rápido (⌘K/Ctrl+K) que combina un combobox en línea para buscar y ejecutar comandos.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Dar acceso global a navegación y acciones frecuentes desde cualquier pantalla.</li><li>Permitir a usuarios avanzados operar por teclado sin recorrer menús.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para un autocompletar de un solo campo dentro de un formulario: usa Combobox.</li><li>Para confirmar o pedir un dato puntual: usa Modal.</li><li>Para una lista de acciones contextual anclada a un botón: usa Menu.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--soft&quot; data-ro-overlay-open=&quot;cmdk&quot; aria-haspopup=&quot;dialog&quot;&gt;Abrir &lt;span class=&quot;ro-kbd&quot;&gt;⌘&lt;/span&gt;&lt;span class=&quot;ro-kbd&quot;&gt;K&lt;/span&gt;&lt;/button&gt;
+
+&lt;div class=&quot;ro-cmdk-overlay&quot; id=&quot;cmdk&quot; data-ro-overlay-root hidden&gt;
+  &lt;div class=&quot;ro-cmdk&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Paleta de comandos&quot; data-ro-cmdk&gt;
+    &lt;div class=&quot;ro-cmdk__search&quot;&gt;
+      &lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-search&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;input id=&quot;cmdk-input&quot; role=&quot;combobox&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;cmdk-list&quot; aria-autocomplete=&quot;list&quot; aria-label=&quot;Buscar comandos&quot; placeholder=&quot;Buscar comandos…&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-cmdk__list&quot; id=&quot;cmdk-list&quot; role=&quot;listbox&quot; aria-label=&quot;Comandos&quot;&gt;
+      &lt;div class=&quot;ro-cmdk__group&quot; role=&quot;presentation&quot;&gt;Navegar&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__item&quot; role=&quot;option&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-book-open&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Ir a Inicio &lt;span class=&quot;ro-kbd&quot;&gt;G&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__item&quot; role=&quot;option&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-user&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Ir a Directorio&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__group&quot; role=&quot;presentation&quot;&gt;Acciones&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__item&quot; role=&quot;option&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-plus&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Crear proyecto&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__item&quot; role=&quot;option&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-settings&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Ajustes&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__empty&quot; hidden&gt;Sin comandos&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Es un diálogo modal (overlay-controller): mismo contrato de foco inicial, trap de Tab, Escape y restauración del foco que Modal y Drawer.</li><li>Dentro del diálogo, el campo de búsqueda y la lista son un combobox-controller en modo inline (data-ro-combobox-inline u options.inline:true): la lista siempre está visible, no abre/cierra por sí misma y no captura Escape ni el pointer exterior — eso lo maneja el overlay.</li><li>En modo inline, Enter ejecuta onSelect (la acción del comando) en lugar de rellenar el input.</li><li>Los encabezados de grupo (ro-cmdk__group) son role=presentation: agrupan visualmente pero no son opciones navegables.</li><li>El disparador usa data-ro-overlay-open y aria-haspopup=dialog; además, un listener global de teclado abre la paleta con ⌘K/Ctrl+K y limpia el input al abrir.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-cmdk-overlay</code></td><td>Capa que cubre la página (backdrop), igual rol que ro-overlay.</td></tr><tr><td><code>.ro-cmdk</code></td><td>Panel del diálogo de la paleta.</td></tr><tr><td><code>.ro-cmdk__search</code></td><td>Cabecera con icono de búsqueda e input.</td></tr><tr><td><code>.ro-cmdk__list</code></td><td>Lista de resultados (listbox), scrollable.</td></tr><tr><td><code>.ro-cmdk__group</code></td><td>Encabezado de grupo (role=presentation).</td></tr><tr><td><code>.ro-cmdk__item</code></td><td>Comando individual (role=option).</td></tr><tr><td><code>.ro-cmdk__empty</code></td><td>Mensaje &quot;sin comandos&quot;, oculto por defecto.</td></tr><tr><td><code>.ro-kbd</code></td><td>Etiqueta de tecla (atajo) junto a un comando o en el disparador.</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-ro-overlay-root</code></td><td>Contenedor del overlay (inicia hidden).</td></tr><tr><td><code>data-ro-overlay-open</code></td><td>En el disparador: id de la paleta a abrir.</td></tr><tr><td><code>data-ro-cmdk</code></td><td>Marca el panel de diálogo como paleta de comandos para inicializar el combobox inline.</td></tr><tr><td><code>data-ro-combobox-inline</code></td><td>Activa el modo inline del combobox-controller (alternativa a options.inline:true).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-2xl</code> <code>--ro-shadow-md</code> <code>--ro-z-modal</code> <code>--ro-secondary-soft</code> <code>--ro-white</code></p>
+<h3>Primitiva</h3><pre class="dx-ref-code"><code>import { createOverlayController } from &quot;@robertcastro/roui/primitives/overlay-controller&quot;;</code></pre>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>⌘K / Ctrl+K</kbd></td><td>Abre la paleta desde cualquier lugar de la página y enfoca el campo.</td></tr><tr><td><kbd>Escape</kbd></td><td>Cierra el diálogo (lo maneja el overlay, no el combobox) y restaura el foco al disparador.</td></tr><tr><td><kbd>ArrowDown / ArrowUp</kbd></td><td>Mueve la opción activa entre los comandos visibles (con wrap).</td></tr><tr><td><kbd>Enter</kbd></td><td>Ejecuta el comando activo y cierra la paleta.</td></tr><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Cicla el foco dentro del diálogo (trap del overlay-controller).</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/combobox-calendar-command-palette.html">combobox-calendar-command-palette</a></p><ul class="dx-ref-list"><li>El foco entra al campo de búsqueda al abrir; al cerrar, vuelve al disparador (o al elemento que abrió con ⌘K).</li><li>El input mantiene el foco en todo momento: la opción activa solo se comunica por aria-activedescendant.</li><li>Al escribir se filtra la lista y se muestra ro-cmdk__empty si no hay coincidencias.</li><li>El fondo queda inerte mientras la paleta está abierta, igual que en Modal.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Paleta de comandos (interactivo)</div>
+  <div class="dx-demo"><button class="ro-btn ro-btn--soft" data-ro-overlay-open="ref-cmdk" aria-haspopup="dialog">Abrir <span class="ro-kbd">⌘</span><span class="ro-kbd">K</span></button>
+<span class="ro-muted" style="font-size:13px;margin-left:8px">o pulsa ⌘K / Ctrl+K</span>
+
+<div class="ro-cmdk-overlay" id="ref-cmdk" data-ro-overlay-root hidden>
+  <div class="ro-cmdk" role="dialog" aria-modal="true" aria-label="Paleta de comandos" data-ro-cmdk>
+    <div class="ro-cmdk__search">
+      <svg class="ro-icon" aria-hidden="true"><use href="#ro-i-search"></use></svg>
+      <input id="ref-cmdk-input" role="combobox" aria-expanded="true" aria-controls="ref-cmdk-list" aria-autocomplete="list" aria-label="Buscar comandos" placeholder="Buscar comandos…">
+    </div>
+    <div class="ro-cmdk__list" id="ref-cmdk-list" role="listbox" aria-label="Comandos">
+      <div class="ro-cmdk__group" role="presentation">Navegar</div>
+      <div class="ro-cmdk__item" role="option"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-book-open"></use></svg> Ir a Inicio</div>
+      <div class="ro-cmdk__item" role="option"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-calendar"></use></svg> Ir a Sesiones</div>
+      <div class="ro-cmdk__group" role="presentation">Acciones</div>
+      <div class="ro-cmdk__item" role="option"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-plus"></use></svg> Crear proyecto</div>
+      <div class="ro-cmdk__empty" hidden>Sin comandos</div>
+    </div>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;button class=&quot;ro-btn ro-btn--soft&quot; data-ro-overlay-open=&quot;ref-cmdk&quot; aria-haspopup=&quot;dialog&quot;&gt;Abrir &lt;span class=&quot;ro-kbd&quot;&gt;⌘&lt;/span&gt;&lt;span class=&quot;ro-kbd&quot;&gt;K&lt;/span&gt;&lt;/button&gt;
+&lt;span class=&quot;ro-muted&quot; style=&quot;font-size:13px;margin-left:8px&quot;&gt;o pulsa ⌘K / Ctrl+K&lt;/span&gt;
+
+&lt;div class=&quot;ro-cmdk-overlay&quot; id=&quot;ref-cmdk&quot; data-ro-overlay-root hidden&gt;
+  &lt;div class=&quot;ro-cmdk&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Paleta de comandos&quot; data-ro-cmdk&gt;
+    &lt;div class=&quot;ro-cmdk__search&quot;&gt;
+      &lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-search&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;input id=&quot;ref-cmdk-input&quot; role=&quot;combobox&quot; aria-expanded=&quot;true&quot; aria-controls=&quot;ref-cmdk-list&quot; aria-autocomplete=&quot;list&quot; aria-label=&quot;Buscar comandos&quot; placeholder=&quot;Buscar comandos…&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-cmdk__list&quot; id=&quot;ref-cmdk-list&quot; role=&quot;listbox&quot; aria-label=&quot;Comandos&quot;&gt;
+      &lt;div class=&quot;ro-cmdk__group&quot; role=&quot;presentation&quot;&gt;Navegar&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__item&quot; role=&quot;option&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-book-open&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Ir a Inicio&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__item&quot; role=&quot;option&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-calendar&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Ir a Sesiones&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__group&quot; role=&quot;presentation&quot;&gt;Acciones&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__item&quot; role=&quot;option&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-plus&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Crear proyecto&lt;/div&gt;
+      &lt;div class=&quot;ro-cmdk__empty&quot; hidden&gt;Sin comandos&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Agrupa comandos afines con ro-cmdk__group para orientar el escaneo visual.</li><li>Muestra el atajo de teclado del comando con ro-kbd cuando exista.</li><li>Anuncia el atajo global (⌘K/Ctrl+K) cerca del disparador.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No anides otro diálogo modal dentro de la paleta.</li><li>No dejes que el combobox interno capture Escape: debe cerrarla el overlay para restaurar el foco correctamente.</li><li>No uses la paleta para un único autocompletar de formulario: usa Combobox.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="combobox.html">combobox</a> · <a href="modal.html">modal</a> · <a href="menu.html">menu</a> · <a href="popover.html">popover</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

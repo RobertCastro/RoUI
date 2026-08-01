@@ -1,0 +1,72 @@
+{
+  "name": "toast",
+  "title": "Toast",
+  "group": "Feedback",
+  "maturity": "experimental",
+  "summary": "Notificación flotante y transitoria que anuncia un evento sin robar el foco del usuario.",
+  "whenToUse": [
+    "Confirmar el resultado de una acción que el usuario acaba de disparar (guardar, enviar, copiar).",
+    "Anunciar un evento asíncrono breve que no requiere que el usuario decida nada."
+  ],
+  "whenNotToUse": [
+    "Para un mensaje persistente ligado a una sección de la página: usa Alert.",
+    "Para un anuncio global de producto que no desaparece solo: usa Banner.",
+    "Para pedir una decisión o dato antes de continuar: usa Modal."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-toast-region\"></div>",
+    "notes": [
+      "El marcado solo aporta la región de posicionamiento: el toast-controller la crea si no existe y le inserta cada toast como su propia región viva.",
+      "Cada toast lleva role=status (éxito/info, anuncio cortés) o role=alert (error, anuncio asertivo); el controlador lo asigna según la variante.",
+      "El icono es decorativo (aria-hidden); el mensaje de texto es el único contenido anunciado.",
+      "El botón de cierre lo genera el controlador con aria-label (\"Cerrar\" por defecto)."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-toast-region", "desc": "Contenedor fijo que apila los toasts activos." },
+      { "name": "ro-toast", "desc": "Toast individual (lo crea el controlador)." },
+      { "name": "ro-toast--success", "desc": "Variante de éxito, role=status." },
+      { "name": "ro-toast--error", "desc": "Variante de error, role=alert." },
+      { "name": "ro-toast--info", "desc": "Variante informativa, role=status." },
+      { "name": "ro-toast__icon", "desc": "Icono decorativo (aria-hidden)." },
+      { "name": "ro-toast__body", "desc": "Texto del mensaje." },
+      { "name": "ro-toast__close", "desc": "Botón de cierre manual." }
+    ],
+    "data": [],
+    "tokens": ["--ro-z-modal", "--ro-radius-xl", "--ro-shadow-md", "--ro-success", "--ro-error", "--ro-secondary"],
+    "primitive": { "import": "createToastController", "module": "toast-controller" }
+  },
+  "a11y": {
+    "contract": "accessibility/toast.md",
+    "keyboard": [
+      ["Tab", "Alcanza el botón de cierre del toast visible."],
+      ["Enter / Espacio", "Descarta el toast enfocado."]
+    ],
+    "notes": [
+      "El foco nunca se mueve al toast: el usuario sigue en su tarea y el lector de pantalla lo anuncia al insertarse.",
+      "El cierre automático (5000 ms por defecto) se pausa al enfocar o pasar el puntero por el toast, y se reanuda al salir.",
+      "duration: 0 (o Infinity) deja el toast persistente hasta que el usuario lo cierre manualmente.",
+      "role=alert se reserva para errores: interrumpe al lector de pantalla. Éxito e info usan role=status."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Disparo desde botones de acción",
+      "html": "<div class=\"ro-row\">\n  <button class=\"ro-btn ro-btn--soft\" data-toast=\"success\" data-toast-msg=\"Cambios guardados\">Guardar</button>\n  <button class=\"ro-btn ro-btn--soft\" data-toast=\"error\" data-toast-msg=\"No se pudo guardar. Reintenta.\">Simular error</button>\n  <button class=\"ro-btn ro-btn--soft\" data-toast=\"info\" data-toast-msg=\"Tienes 2 notificaciones\">Info</button>\n</div>\n<div class=\"ro-toast-region\"></div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa el toast para confirmar una acción que el usuario ya realizó.",
+      "Mantén el mensaje corto y accionable si hace falta un siguiente paso.",
+      "Deja que el usuario pause el cierre automático al enfocar o pasar el puntero."
+    ],
+    "dont": [
+      "No uses un toast para pedir una decisión: no atrapa el foco ni ofrece botones de confirmación.",
+      "No apiles toasts indefinidamente sin límite ni control de tiempo.",
+      "No repitas en el toast un error que ya se muestra inline junto al campo."
+    ]
+  },
+  "related": ["alert", "banner", "modal"]
+}

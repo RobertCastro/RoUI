@@ -1,0 +1,73 @@
+{
+  "name": "pagination",
+  "title": "Pagination",
+  "group": "Seleccion y navegacion",
+  "maturity": "experimental",
+  "summary": "Controles para moverse entre páginas de un conjunto de resultados, con la página actual marcada por aria-current.",
+  "whenToUse": [
+    "Resultados o registros divididos en páginas discretas (tablas, listados, búsquedas).",
+    "Cuando el usuario necesita saltar a una página concreta, no solo avanzar secuencialmente."
+  ],
+  "whenNotToUse": [
+    "Para cargar más elementos del mismo listado sin cambiar de \"página\": usa un botón \"Cargar más\" o scroll infinito.",
+    "Para pasos de un asistente o flujo: usa Stepper, que expresa progreso, no un índice de contenido."
+  ],
+  "anatomy": {
+    "html": "<nav class=\"ro-pagination\" aria-label=\"Paginación\">\n  <button class=\"ro-page\" aria-label=\"Página anterior\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-left\"></use></svg></button>\n  <button class=\"ro-page ro-page--active\" aria-current=\"page\">1</button>\n  <button class=\"ro-page\">2</button>\n  <button class=\"ro-page\">3</button>\n  <button class=\"ro-page\" aria-label=\"Página siguiente\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg></button>\n</nav>",
+    "notes": [
+      "El contenedor es <nav> con aria-label (\"Paginación\" o equivalente): sin nombre, un lector de pantalla no distingue este landmark de otros.",
+      "La página activa lleva aria-current=\"page\" además de la clase ro-page--active que dibuja el estilo.",
+      "Los botones de anterior/siguiente son de solo icono: necesitan aria-label propio (el icono es aria-hidden).",
+      "Los números de página son <button> porque cambian el contenido de la misma vista sin navegar a otra URL; si tu ruteo genera una URL por página, usa <a> en su lugar."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-pagination", "desc": "Contenedor en fila de los controles de página." },
+      { "name": "ro-page", "desc": "Botón de página o de navegación (anterior/siguiente)." },
+      { "name": "ro-page--active", "desc": "Página actual." },
+      { "name": "ro-page__ellipsis", "desc": "Marcador de páginas omitidas (…), no interactivo." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-radius-lg",
+      "--ro-ink-70",
+      "--ro-ink-05",
+      "--ro-ink",
+      "--ro-white",
+      "--ro-transition"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/tabs-accordion-navigation.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Recorre los botones de página en orden del documento."],
+      ["Enter / Espacio", "Activa el botón enfocado (va a esa página)."]
+    ],
+    "notes": [
+      "Mismo patrón de aria-current que Nav y Breadcrumb, aplicado a la página activa.",
+      "El <nav> contenedor necesita aria-label propio además del aria-current en el ítem activo; uno no sustituye al otro.",
+      "El botón deshabilitado (p. ej. \"Anterior\" en la página 1) usa el atributo disabled nativo, no solo opacidad."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Paginación con elipsis",
+      "html": "<nav class=\"ro-pagination\" aria-label=\"Paginación\">\n  <button class=\"ro-page\" title=\"Anterior\" aria-label=\"Página anterior\" disabled><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-left\"></use></svg></button>\n  <button class=\"ro-page ro-page--active\" aria-current=\"page\">1</button>\n  <button class=\"ro-page\">2</button>\n  <button class=\"ro-page\">3</button>\n  <span class=\"ro-page__ellipsis\">…</span>\n  <button class=\"ro-page\">9</button>\n  <button class=\"ro-page\" title=\"Siguiente\" aria-label=\"Página siguiente\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg></button>\n</nav>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da aria-label al <nav> y aria-current=\"page\" a la página activa.",
+      "Da nombre accesible a los botones anterior/siguiente (son de solo icono).",
+      "Deshabilita anterior/siguiente en los extremos con el atributo disabled nativo."
+    ],
+    "dont": [
+      "No indiques la página activa solo con color: usa también aria-current.",
+      "No uses ro-page__ellipsis como botón: es un marcador visual, no un control.",
+      "No mezcles paginación con scroll infinito en la misma lista: confunde el modelo mental del usuario."
+    ]
+  },
+  "related": ["table", "nav", "list-group"]
+}

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendar / Date picker — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Fecha y entrada compleja</p>
+      <div class="dx-ref-title"><h1>Calendar / Date picker</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Cuadrícula de mes navegable por teclado (WAI-ARIA grid) para elegir un día; el date picker la monta dentro de un popover.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Elegir una fecha concreta con contexto visual del mes (día de la semana, hoy, seleccionado).</li><li>Como panel de un date picker: campo + popover con el calendario dentro.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para un rango relativo simple (hoy, últimos 7 días): usa Segmented o botones predefinidos junto al calendario.</li><li>Para introducir una fecha ya conocida de memoria: un input de texto con máscara puede ser más rápido.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-calendar&quot; data-calendar data-year=&quot;2026&quot; data-month=&quot;5&quot; data-today=&quot;27&quot; data-selected=&quot;12&quot;&gt;
+  &lt;div class=&quot;ro-calendar__header&quot;&gt;
+    &lt;span class=&quot;ro-calendar__title&quot; id=&quot;cal-title&quot;&gt;Junio 2026&lt;/span&gt;
+    &lt;div class=&quot;ro-calendar__nav&quot;&gt;
+      &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Mes anterior&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-left&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+      &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Mes siguiente&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-calendar__grid&quot; role=&quot;grid&quot; aria-labelledby=&quot;cal-title&quot;&gt;
+    &lt;div class=&quot;ro-calendar__row&quot; role=&quot;row&quot;&gt;
+      &lt;div class=&quot;ro-calendar__dow&quot; role=&quot;columnheader&quot; aria-label=&quot;Lunes&quot;&gt;L&lt;/div&gt;
+      &lt;div class=&quot;ro-calendar__dow&quot; role=&quot;columnheader&quot; aria-label=&quot;Martes&quot;&gt;M&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-calendar__row&quot; role=&quot;row&quot;&gt;
+      &lt;div class=&quot;ro-calendar__pad&quot; role=&quot;gridcell&quot;&gt;&lt;/div&gt;
+      &lt;button class=&quot;ro-calendar__day&quot; role=&quot;gridcell&quot; tabindex=&quot;-1&quot; aria-selected=&quot;false&quot; aria-label=&quot;1 de Junio de 2026&quot;&gt;1&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>data-calendar marca el nodo que el renderer de la documentación rellena en tiempo de carga; en una integración real, el HTML de la cuadrícula (título, filas, celdas) se genera igual con datos propios y luego se inicializa con grid-controller.</li><li>role=grid va en .ro-calendar__grid, etiquetado por el título del mes vía aria-labelledby.</li><li>Cada semana es .ro-calendar__row con role=row y display:contents, para no romper el CSS grid de 7 columnas.</li><li>Las cabeceras de día de la semana son role=columnheader; los huecos antes/después del mes son .ro-calendar__pad con role=gridcell pero sin ser &lt;button&gt; (no enfocables).</li><li>Cada día es un &lt;button role=gridcell&gt; con aria-selected y aria-label con la fecha completa; el día de hoy lleva data-ro-grid-current.</li><li>El date picker envuelve este calendario en un ro-popover mostrado por un disclosure (ro-field--disclosure como disparador); al elegir un día se actualiza el campo y se cierra el popover.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-calendar</code></td><td>Raíz del calendario (ancho fijo).</td></tr><tr><td><code>.ro-calendar__header</code></td><td>Cabecera con título del mes y navegación.</td></tr><tr><td><code>.ro-calendar__title</code></td><td>Texto &quot;Mes Año&quot;, referenciado por aria-labelledby.</td></tr><tr><td><code>.ro-calendar__nav</code></td><td>Grupo de botones mes anterior/siguiente.</td></tr><tr><td><code>.ro-calendar__grid</code></td><td>Cuadrícula (role=grid) de 7 columnas.</td></tr><tr><td><code>.ro-calendar__row</code></td><td>Fila semántica (role=row, display:contents).</td></tr><tr><td><code>.ro-calendar__dow</code></td><td>Cabecera de día de la semana (role=columnheader).</td></tr><tr><td><code>.ro-calendar__day</code></td><td>Botón de día (role=gridcell).</td></tr><tr><td><code>.ro-calendar__day--today</code></td><td>Resalta el día actual.</td></tr><tr><td><code>.ro-calendar__day--muted</code></td><td>Día de un mes adyacente, tono atenuado.</td></tr><tr><td><code>.ro-calendar__day--in-range</code></td><td>Día dentro de un rango seleccionado.</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-calendar</code></td><td>Marca el contenedor a inicializar (usado por el renderer de referencia).</td></tr><tr><td><code>data-year / data-month</code></td><td>Año y mes (0-indexado) a renderizar.</td></tr><tr><td><code>data-today / data-selected</code></td><td>Día del mes marcado como hoy / como seleccionado.</td></tr><tr><td><code>data-ro-grid-current</code></td><td>En una celda de día: la marca como &quot;hoy&quot; para el roving tabindex inicial.</td></tr><tr><td><code>data-datepicker</code></td><td>En el disclosure contenedor: indica que es un date picker (campo + popover).</td></tr><tr><td><code>data-datepicker-value</code></td><td>Elemento del campo donde se escribe la fecha elegida.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-secondary</code> <code>--ro-secondary-tint</code> <code>--ro-ink</code> <code>--ro-ink-05</code> <code>--ro-ink-20</code> <code>--ro-ink-40</code> <code>--ro-white</code></p>
+<h3>Primitiva</h3><pre class="dx-ref-code"><code>import { createGridController } from &quot;@robertcastro/roui/primitives/grid-controller&quot;;</code></pre>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>ArrowRight / ArrowLeft</kbd></td><td>Mueve al día siguiente/anterior.</td></tr><tr><td><kbd>ArrowDown / ArrowUp</kbd></td><td>Mueve una semana abajo/arriba manteniendo la columna (día de la semana).</td></tr><tr><td><kbd>Home / End</kbd></td><td>Va al primer/último día enfocable de la semana actual.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Selecciona el día enfocado (marca aria-selected=&quot;true&quot;).</td></tr><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Entra y sale de la cuadrícula por un único día (roving tabindex).</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/combobox-calendar-command-palette.html">combobox-calendar-command-palette</a></p><ul class="dx-ref-list"><li>Solo una celda es tabbable a la vez (roving tabindex): el día seleccionado, si no el marcado data-ro-grid-current (hoy), si no el primero.</li><li>Las celdas vacías (.ro-calendar__pad) no son &lt;button&gt; y quedan fuera de la navegación por flechas.</li><li>En el date picker, elegir un día actualiza el texto del campo y cierra el popover devolviendo el foco al disparador.</li><li>El título del mes (aria-labelledby) da nombre accesible a toda la cuadrícula; cambiar de mes debe actualizar ese texto.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Calendario standalone (interactivo)</div>
+  <div class="dx-demo"><div class="ro-card ro-card--plain">
+  <div class="ro-calendar" data-calendar data-year="2026" data-month="5" data-today="27" data-selected="12">
+    <div class="ro-calendar__header">
+      <span class="ro-calendar__title"></span>
+      <div class="ro-calendar__nav">
+        <button class="ro-btn-icon" aria-label="Mes anterior"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
+        <button class="ro-btn-icon" aria-label="Mes siguiente"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg></button>
+      </div>
+    </div>
+    <div class="ro-calendar__grid"></div>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-card ro-card--plain&quot;&gt;
+  &lt;div class=&quot;ro-calendar&quot; data-calendar data-year=&quot;2026&quot; data-month=&quot;5&quot; data-today=&quot;27&quot; data-selected=&quot;12&quot;&gt;
+    &lt;div class=&quot;ro-calendar__header&quot;&gt;
+      &lt;span class=&quot;ro-calendar__title&quot;&gt;&lt;/span&gt;
+      &lt;div class=&quot;ro-calendar__nav&quot;&gt;
+        &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Mes anterior&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-left&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Mes siguiente&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-calendar__grid&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Date picker (campo + popover)</div>
+  <div class="dx-demo"><div class="ro-dropdown" data-ro-disclosure-root data-datepicker style="width:240px">
+  <button type="button" class="ro-field ro-field--disclosure" data-ro-disclosure-trigger aria-haspopup="dialog" aria-controls="ref-datepicker-popover" aria-expanded="false">
+    <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-calendar"></use></svg>
+    <span class="ro-input" data-datepicker-value>Selecciona fecha</span>
+  </button>
+  <div class="ro-popover" id="ref-datepicker-popover" data-ro-disclosure-panel role="dialog" aria-label="Seleccionar fecha" hidden style="min-width:300px">
+    <div class="ro-calendar" data-calendar data-year="2026" data-month="5" data-today="27">
+      <div class="ro-calendar__header">
+        <span class="ro-calendar__title"></span>
+        <div class="ro-calendar__nav">
+          <button class="ro-btn-icon" aria-label="Mes anterior"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
+          <button class="ro-btn-icon" aria-label="Mes siguiente"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg></button>
+        </div>
+      </div>
+      <div class="ro-calendar__grid"></div>
+    </div>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-dropdown&quot; data-ro-disclosure-root data-datepicker style=&quot;width:240px&quot;&gt;
+  &lt;button type=&quot;button&quot; class=&quot;ro-field ro-field--disclosure&quot; data-ro-disclosure-trigger aria-haspopup=&quot;dialog&quot; aria-controls=&quot;ref-datepicker-popover&quot; aria-expanded=&quot;false&quot;&gt;
+    &lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-calendar&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+    &lt;span class=&quot;ro-input&quot; data-datepicker-value&gt;Selecciona fecha&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div class=&quot;ro-popover&quot; id=&quot;ref-datepicker-popover&quot; data-ro-disclosure-panel role=&quot;dialog&quot; aria-label=&quot;Seleccionar fecha&quot; hidden style=&quot;min-width:300px&quot;&gt;
+    &lt;div class=&quot;ro-calendar&quot; data-calendar data-year=&quot;2026&quot; data-month=&quot;5&quot; data-today=&quot;27&quot;&gt;
+      &lt;div class=&quot;ro-calendar__header&quot;&gt;
+        &lt;span class=&quot;ro-calendar__title&quot;&gt;&lt;/span&gt;
+        &lt;div class=&quot;ro-calendar__nav&quot;&gt;
+          &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Mes anterior&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-left&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;button class=&quot;ro-btn-icon&quot; aria-label=&quot;Mes siguiente&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ro-calendar__grid&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Actualiza el título del mes (y su id referenciado por aria-labelledby) cada vez que cambies de mes.</li><li>Marca el día de hoy con data-ro-grid-current para que el roving tabindex arranque ahí cuando no hay selección.</li><li>Devuelve el foco al disparador del date picker al cerrar el popover tras seleccionar.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No hagas focuseables los huecos de días de meses adyacentes si no son seleccionables.</li><li>No muevas el foco fuera de la cuadrícula al navegar con flechas: usa roving tabindex, no cambies de elemento raíz.</li><li>No dupliques mes/año en el aria-label del día si ya están en el título del grid; sé conciso pero completo (&quot;1 de Junio de 2026&quot;).</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="combobox.html">combobox</a> · <a href="command-palette.html">command-palette</a> · <a href="popover.html">popover</a> · <a href="form.html">form</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

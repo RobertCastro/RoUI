@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Number input — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Formularios</p>
+      <div class="dx-ref-title"><h1>Number input</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Input numérico con botones +/- (steppers) para incrementar o decrementar el valor en pasos fijos.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Cantidades pequeñas y acotadas: unidades, participantes, cantidad de producto.</li><li>Cuando incrementos fijos (de 1 en 1, de 5 en 5) son más útiles que escribir un número libre.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Rangos grandes o continuos donde el valor exacto importa poco: usa Slider.</li><li>Cuando el valor no es numérico o necesita formato libre: usa un input de texto normal.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-label&quot; for=&quot;qty&quot;&gt;Cantidad&lt;/label&gt;
+&lt;div class=&quot;ro-number&quot;&gt;
+  &lt;button class=&quot;ro-number__btn&quot; type=&quot;button&quot; data-step=&quot;-&quot; aria-label=&quot;Restar uno&quot; aria-controls=&quot;qty&quot;&gt;−&lt;/button&gt;
+  &lt;input id=&quot;qty&quot; type=&quot;number&quot; value=&quot;3&quot; min=&quot;0&quot; max=&quot;40&quot; inputmode=&quot;numeric&quot;&gt;
+  &lt;button class=&quot;ro-number__btn&quot; type=&quot;button&quot; data-step=&quot;+&quot; aria-label=&quot;Sumar uno&quot; aria-controls=&quot;qty&quot;&gt;+&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El input es type=&quot;number&quot; nativo: aporta validación, spinners de teclado y semántica.</li><li>Los botones ± son decorativos en el sentido visual pero funcionalmente esenciales: llevan aria-label propio.</li><li>min/max en el input comunican los límites tanto a los steppers como a la validación nativa.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-number</code></td><td>Contenedor del control (botones + input).</td></tr><tr><td><code>.ro-number__btn</code></td><td>Botón de stepper (− o +).</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>data-step</code></td><td>En el botón: dirección del paso (&quot;-&quot; o &quot;+&quot;) que lee el script del stepper.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-lg</code> <code>--ro-focus-ring</code> <code>--ro-ink-10</code> <code>--ro-ink-05</code> <code>--ro-ink-60</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Flecha arriba / abajo</kbd></td><td>Incrementa o decrementa el valor con el input enfocado (spinners nativos).</td></tr><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Recorre botón menos → input → botón más.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Activa el stepper enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>Da nombre accesible al input con un &lt;label&gt; asociado (for/id), no solo con placeholder.</li><li>Los botones ± necesitan aria-label descriptivo (&quot;Restar uno&quot;/&quot;Sumar uno&quot;): el glifo − o + no es suficiente por sí solo en todos los lectores.</li><li>Cuando el valor llega a min o max, deshabilita el stepper correspondiente con disabled.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Cantidad con límites</div>
+  <div class="dx-demo"><label class="ro-label" for="seats">Asientos</label>
+<div class="ro-number">
+  <button class="ro-number__btn" type="button" data-step="-" aria-label="Restar un asiento">−</button>
+  <input id="seats" type="number" value="1" min="1" max="8" inputmode="numeric">
+  <button class="ro-number__btn" type="button" data-step="+" aria-label="Sumar un asiento">+</button>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-label&quot; for=&quot;seats&quot;&gt;Asientos&lt;/label&gt;
+&lt;div class=&quot;ro-number&quot;&gt;
+  &lt;button class=&quot;ro-number__btn&quot; type=&quot;button&quot; data-step=&quot;-&quot; aria-label=&quot;Restar un asiento&quot;&gt;−&lt;/button&gt;
+  &lt;input id=&quot;seats&quot; type=&quot;number&quot; value=&quot;1&quot; min=&quot;1&quot; max=&quot;8&quot; inputmode=&quot;numeric&quot;&gt;
+  &lt;button class=&quot;ro-number__btn&quot; type=&quot;button&quot; data-step=&quot;+&quot; aria-label=&quot;Sumar un asiento&quot;&gt;+&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Stepper en su límite mínimo</div>
+  <div class="dx-demo"><div class="ro-number">
+  <button class="ro-number__btn" type="button" disabled aria-label="Restar uno">−</button>
+  <input type="number" value="0" min="0" max="10" aria-label="Cantidad">
+  <button class="ro-number__btn" type="button" aria-label="Sumar uno">+</button>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-number&quot;&gt;
+  &lt;button class=&quot;ro-number__btn&quot; type=&quot;button&quot; disabled aria-label=&quot;Restar uno&quot;&gt;−&lt;/button&gt;
+  &lt;input type=&quot;number&quot; value=&quot;0&quot; min=&quot;0&quot; max=&quot;10&quot; aria-label=&quot;Cantidad&quot;&gt;
+  &lt;button class=&quot;ro-number__btn&quot; type=&quot;button&quot; aria-label=&quot;Sumar uno&quot;&gt;+&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Define min y max cuando el rango es conocido, y deshabilita el stepper en el límite.</li><li>Da a cada botón un aria-label que diga qué suma o resta, no solo &quot;más&quot;/&quot;menos&quot; genérico si el contexto ayuda.</li><li>Permite también escribir el valor a mano en el input, no solo usar los steppers.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses este patrón para números grandes o de precisión libre (precios con decimales complejos, IDs).</li><li>No quites el input type=&quot;number&quot;: perderías validación y teclado numérico en móvil.</li><li>No dejes el stepper activo cuando el valor ya está en su límite.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="input-group.html">input-group</a> · <a href="slider.html">slider</a> · <a href="form.html">form</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "name": "number-input",
+  "title": "Number input",
+  "group": "Formularios",
+  "maturity": "experimental",
+  "summary": "Input numérico con botones +/- (steppers) para incrementar o decrementar el valor en pasos fijos.",
+  "whenToUse": [
+    "Cantidades pequeñas y acotadas: unidades, participantes, cantidad de producto.",
+    "Cuando incrementos fijos (de 1 en 1, de 5 en 5) son más útiles que escribir un número libre."
+  ],
+  "whenNotToUse": [
+    "Rangos grandes o continuos donde el valor exacto importa poco: usa Slider.",
+    "Cuando el valor no es numérico o necesita formato libre: usa un input de texto normal."
+  ],
+  "anatomy": {
+    "html": "<label class=\"ro-label\" for=\"qty\">Cantidad</label>\n<div class=\"ro-number\">\n  <button class=\"ro-number__btn\" type=\"button\" data-step=\"-\" aria-label=\"Restar uno\" aria-controls=\"qty\">−</button>\n  <input id=\"qty\" type=\"number\" value=\"3\" min=\"0\" max=\"40\" inputmode=\"numeric\">\n  <button class=\"ro-number__btn\" type=\"button\" data-step=\"+\" aria-label=\"Sumar uno\" aria-controls=\"qty\">+</button>\n</div>",
+    "notes": [
+      "El input es type=\"number\" nativo: aporta validación, spinners de teclado y semántica.",
+      "Los botones ± son decorativos en el sentido visual pero funcionalmente esenciales: llevan aria-label propio.",
+      "min/max en el input comunican los límites tanto a los steppers como a la validación nativa."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-number", "desc": "Contenedor del control (botones + input)." },
+      { "name": "ro-number__btn", "desc": "Botón de stepper (− o +)." }
+    ],
+    "data": [
+      { "name": "data-step", "desc": "En el botón: dirección del paso (\"-\" o \"+\") que lee el script del stepper." }
+    ],
+    "tokens": ["--ro-radius-lg", "--ro-focus-ring", "--ro-ink-10", "--ro-ink-05", "--ro-ink-60"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Flecha arriba / abajo", "Incrementa o decrementa el valor con el input enfocado (spinners nativos)."],
+      ["Tab / Shift+Tab", "Recorre botón menos → input → botón más."],
+      ["Enter / Espacio", "Activa el stepper enfocado."]
+    ],
+    "notes": [
+      "Da nombre accesible al input con un <label> asociado (for/id), no solo con placeholder.",
+      "Los botones ± necesitan aria-label descriptivo (\"Restar uno\"/\"Sumar uno\"): el glifo − o + no es suficiente por sí solo en todos los lectores.",
+      "Cuando el valor llega a min o max, deshabilita el stepper correspondiente con disabled."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Cantidad con límites",
+      "html": "<label class=\"ro-label\" for=\"seats\">Asientos</label>\n<div class=\"ro-number\">\n  <button class=\"ro-number__btn\" type=\"button\" data-step=\"-\" aria-label=\"Restar un asiento\">−</button>\n  <input id=\"seats\" type=\"number\" value=\"1\" min=\"1\" max=\"8\" inputmode=\"numeric\">\n  <button class=\"ro-number__btn\" type=\"button\" data-step=\"+\" aria-label=\"Sumar un asiento\">+</button>\n</div>"
+    },
+    {
+      "title": "Stepper en su límite mínimo",
+      "html": "<div class=\"ro-number\">\n  <button class=\"ro-number__btn\" type=\"button\" disabled aria-label=\"Restar uno\">−</button>\n  <input type=\"number\" value=\"0\" min=\"0\" max=\"10\" aria-label=\"Cantidad\">\n  <button class=\"ro-number__btn\" type=\"button\" aria-label=\"Sumar uno\">+</button>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Define min y max cuando el rango es conocido, y deshabilita el stepper en el límite.",
+      "Da a cada botón un aria-label que diga qué suma o resta, no solo \"más\"/\"menos\" genérico si el contexto ayuda.",
+      "Permite también escribir el valor a mano en el input, no solo usar los steppers."
+    ],
+    "dont": [
+      "No uses este patrón para números grandes o de precisión libre (precios con decimales complejos, IDs).",
+      "No quites el input type=\"number\": perderías validación y teclado numérico en móvil.",
+      "No dejes el stepper activo cuando el valor ya está en su límite."
+    ]
+  },
+  "related": ["input-group", "slider", "form"]
+}

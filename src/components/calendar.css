@@ -9,6 +9,7 @@
   text-align: center; padding: 4px 0;
   font-family: var(--ro-font-mono); font-size: 10px; text-transform: uppercase; color: var(--ro-ink-40);
 }
+.ro-calendar__pad { aspect-ratio: 1; } /* hueco antes/después del mes: mismo alto que un día, sin contenido */
 .ro-calendar__day {
   aspect-ratio: 1; display: grid; place-items: center;
   border: 0; background: transparent; border-radius: var(--ro-radius-lg);

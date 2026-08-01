@@ -1,0 +1,77 @@
+{
+  "name": "combobox",
+  "title": "Combobox / Autocomplete",
+  "group": "Fecha y entrada compleja",
+  "maturity": "experimental",
+  "summary": "Campo de texto que filtra y despliega una lista de opciones (WAI-ARIA Combobox), sin robar el foco del input.",
+  "whenToUse": [
+    "Elegir un valor de una lista larga que conviene poder filtrar escribiendo (lenguaje, país, usuario).",
+    "Autocompletar mientras el usuario escribe, manteniendo el foco siempre en el campo de texto."
+  ],
+  "whenNotToUse": [
+    "Para una lista corta de opciones fijas: usa un <select> nativo o Segmented.",
+    "Para elegir varios valores a la vez: usa Tags input.",
+    "Para lanzar comandos o navegar dentro de un diálogo global: usa Command palette."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-combobox\" data-ro-combobox>\n  <div class=\"ro-field\">\n    <svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg>\n    <input class=\"ro-input\" id=\"cb-lang\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"cb-lang-list\" aria-autocomplete=\"list\" aria-label=\"Busca un lenguaje\" placeholder=\"Busca un lenguaje…\">\n  </div>\n  <div class=\"ro-combobox__list\" id=\"cb-lang-list\" role=\"listbox\" aria-label=\"Lenguajes\">\n    <div class=\"ro-combobox__option\" role=\"option\">JavaScript</div>\n    <div class=\"ro-combobox__option\" role=\"option\">TypeScript</div>\n    <div class=\"ro-combobox__option\" role=\"option\">Python</div>\n    <div class=\"ro-combobox__empty\" hidden>Sin coincidencias</div>\n  </div>\n</div>",
+    "notes": [
+      "El input lleva role=combobox con aria-expanded, aria-controls y (cuando hay opción activa) aria-activedescendant.",
+      "La lista es role=listbox oculta con [hidden] hasta que el controlador la abre; cada opción es role=option.",
+      "El foco nunca sale del input: la opción activa se comunica solo por aria-activedescendant, no moviendo el foco.",
+      "data-ro-combobox marca la raíz que envuelve campo y lista; combobox-controller la localiza por [role=combobox] y [role=listbox] dentro de ella.",
+      "Command palette reutiliza este mismo controlador en modo inline (data-ro-combobox-inline / options.inline), donde la lista siempre está visible y no se abre/cierra por sí misma."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-combobox", "desc": "Raíz posicionada (relative) que ancla la lista flotante." },
+      { "name": "ro-field", "desc": "Envoltorio del campo de texto (icono + input)." },
+      { "name": "ro-combobox__list", "desc": "Panel flotante de opciones (listbox), oculto por [hidden]." },
+      { "name": "ro-combobox__option", "desc": "Opción individual (role=option)." },
+      { "name": "ro-combobox__empty", "desc": "Mensaje de \"sin coincidencias\", oculto por defecto." }
+    ],
+    "data": [
+      { "name": "data-ro-combobox", "desc": "Marca la raíz que envuelve el campo y la lista." },
+      { "name": "data-ro-combobox-inline", "desc": "Modo inline (usado por Command palette): la lista siempre está visible, sin abrir/cerrar propio ni captura de Escape." },
+      { "name": "data-value", "desc": "En una opción: valor a usar en vez de su texto visible al seleccionarla." }
+    ],
+    "tokens": ["--ro-radius-xl", "--ro-radius-lg", "--ro-shadow-md", "--ro-z-overlay", "--ro-ink-05", "--ro-ink-10"],
+    "primitive": { "import": "createComboboxController", "module": "combobox-controller" }
+  },
+  "a11y": {
+    "contract": "accessibility/combobox-calendar-command-palette.md",
+    "keyboard": [
+      ["ArrowDown / ArrowUp", "Abre la lista si está cerrada y mueve la opción activa (con wrap)."],
+      ["Home / End", "Con la lista abierta, salta a la primera o última opción visible."],
+      ["Enter", "Selecciona la opción activa: rellena el input y cierra la lista."],
+      ["Escape", "Cierra la lista sin seleccionar (no aplica en modo inline)."],
+      ["Tab / Shift+Tab", "Sale del campo; no hay trap de foco."]
+    ],
+    "notes": [
+      "La opción activa se marca con aria-selected=\"true\" y se referencia desde el input vía aria-activedescendant; el foco DOM permanece en el input en todo momento.",
+      "Al escribir se dispara onFilter; si la opción activa queda oculta por el filtro, se limpia la selección activa.",
+      "Un pointerdown fuera de la raíz (data-ro-combobox) cierra la lista.",
+      "Cada opción recibe un id autogenerado si no lo trae, para poder ser referenciada por aria-activedescendant."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Autocompletar lenguaje (interactivo)",
+      "html": "<div class=\"ro-combobox\" style=\"width:280px\" data-ro-combobox>\n  <div class=\"ro-field\">\n    <svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg>\n    <input class=\"ro-input\" id=\"ref-cb\" role=\"combobox\" aria-expanded=\"false\" aria-controls=\"ref-cb-list\" aria-autocomplete=\"list\" aria-label=\"Busca un lenguaje\" placeholder=\"Busca un lenguaje…\">\n  </div>\n  <div class=\"ro-combobox__list\" id=\"ref-cb-list\" role=\"listbox\" aria-label=\"Lenguajes\">\n    <div class=\"ro-combobox__option\" role=\"option\">JavaScript</div>\n    <div class=\"ro-combobox__option\" role=\"option\">TypeScript</div>\n    <div class=\"ro-combobox__option\" role=\"option\">Python</div>\n    <div class=\"ro-combobox__option\" role=\"option\">Go</div>\n    <div class=\"ro-combobox__option\" role=\"option\">Rust</div>\n    <div class=\"ro-combobox__empty\" hidden>Sin coincidencias</div>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da nombre accesible al input con aria-label o un <label> asociado.",
+      "Mantén el foco siempre en el input; nunca lo muevas a las opciones.",
+      "Muestra el estado \"sin coincidencias\" cuando el filtro no encuentra nada."
+    ],
+    "dont": [
+      "No dupliques el patrón para elegir varios valores: usa Tags input.",
+      "No captures Escape ni el pointer exterior si construyes una variante inline (rompe el contrato del diálogo contenedor).",
+      "No omitas aria-controls ni aria-expanded: son los que anuncian la relación input↔listbox."
+    ]
+  },
+  "related": ["command-palette", "calendar", "tags-input", "popover"]
+}

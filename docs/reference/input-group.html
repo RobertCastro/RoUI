@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Input group — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Formularios</p>
+      <div class="dx-ref-title"><h1>Input group</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Agrupa un input con un prefijo y/o sufijo (texto, icono o botón) como un único control visual.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Mostrar una unidad, moneda o símbolo pegado al valor (USD, %, @, $).</li><li>Adjuntar una acción directamente relacionada con el campo, como un botón de buscar o enviar.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para incrementar/decrementar un número: usa Number input.</li><li>Cuando el prefijo o sufijo no aporta significado real: un input simple con Form es suficiente.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-label&quot; for=&quot;amount&quot;&gt;Monto&lt;/label&gt;
+&lt;div class=&quot;ro-input-group&quot;&gt;
+  &lt;span class=&quot;ro-input-group__addon&quot;&gt;$&lt;/span&gt;
+  &lt;input id=&quot;amount&quot; placeholder=&quot;0.00&quot; inputmode=&quot;decimal&quot;&gt;
+  &lt;span class=&quot;ro-input-group__addon&quot;&gt;USD&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El addon es visual: no reemplaza el &lt;label&gt;. Sigue asociando el input con for/id o aria-label.</li><li>ro-input-group__btn convierte el sufijo en un botón de acción (debe ser &lt;button type=&quot;button&quot;&gt;).</li><li>El foco visible aparece en todo el grupo (focus-within), no solo en el input interno.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-input-group</code></td><td>Contenedor que agrupa addon(s) e input.</td></tr><tr><td><code>.ro-input-group__addon</code></td><td>Prefijo o sufijo de texto/icono, no interactivo.</td></tr><tr><td><code>.ro-input-group__btn</code></td><td>Sufijo interactivo (botón de acción).</td></tr><tr><td><code>.ro-input-group__btn--accent</code></td><td>Botón de acción con color de marca.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-focus-ring</code> <code>--ro-ink-10</code> <code>--ro-ink-04</code> <code>--ro-ink-60</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Mueve el foco entre el input y el botón addon (si existe).</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Activa el botón addon enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>Si no hay un &lt;label&gt; visible fuera del grupo, da nombre accesible al input con aria-label.</li><li>El addon de texto (ro-input-group__addon) no es focuseable ni anunciado como control; es contexto visual.</li><li>El botón addon es un &lt;button&gt; nativo con su propio texto o aria-label si es solo icono.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Usuario con prefijo</div>
+  <div class="dx-demo"><label class="ro-label" for="handle">Usuario</label>
+<div class="ro-input-group">
+  <span class="ro-input-group__addon">@</span>
+  <input id="handle" placeholder="usuario">
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-label&quot; for=&quot;handle&quot;&gt;Usuario&lt;/label&gt;
+&lt;div class=&quot;ro-input-group&quot;&gt;
+  &lt;span class=&quot;ro-input-group__addon&quot;&gt;@&lt;/span&gt;
+  &lt;input id=&quot;handle&quot; placeholder=&quot;usuario&quot;&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Buscar con botón</div>
+  <div class="dx-demo"><div class="ro-input-group">
+  <input aria-label="Buscar builders" placeholder="Buscar builders…">
+  <button class="ro-input-group__btn" type="button">Buscar</button>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-input-group&quot;&gt;
+  &lt;input aria-label=&quot;Buscar builders&quot; placeholder=&quot;Buscar builders…&quot;&gt;
+  &lt;button class=&quot;ro-input-group__btn&quot; type=&quot;button&quot;&gt;Buscar&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Icono como prefijo</div>
+  <div class="dx-demo"><div class="ro-input-group">
+  <span class="ro-input-group__addon"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-mail"></use></svg></span>
+  <input type="email" aria-label="Correo electrónico" placeholder="tucorreo@empresa.com">
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-input-group&quot;&gt;
+  &lt;span class=&quot;ro-input-group__addon&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-mail&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;input type=&quot;email&quot; aria-label=&quot;Correo electrónico&quot; placeholder=&quot;tucorreo@empresa.com&quot;&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Mantén el texto del addon corto (1-4 caracteres o un icono).</li><li>Usa type=&quot;button&quot; en el botón addon para que no envíe el formulario por accidente.</li><li>Da nombre accesible al input (label externo o aria-label) aunque el addon sugiera el contexto.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No pongas información imprescindible solo en el addon de texto.</li><li>No apiles más de un botón addon: usa un input-group con un solo botón de acción.</li><li>No uses el addon como único indicador de error; combina con aria-invalid y ro-error-text.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="form.html">form</a> · <a href="number-input.html">number-input</a> · <a href="tags-input.html">tags-input</a> · <a href="combobox.html">combobox</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

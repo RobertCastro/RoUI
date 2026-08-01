@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Slider — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Formularios</p>
+      <div class="dx-ref-title"><h1>Slider</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Input range estilizado para elegir un valor dentro de un rango continuo arrastrando un thumb.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Rangos amplios o continuos donde el valor exacto importa menos que la posición relativa (volumen, progreso, nivel).</li><li>Cuando ajustar con arrastre es más rápido que escribir un número.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Cuando el usuario necesita escribir o leer un valor exacto con facilidad: usa Number input.</li><li>Para seleccionar una opción entre pocas alternativas discretas: usa Segmented.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-label&quot; for=&quot;level&quot;&gt;Nivel&lt;/label&gt;
+&lt;input type=&quot;range&quot; id=&quot;level&quot; class=&quot;ro-slider&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;65&quot; step=&quot;1&quot;&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Es un &lt;input type=&quot;range&quot;&gt; nativo: aporta rol slider, foco y control por teclado sin JavaScript adicional.</li><li>min, max, step y value definen el comportamiento; el valor actual se refleja fuera con texto asociado (no automático).</li><li>El thumb usa --ro-secondary como color de marca; el track usa --ro-ink-10 como base neutra.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-slider</code></td><td>Clase única del input range estilizado.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-full</code> <code>--ro-secondary</code> <code>--ro-ink-10</code> <code>--ro-focus-ring</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Flecha izquierda / derecha</kbd></td><td>Decrementa/incrementa el valor un step.</td></tr><tr><td><kbd>Flecha arriba / abajo</kbd></td><td>Decrementa/incrementa el valor un step.</td></tr><tr><td><kbd>Home / End</kbd></td><td>Salta al valor mínimo o máximo.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>Da nombre accesible al slider con un &lt;label&gt; asociado (for/id) o aria-label si no hay label visible.</li><li>Si el valor se muestra en pantalla (badge, texto), no dupliques esa información como único medio: el rol slider ya expone aria-valuenow nativamente.</li><li>min/max/step deben reflejar límites reales; un rango engañoso confunde a quien usa solo teclado.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Slider con valor visible</div>
+  <div class="dx-demo"><input type="range" class="ro-slider" min="0" max="100" value="65" aria-label="Nivel" style="width:280px">
+<span class="ro-badge ro-badge--soft">65%</span></div>
+  <pre class="dx-ref-code"><code>&lt;input type=&quot;range&quot; class=&quot;ro-slider&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;65&quot; aria-label=&quot;Nivel&quot; style=&quot;width:280px&quot;&gt;
+&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;65%&lt;/span&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Slider con pasos definidos</div>
+  <div class="dx-demo"><label class="ro-label" for="volume">Volumen</label>
+<input type="range" id="volume" class="ro-slider" min="0" max="10" step="1" value="6"></div>
+  <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-label&quot; for=&quot;volume&quot;&gt;Volumen&lt;/label&gt;
+&lt;input type=&quot;range&quot; id=&quot;volume&quot; class=&quot;ro-slider&quot; min=&quot;0&quot; max=&quot;10&quot; step=&quot;1&quot; value=&quot;6&quot;&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Muestra el valor actual junto al slider cuando sea relevante para la tarea.</li><li>Define step de forma que cada posición tenga significado (evita valores intermedios sin sentido).</li><li>Da nombre accesible siempre, con label o aria-label.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses un slider cuando el usuario necesita precisión exacta y fácil de verificar: usa Number input.</li><li>No ocultes los límites min/max sin comunicarlos en el contexto visual.</li><li>No reemplaces &lt;input type=&quot;range&quot;&gt; por un div arrastrable custom sin semántica de slider.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="number-input.html">number-input</a> · <a href="rating.html">rating</a> · <a href="form.html">form</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

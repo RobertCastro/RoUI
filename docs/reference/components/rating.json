@@ -1,0 +1,68 @@
+{
+  "name": "rating",
+  "title": "Rating",
+  "group": "Formularios",
+  "maturity": "experimental",
+  "summary": "Selector de estrellas para capturar o mostrar una puntuación dentro de un rango pequeño y fijo.",
+  "whenToUse": [
+    "Pedir o mostrar una puntuación de satisfacción o calidad (1 a 5 estrellas, por ejemplo).",
+    "Cuando el rango es corto y cada opción tiene el mismo peso visual (no un valor continuo)."
+  ],
+  "whenNotToUse": [
+    "Para un rango continuo o amplio de valores: usa Slider.",
+    "Para elegir una única opción entre etiquetas de texto: usa Segmented."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-rating\" role=\"group\" aria-label=\"Puntuación\">\n  <button class=\"ro-rating__star is-active\" type=\"button\" aria-label=\"1 estrella\" aria-pressed=\"true\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></button>\n  <button class=\"ro-rating__star\" type=\"button\" aria-label=\"2 estrellas\" aria-pressed=\"false\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></button>\n</div>",
+    "notes": [
+      "El contenedor es role=\"group\" con aria-label describiendo qué se puntúa.",
+      "Cada estrella es un <button> con aria-pressed que refleja si esa posición (y las anteriores) están seleccionadas.",
+      "La clase is-active pinta la estrella con el amarillo de marca; aria-pressed es la fuente de verdad, no el color."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-rating", "desc": "Contenedor del grupo de estrellas." },
+      { "name": "ro-rating__star", "desc": "Botón de una estrella individual." },
+      { "name": "ro-rating--readonly", "desc": "Variante de solo lectura (sin cursor de interacción)." }
+    ],
+    "data": [],
+    "tokens": ["--ro-ink-20", "--ro-primary"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Mueve el foco entre estrellas."],
+      ["Enter / Espacio", "Selecciona la estrella enfocada como nueva puntuación."]
+    ],
+    "notes": [
+      "Cada botón lleva aria-label con el valor que representa (\"3 estrellas\"), no solo un icono mudo.",
+      "aria-pressed=\"true\" en cada estrella hasta la puntuación actual comunica el estado sin depender del color.",
+      "En modo solo lectura (ro-rating--readonly), usa role=\"img\" con un aria-label del total en vez de botones interactivos."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Puntuación interactiva (4 de 5)",
+      "html": "<div class=\"ro-rating\" role=\"group\" aria-label=\"Puntuación\">\n  <button class=\"ro-rating__star is-active\" type=\"button\" aria-label=\"1 estrella\" aria-pressed=\"true\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></button>\n  <button class=\"ro-rating__star is-active\" type=\"button\" aria-label=\"2 estrellas\" aria-pressed=\"true\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></button>\n  <button class=\"ro-rating__star is-active\" type=\"button\" aria-label=\"3 estrellas\" aria-pressed=\"true\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></button>\n  <button class=\"ro-rating__star is-active\" type=\"button\" aria-label=\"4 estrellas\" aria-pressed=\"true\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></button>\n  <button class=\"ro-rating__star\" type=\"button\" aria-label=\"5 estrellas\" aria-pressed=\"false\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></button>\n</div>\n<span class=\"ro-muted\" style=\"font-size:13px\">Haz clic para puntuar</span>"
+    },
+    {
+      "title": "Solo lectura",
+      "html": "<div class=\"ro-rating ro-rating--readonly\" role=\"img\" aria-label=\"3 de 5 estrellas\">\n  <span class=\"ro-rating__star is-active\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></span>\n  <span class=\"ro-rating__star is-active\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></span>\n  <span class=\"ro-rating__star is-active\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></span>\n  <span class=\"ro-rating__star\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></span>\n  <span class=\"ro-rating__star\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></span>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa role=\"group\" con aria-label describiendo qué se puntúa.",
+      "Da a cada estrella un aria-label con su valor numérico (\"3 estrellas\"), no solo un icono.",
+      "Refleja la selección con aria-pressed, no solo con color."
+    ],
+    "dont": [
+      "No uses rating para escalas de más de 10 puntos: se vuelve difícil de escanear y de tabular.",
+      "No dependas solo del relleno amarillo para comunicar la puntuación a quien no distingue color.",
+      "No mezcles botones interactivos y de solo lectura dentro del mismo grupo."
+    ]
+  },
+  "related": ["slider", "form", "tag"]
+}

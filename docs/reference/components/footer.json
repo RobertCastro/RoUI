@@ -1,0 +1,65 @@
+{
+  "name": "footer",
+  "title": "Footer",
+  "group": "Contenido y estructura",
+  "maturity": "experimental",
+  "summary": "Pie de página o de sección, con columnas de enlaces y una barra inferior de créditos.",
+  "whenToUse": [
+    "Cierre de página con enlaces secundarios, información legal y redes sociales.",
+    "Cierre de una sección de contenido extensa dentro de un article."
+  ],
+  "whenNotToUse": [
+    "Para acciones de una tarea puntual (guardar, cancelar): usa el footer de Modal o Drawer, no este.",
+    "Para navegación primaria: usa Header o Sidebar."
+  ],
+  "anatomy": {
+    "html": "<footer class=\"ro-footer\">\n  <div class=\"ro-container\">\n    <div class=\"ro-footer__cols\">\n      <div class=\"ro-footer__col\">\n        <div class=\"ro-footer__brand\">RoUI</div>\n        <p class=\"ro-body\">Design system reutilizable.</p>\n      </div>\n      <div class=\"ro-footer__col\"><h3>Producto</h3><a href=\"#\">Componentes</a><a href=\"#\">Tokens</a></div>\n    </div>\n    <div class=\"ro-footer__bottom\">\n      <span>© 2026 RoUI · MIT</span>\n    </div>\n  </div>\n</footer>",
+    "notes": [
+      "Si <footer> es hijo directo de <body>, es landmark contentinfo implícito y no necesita role.",
+      "Si el mismo <footer> está anidado dentro de <article> o <section> (pie de una sección), pierde ese rol implícito.",
+      "Los <h3> dentro de ro-footer__col son etiquetas visuales de grupo; verifica si deben continuar la jerarquía real de encabezados de la página o si conviene un nivel distinto según el documento.",
+      "ro-container centra y limita el ancho del contenido interno; no es exclusivo de footer."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-footer", "desc": "Contenedor base con fondo tenue y borde superior." },
+      { "name": "ro-footer__cols", "desc": "Grid de columnas (marca + hasta 3 grupos de enlaces)." },
+      { "name": "ro-footer__brand", "desc": "Nombre o logotipo dentro de la primera columna." },
+      { "name": "ro-footer__col", "desc": "Columna individual con título y enlaces." },
+      { "name": "ro-footer__bottom", "desc": "Barra inferior con copyright y créditos." },
+      { "name": "ro-footer__social", "desc": "Grupo de iconos de redes sociales/contacto." }
+    ],
+    "data": [],
+    "tokens": ["--ro-ink-soft", "--ro-ink-10", "--ro-space-8", "--ro-space-10", "--ro-space-5"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "No dupliques el landmark contentinfo: debe existir como máximo un <footer> hijo directo de <body> por página.",
+      "Los enlaces del pie usan <a> nativo; los de solo icono en ro-footer__social necesitan aria-label.",
+      "El contraste del texto secundario del pie (--ro-ink-60/--ro-ink-50) debe verificarse igual que en el resto de la página, no asumas que un pie tolera menos contraste."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Footer con columnas y barra inferior",
+      "html": "<footer class=\"ro-footer\">\n  <div class=\"ro-container\">\n    <div class=\"ro-footer__cols\">\n      <div class=\"ro-footer__col\">\n        <div class=\"ro-footer__brand\">RoUI</div>\n        <p class=\"ro-body\">Tokens, componentes y layouts en CSS.</p>\n        <div class=\"ro-footer__social\">\n          <a class=\"ro-btn-icon\" href=\"#\" aria-label=\"Sitio web\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-link\"></use></svg></a>\n          <a class=\"ro-btn-icon\" href=\"#\" aria-label=\"Correo\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-mail\"></use></svg></a>\n        </div>\n      </div>\n      <div class=\"ro-footer__col\"><h3>Producto</h3><a href=\"#\">Componentes</a><a href=\"#\">Tokens</a></div>\n      <div class=\"ro-footer__col\"><h3>Recursos</h3><a href=\"#\">Docs</a><a href=\"#\">Changelog</a></div>\n    </div>\n    <div class=\"ro-footer__bottom\">\n      <span>© 2026 RoUI · MIT</span>\n      <span>Hecho con RoUI</span>\n    </div>\n  </div>\n</footer>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa un único <footer> hijo directo de <body> como pie de la página.",
+      "Da aria-label a los iconos de redes sociales sin texto visible.",
+      "Reserva ro-footer__bottom para créditos y enlaces legales cortos."
+    ],
+    "dont": [
+      "No metas la navegación principal de la aplicación en el footer.",
+      "No uses los <h3> del footer para saltar niveles de la jerarquía real de encabezados de la página.",
+      "No dependas del landmark contentinfo para un <footer> anidado dentro de article/section: ahí no existe."
+    ]
+  },
+  "related": ["header", "nav", "divider"]
+}

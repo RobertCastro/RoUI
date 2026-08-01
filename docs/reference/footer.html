@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Footer — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Contenido y estructura</p>
+      <div class="dx-ref-title"><h1>Footer</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Pie de página o de sección, con columnas de enlaces y una barra inferior de créditos.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Cierre de página con enlaces secundarios, información legal y redes sociales.</li><li>Cierre de una sección de contenido extensa dentro de un article.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para acciones de una tarea puntual (guardar, cancelar): usa el footer de Modal o Drawer, no este.</li><li>Para navegación primaria: usa Header o Sidebar.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;footer class=&quot;ro-footer&quot;&gt;
+  &lt;div class=&quot;ro-container&quot;&gt;
+    &lt;div class=&quot;ro-footer__cols&quot;&gt;
+      &lt;div class=&quot;ro-footer__col&quot;&gt;
+        &lt;div class=&quot;ro-footer__brand&quot;&gt;RoUI&lt;/div&gt;
+        &lt;p class=&quot;ro-body&quot;&gt;Design system reutilizable.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ro-footer__col&quot;&gt;&lt;h3&gt;Producto&lt;/h3&gt;&lt;a href=&quot;#&quot;&gt;Componentes&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;Tokens&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-footer__bottom&quot;&gt;
+      &lt;span&gt;© 2026 RoUI · MIT&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Si &lt;footer&gt; es hijo directo de &lt;body&gt;, es landmark contentinfo implícito y no necesita role.</li><li>Si el mismo &lt;footer&gt; está anidado dentro de &lt;article&gt; o &lt;section&gt; (pie de una sección), pierde ese rol implícito.</li><li>Los &lt;h3&gt; dentro de ro-footer__col son etiquetas visuales de grupo; verifica si deben continuar la jerarquía real de encabezados de la página o si conviene un nivel distinto según el documento.</li><li>ro-container centra y limita el ancho del contenido interno; no es exclusivo de footer.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-footer</code></td><td>Contenedor base con fondo tenue y borde superior.</td></tr><tr><td><code>.ro-footer__cols</code></td><td>Grid de columnas (marca + hasta 3 grupos de enlaces).</td></tr><tr><td><code>.ro-footer__brand</code></td><td>Nombre o logotipo dentro de la primera columna.</td></tr><tr><td><code>.ro-footer__col</code></td><td>Columna individual con título y enlaces.</td></tr><tr><td><code>.ro-footer__bottom</code></td><td>Barra inferior con copyright y créditos.</td></tr><tr><td><code>.ro-footer__social</code></td><td>Grupo de iconos de redes sociales/contacto.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-soft</code> <code>--ro-ink-10</code> <code>--ro-space-8</code> <code>--ro-space-10</code> <code>--ro-space-5</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>No dupliques el landmark contentinfo: debe existir como máximo un &lt;footer&gt; hijo directo de &lt;body&gt; por página.</li><li>Los enlaces del pie usan &lt;a&gt; nativo; los de solo icono en ro-footer__social necesitan aria-label.</li><li>El contraste del texto secundario del pie (--ro-ink-60/--ro-ink-50) debe verificarse igual que en el resto de la página, no asumas que un pie tolera menos contraste.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Footer con columnas y barra inferior</div>
+  <div class="dx-demo"><footer class="ro-footer">
+  <div class="ro-container">
+    <div class="ro-footer__cols">
+      <div class="ro-footer__col">
+        <div class="ro-footer__brand">RoUI</div>
+        <p class="ro-body">Tokens, componentes y layouts en CSS.</p>
+        <div class="ro-footer__social">
+          <a class="ro-btn-icon" href="#" aria-label="Sitio web"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-link"></use></svg></a>
+          <a class="ro-btn-icon" href="#" aria-label="Correo"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-mail"></use></svg></a>
+        </div>
+      </div>
+      <div class="ro-footer__col"><h3>Producto</h3><a href="#">Componentes</a><a href="#">Tokens</a></div>
+      <div class="ro-footer__col"><h3>Recursos</h3><a href="#">Docs</a><a href="#">Changelog</a></div>
+    </div>
+    <div class="ro-footer__bottom">
+      <span>© 2026 RoUI · MIT</span>
+      <span>Hecho con RoUI</span>
+    </div>
+  </div>
+</footer></div>
+  <pre class="dx-ref-code"><code>&lt;footer class=&quot;ro-footer&quot;&gt;
+  &lt;div class=&quot;ro-container&quot;&gt;
+    &lt;div class=&quot;ro-footer__cols&quot;&gt;
+      &lt;div class=&quot;ro-footer__col&quot;&gt;
+        &lt;div class=&quot;ro-footer__brand&quot;&gt;RoUI&lt;/div&gt;
+        &lt;p class=&quot;ro-body&quot;&gt;Tokens, componentes y layouts en CSS.&lt;/p&gt;
+        &lt;div class=&quot;ro-footer__social&quot;&gt;
+          &lt;a class=&quot;ro-btn-icon&quot; href=&quot;#&quot; aria-label=&quot;Sitio web&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-link&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;
+          &lt;a class=&quot;ro-btn-icon&quot; href=&quot;#&quot; aria-label=&quot;Correo&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-mail&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;ro-footer__col&quot;&gt;&lt;h3&gt;Producto&lt;/h3&gt;&lt;a href=&quot;#&quot;&gt;Componentes&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;Tokens&lt;/a&gt;&lt;/div&gt;
+      &lt;div class=&quot;ro-footer__col&quot;&gt;&lt;h3&gt;Recursos&lt;/h3&gt;&lt;a href=&quot;#&quot;&gt;Docs&lt;/a&gt;&lt;a href=&quot;#&quot;&gt;Changelog&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-footer__bottom&quot;&gt;
+      &lt;span&gt;© 2026 RoUI · MIT&lt;/span&gt;
+      &lt;span&gt;Hecho con RoUI&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa un único &lt;footer&gt; hijo directo de &lt;body&gt; como pie de la página.</li><li>Da aria-label a los iconos de redes sociales sin texto visible.</li><li>Reserva ro-footer__bottom para créditos y enlaces legales cortos.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No metas la navegación principal de la aplicación en el footer.</li><li>No uses los &lt;h3&gt; del footer para saltar niveles de la jerarquía real de encabezados de la página.</li><li>No dependas del landmark contentinfo para un &lt;footer&gt; anidado dentro de article/section: ahí no existe.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="header.html">header</a> · <a href="nav.html">nav</a> · <a href="divider.html">divider</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

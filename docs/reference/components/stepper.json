@@ -1,0 +1,67 @@
+{
+  "name": "stepper",
+  "title": "Stepper",
+  "group": "Disclosure",
+  "maturity": "experimental",
+  "summary": "Indicador visual de progreso por pasos (wizard), horizontal o vertical.",
+  "whenToUse": [
+    "Mostrar en qué paso de un flujo multi-etapa está el usuario (por ejemplo, un formulario de registro en varias pantallas).",
+    "Dar contexto de cuánto falta, con pasos completados, el actual y los pendientes."
+  ],
+  "whenNotToUse": [
+    "No es un componente navegable por sí mismo: los pasos son solo visuales (div, no button/link), sin clic ni teclado propio. Si el flujo permite saltar entre pasos, esa navegación va en los botones de acción del formulario o wizard que envuelve al stepper, no en el stepper.",
+    "Para una lista de eventos cronológicos ya ocurridos (no un flujo en progreso): usa Timeline.",
+    "Para un progreso continuo sin pasos discretos (porcentaje, carga): usa Progress."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-stepper\">\n  <div class=\"ro-step-item is-done\"><span class=\"ro-step-dot\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-check\"></use></svg></span><span class=\"ro-step-label\">Cuenta</span></div>\n  <div class=\"ro-step-item is-done\"><span class=\"ro-step-dot\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-check\"></use></svg></span><span class=\"ro-step-label\">Perfil</span></div>\n  <div class=\"ro-step-item is-current\"><span class=\"ro-step-dot\">3</span><span class=\"ro-step-label\">Plan</span></div>\n  <div class=\"ro-step-item\"><span class=\"ro-step-dot\">4</span><span class=\"ro-step-label\">Pago</span></div>\n</div>",
+    "notes": [
+      "Cada .ro-step-item es un div simple: is-done marca completado (con icono de check), is-current marca el paso activo; sin clase es un paso pendiente.",
+      "El número o check dentro de .ro-step-dot es contenido visual; no hay marcado ARIA de progreso (no es role=progressbar) porque representa pasos discretos, no un porcentaje.",
+      "El conector entre puntos (::before) es puramente decorativo vía CSS, sin nodo en el DOM."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-stepper", "desc": "Contenedor horizontal (fila) de pasos." },
+      { "name": "ro-stepper--vertical", "desc": "Variante vertical, con el conector a la izquierda." },
+      { "name": "ro-step-item", "desc": "Un paso individual." },
+      { "name": "ro-step-item.is-done", "desc": "Paso completado." },
+      { "name": "ro-step-item.is-current", "desc": "Paso activo." },
+      { "name": "ro-step-dot", "desc": "Círculo con número o icono de check." },
+      { "name": "ro-step-label", "desc": "Etiqueta corta del paso (horizontal)." },
+      { "name": "ro-step-body", "desc": "Bloque de título y descripción (vertical)." }
+    ],
+    "data": [],
+    "tokens": ["--ro-ink-10", "--ro-ink-20", "--ro-secondary", "--ro-secondary-ring", "--ro-radius-full"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/tabs-accordion-navigation.md",
+    "keyboard": [],
+    "notes": [
+      "No es interactivo: no expone foco ni teclado propio, porque los pasos no son botones ni enlaces en el marcado actual.",
+      "El estado (completado/actual/pendiente) se comunica solo por color, posición e icono de check; si necesita ser accesible a lector de pantalla, añade un texto visualmente oculto por paso (por ejemplo \"Paso 3 de 4, actual: Plan\") o expón el progreso con un elemento aparte.",
+      "Si en el futuro los pasos se vuelven clicables (navegación real entre pasos completados), deben marcarse como button o a con aria-current=\"step\" en el activo, siguiendo el patrón de aria-current documentado para navegación."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Vertical con descripción",
+      "html": "<div class=\"ro-stepper ro-stepper--vertical\" style=\"max-width:320px\">\n  <div class=\"ro-step-item is-done\"><span class=\"ro-step-dot\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-check\"></use></svg></span><div class=\"ro-step-body\"><div style=\"font-weight:600;font-size:14px\">Crear cuenta</div><div class=\"ro-muted\" style=\"font-size:13px\">Completado</div></div></div>\n  <div class=\"ro-step-item is-current\"><span class=\"ro-step-dot\">2</span><div class=\"ro-step-body\"><div style=\"font-weight:600;font-size:14px\">Elegir plan</div><div class=\"ro-muted\" style=\"font-size:13px\">En curso</div></div></div>\n  <div class=\"ro-step-item\"><span class=\"ro-step-dot\">3</span><div class=\"ro-step-body\"><div style=\"font-weight:600;font-size:14px\">Confirmar</div></div></div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa etiquetas cortas y claras por paso (un sustantivo o frase de 1-2 palabras).",
+      "Marca is-done en cuanto el usuario complete el paso, no solo al final del flujo.",
+      "Combina el stepper con botones reales de \"Anterior\"/\"Siguiente\" en el formulario que envuelve el flujo."
+    ],
+    "dont": [
+      "No agregues onclick a los .ro-step-item esperando que naveguen: el componente no incluye ese comportamiento.",
+      "No lo uses como único indicador de error de validación; usa Alert o mensajes inline en el formulario.",
+      "No mezcles más de 5-6 pasos horizontales: se vuelve difícil de leer en pantallas angostas."
+    ]
+  },
+  "related": ["progress", "timeline", "form"]
+}

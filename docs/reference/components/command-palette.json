@@ -1,0 +1,81 @@
+{
+  "name": "command-palette",
+  "title": "Command palette",
+  "group": "Overlays",
+  "maturity": "experimental",
+  "summary": "Diálogo modal de acceso rápido (⌘K/Ctrl+K) que combina un combobox en línea para buscar y ejecutar comandos.",
+  "whenToUse": [
+    "Dar acceso global a navegación y acciones frecuentes desde cualquier pantalla.",
+    "Permitir a usuarios avanzados operar por teclado sin recorrer menús."
+  ],
+  "whenNotToUse": [
+    "Para un autocompletar de un solo campo dentro de un formulario: usa Combobox.",
+    "Para confirmar o pedir un dato puntual: usa Modal.",
+    "Para una lista de acciones contextual anclada a un botón: usa Menu."
+  ],
+  "anatomy": {
+    "html": "<button class=\"ro-btn ro-btn--soft\" data-ro-overlay-open=\"cmdk\" aria-haspopup=\"dialog\">Abrir <span class=\"ro-kbd\">⌘</span><span class=\"ro-kbd\">K</span></button>\n\n<div class=\"ro-cmdk-overlay\" id=\"cmdk\" data-ro-overlay-root hidden>\n  <div class=\"ro-cmdk\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Paleta de comandos\" data-ro-cmdk>\n    <div class=\"ro-cmdk__search\">\n      <svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg>\n      <input id=\"cmdk-input\" role=\"combobox\" aria-expanded=\"true\" aria-controls=\"cmdk-list\" aria-autocomplete=\"list\" aria-label=\"Buscar comandos\" placeholder=\"Buscar comandos…\">\n    </div>\n    <div class=\"ro-cmdk__list\" id=\"cmdk-list\" role=\"listbox\" aria-label=\"Comandos\">\n      <div class=\"ro-cmdk__group\" role=\"presentation\">Navegar</div>\n      <div class=\"ro-cmdk__item\" role=\"option\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-book-open\"></use></svg> Ir a Inicio <span class=\"ro-kbd\">G</span></div>\n      <div class=\"ro-cmdk__item\" role=\"option\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-user\"></use></svg> Ir a Directorio</div>\n      <div class=\"ro-cmdk__group\" role=\"presentation\">Acciones</div>\n      <div class=\"ro-cmdk__item\" role=\"option\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-plus\"></use></svg> Crear proyecto</div>\n      <div class=\"ro-cmdk__item\" role=\"option\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-settings\"></use></svg> Ajustes</div>\n      <div class=\"ro-cmdk__empty\" hidden>Sin comandos</div>\n    </div>\n  </div>\n</div>",
+    "notes": [
+      "Es un diálogo modal (overlay-controller): mismo contrato de foco inicial, trap de Tab, Escape y restauración del foco que Modal y Drawer.",
+      "Dentro del diálogo, el campo de búsqueda y la lista son un combobox-controller en modo inline (data-ro-combobox-inline u options.inline:true): la lista siempre está visible, no abre/cierra por sí misma y no captura Escape ni el pointer exterior — eso lo maneja el overlay.",
+      "En modo inline, Enter ejecuta onSelect (la acción del comando) en lugar de rellenar el input.",
+      "Los encabezados de grupo (ro-cmdk__group) son role=presentation: agrupan visualmente pero no son opciones navegables.",
+      "El disparador usa data-ro-overlay-open y aria-haspopup=dialog; además, un listener global de teclado abre la paleta con ⌘K/Ctrl+K y limpia el input al abrir."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-cmdk-overlay", "desc": "Capa que cubre la página (backdrop), igual rol que ro-overlay." },
+      { "name": "ro-cmdk", "desc": "Panel del diálogo de la paleta." },
+      { "name": "ro-cmdk__search", "desc": "Cabecera con icono de búsqueda e input." },
+      { "name": "ro-cmdk__list", "desc": "Lista de resultados (listbox), scrollable." },
+      { "name": "ro-cmdk__group", "desc": "Encabezado de grupo (role=presentation)." },
+      { "name": "ro-cmdk__item", "desc": "Comando individual (role=option)." },
+      { "name": "ro-cmdk__empty", "desc": "Mensaje \"sin comandos\", oculto por defecto." },
+      { "name": "ro-kbd", "desc": "Etiqueta de tecla (atajo) junto a un comando o en el disparador." }
+    ],
+    "data": [
+      { "name": "data-ro-overlay-root", "desc": "Contenedor del overlay (inicia hidden)." },
+      { "name": "data-ro-overlay-open", "desc": "En el disparador: id de la paleta a abrir." },
+      { "name": "data-ro-cmdk", "desc": "Marca el panel de diálogo como paleta de comandos para inicializar el combobox inline." },
+      { "name": "data-ro-combobox-inline", "desc": "Activa el modo inline del combobox-controller (alternativa a options.inline:true)." }
+    ],
+    "tokens": ["--ro-radius-2xl", "--ro-shadow-md", "--ro-z-modal", "--ro-secondary-soft", "--ro-white"],
+    "primitive": { "import": "createOverlayController", "module": "overlay-controller" }
+  },
+  "a11y": {
+    "contract": "accessibility/combobox-calendar-command-palette.md",
+    "keyboard": [
+      ["⌘K / Ctrl+K", "Abre la paleta desde cualquier lugar de la página y enfoca el campo."],
+      ["Escape", "Cierra el diálogo (lo maneja el overlay, no el combobox) y restaura el foco al disparador."],
+      ["ArrowDown / ArrowUp", "Mueve la opción activa entre los comandos visibles (con wrap)."],
+      ["Enter", "Ejecuta el comando activo y cierra la paleta."],
+      ["Tab / Shift+Tab", "Cicla el foco dentro del diálogo (trap del overlay-controller)."]
+    ],
+    "notes": [
+      "El foco entra al campo de búsqueda al abrir; al cerrar, vuelve al disparador (o al elemento que abrió con ⌘K).",
+      "El input mantiene el foco en todo momento: la opción activa solo se comunica por aria-activedescendant.",
+      "Al escribir se filtra la lista y se muestra ro-cmdk__empty si no hay coincidencias.",
+      "El fondo queda inerte mientras la paleta está abierta, igual que en Modal."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Paleta de comandos (interactivo)",
+      "html": "<button class=\"ro-btn ro-btn--soft\" data-ro-overlay-open=\"ref-cmdk\" aria-haspopup=\"dialog\">Abrir <span class=\"ro-kbd\">⌘</span><span class=\"ro-kbd\">K</span></button>\n<span class=\"ro-muted\" style=\"font-size:13px;margin-left:8px\">o pulsa ⌘K / Ctrl+K</span>\n\n<div class=\"ro-cmdk-overlay\" id=\"ref-cmdk\" data-ro-overlay-root hidden>\n  <div class=\"ro-cmdk\" role=\"dialog\" aria-modal=\"true\" aria-label=\"Paleta de comandos\" data-ro-cmdk>\n    <div class=\"ro-cmdk__search\">\n      <svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg>\n      <input id=\"ref-cmdk-input\" role=\"combobox\" aria-expanded=\"true\" aria-controls=\"ref-cmdk-list\" aria-autocomplete=\"list\" aria-label=\"Buscar comandos\" placeholder=\"Buscar comandos…\">\n    </div>\n    <div class=\"ro-cmdk__list\" id=\"ref-cmdk-list\" role=\"listbox\" aria-label=\"Comandos\">\n      <div class=\"ro-cmdk__group\" role=\"presentation\">Navegar</div>\n      <div class=\"ro-cmdk__item\" role=\"option\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-book-open\"></use></svg> Ir a Inicio</div>\n      <div class=\"ro-cmdk__item\" role=\"option\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-calendar\"></use></svg> Ir a Sesiones</div>\n      <div class=\"ro-cmdk__group\" role=\"presentation\">Acciones</div>\n      <div class=\"ro-cmdk__item\" role=\"option\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-plus\"></use></svg> Crear proyecto</div>\n      <div class=\"ro-cmdk__empty\" hidden>Sin comandos</div>\n    </div>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Agrupa comandos afines con ro-cmdk__group para orientar el escaneo visual.",
+      "Muestra el atajo de teclado del comando con ro-kbd cuando exista.",
+      "Anuncia el atajo global (⌘K/Ctrl+K) cerca del disparador."
+    ],
+    "dont": [
+      "No anides otro diálogo modal dentro de la paleta.",
+      "No dejes que el combobox interno capture Escape: debe cerrarla el overlay para restaurar el foco correctamente.",
+      "No uses la paleta para un único autocompletar de formulario: usa Combobox."
+    ]
+  },
+  "related": ["combobox", "modal", "menu", "popover"]
+}

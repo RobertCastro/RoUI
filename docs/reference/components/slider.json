@@ -1,0 +1,67 @@
+{
+  "name": "slider",
+  "title": "Slider",
+  "group": "Formularios",
+  "maturity": "experimental",
+  "summary": "Input range estilizado para elegir un valor dentro de un rango continuo arrastrando un thumb.",
+  "whenToUse": [
+    "Rangos amplios o continuos donde el valor exacto importa menos que la posición relativa (volumen, progreso, nivel).",
+    "Cuando ajustar con arrastre es más rápido que escribir un número."
+  ],
+  "whenNotToUse": [
+    "Cuando el usuario necesita escribir o leer un valor exacto con facilidad: usa Number input.",
+    "Para seleccionar una opción entre pocas alternativas discretas: usa Segmented."
+  ],
+  "anatomy": {
+    "html": "<label class=\"ro-label\" for=\"level\">Nivel</label>\n<input type=\"range\" id=\"level\" class=\"ro-slider\" min=\"0\" max=\"100\" value=\"65\" step=\"1\">",
+    "notes": [
+      "Es un <input type=\"range\"> nativo: aporta rol slider, foco y control por teclado sin JavaScript adicional.",
+      "min, max, step y value definen el comportamiento; el valor actual se refleja fuera con texto asociado (no automático).",
+      "El thumb usa --ro-secondary como color de marca; el track usa --ro-ink-10 como base neutra."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-slider", "desc": "Clase única del input range estilizado." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-full", "--ro-secondary", "--ro-ink-10", "--ro-focus-ring"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Flecha izquierda / derecha", "Decrementa/incrementa el valor un step."],
+      ["Flecha arriba / abajo", "Decrementa/incrementa el valor un step."],
+      ["Home / End", "Salta al valor mínimo o máximo."]
+    ],
+    "notes": [
+      "Da nombre accesible al slider con un <label> asociado (for/id) o aria-label si no hay label visible.",
+      "Si el valor se muestra en pantalla (badge, texto), no dupliques esa información como único medio: el rol slider ya expone aria-valuenow nativamente.",
+      "min/max/step deben reflejar límites reales; un rango engañoso confunde a quien usa solo teclado."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Slider con valor visible",
+      "html": "<input type=\"range\" class=\"ro-slider\" min=\"0\" max=\"100\" value=\"65\" aria-label=\"Nivel\" style=\"width:280px\">\n<span class=\"ro-badge ro-badge--soft\">65%</span>"
+    },
+    {
+      "title": "Slider con pasos definidos",
+      "html": "<label class=\"ro-label\" for=\"volume\">Volumen</label>\n<input type=\"range\" id=\"volume\" class=\"ro-slider\" min=\"0\" max=\"10\" step=\"1\" value=\"6\">"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Muestra el valor actual junto al slider cuando sea relevante para la tarea.",
+      "Define step de forma que cada posición tenga significado (evita valores intermedios sin sentido).",
+      "Da nombre accesible siempre, con label o aria-label."
+    ],
+    "dont": [
+      "No uses un slider cuando el usuario necesita precisión exacta y fácil de verificar: usa Number input.",
+      "No ocultes los límites min/max sin comunicarlos en el contexto visual.",
+      "No reemplaces <input type=\"range\"> por un div arrastrable custom sin semántica de slider."
+    ]
+  },
+  "related": ["number-input", "rating", "form"]
+}

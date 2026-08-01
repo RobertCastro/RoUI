@@ -1,0 +1,69 @@
+{
+  "name": "file-upload",
+  "title": "File upload",
+  "group": "Formularios",
+  "maturity": "experimental",
+  "summary": "Dropzone para subir archivos por arrastre o por clic, con resalte visual al soltar sobre ella.",
+  "whenToUse": [
+    "Subir uno o varios archivos (imágenes, documentos) donde arrastrar-y-soltar agiliza la tarea.",
+    "Cuando conviene comunicar formatos y tamaño máximo aceptados junto al control."
+  ],
+  "whenNotToUse": [
+    "Para adjuntar un solo archivo pequeño en un formulario muy compacto: un input[type=file] simple puede bastar.",
+    "Cuando el archivo se genera o selecciona desde el propio sistema sin necesidad de arrastre (por ejemplo, una foto de perfil ya provista): considera un flujo más directo."
+  ],
+  "anatomy": {
+    "html": "<label class=\"ro-dropzone\">\n  <svg class=\"ro-icon ro-icon--lg ro-dropzone__icon\" aria-hidden=\"true\"><use href=\"#ro-i-upload\"></use></svg>\n  <div><strong>Arrastra un archivo</strong> o haz clic para subir</div>\n  <div class=\"ro-dropzone__hint\">PNG, JPG o PDF · máx 10 MB</div>\n  <input type=\"file\" hidden>\n</label>",
+    "notes": [
+      "El <label> envuelve al input[type=file] oculto: clic en cualquier parte de la zona abre el selector nativo de archivos.",
+      "El estado de arrastre activo se marca con la clase is-dragover (aplicada por script al recibir dragenter).",
+      "El icono es decorativo (aria-hidden); el texto \"Arrastra un archivo o haz clic para subir\" es lo que da contexto real."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-dropzone", "desc": "Contenedor/label de la zona de arrastre." },
+      { "name": "ro-dropzone__icon", "desc": "Icono decorativo dentro de la zona." },
+      { "name": "ro-dropzone__hint", "desc": "Texto secundario con formatos y límites aceptados." },
+      { "name": "is-dragover", "desc": "Estado aplicado mientras se arrastra un archivo sobre la zona." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-xl", "--ro-secondary", "--ro-secondary-soft", "--ro-ink-20", "--ro-ink-02"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Tab", "Enfoca la zona (a través del input[type=file] nativo)."],
+      ["Enter / Espacio", "Abre el selector de archivos del sistema operativo."]
+    ],
+    "notes": [
+      "Al ser un <label> sobre un input[type=file] real, hereda foco, activación por teclado y el selector nativo del sistema operativo.",
+      "El arrastre (drag & drop) es una mejora adicional: la zona debe seguir siendo utilizable solo con teclado vía el input nativo.",
+      "Comunica formatos y tamaño máximo como texto visible (ro-dropzone__hint), no solo con el atributo accept del input."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Dropzone básica",
+      "html": "<label class=\"ro-dropzone\" style=\"max-width:420px\">\n  <svg class=\"ro-icon ro-icon--lg ro-dropzone__icon\"><use href=\"#ro-i-upload\"></use></svg>\n  <div><strong>Arrastra un archivo</strong> o haz clic para subir</div>\n  <div class=\"ro-dropzone__hint\">PNG, JPG o PDF · máx 10 MB</div>\n  <input type=\"file\" accept=\".png,.jpg,.jpeg,.pdf\" hidden>\n</label>"
+    },
+    {
+      "title": "Dropzone en estado de arrastre activo",
+      "html": "<label class=\"ro-dropzone is-dragover\" style=\"max-width:420px\">\n  <svg class=\"ro-icon ro-icon--lg ro-dropzone__icon\"><use href=\"#ro-i-upload\"></use></svg>\n  <div><strong>Suelta el archivo aquí</strong></div>\n  <div class=\"ro-dropzone__hint\">PNG, JPG o PDF · máx 10 MB</div>\n  <input type=\"file\" hidden>\n</label>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Indica formatos y tamaño máximo aceptados como texto visible.",
+      "Mantén siempre disponible el clic/teclado como alternativa al arrastre.",
+      "Muestra feedback claro (lista, progreso o error) después de soltar o seleccionar el archivo."
+    ],
+    "dont": [
+      "No dependas solo del arrastre: usuarios de teclado y móvil necesitan el input nativo funcional.",
+      "No ocultes errores de formato o tamaño; muéstralos junto a la zona con ro-error-text.",
+      "No uses un <div> con listeners de drag en vez de <label> + input[type=file] real."
+    ]
+  },
+  "related": ["form", "tags-input", "progress", "input-group"]
+}

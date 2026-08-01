@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Card — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Contenido y estructura</p>
+      <div class="dx-ref-title"><h1>Card</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Contenedor de superficie propia que agrupa contenido relacionado, con variantes planas, oscuras, degradadas y de fila clicable.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Agrupar contenido relacionado (título, texto, acción) en una superficie con borde propio.</li><li>Presentar un recurso o ítem de lista como fila completa clicable.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para contenido que debe bloquear la interacción del resto de la página: usa Modal.</li><li>Para un único bloque de texto suelto sin necesidad de agrupación visual: no añadas el envoltorio.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-card&quot;&gt;
+  &lt;div class=&quot;ro-card__header&quot;&gt;
+    &lt;h3 class=&quot;ro-h3&quot;&gt;Título de la tarjeta&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;ro-body&quot;&gt;Contenido de apoyo.&lt;/p&gt;
+  &lt;div class=&quot;ro-card__footer&quot;&gt;
+    &lt;button class=&quot;ro-btn ro-btn--soft ro-btn--sm&quot;&gt;Ver más&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>ro-card__header y ro-card__footer son opcionales: úsalos solo si hay acciones o metadatos que separar del cuerpo.</li><li>Para una tarjeta donde toda la superficie es un único destino, usa &lt;a class=&quot;ro-card-row&quot;&gt; envolviendo el contenido, no un &lt;div&gt; con onclick.</li><li>El heading interno (ro-h3) debe respetar la jerarquía real de la página, no elegirse por tamaño visual.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-card</code></td><td>Contenedor base con borde y superficie propia.</td></tr><tr><td><code>.ro-card--plain</code></td><td>Variante neutra sobre fondo de página.</td></tr><tr><td><code>.ro-card--soft-yellow</code></td><td>Variante con borde y degradado de marca.</td></tr><tr><td><code>.ro-card-dark</code></td><td>Tarjeta sólida invertida (fondo oscuro).</td></tr><tr><td><code>.ro-card__header</code></td><td>Fila superior: título y acción alineados.</td></tr><tr><td><code>.ro-card__footer</code></td><td>Fila inferior de acciones.</td></tr><tr><td><code>.ro-card-row</code></td><td>Fila completa clicable; aplícala sobre un &lt;a&gt;, no un &lt;div&gt;.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-card</code> <code>--ro-card-bg</code> <code>--ro-card-border</code> <code>--ro-card-fg</code> <code>--ro-radius-xl</code> <code>--ro-radius-2xl</code> <code>--ro-transition</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Enter</kbd></td><td>Activa el enlace de la tarjeta (variante ro-card-row).</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Una tarjeta íntegramente clicable usa un &lt;a&gt; que envuelve el contenido; evita anidar otro elemento interactivo (botón, enlace) dentro de esa misma área.</li><li>Si la tarjeta no es clicable en su totalidad, cualquier acción interna (botón, enlace) debe tener su propio nombre accesible; no dependas del contexto visual de la tarjeta.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Tarjeta con header y footer</div>
+  <div class="dx-demo"><div class="ro-card ro-card--plain" style="max-width:320px">
+  <div class="ro-card__header">
+    <h3 class="ro-h3">"Optimizar procesos"</h3>
+    <span class="ro-badge ro-badge--soft">Nuevo</span>
+  </div>
+  <p class="ro-body">Aún explorando este módulo.</p>
+  <div class="ro-card__footer">
+    <button class="ro-btn ro-btn--soft ro-btn--sm">Continuar</button>
+  </div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-card ro-card--plain&quot; style=&quot;max-width:320px&quot;&gt;
+  &lt;div class=&quot;ro-card__header&quot;&gt;
+    &lt;h3 class=&quot;ro-h3&quot;&gt;&quot;Optimizar procesos&quot;&lt;/h3&gt;
+    &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Nuevo&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;ro-body&quot;&gt;Aún explorando este módulo.&lt;/p&gt;
+  &lt;div class=&quot;ro-card__footer&quot;&gt;
+    &lt;button class=&quot;ro-btn ro-btn--soft ro-btn--sm&quot;&gt;Continuar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Fila clicable (recurso)</div>
+  <div class="dx-demo"><a class="ro-card-row" href="#" style="background:var(--ro-ink-02)">
+  <span class="ro-avatar">O</span>
+  <div>
+    <div style="font-weight:600">API Sandbox</div>
+    <div class="ro-muted" style="font-size:13px">Acceso a modelos vía API</div>
+  </div>
+  <span class="ro-badge" style="margin-left:auto">Activo</span>
+</a></div>
+  <pre class="dx-ref-code"><code>&lt;a class=&quot;ro-card-row&quot; href=&quot;#&quot; style=&quot;background:var(--ro-ink-02)&quot;&gt;
+  &lt;span class=&quot;ro-avatar&quot;&gt;O&lt;/span&gt;
+  &lt;div&gt;
+    &lt;div style=&quot;font-weight:600&quot;&gt;API Sandbox&lt;/div&gt;
+    &lt;div class=&quot;ro-muted&quot; style=&quot;font-size:13px&quot;&gt;Acceso a modelos vía API&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;span class=&quot;ro-badge&quot; style=&quot;margin-left:auto&quot;&gt;Activo&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa &lt;a class=&quot;ro-card-row&quot;&gt; para una fila totalmente clicable, nunca un &lt;div&gt; con onclick.</li><li>Reserva ro-card__footer para acciones, no para texto de relleno.</li><li>Mantén el heading interno alineado con la jerarquía real del documento.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No anides una tarjeta clicable dentro de otro elemento interactivo (enlace o botón).</li><li>No uses ro-card-dark solo por estética si el contenido no necesita ese énfasis.</li><li>No apiles más de un enlace/botón principal ambiguo dentro de una tarjeta clicable completa.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="avatar.html">avatar</a> · <a href="badge.html">badge</a> · <a href="list-group.html">list-group</a> · <a href="empty.html">empty</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

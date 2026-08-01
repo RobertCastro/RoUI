@@ -1,7 +1,7 @@
 /* components/command-palette.css — Command palette (⌘K). Item activo en lavanda de marca. */
 .ro-cmdk-overlay {
   position: fixed; inset: 0; z-index: var(--ro-z-modal);
-  background: rgba(23,23,25,0.45); display: none;
+  background: var(--ro-ink-45); display: none;
   align-items: flex-start; justify-content: center; padding: 12vh 16px 16px;
 }
 .ro-cmdk-overlay.is-open { display: flex; }

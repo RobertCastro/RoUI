@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accesibilidad — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Accesibilidad</p>
+      <article class="ro-prose dx-ref-contract">
+<h1>Contratos accesibles: contenido, estructura y estado</h1>
+<p>Patrones sin comportamiento JS propio: contenido presentacional, estructura de
+página y componentes de estado (progreso, carga, datos). El marcado aporta toda la
+semántica; no hay controlador que gestione foco o teclado.</p>
+<h2>Contenido presentacional</h2>
+<ul>
+<li><strong>Iconos decorativos</strong>: <code>aria-hidden=&quot;true&quot;</code> en el <code>&lt;svg&gt;</code>; si el icono es el
+único contenido de un control interactivo, el nombre accesible va en el control
+(<code>aria-label</code>), no en el icono.</li>
+<li><strong>Divisores</strong>: un separador puramente visual no necesita rol; si divide
+contenido semánticamente relevante, usa <code>role=&quot;separator&quot;</code> (o el <code>&lt;hr&gt;</code> nativo).</li>
+<li><strong>Tipografía y prosa</strong>: respeta una jerarquía de encabezados sin saltos
+(<code>h1</code>→<code>h2</code>→<code>h3</code>); no elijas el nivel por el tamaño visual sino por la estructura
+del documento.</li>
+<li><strong>Bloques de código</strong>: usa <code>&lt;pre&gt;&lt;code&gt;</code> para preservar espacios y permitir
+navegación por teclado del lector de pantalla; añade <code>aria-label</code> si el bloque
+necesita contexto adicional (p. ej. el lenguaje).</li>
+</ul>
+<h2>Estructura de página</h2>
+<ul>
+<li><strong>Landmarks</strong>: <code>header</code>/<code>footer</code> a nivel de página son implícitos como
+<code>banner</code>/<code>contentinfo</code> solo si son hijos directos de <code>body</code>; anidados dentro de
+<code>article</code>/<code>section</code> pierden ese rol implícito.</li>
+<li><strong>Tarjetas y avatares</strong>: una tarjeta clicable completa usa un enlace que envuelve
+el contenido (no un <code>div</code> con <code>onclick</code>); un avatar de solo imagen lleva <code>alt</code>
+descriptivo o <code>alt=&quot;&quot;</code> si es puramente decorativo junto a un nombre visible.</li>
+<li><strong>Listas de descripción y timelines</strong>: usa <code>&lt;dl&gt;/&lt;dt&gt;/&lt;dd&gt;</code> para pares
+término-descripción; una línea de tiempo es una lista (<code>&lt;ol&gt;</code>/<code>&lt;ul&gt;</code>) para que se
+anuncie el número de elementos.</li>
+</ul>
+<h2>Estado y datos</h2>
+<ul>
+<li><strong>Indicadores de progreso</strong>: <code>role=&quot;progressbar&quot;</code> con <code>aria-valuenow</code>,
+<code>aria-valuemin</code>, <code>aria-valuemax</code> y nombre accesible; un spinner indeterminado usa
+<code>role=&quot;status&quot;</code> con texto oculto (“Cargando…”) en vez de solo animación.</li>
+<li><strong>Skeletons</strong>: el contenedor lleva <code>aria-busy=&quot;true&quot;</code> y los bloques de esqueleto
+<code>aria-hidden=&quot;true&quot;</code> (son ruido visual, no contenido); al cargar, quita
+<code>aria-busy</code> y anuncia el resultado si aplica.</li>
+<li><strong>Badges y tags</strong>: un badge que solo repite información visual (color) debe tener
+texto o <code>aria-label</code> equivalente; un contador (<code>role=&quot;status&quot;</code> opcional) se
+anuncia si cambia dinámicamente.</li>
+<li><strong>Tablas de datos</strong>: <code>&lt;th scope=&quot;col&quot;&gt;</code>/<code>scope=&quot;row&quot;</code> en encabezados; una tabla
+con scroll horizontal se envuelve en un contenedor con <code>tabindex=&quot;0&quot;</code> y
+<code>aria-label</code> para que sea navegable por teclado.</li>
+<li><strong>Estados vacíos</strong>: un mensaje de &quot;sin resultados&quot; se asocia a la región que
+actualiza (<code>aria-live=&quot;polite&quot;</code> si sustituye contenido dinámicamente).</li>
+</ul>
+<h2>Límites y verificación manual</h2>
+<ul>
+<li>Estos patrones no requieren primitiva JS (sin foco que gestionar); componentes
+con interacción compleja (tabla ordenable, árbol navegable, segmented control con
+flechas) declaran su contrato de teclado como pendiente hasta incorporar un
+controlador dedicado.</li>
+<li>Verificación manual: comprobar con lector de pantalla que iconos decorativos no
+se anuncian, que las tablas anchas se navegan por teclado, y que
+<code>aria-busy</code>/<code>role=status</code> se comportan al cargar contenido real.</li>
+</ul>
+
+      </article>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Segmented control — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Seleccion y navegacion</p>
+      <div class="dx-ref-title"><h1>Segmented control</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Grupo compacto de opciones mutuamente excluyentes que cambian una vista o filtro, sin navegar a otra URL.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Alternar entre 2-5 vistas cortas y equivalentes del mismo dato (p. ej. Semana / Mes / Año).</li><li>Reemplazar un select de pocas opciones cuando conviene ver todas las alternativas a la vez.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Con más de 5-6 opciones o etiquetas largas: usa un select o Tabs, que escalan mejor.</li><li>Cuando necesites el modelo de teclado completo tipo radiogroup (flechas para moverse entre opciones, Home/End): esta primitiva todavía no existe en RoUI — ver notas de accesibilidad.</li><li>Para navegar a otra URL o vista con su propia ruta: usa Nav o Tabs, no Segmented.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-segmented&quot;&gt;
+  &lt;button class=&quot;ro-segmented__item ro-segmented__item--active&quot;&gt;Semana&lt;/button&gt;
+  &lt;button class=&quot;ro-segmented__item&quot;&gt;Mes&lt;/button&gt;
+  &lt;button class=&quot;ro-segmented__item&quot;&gt;Año&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Cada opción es un &lt;button&gt; nativo: aporta foco y activación por teclado sin marcado adicional.</li><li>La opción activa se distingue hoy solo con la clase ro-segmented__item--active; no hay rol de grupo ni estado ARIA todavía (ver a11y.notes).</li><li>El contenedor no lleva rol explícito: es un grupo visual, no un radiogroup accesible.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-segmented</code></td><td>Contenedor del grupo de opciones.</td></tr><tr><td><code>.ro-segmented__item</code></td><td>Opción individual.</td></tr><tr><td><code>.ro-segmented__item--active</code></td><td>Opción seleccionada.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-full</code> <code>--ro-ink-06</code> <code>--ro-ink-60</code> <code>--ro-white</code> <code>--ro-shadow-sm</code> <code>--ro-transition</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Entra y sale del grupo (cada botón es tabbable por separado; no hay roving tabindex).</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Activa la opción enfocada (comportamiento nativo del &lt;button&gt;).</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Estado actual, tal cual: no existe un controlador de teclado tipo radiogroup (flechas Left/Right, Home/End, un solo tab-stop) para este componente todavía; queda pendiente de una primitiva futura, igual que Tree.</li><li>Mientras tanto, cada opción es un botón independiente en el orden de tabulación; añade aria-pressed=&quot;true&quot;/&quot;false&quot; en cada botón (patrón de toggle button) para que el estado se anuncie, ya que hoy solo se comunica por color.</li><li>Si tu caso de uso requiere semántica de radiogroup completa hoy mismo, usa un &lt;fieldset&gt; con inputs type=radio nativos en vez de Segmented.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Selector de rango</div>
+  <div class="dx-demo"><div class="ro-segmented">
+  <button class="ro-segmented__item ro-segmented__item--active" aria-pressed="true">Semana</button>
+  <button class="ro-segmented__item" aria-pressed="false">Mes</button>
+  <button class="ro-segmented__item" aria-pressed="false">Año</button>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-segmented&quot;&gt;
+  &lt;button class=&quot;ro-segmented__item ro-segmented__item--active&quot; aria-pressed=&quot;true&quot;&gt;Semana&lt;/button&gt;
+  &lt;button class=&quot;ro-segmented__item&quot; aria-pressed=&quot;false&quot;&gt;Mes&lt;/button&gt;
+  &lt;button class=&quot;ro-segmented__item&quot; aria-pressed=&quot;false&quot;&gt;Año&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa etiquetas de una palabra y mantén el grupo entre 2 y 5 opciones.</li><li>Añade aria-pressed en cada botón mientras no exista el controlador de radiogroup.</li><li>Reserva Segmented para cambios inmediatos de vista, sin botón de confirmar.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No lo uses para envíos de formulario donde la selección deba confirmarse: ahí un radio nativo es más claro.</li><li>No asumas navegación por flechas: hoy no existe: cada opción se alcanza con Tab.</li><li>No mezcles Segmented con opciones de texto largo o con envoltura de línea.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="button-group.html">button-group</a> · <a href="toolbar.html">toolbar</a> · <a href="tag.html">tag</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

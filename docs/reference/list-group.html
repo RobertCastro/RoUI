@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>List group — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Seleccion y navegacion</p>
+      <div class="dx-ref-title"><h1>List group</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Tarjeta con filas de contenido divididas por líneas finas: entradas de un listado (módulos, notificaciones, resultados).</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Un conjunto corto de filas con avatar/icono, título y metadato, que pueden o no ser clicables.</li><li>Listas de selección o navegación donde cada fila lleva a un destino relacionado (p. ej. módulos de un curso).</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Datos tabulares con múltiples columnas comparables entre filas: usa Table.</li><li>Una jerarquía de varios niveles: usa Tree.</li><li>Pares término-descripción (metadatos de un solo recurso): usa Description list.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-list&quot;&gt;
+  &lt;a class=&quot;ro-list__item ro-list__item--active&quot; href=&quot;#&quot;&gt;
+    &lt;span class=&quot;ro-avatar ro-avatar--sm&quot;&gt;M0&lt;/span&gt;
+    &lt;div style=&quot;flex:1&quot;&gt;&lt;div class=&quot;ro-list__title&quot;&gt;Estado actual de AI&lt;/div&gt;&lt;div class=&quot;ro-list__meta&quot;&gt;Módulo 0 · Video&lt;/div&gt;&lt;/div&gt;
+  &lt;/a&gt;
+  &lt;a class=&quot;ro-list__item&quot; href=&quot;#&quot;&gt;
+    &lt;span class=&quot;ro-avatar ro-avatar--sm&quot;&gt;M1&lt;/span&gt;
+    &lt;div style=&quot;flex:1&quot;&gt;&lt;div class=&quot;ro-list__title&quot;&gt;Input &amp;gt; Proceso &amp;gt; Output&lt;/div&gt;&lt;div class=&quot;ro-list__meta&quot;&gt;Módulo 1 · Video&lt;/div&gt;&lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El contenedor (ro-list) es una tarjeta visual, no una lista semántica &lt;ul&gt;: si el conteo y el orden de los ítems deben anunciarse como lista, envuélvelos en &lt;ul&gt;/&lt;li&gt; y aplica un reset de list-style propio (RoUI no lo incluye por defecto).</li><li>Cada fila clicable es un &lt;a&gt; con href real; si no navega, usa un &lt;button class=&quot;ro-list__item ro-list__item--link&quot;&gt; en su lugar para conservar el estado hover accesible por teclado.</li><li>El borde entre filas (ro-list__item + ro-list__item) depende de que las filas sean hermanas directas: no las envuelvas en un div intermedio.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-list</code></td><td>Contenedor de la tarjeta (borde, radio, overflow).</td></tr><tr><td><code>.ro-list__item</code></td><td>Fila individual.</td></tr><tr><td><code>.ro-list__item--active</code></td><td>Fila destacada como seleccionada/actual.</td></tr><tr><td><code>.ro-list__item--link</code></td><td>Aplica el estilo hover de enlace a una fila que no es &lt;a&gt; (p. ej. un &lt;button&gt;).</td></tr><tr><td><code>.ro-list__title</code></td><td>Texto principal de la fila.</td></tr><tr><td><code>.ro-list__meta</code></td><td>Texto secundario de la fila.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-10</code> <code>--ro-radius-xl</code> <code>--ro-white</code> <code>--ro-ink-06</code> <code>--ro-ink-02</code> <code>--ro-secondary-soft</code> <code>--ro-secondary</code> <code>--ro-ink-50</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Recorre las filas clicables (enlaces o botones) en orden del documento.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Activa la fila enfocada según sea &lt;a&gt; (Enter) o &lt;button&gt; (Enter/Espacio).</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>No hay controlador de teclado propio: la accesibilidad depende por completo de usar elementos nativos interactivos (&lt;a&gt;, &lt;button&gt;) para cada fila clicable, en vez de un &lt;div&gt; con onclick.</li><li>Si una fila combina texto y un badge de estado, el badge no debe ser la única forma de comunicar el estado: acompáñalo de texto.</li><li>Cuando la fila es puramente informativa (no navega ni activa nada), no la envuelvas en &lt;a&gt; ni &lt;button&gt;: usa un &lt;div class=&quot;ro-list__item&quot;&gt; simple.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Lista de módulos con estado activo</div>
+  <div class="dx-demo"><div class="ro-list" style="max-width:480px">
+  <a class="ro-list__item ro-list__item--active" href="#">
+    <span class="ro-avatar ro-avatar--sm">M0</span>
+    <div style="flex:1"><div class="ro-list__title">Estado actual de AI</div><div class="ro-list__meta">Módulo 0 · Video</div></div>
+    <span class="ro-badge ro-badge--soft">Activo</span>
+  </a>
+  <a class="ro-list__item" href="#">
+    <span class="ro-avatar ro-avatar--sm">M1</span>
+    <div style="flex:1"><div class="ro-list__title">Input &gt; Proceso &gt; Output</div><div class="ro-list__meta">Módulo 1 · Video</div></div>
+  </a>
+  <a class="ro-list__item" href="#">
+    <span class="ro-avatar ro-avatar--sm">M2</span>
+    <div style="flex:1"><div class="ro-list__title">El Síndrome del 80%</div><div class="ro-list__meta">Módulo 2 · Video</div></div>
+  </a>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-list&quot; style=&quot;max-width:480px&quot;&gt;
+  &lt;a class=&quot;ro-list__item ro-list__item--active&quot; href=&quot;#&quot;&gt;
+    &lt;span class=&quot;ro-avatar ro-avatar--sm&quot;&gt;M0&lt;/span&gt;
+    &lt;div style=&quot;flex:1&quot;&gt;&lt;div class=&quot;ro-list__title&quot;&gt;Estado actual de AI&lt;/div&gt;&lt;div class=&quot;ro-list__meta&quot;&gt;Módulo 0 · Video&lt;/div&gt;&lt;/div&gt;
+    &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Activo&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class=&quot;ro-list__item&quot; href=&quot;#&quot;&gt;
+    &lt;span class=&quot;ro-avatar ro-avatar--sm&quot;&gt;M1&lt;/span&gt;
+    &lt;div style=&quot;flex:1&quot;&gt;&lt;div class=&quot;ro-list__title&quot;&gt;Input &amp;gt; Proceso &amp;gt; Output&lt;/div&gt;&lt;div class=&quot;ro-list__meta&quot;&gt;Módulo 1 · Video&lt;/div&gt;&lt;/div&gt;
+  &lt;/a&gt;
+  &lt;a class=&quot;ro-list__item&quot; href=&quot;#&quot;&gt;
+    &lt;span class=&quot;ro-avatar ro-avatar--sm&quot;&gt;M2&lt;/span&gt;
+    &lt;div style=&quot;flex:1&quot;&gt;&lt;div class=&quot;ro-list__title&quot;&gt;El Síndrome del 80%&lt;/div&gt;&lt;div class=&quot;ro-list__meta&quot;&gt;Módulo 2 · Video&lt;/div&gt;&lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa &lt;a href&gt; para filas que navegan y &lt;button&gt; para filas que disparan una acción in situ.</li><li>Reserva ro-list__item--active para una única fila a la vez (la selección o posición actual).</li><li>Acompaña avatar/badge con texto: no comuniques estado solo por color o iniciales.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses un &lt;div&gt; con onclick como fila clicable: rompe teclado y lector de pantalla.</li><li>No mezcles filas de distinto propósito (navegación y formulario) en la misma lista sin separarlas visualmente.</li><li>No lo uses para datos que necesitan comparación por columnas: eso es Table.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="table.html">table</a> · <a href="sidebar.html">sidebar</a> · <a href="description-list.html">description-list</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

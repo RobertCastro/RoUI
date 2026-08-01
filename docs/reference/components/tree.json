@@ -1,0 +1,76 @@
+{
+  "name": "tree",
+  "title": "Tree view",
+  "group": "Seleccion y navegacion",
+  "maturity": "experimental",
+  "summary": "Lista jerárquica plegable de nodos padre/hijo (p. ej. curso › semana › módulo), con un nodo activo resaltado.",
+  "whenToUse": [
+    "Estructuras anidadas de 2-3 niveles donde el usuario necesita ver y plegar ramas (temario de un curso, árbol de archivos).",
+    "Cuando Sidebar con grupos planos ya no alcanza para representar la jerarquía."
+  ],
+  "whenNotToUse": [
+    "Cuando necesitas navegación por teclado tipo WAI-ARIA treeview (flechas para expandir/colapsar y moverte entre nodos, Home/End): esa primitiva todavía no existe en RoUI — ver notas de accesibilidad.",
+    "Para listas planas sin jerarquía real: usa List group.",
+    "Para una jerarquía de solo 2 tramos (sección › página actual): un Breadcrumb es más simple."
+  ],
+  "anatomy": {
+    "html": "<ul class=\"ro-tree\">\n  <li class=\"ro-tree__item is-open\">\n    <div class=\"ro-tree__row\"><svg class=\"ro-icon ro-icon--sm ro-tree__chevron\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg> Semana 1</div>\n    <ul class=\"ro-tree__children\">\n      <li class=\"ro-tree__item\"><div class=\"ro-tree__row ro-tree__row--leaf ro-tree__row--active\">Estado actual de AI</div></li>\n      <li class=\"ro-tree__item\"><div class=\"ro-tree__row ro-tree__row--leaf\">Input &gt; Proceso &gt; Output</div></li>\n    </ul>\n  </li>\n</ul>",
+    "notes": [
+      "La estructura usa <ul>/<li> anidados: el número de hijos y la profundidad se anuncian correctamente aunque no haya rol tree explícito.",
+      "Cada fila (ro-tree__row) es hoy un <div> con un manejador de clic que alterna la clase is-open del <li> padre; no es un <button> y no tiene tabindex propio (ver a11y.notes).",
+      "Los nodos hoja llevan ro-tree__row--leaf para alinearse sin chevron; el nodo activo se marca con ro-tree__row--active."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-tree", "desc": "Lista raíz del árbol." },
+      { "name": "ro-tree__item", "desc": "Nodo (rama u hoja)." },
+      { "name": "ro-tree__row", "desc": "Fila clicable de un nodo." },
+      { "name": "ro-tree__row--leaf", "desc": "Fila de nodo hoja (sin hijos ni chevron)." },
+      { "name": "ro-tree__row--active", "desc": "Fila del nodo actualmente seleccionado." },
+      { "name": "ro-tree__chevron", "desc": "Icono indicador de expandido/colapsado." },
+      { "name": "ro-tree__children", "desc": "Lista anidada de hijos de una rama." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-text-sm",
+      "--ro-radius-lg",
+      "--ro-ink-70",
+      "--ro-ink-04",
+      "--ro-secondary-soft",
+      "--ro-ease"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "No aplica hoy: las filas no son enfocables por teclado (son <div>, no controles nativos)."],
+      ["Clic", "Único mecanismo actual para expandir/colapsar una rama o seleccionar un nodo."]
+    ],
+    "notes": [
+      "Estado actual, tal cual: este componente todavía no implementa el patrón WAI-ARIA treeview (role=tree, role=treeitem, aria-expanded, aria-selected, flechas de teclado). Queda documentado como pendiente de una primitiva dedicada, igual que Segmented.",
+      "Hoy las filas solo responden a clic del mouse: no son alcanzables ni operables por teclado. Si la navegación por teclado es un requisito duro, no adoptes Tree todavía; usa Sidebar (items son <a> nativos) o un menú de disclosure.",
+      "Cuando exista el controlador dedicado, cada ro-tree__row debería ser un elemento enfocable (rol treeitem) con aria-expanded en las ramas y aria-selected en el nodo activo."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Árbol de temario con una rama abierta",
+      "html": "<ul class=\"ro-tree ro-card ro-card--plain\" style=\"max-width:320px;padding:8px\">\n  <li class=\"ro-tree__item is-open\">\n    <div class=\"ro-tree__row\"><svg class=\"ro-icon ro-icon--sm ro-tree__chevron\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg> Frontend · 4 semanas</div>\n    <ul class=\"ro-tree__children\">\n      <li class=\"ro-tree__item is-open\">\n        <div class=\"ro-tree__row\"><svg class=\"ro-icon ro-icon--sm ro-tree__chevron\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg> Semana 1</div>\n        <ul class=\"ro-tree__children\">\n          <li class=\"ro-tree__item\"><div class=\"ro-tree__row ro-tree__row--leaf ro-tree__row--active\">Estado actual de AI</div></li>\n          <li class=\"ro-tree__item\"><div class=\"ro-tree__row ro-tree__row--leaf\">Input &gt; Proceso &gt; Output</div></li>\n        </ul>\n      </li>\n      <li class=\"ro-tree__item\">\n        <div class=\"ro-tree__row\"><svg class=\"ro-icon ro-icon--sm ro-tree__chevron\" aria-hidden=\"true\"><use href=\"#ro-i-chevron-right\"></use></svg> Semana 2</div>\n        <ul class=\"ro-tree__children\"><li class=\"ro-tree__item\"><div class=\"ro-tree__row ro-tree__row--leaf\">Módulo 5</div></li></ul>\n      </li>\n    </ul>\n  </li>\n</ul>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa <ul>/<li> anidados para conservar la semántica de lista aunque falte el rol tree completo.",
+      "Limita la profundidad a 2-3 niveles: más allá, la lectura y el plegado se vuelven difíciles de seguir.",
+      "Documenta en tu producto que la navegación es solo por mouse/touch mientras no exista el controlador dedicado."
+    ],
+    "dont": [
+      "No presentes Tree como accesible por teclado: hoy no lo es.",
+      "No uses Tree para una lista sin jerarquía real: es más costoso de construir y de usar que List group.",
+      "No inventes atributos aria-expanded/aria-selected en el marcado sin implementar también el comportamiento de teclado que esos atributos prometen."
+    ]
+  },
+  "related": ["sidebar", "list-group", "accordion"]
+}

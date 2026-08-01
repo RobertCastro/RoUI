@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nav — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Seleccion y navegacion</p>
+      <div class="dx-ref-title"><h1>Nav</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Enlaces de navegación persistente entre secciones del sitio, con la página actual marcada por aria-current.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Navegación principal o secundaria que permanece visible entre vistas (header, subnav).</li><li>Un conjunto corto de destinos donde el usuario necesita saber en cuál está parado.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para alternar entre vistas equivalentes dentro del mismo contexto (mismo contenido, distinto panel): usa Tabs (role=tablist), no Nav.</li><li>Para una lista de acciones (editar, eliminar, compartir): usa Menu.</li><li>Para la ruta jerárquica de la página actual: usa Breadcrumb.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;nav class=&quot;ro-row&quot; aria-label=&quot;Principal&quot;&gt;
+  &lt;a class=&quot;ro-nav-link&quot; href=&quot;/&quot; aria-current=&quot;page&quot;&gt;Inicio&lt;/a&gt;
+  &lt;a class=&quot;ro-nav-link&quot; href=&quot;/proyectos&quot;&gt;Mis Proyectos&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El contenedor es un landmark &lt;nav&gt; con nombre accesible (aria-label): sin nombre, un lector de pantalla anuncia solo &quot;navegación&quot; y no distingue entre varias.</li><li>El enlace activo lleva aria-current=&quot;page&quot;; el estilo (fondo y peso de fuente) se dibuja desde ese atributo vía el selector [aria-current=&quot;page&quot;], no desde una clase de demostración.</li><li>Cada enlace es un &lt;a&gt; real con href: la navegación debe funcionar sin JavaScript y ser abrible en pestaña nueva.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-nav-link</code></td><td>Enlace de navegación en forma de píldora.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-full</code> <code>--ro-ink-60</code> <code>--ro-ink-04</code> <code>--ro-ink-06</code> <code>--ro-transition</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Recorre los enlaces en orden del documento (no hay roving tabindex: son enlaces nativos).</td></tr><tr><td><kbd>Enter</kbd></td><td>Sigue el enlace enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/tabs-accordion-navigation.html">tabs-accordion-navigation</a></p><ul class="dx-ref-list"><li>El patrón vive en la sección &quot;Navegación&quot; del contrato: landmark nav con nombre y aria-current=&quot;page&quot; en el destino activo.</li><li>No es un rol menu ni un tablist: no hay flechas de teclado ni aria-selected. Si necesitas ese modelo, usa Tabs.</li><li>Con varios &lt;nav&gt; en la página (principal, lateral, pie), cada uno necesita un aria-label distinto para diferenciarse en el rotor del lector de pantalla.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Navegación principal con destino activo</div>
+  <div class="dx-demo"><nav class="ro-row ro-row--wrap" aria-label="Ejemplo de navegación">
+  <a class="ro-nav-link" href="#" aria-current="page">Inicio</a>
+  <a class="ro-nav-link" href="#">Mis Proyectos</a>
+  <a class="ro-nav-link" href="#">Sesiones</a>
+  <a class="ro-nav-link" href="#">Directorio</a>
+</nav></div>
+  <pre class="dx-ref-code"><code>&lt;nav class=&quot;ro-row ro-row--wrap&quot; aria-label=&quot;Ejemplo de navegación&quot;&gt;
+  &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot; aria-current=&quot;page&quot;&gt;Inicio&lt;/a&gt;
+  &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot;&gt;Mis Proyectos&lt;/a&gt;
+  &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot;&gt;Sesiones&lt;/a&gt;
+  &lt;a class=&quot;ro-nav-link&quot; href=&quot;#&quot;&gt;Directorio&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da nombre al landmark con aria-label cuando haya más de un nav en la página.</li><li>Marca el destino activo con aria-current=&quot;page&quot;, incluso si además cambias la clase para el estilo.</li><li>Usa enlaces reales (&lt;a href&gt;) para que la navegación funcione sin JavaScript.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses Nav para alternar contenido dentro de la misma vista: eso es Tabs.</li><li>No marques el estado activo solo con una clase; sin aria-current, un lector de pantalla no lo distingue.</li><li>No conviertas los enlaces en &lt;button&gt; ni en &lt;div&gt; con onclick: rompen el comportamiento nativo de navegación.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="breadcrumb.html">breadcrumb</a> · <a href="sidebar.html">sidebar</a> · <a href="header.html">header</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const source = resolve(root, "src");
-const expectedDigest = "2841ae7ba080c264db9145ca926ecb15b7f880aae5874cec728e8b24674ef044";
+const expectedDigest = "02eff92953c6c57cc157fe229375c59d47457afe84b6e015def1c54c879c3633";
 
 function walk(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {

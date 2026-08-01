@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timeline — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Contenido y estructura</p>
+      <div class="dx-ref-title"><h1>Timeline</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Línea de tiempo de eventos ordenados, marcada como lista para que se anuncie el número de elementos.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Mostrar el historial o avance de un proceso con eventos fechados (estado de un pedido, progreso de un cohort).</li><li>Resumir una secuencia de hitos pasados, en curso y futuros en una sola vista.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para pasos de un formulario multi-paso que el usuario debe completar en orden: usa Stepper.</li><li>Para una lista simple sin relación temporal entre ítems: usa List group.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;ol class=&quot;ro-timeline&quot;&gt;
+  &lt;li class=&quot;ro-timeline__item ro-timeline__item--done&quot;&gt;
+    &lt;div class=&quot;ro-timeline__time&quot;&gt;27 abr&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__title&quot;&gt;Inscripción confirmada&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__text&quot;&gt;Te uniste al cohort de abril.&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;ro-timeline__item ro-timeline__item--active&quot;&gt;
+    &lt;div class=&quot;ro-timeline__time&quot;&gt;Hoy&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__title&quot;&gt;Módulo 4 en curso&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__text&quot;&gt;El arte del technical brief.&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;ro-timeline__item&quot;&gt;
+    &lt;div class=&quot;ro-timeline__time&quot;&gt;Próximo&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__title&quot;&gt;Sesión en vivo&lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Usa &lt;ol&gt; cuando el orden cronológico es significativo (la mayoría de los casos); &lt;ul&gt; si el orden no aporta información.</li><li>El punto y la línea conectora son ::before/::after puramente decorativos: no existen como nodos del DOM, así que no necesitan aria-hidden.</li><li>ro-timeline__item--active y --done comunican el estado con color; el texto (&quot;Hoy&quot;, &quot;27 abr&quot;) es lo que realmente transmite el significado a un lector de pantalla.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-timeline</code></td><td>Lista base (&lt;ol&gt; u &lt;ul&gt;), sin viñetas nativas.</td></tr><tr><td><code>.ro-timeline__item</code></td><td>Elemento de la línea de tiempo con punto y conector.</td></tr><tr><td><code>.ro-timeline__item--active</code></td><td>Hito en curso (punto de color secundario).</td></tr><tr><td><code>.ro-timeline__item--done</code></td><td>Hito completado (punto sólido oscuro).</td></tr><tr><td><code>.ro-timeline__time</code></td><td>Fecha u hora del hito, en mayúsculas/monoespaciada.</td></tr><tr><td><code>.ro-timeline__title</code></td><td>Título breve del hito.</td></tr><tr><td><code>.ro-timeline__text</code></td><td>Descripción de apoyo opcional.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-20</code> <code>--ro-white</code> <code>--ro-ink-10</code> <code>--ro-secondary</code> <code>--ro-secondary-ring</code> <code>--ro-ink</code> <code>--ro-font-mono</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Al ser una lista (&lt;ol&gt;/&lt;ul&gt;), el lector de pantalla anuncia el número total de hitos y la posición de cada uno automáticamente.</li><li>No confíes solo en el color del punto (--active/--done) para indicar el estado; acompaña con texto explícito cuando el estado importe para entender el hito (p. ej. &quot;Completado&quot;, &quot;En curso&quot;).</li><li>Si un hito incluye una acción (enlace, botón), esta debe tener su propio nombre accesible, igual que en cualquier otro contenido.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Historial de cohort</div>
+  <div class="dx-demo"><ol class="ro-timeline" style="max-width:480px">
+  <li class="ro-timeline__item ro-timeline__item--done">
+    <div class="ro-timeline__time">27 abr</div>
+    <div class="ro-timeline__title">Inscripción confirmada</div>
+    <div class="ro-timeline__text">Te uniste al cohort de abril.</div>
+  </li>
+  <li class="ro-timeline__item ro-timeline__item--active">
+    <div class="ro-timeline__time">Hoy</div>
+    <div class="ro-timeline__title">Módulo 4 en curso</div>
+    <div class="ro-timeline__text">El arte del "Technical Brief".</div>
+  </li>
+  <li class="ro-timeline__item">
+    <div class="ro-timeline__time">Próximo</div>
+    <div class="ro-timeline__title">Sesión en vivo</div>
+    <div class="ro-timeline__text">Revisión de código grupal.</div>
+  </li>
+</ol></div>
+  <pre class="dx-ref-code"><code>&lt;ol class=&quot;ro-timeline&quot; style=&quot;max-width:480px&quot;&gt;
+  &lt;li class=&quot;ro-timeline__item ro-timeline__item--done&quot;&gt;
+    &lt;div class=&quot;ro-timeline__time&quot;&gt;27 abr&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__title&quot;&gt;Inscripción confirmada&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__text&quot;&gt;Te uniste al cohort de abril.&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;ro-timeline__item ro-timeline__item--active&quot;&gt;
+    &lt;div class=&quot;ro-timeline__time&quot;&gt;Hoy&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__title&quot;&gt;Módulo 4 en curso&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__text&quot;&gt;El arte del &quot;Technical Brief&quot;.&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;ro-timeline__item&quot;&gt;
+    &lt;div class=&quot;ro-timeline__time&quot;&gt;Próximo&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__title&quot;&gt;Sesión en vivo&lt;/div&gt;
+    &lt;div class=&quot;ro-timeline__text&quot;&gt;Revisión de código grupal.&lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa una lista ordenada nativa (&lt;ol&gt;) cuando la cronología importa.</li><li>Incluye una fecha u hora legible por cada hito.</li><li>Combina color y texto para comunicar el estado de cada hito.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses timeline para pasos que el usuario debe completar interactivamente; eso es Stepper.</li><li>No dependas solo del color del punto para indicar completado/activo/pendiente.</li><li>No conviertas la lista en &lt;div&gt;s sueltos: pierdes el conteo automático de elementos.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="stepper.html">stepper</a> · <a href="description-list.html">description-list</a> · <a href="card.html">card</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

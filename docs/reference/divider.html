@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Divider — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Fundamentos visuales</p>
+      <div class="dx-ref-title"><h1>Divider</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Separador visual horizontal o vertical, con o sin etiqueta centrada, para dividir grupos de contenido.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Separar secciones de contenido dentro de una tarjeta, menú o formulario.</li><li>Separar dos acciones o bloques en una fila horizontal (variante vertical).</li><li>Marcar una alternativa explícita entre dos bloques (&quot;o&quot;) con ro-divider-text.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para crear espacio en blanco entre secciones: usa margin/gap en vez de un divisor visible.</li><li>Para separar elementos de una lista de datos con estructura propia: usa los bordes de la tabla o list-group en vez de insertar dividers manuales.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;span&gt;Arriba&lt;/span&gt;
+&lt;hr class=&quot;ro-divider&quot;&gt;
+&lt;span&gt;Abajo&lt;/span&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El caso base usa &lt;hr&gt;, que ya aporta role=separator implícito de forma nativa.</li><li>La variante vertical (ro-divider--vertical) se aplica sobre un &lt;span&gt;, no un &lt;hr&gt;, y necesita un contenedor flex que la haga estirarse.</li><li>ro-divider-text es un contenedor propio (no modifica ro-divider): envuelve un &lt;span&gt; con la etiqueta y dibuja las líneas con pseudo-elementos.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-divider</code></td><td>Línea horizontal de 1px. Se usa sobre &lt;hr&gt;.</td></tr><tr><td><code>.ro-divider--vertical</code></td><td>Variante vertical, para separar elementos en una fila.</td></tr><tr><td><code>.ro-divider-text</code></td><td>Contenedor con etiqueta centrada y líneas a los lados (p. ej. &quot;o&quot;).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-10</code> <code>--ro-space-3</code> <code>--ro-space-4</code> <code>--ro-font-mono</code> <code>--ro-text-xs</code> <code>--ro-tracking-wider</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Un divisor puramente decorativo no necesita rol adicional; usar &lt;hr&gt; ya es suficiente y semánticamente correcto.</li><li>Si el divisor separa contenido semánticamente relevante (no solo un corte visual), usa role=&quot;separator&quot; explícito en el elemento.</li><li>La variante vertical sobre &lt;span&gt; es decorativa por defecto: no lleva rol ni texto accesible propio.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Horizontal y con etiqueta</div>
+  <div class="dx-demo"><div style="max-width:420px">
+  <span>Arriba</span>
+  <hr class="ro-divider">
+  <span>Abajo</span>
+  <div class="ro-divider-text"><span>o</span></div>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div style=&quot;max-width:420px&quot;&gt;
+  &lt;span&gt;Arriba&lt;/span&gt;
+  &lt;hr class=&quot;ro-divider&quot;&gt;
+  &lt;span&gt;Abajo&lt;/span&gt;
+  &lt;div class=&quot;ro-divider-text&quot;&gt;&lt;span&gt;o&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Vertical entre acciones</div>
+  <div class="dx-demo"><div class="ro-row">Izquierda <span class="ro-divider ro-divider--vertical" style="height:20px"></span> Derecha</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-row&quot;&gt;Izquierda &lt;span class=&quot;ro-divider ro-divider--vertical&quot; style=&quot;height:20px&quot;&gt;&lt;/span&gt; Derecha&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa &lt;hr&gt; para el caso horizontal por defecto: ya trae semántica de separador.</li><li>Reserva ro-divider-text para una alternativa real (&quot;o&quot;), no como decoración genérica.</li><li>Da altura explícita a la variante vertical dentro de contenedores que no sean flex con align-stretch.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses múltiples dividers seguidos para simular espaciado: ajusta el margin/gap del layout.</li><li>No pongas contenido interactivo dentro de ro-divider-text: es solo una etiqueta de texto.</li><li>No reemplaces bordes de tabla o list-group por dividers sueltos: rompe la estructura visual de esos componentes.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="typography.html">typography</a> · <a href="list-group.html">list-group</a> · <a href="menu.html">menu</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

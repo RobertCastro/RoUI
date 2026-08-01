@@ -1,0 +1,79 @@
+{
+  "name": "prose",
+  "title": "Prose",
+  "group": "Fundamentos visuales",
+  "maturity": "experimental",
+  "summary": "Estiliza contenido HTML renderizado desde markdown (artículos, lecciones) con tipografía, listas, citas y código coherentes.",
+  "whenToUse": [
+    "Renderizar contenido generado desde markdown: artículos, lecciones, descripciones largas.",
+    "Cuando el HTML interno lo produce un parser externo y no controlas cada clase, solo el contenedor."
+  ],
+  "whenNotToUse": [
+    "Para titulares o texto de UI puntual controlado a mano: usa las clases de Typography (ro-display, ro-h2, ro-body) directamente.",
+    "Para un único fragmento de código aislado fuera de un artículo: usa Code (ro-code / ro-codeblock) en vez de envolverlo en ro-prose."
+  ],
+  "anatomy": {
+    "html": "<div class=\"ro-prose\">\n  <h2>El Arte del \"Technical Brief\"</h2>\n  <p>La calidad del código generado por IA depende del <strong>contexto</strong> que le das. Un brief claro define requerimientos, restricciones y <a href=\"#\">Definition of Done</a>.</p>\n  <ul>\n    <li>Contexto del problema</li>\n    <li>Requerimientos y restricciones</li>\n    <li>Criterio de aceptación</li>\n  </ul>\n  <blockquote>Contexto de calidad = código de calidad.</blockquote>\n  <p>Usa <code>npm run build</code> para generar el bundle:</p>\n  <pre><code>npm install\nnpm run build</code></pre>\n</div>",
+    "notes": [
+      "ro-prose es un contenedor de contexto: todos los estilos se aplican a elementos HTML nativos (h1–h4, p, ul, ol, blockquote, code, pre, a, img, hr) dentro de él, no a clases ro-* adicionales.",
+      "El espaciado vertical entre bloques lo da el selector > * + *: no agregues margin manual a los hijos directos.",
+      "code y pre dentro de ro-prose ya heredan el estilo de código sin necesitar las clases ro-code / ro-codeblock."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-prose", "desc": "Contenedor: aplica tipografía y espaciado a los elementos HTML nativos que contiene." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-text-sm",
+      "--ro-ink-72",
+      "--ro-font-display",
+      "--ro-ink",
+      "--ro-text-3xl",
+      "--ro-text-2xl",
+      "--ro-text-xl",
+      "--ro-text-lg",
+      "--ro-tracking-tight",
+      "--ro-weight-bold",
+      "--ro-secondary",
+      "--ro-ink-40",
+      "--ro-ink-70",
+      "--ro-font-mono",
+      "--ro-ink-05",
+      "--ro-radius-sm",
+      "--ro-radius-xl",
+      "--ro-ink-10",
+      "--ro-radius-lg"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Respeta una jerarquía de encabezados sin saltos dentro del contenido fuente (h1→h2→h3→h4); ro-prose no corrige saltos, solo da estilo al nivel que reciba.",
+      "Los bloques de código dentro de prose ya usan <pre><code>, preservando espacios y permitiendo navegación por teclado del lector de pantalla.",
+      "Las imágenes dentro de prose necesitan alt descriptivo en el markdown de origen: el estilo de ro-prose img no aporta accesibilidad, solo max-width y radio."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Artículo con lista, cita y código",
+      "html": "<div class=\"ro-card ro-card--plain\">\n  <div class=\"ro-prose\">\n    <h2>El Arte del \"Technical Brief\"</h2>\n    <p>La calidad del código generado por IA depende del <strong>contexto</strong> que le das.</p>\n    <ul>\n      <li>Contexto del problema</li>\n      <li>Requerimientos y restricciones</li>\n    </ul>\n    <blockquote>Contexto de calidad = código de calidad.</blockquote>\n    <p>Corre <code>npm run build</code> para generar el bundle:</p>\n    <pre><code>npm install\nnpm run build</code></pre>\n  </div>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Deja que el markdown de origen defina la jerarquía de encabezados; ro-prose solo la estiliza.",
+      "Envuelve el contenido renderizado completo en un único ro-prose, no fragmento por fragmento.",
+      "Usa ro-prose para contenido largo y mixto (texto + listas + código), no para un solo párrafo suelto."
+    ],
+    "dont": [
+      "No apliques ro-code o ro-codeblock a los <code>/<pre> internos de ro-prose: ya están estilizados, y duplicar clases genera inconsistencias.",
+      "No metas componentes interactivos complejos (modales, tablas de datos) dentro de ro-prose: está pensado para contenido de lectura, no UI de aplicación.",
+      "No fuerces un h1 adicional dentro de ro-prose si la página ya tiene su propio h1 fuera del contenedor: rompe la jerarquía de la página."
+    ]
+  },
+  "related": ["typography", "code", "card"]
+}

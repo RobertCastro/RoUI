@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tree view — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Seleccion y navegacion</p>
+      <div class="dx-ref-title"><h1>Tree view</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Lista jerárquica plegable de nodos padre/hijo (p. ej. curso › semana › módulo), con un nodo activo resaltado.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Estructuras anidadas de 2-3 niveles donde el usuario necesita ver y plegar ramas (temario de un curso, árbol de archivos).</li><li>Cuando Sidebar con grupos planos ya no alcanza para representar la jerarquía.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Cuando necesitas navegación por teclado tipo WAI-ARIA treeview (flechas para expandir/colapsar y moverte entre nodos, Home/End): esa primitiva todavía no existe en RoUI — ver notas de accesibilidad.</li><li>Para listas planas sin jerarquía real: usa List group.</li><li>Para una jerarquía de solo 2 tramos (sección › página actual): un Breadcrumb es más simple.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;ul class=&quot;ro-tree&quot;&gt;
+  &lt;li class=&quot;ro-tree__item is-open&quot;&gt;
+    &lt;div class=&quot;ro-tree__row&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm ro-tree__chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Semana 1&lt;/div&gt;
+    &lt;ul class=&quot;ro-tree__children&quot;&gt;
+      &lt;li class=&quot;ro-tree__item&quot;&gt;&lt;div class=&quot;ro-tree__row ro-tree__row--leaf ro-tree__row--active&quot;&gt;Estado actual de AI&lt;/div&gt;&lt;/li&gt;
+      &lt;li class=&quot;ro-tree__item&quot;&gt;&lt;div class=&quot;ro-tree__row ro-tree__row--leaf&quot;&gt;Input &amp;gt; Proceso &amp;gt; Output&lt;/div&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        <ul class="dx-ref-list"><li>La estructura usa &lt;ul&gt;/&lt;li&gt; anidados: el número de hijos y la profundidad se anuncian correctamente aunque no haya rol tree explícito.</li><li>Cada fila (ro-tree__row) es hoy un &lt;div&gt; con un manejador de clic que alterna la clase is-open del &lt;li&gt; padre; no es un &lt;button&gt; y no tiene tabindex propio (ver a11y.notes).</li><li>Los nodos hoja llevan ro-tree__row--leaf para alinearse sin chevron; el nodo activo se marca con ro-tree__row--active.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-tree</code></td><td>Lista raíz del árbol.</td></tr><tr><td><code>.ro-tree__item</code></td><td>Nodo (rama u hoja).</td></tr><tr><td><code>.ro-tree__row</code></td><td>Fila clicable de un nodo.</td></tr><tr><td><code>.ro-tree__row--leaf</code></td><td>Fila de nodo hoja (sin hijos ni chevron).</td></tr><tr><td><code>.ro-tree__row--active</code></td><td>Fila del nodo actualmente seleccionado.</td></tr><tr><td><code>.ro-tree__chevron</code></td><td>Icono indicador de expandido/colapsado.</td></tr><tr><td><code>.ro-tree__children</code></td><td>Lista anidada de hijos de una rama.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-text-sm</code> <code>--ro-radius-lg</code> <code>--ro-ink-70</code> <code>--ro-ink-04</code> <code>--ro-secondary-soft</code> <code>--ro-ease</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>No aplica hoy: las filas no son enfocables por teclado (son &lt;div&gt;, no controles nativos).</td></tr><tr><td><kbd>Clic</kbd></td><td>Único mecanismo actual para expandir/colapsar una rama o seleccionar un nodo.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Estado actual, tal cual: este componente todavía no implementa el patrón WAI-ARIA treeview (role=tree, role=treeitem, aria-expanded, aria-selected, flechas de teclado). Queda documentado como pendiente de una primitiva dedicada, igual que Segmented.</li><li>Hoy las filas solo responden a clic del mouse: no son alcanzables ni operables por teclado. Si la navegación por teclado es un requisito duro, no adoptes Tree todavía; usa Sidebar (items son &lt;a&gt; nativos) o un menú de disclosure.</li><li>Cuando exista el controlador dedicado, cada ro-tree__row debería ser un elemento enfocable (rol treeitem) con aria-expanded en las ramas y aria-selected en el nodo activo.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Árbol de temario con una rama abierta</div>
+  <div class="dx-demo"><ul class="ro-tree ro-card ro-card--plain" style="max-width:320px;padding:8px">
+  <li class="ro-tree__item is-open">
+    <div class="ro-tree__row"><svg class="ro-icon ro-icon--sm ro-tree__chevron" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg> Frontend · 4 semanas</div>
+    <ul class="ro-tree__children">
+      <li class="ro-tree__item is-open">
+        <div class="ro-tree__row"><svg class="ro-icon ro-icon--sm ro-tree__chevron" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg> Semana 1</div>
+        <ul class="ro-tree__children">
+          <li class="ro-tree__item"><div class="ro-tree__row ro-tree__row--leaf ro-tree__row--active">Estado actual de AI</div></li>
+          <li class="ro-tree__item"><div class="ro-tree__row ro-tree__row--leaf">Input &gt; Proceso &gt; Output</div></li>
+        </ul>
+      </li>
+      <li class="ro-tree__item">
+        <div class="ro-tree__row"><svg class="ro-icon ro-icon--sm ro-tree__chevron" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg> Semana 2</div>
+        <ul class="ro-tree__children"><li class="ro-tree__item"><div class="ro-tree__row ro-tree__row--leaf">Módulo 5</div></li></ul>
+      </li>
+    </ul>
+  </li>
+</ul></div>
+  <pre class="dx-ref-code"><code>&lt;ul class=&quot;ro-tree ro-card ro-card--plain&quot; style=&quot;max-width:320px;padding:8px&quot;&gt;
+  &lt;li class=&quot;ro-tree__item is-open&quot;&gt;
+    &lt;div class=&quot;ro-tree__row&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm ro-tree__chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Frontend · 4 semanas&lt;/div&gt;
+    &lt;ul class=&quot;ro-tree__children&quot;&gt;
+      &lt;li class=&quot;ro-tree__item is-open&quot;&gt;
+        &lt;div class=&quot;ro-tree__row&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm ro-tree__chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Semana 1&lt;/div&gt;
+        &lt;ul class=&quot;ro-tree__children&quot;&gt;
+          &lt;li class=&quot;ro-tree__item&quot;&gt;&lt;div class=&quot;ro-tree__row ro-tree__row--leaf ro-tree__row--active&quot;&gt;Estado actual de AI&lt;/div&gt;&lt;/li&gt;
+          &lt;li class=&quot;ro-tree__item&quot;&gt;&lt;div class=&quot;ro-tree__row ro-tree__row--leaf&quot;&gt;Input &amp;gt; Proceso &amp;gt; Output&lt;/div&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;ro-tree__item&quot;&gt;
+        &lt;div class=&quot;ro-tree__row&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm ro-tree__chevron&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-chevron-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Semana 2&lt;/div&gt;
+        &lt;ul class=&quot;ro-tree__children&quot;&gt;&lt;li class=&quot;ro-tree__item&quot;&gt;&lt;div class=&quot;ro-tree__row ro-tree__row--leaf&quot;&gt;Módulo 5&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa &lt;ul&gt;/&lt;li&gt; anidados para conservar la semántica de lista aunque falte el rol tree completo.</li><li>Limita la profundidad a 2-3 niveles: más allá, la lectura y el plegado se vuelven difíciles de seguir.</li><li>Documenta en tu producto que la navegación es solo por mouse/touch mientras no exista el controlador dedicado.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No presentes Tree como accesible por teclado: hoy no lo es.</li><li>No uses Tree para una lista sin jerarquía real: es más costoso de construir y de usar que List group.</li><li>No inventes atributos aria-expanded/aria-selected en el marcado sin implementar también el comportamiento de teclado que esos atributos prometen.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="sidebar.html">sidebar</a> · <a href="list-group.html">list-group</a> · <a href="accordion.html">accordion</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

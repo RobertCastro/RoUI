@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Badge — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Datos y estado</p>
+      <div class="dx-ref-title"><h1>Badge</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Indicador visual pequeño para estado, categoría o conteo, con una variante de punto de estado.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Etiquetar un valor con una categoría o estado breve junto a texto (&quot;Activo&quot;, &quot;Beta&quot;).</li><li>Mostrar un conteo compacto (notificaciones, resultados) con ro-badge--count.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para una etiqueta que el usuario puede quitar: usa Tag.</li><li>Para un mensaje con contexto y posible acción: usa Alert.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;&lt;span class=&quot;ro-dot ro-dot--success&quot;&gt;&lt;/span&gt; Activo&lt;/span&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El badge es un &lt;span&gt; inline sin rol especial: es contenido textual, no un control.</li><li>El ro-dot es decorativo; el significado real vive en el texto (&quot;Activo&quot;), nunca solo en el color.</li><li>Un contador que cambia dinámicamente puede usar role=&quot;status&quot; en el propio badge para anunciarse.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-badge</code></td><td>Contenedor base (píldora).</td></tr><tr><td><code>.ro-badge--soft</code></td><td>Fondo tenue, menor énfasis.</td></tr><tr><td><code>.ro-badge--count</code></td><td>Variante compacta para contadores numéricos.</td></tr><tr><td><code>.ro-dot</code></td><td>Punto de estado independiente (sin texto).</td></tr><tr><td><code>.ro-dot--sm</code></td><td>Punto más pequeño.</td></tr><tr><td><code>.ro-dot--success</code></td><td>Punto en color de éxito.</td></tr><tr><td><code>.ro-dot--warning</code></td><td>Punto en color de advertencia.</td></tr><tr><td><code>.ro-dot--error</code></td><td>Punto en color de error.</td></tr><tr><td><code>.ro-status-chip</code></td><td>Chip de estado sobre fondo oscuro (barras de contexto).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-full</code> <code>--ro-secondary</code> <code>--ro-primary-soft</code> <code>--ro-primary</code> <code>--ro-ink-04</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Un badge que solo repite información visual con color debe llevar texto o un aria-label equivalente.</li><li>Un contador (badge--count) que cambia en tiempo real puede usar role=&quot;status&quot; opcional para anunciar el nuevo valor.</li><li>ro-dot suelto (sin texto adyacente) necesita contexto accesible: agrégalo dentro de un elemento con texto o aria-label.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Variantes</div>
+  <div class="dx-demo"><span class="ro-badge">8%</span>
+<span class="ro-badge ro-badge--soft">3/9 completados</span>
+<span class="ro-badge ro-badge--count">40</span></div>
+  <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-badge&quot;&gt;8%&lt;/span&gt;
+&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;3/9 completados&lt;/span&gt;
+&lt;span class=&quot;ro-badge ro-badge--count&quot;&gt;40&lt;/span&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Con punto de estado</div>
+  <div class="dx-demo"><span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--success"></span> Activo</span>
+<span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--warning"></span> Pausa</span>
+<span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--error"></span> Error</span></div>
+  <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;&lt;span class=&quot;ro-dot ro-dot--success&quot;&gt;&lt;/span&gt; Activo&lt;/span&gt;
+&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;&lt;span class=&quot;ro-dot ro-dot--warning&quot;&gt;&lt;/span&gt; Pausa&lt;/span&gt;
+&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;&lt;span class=&quot;ro-dot ro-dot--error&quot;&gt;&lt;/span&gt; Error&lt;/span&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Chip de estado sobre fondo oscuro</div>
+  <div class="dx-demo"><span class="ro-status-chip"><span class="ro-dot ro-dot--sm ro-dot--success"></span> En línea</span></div>
+  <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-status-chip&quot;&gt;&lt;span class=&quot;ro-dot ro-dot--sm ro-dot--success&quot;&gt;&lt;/span&gt; En línea&lt;/span&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Combina un ro-dot con texto legible para no depender solo del color.</li><li>Usa ro-badge--count para números breves (notificaciones, resultados).</li><li>Reserva el badge para información corta y no interactiva.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No conviertas un badge en botón: si es clicable, envuélvelo o usa ro-btn con estilo propio.</li><li>No uses solo el color del punto para transmitir el estado.</li><li>No metas frases largas dentro de un badge; usa Alert para eso.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="tag.html">tag</a> · <a href="avatar.html">avatar</a> · <a href="table.html">table</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

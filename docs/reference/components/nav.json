@@ -1,0 +1,69 @@
+{
+  "name": "nav",
+  "title": "Nav",
+  "group": "Seleccion y navegacion",
+  "maturity": "experimental",
+  "summary": "Enlaces de navegación persistente entre secciones del sitio, con la página actual marcada por aria-current.",
+  "whenToUse": [
+    "Navegación principal o secundaria que permanece visible entre vistas (header, subnav).",
+    "Un conjunto corto de destinos donde el usuario necesita saber en cuál está parado."
+  ],
+  "whenNotToUse": [
+    "Para alternar entre vistas equivalentes dentro del mismo contexto (mismo contenido, distinto panel): usa Tabs (role=tablist), no Nav.",
+    "Para una lista de acciones (editar, eliminar, compartir): usa Menu.",
+    "Para la ruta jerárquica de la página actual: usa Breadcrumb."
+  ],
+  "anatomy": {
+    "html": "<nav class=\"ro-row\" aria-label=\"Principal\">\n  <a class=\"ro-nav-link\" href=\"/\" aria-current=\"page\">Inicio</a>\n  <a class=\"ro-nav-link\" href=\"/proyectos\">Mis Proyectos</a>\n</nav>",
+    "notes": [
+      "El contenedor es un landmark <nav> con nombre accesible (aria-label): sin nombre, un lector de pantalla anuncia solo \"navegación\" y no distingue entre varias.",
+      "El enlace activo lleva aria-current=\"page\"; el estilo (fondo y peso de fuente) se dibuja desde ese atributo vía el selector [aria-current=\"page\"], no desde una clase de demostración.",
+      "Cada enlace es un <a> real con href: la navegación debe funcionar sin JavaScript y ser abrible en pestaña nueva."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-nav-link", "desc": "Enlace de navegación en forma de píldora." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-radius-full",
+      "--ro-ink-60",
+      "--ro-ink-04",
+      "--ro-ink-06",
+      "--ro-transition"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/tabs-accordion-navigation.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Recorre los enlaces en orden del documento (no hay roving tabindex: son enlaces nativos)."],
+      ["Enter", "Sigue el enlace enfocado."]
+    ],
+    "notes": [
+      "El patrón vive en la sección \"Navegación\" del contrato: landmark nav con nombre y aria-current=\"page\" en el destino activo.",
+      "No es un rol menu ni un tablist: no hay flechas de teclado ni aria-selected. Si necesitas ese modelo, usa Tabs.",
+      "Con varios <nav> en la página (principal, lateral, pie), cada uno necesita un aria-label distinto para diferenciarse en el rotor del lector de pantalla."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Navegación principal con destino activo",
+      "html": "<nav class=\"ro-row ro-row--wrap\" aria-label=\"Ejemplo de navegación\">\n  <a class=\"ro-nav-link\" href=\"#\" aria-current=\"page\">Inicio</a>\n  <a class=\"ro-nav-link\" href=\"#\">Mis Proyectos</a>\n  <a class=\"ro-nav-link\" href=\"#\">Sesiones</a>\n  <a class=\"ro-nav-link\" href=\"#\">Directorio</a>\n</nav>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da nombre al landmark con aria-label cuando haya más de un nav en la página.",
+      "Marca el destino activo con aria-current=\"page\", incluso si además cambias la clase para el estilo.",
+      "Usa enlaces reales (<a href>) para que la navegación funcione sin JavaScript."
+    ],
+    "dont": [
+      "No uses Nav para alternar contenido dentro de la misma vista: eso es Tabs.",
+      "No marques el estado activo solo con una clase; sin aria-current, un lector de pantalla no lo distingue.",
+      "No conviertas los enlaces en <button> ni en <div> con onclick: rompen el comportamiento nativo de navegación."
+    ]
+  },
+  "related": ["breadcrumb", "sidebar", "header"]
+}

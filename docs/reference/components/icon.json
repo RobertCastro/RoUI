@@ -1,0 +1,66 @@
+{
+  "name": "icon",
+  "title": "Icon",
+  "group": "Fundamentos visuales",
+  "maturity": "experimental",
+  "summary": "Aplica tamaño y trazo consistentes a un <svg> que referencia el sprite de iconos (Lucide) vía <use>.",
+  "whenToUse": [
+    "Reforzar visualmente una acción, estado o categoría junto a texto (botón, alerta, tag, menú).",
+    "Como único contenido de un control interactivo pequeño (botón de solo icono)."
+  ],
+  "whenNotToUse": [
+    "Para ilustraciones grandes o gráficos complejos: usa una imagen o SVG dedicado, no el sprite de iconos.",
+    "Como portador único de significado sin texto ni aria-label: un icono aislado sin nombre accesible es ambiguo para lectores de pantalla."
+  ],
+  "anatomy": {
+    "html": "<svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg>",
+    "notes": [
+      "El sprite vive en dist/icons.svg; cada icono se referencia por id (#ro-i-<nombre>) vía <use>, nunca inline.",
+      "El icono hereda color con currentColor: el color se controla desde el elemento padre o con style/color directo.",
+      "Si el icono es decorativo (acompaña texto visible), lleva aria-hidden=\"true\". Si es el único contenido de un control, el nombre accesible va en el control (aria-label), no en el svg."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-icon", "desc": "Clase base: tamaño medio (--ro-icon-md), stroke currentColor." },
+      { "name": "ro-icon--xs", "desc": "Tamaño extra pequeño (--ro-icon-xs)." },
+      { "name": "ro-icon--sm", "desc": "Tamaño pequeño (--ro-icon-sm)." },
+      { "name": "ro-icon--lg", "desc": "Tamaño grande (--ro-icon-lg)." }
+    ],
+    "data": [],
+    "tokens": ["--ro-icon-xs", "--ro-icon-sm", "--ro-icon-md", "--ro-icon-lg", "--ro-icon-stroke"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Icono decorativo junto a texto: aria-hidden=\"true\" en el svg, sin rol adicional.",
+      "Icono como único contenido de un botón: aria-label descriptivo en el <button>, y aria-hidden=\"true\" en el svg (el nombre no debe duplicarse en ambos).",
+      "No comuniques estado (error, éxito, advertencia) solo con la forma del icono: acompáñalo siempre de texto o color semántico redundante."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Tamaños",
+      "html": "<svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg>\n<svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg>\n<svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg>\n<svg class=\"ro-icon ro-icon--lg\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg>"
+    },
+    {
+      "title": "Icono en botón (decorativo) vs. botón de solo icono",
+      "html": "<button class=\"ro-btn ro-btn--primary\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-plus\"></use></svg> Nuevo</button>\n<button class=\"ro-btn-icon\" aria-label=\"Buscar\"><svg class=\"ro-icon\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg></button>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa siempre <use href=\"#ro-i-...\"> contra el sprite en vez de pegar el path SVG inline.",
+      "Marca aria-hidden=\"true\" en todo icono decorativo.",
+      "Da aria-label al control cuando el icono es su único contenido."
+    ],
+    "dont": [
+      "No mezcles tamaños de icono dentro del mismo grupo de acciones sin motivo.",
+      "No dejes un icono interactivo sin nombre accesible en el control que lo envuelve.",
+      "No inventes ids de icono que no existen en el sprite: usa solo los ids reales (dist/icons.svg)."
+    ]
+  },
+  "related": ["button", "alert", "tag", "tooltip"]
+}

@@ -12,8 +12,8 @@
   flex-direction: column; overflow: hidden; background: var(--ro-white); display: none;
 }
 .ro-rail__scroll { flex: 1; min-height: 0; overflow-y: auto; }
-.ro-rail--left  { border-right: 1px solid rgba(0,0,0,0.08); }
-.ro-rail--right { border-left:  1px solid rgba(0,0,0,0.08); }
+.ro-rail--left  { border-right: 1px solid var(--ro-ink-10); }
+.ro-rail--right { border-left:  1px solid var(--ro-ink-10); }
 @media (min-width: 768px)  { .ro-rail--left  { display: flex; } }
 @media (min-width: 1280px) { .ro-rail--right { display: flex; } }
 

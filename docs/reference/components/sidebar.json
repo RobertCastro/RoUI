@@ -1,0 +1,84 @@
+{
+  "name": "sidebar",
+  "title": "Sidebar",
+  "group": "Seleccion y navegacion",
+  "maturity": "experimental",
+  "summary": "Panel lateral persistente con navegación de items (curso, módulos, secciones), agrupados y con el ítem actual marcado.",
+  "whenToUse": [
+    "Navegación secundaria persistente junto al contenido principal (rail izquierdo en layouts de 2-3 columnas).",
+    "Listas largas de destinos relacionados donde el usuario necesita ver el conjunto y su progreso, no solo el destino actual."
+  ],
+  "whenNotToUse": [
+    "En pantallas angostas donde el rail no cabe permanentemente: usa Drawer para exponerlo bajo demanda.",
+    "Para una ruta jerárquica corta: usa Breadcrumb.",
+    "Para una lista de acciones sobre un ítem: usa Menu, no un nav-item del sidebar."
+  ],
+  "anatomy": {
+    "html": "<aside class=\"ro-rail ro-rail--left\" aria-label=\"Clases del curso\">\n  <div class=\"ro-rail__head\">\n    <span class=\"ro-rail__title\">Clases del curso</span>\n  </div>\n  <nav aria-label=\"Módulos\">\n    <a class=\"ro-nav-item ro-nav-item--active\" href=\"#\" aria-current=\"page\">\n      <span class=\"ro-step ro-step--current\"></span>\n      <span><span class=\"ro-nav-item__meta\">Mód 04 · Video</span><br><span class=\"ro-nav-item__label\">Technical Brief</span></span>\n    </a>\n    <a class=\"ro-nav-item\" href=\"#\">\n      <span class=\"ro-step\"></span>\n      <span><span class=\"ro-nav-item__meta\">Mód 05 · Video</span><br><span class=\"ro-nav-item__label\">Siguiente módulo</span></span>\n    </a>\n  </nav>\n</aside>",
+    "notes": [
+      "El rail es un <aside> con aria-label; dentro, la lista de destinos vive en un <nav> propio con su propio nombre (más específico que el del aside).",
+      "El ítem actual combina la clase ro-nav-item--active (estilo) con aria-current=\"page\" (semántica); uno no sustituye al otro.",
+      "ro-step / ro-step--done / ro-step--current son indicadores de progreso decorativos junto al ítem: no reemplazan el texto del label."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-rail", "desc": "Panel lateral (columna del layout de 2-3 columnas)." },
+      { "name": "ro-rail--left", "desc": "Variante con borde a la derecha, para el rail izquierdo." },
+      { "name": "ro-rail--right", "desc": "Variante con borde a la izquierda, para el rail derecho." },
+      { "name": "ro-rail__head", "desc": "Cabecera del rail (título, progreso)." },
+      { "name": "ro-rail__title", "desc": "Título mono en mayúsculas de la cabecera." },
+      { "name": "ro-accordion-head", "desc": "Cabecera plegable para agrupar items (p. ej. por semana)." },
+      { "name": "ro-nav-item", "desc": "Fila de navegación individual dentro del rail." },
+      { "name": "ro-nav-item--active", "desc": "Ítem actualmente seleccionado." },
+      { "name": "ro-nav-item__meta", "desc": "Texto secundario mono (p. ej. \"Mód 04 · Video\")." },
+      { "name": "ro-nav-item__label", "desc": "Texto principal del ítem." },
+      { "name": "ro-step", "desc": "Indicador circular de progreso del ítem." },
+      { "name": "ro-step--done", "desc": "Ítem completado." },
+      { "name": "ro-step--current", "desc": "Ítem en curso." }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-ink-06",
+      "--ro-ink-04",
+      "--ro-radius-xl",
+      "--ro-radius-full",
+      "--ro-ink",
+      "--ro-white",
+      "--ro-font-mono",
+      "--ro-tracking-wider"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/tabs-accordion-navigation.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Recorre los items del rail en orden del documento."],
+      ["Enter", "Sigue el ítem de navegación enfocado."]
+    ],
+    "notes": [
+      "El rail entero es un landmark (aside con aria-label); la lista de navegación dentro es otro landmark nav con su propio nombre, más preciso que \"panel lateral\".",
+      "El ítem activo se marca con aria-current=\"page\", igual que Nav y Breadcrumb, no solo con la clase ro-nav-item--active.",
+      "Si agrupas items bajo un ro-accordion-head plegable, ese encabezado sigue el contrato de Accordion (aria-expanded + aria-controls), no el de un ítem de navegación."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Rail de curso con progreso",
+      "html": "<aside class=\"ro-rail ro-rail--left\" aria-label=\"Clases del curso\" style=\"max-width:280px\">\n  <div class=\"ro-rail__head\">\n    <div class=\"ro-row ro-row--between\">\n      <span class=\"ro-rail__title\">Clases del curso</span>\n    </div>\n    <div class=\"ro-row\" style=\"margin-top:12px;gap:10px\">\n      <strong style=\"font-size:22px\">8%</strong>\n      <div style=\"flex:1\"><div class=\"ro-progress\"><div class=\"ro-progress__fill\" style=\"width:8%\"></div></div></div>\n    </div>\n  </div>\n  <nav aria-label=\"Módulos\">\n    <a class=\"ro-nav-item\" href=\"#\">\n      <span class=\"ro-step ro-step--done\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-check\"></use></svg></span>\n      <span><span class=\"ro-nav-item__meta\">Mód 00 · Video</span><br><span class=\"ro-nav-item__label\">Estado actual de AI</span></span>\n    </a>\n    <a class=\"ro-nav-item ro-nav-item--active\" href=\"#\" aria-current=\"page\">\n      <span class=\"ro-step ro-step--current\"></span>\n      <span><span class=\"ro-nav-item__meta\">Mód 04 · Video</span><br><span class=\"ro-nav-item__label\">Technical Brief</span></span>\n    </a>\n    <a class=\"ro-nav-item\" href=\"#\">\n      <span class=\"ro-step\"></span>\n      <span><span class=\"ro-nav-item__meta\">Mód 05 · Video</span><br><span class=\"ro-nav-item__label\">Siguiente módulo</span></span>\n    </a>\n  </nav>\n</aside>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Da nombre al aside y, dentro, un nombre más específico al nav de items.",
+      "Marca el ítem actual con aria-current=\"page\" además de la clase activa.",
+      "Muestra progreso (ro-step) como refuerzo visual, nunca como único indicador del estado."
+    ],
+    "dont": [
+      "No uses el rail como único acceso a una sección crítica en pantallas angostas donde queda oculto: ofrece una alternativa (Drawer, nav superior).",
+      "No pongas acciones destructivas (eliminar, salir) como ro-nav-item: son navegación, no comandos.",
+      "No dupliques el mismo destino activo en dos items distintos del mismo nav."
+    ]
+  },
+  "related": ["nav", "tree", "accordion"]
+}

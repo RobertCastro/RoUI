@@ -43,7 +43,7 @@
     "./primitives/grid-controller": "./dist/primitives/grid-controller.js",
     "./primitives/toast-controller": "./dist/primitives/toast-controller.js",
     "./icons.svg": "./dist/icons.svg",
-    "./tokens.json": "./tokens/tokens.json",
+    "./tokens.json": "./dist/tokens.json",
     "./tailwind": "./tokens/tailwind.preset.cjs"
   },
   "files": [
@@ -52,6 +52,7 @@
     "!src/primitives",
     "!src/icons/icons.json",
     "tokens",
+    "!tokens/tokens.json",
     "CHANGELOG.md"
   ],
   "scripts": {

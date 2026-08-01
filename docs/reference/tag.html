@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tag — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Datos y estado</p>
+      <div class="dx-ref-title"><h1>Tag</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Etiqueta removible para filtros activos, skills o selección múltiple.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Mostrar filtros activos o valores seleccionados que el usuario puede quitar uno a uno.</li><li>Listar skills, categorías u opciones elegidas en un formulario (combobox, tags-input).</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para un indicador de solo lectura sin acción de quitar: usa Badge.</li><li>Para navegar a una sección o filtro (sin opción de remover): usa un link o Breadcrumb.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-tag&quot;&gt;Frontend &lt;button class=&quot;ro-tag__close&quot; aria-label=&quot;Quitar etiqueta&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El tag en sí no es focalizable: solo el botón de cierre entra al orden de tabulación.</li><li>El icono del botón es aria-hidden; el nombre accesible vive en el aria-label del botón.</li><li>Idealmente el aria-label incluye el valor (&quot;Quitar Frontend&quot;) cuando hay varios tags en la misma zona.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-tag</code></td><td>Contenedor base (píldora).</td></tr><tr><td><code>.ro-tag--accent</code></td><td>Fondo de acento (lavanda suave).</td></tr><tr><td><code>.ro-tag--brand</code></td><td>Fondo de marca (secondary).</td></tr><tr><td><code>.ro-tag--outline</code></td><td>Solo borde, fondo transparente.</td></tr><tr><td><code>.ro-tag__close</code></td><td>Botón circular de quitar; requiere aria-label.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-full</code> <code>--ro-ink-06</code> <code>--ro-primary-soft</code> <code>--ro-secondary</code> <code>--ro-ink-20</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Entra y sale del botón de cierre.</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Quita la etiqueta.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>El botón de cierre necesita nombre accesible propio (aria-label), no basta con el icono.</li><li>Al quitar un tag, mueve el foco a un elemento coherente (el siguiente tag o el campo asociado) en vez de perderlo.</li><li>Si el grupo de tags representa una selección que cambia (p. ej. dentro de Tags input), considera anunciar el cambio con una región aria-live cercana.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Variantes</div>
+  <div class="dx-demo"><span class="ro-tag">Frontend <button class="ro-tag__close" aria-label="Quitar Frontend"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+<span class="ro-tag ro-tag--accent">IA <button class="ro-tag__close" aria-label="Quitar IA"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+<span class="ro-tag ro-tag--outline">React <button class="ro-tag__close" aria-label="Quitar React"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span></div>
+  <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-tag&quot;&gt;Frontend &lt;button class=&quot;ro-tag__close&quot; aria-label=&quot;Quitar Frontend&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+&lt;span class=&quot;ro-tag ro-tag--accent&quot;&gt;IA &lt;button class=&quot;ro-tag__close&quot; aria-label=&quot;Quitar IA&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+&lt;span class=&quot;ro-tag ro-tag--outline&quot;&gt;React &lt;button class=&quot;ro-tag__close&quot; aria-label=&quot;Quitar React&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Grupo de filtros activos</div>
+  <div class="dx-demo"><div class="ro-row" style="gap:8px;flex-wrap:wrap">
+  <span class="ro-tag ro-tag--brand">Ubicación: Remoto <button class="ro-tag__close" aria-label="Quitar filtro Ubicación: Remoto"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+  <span class="ro-tag">Nivel: Senior <button class="ro-tag__close" aria-label="Quitar filtro Nivel: Senior"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-x"></use></svg></button></span>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-row&quot; style=&quot;gap:8px;flex-wrap:wrap&quot;&gt;
+  &lt;span class=&quot;ro-tag ro-tag--brand&quot;&gt;Ubicación: Remoto &lt;button class=&quot;ro-tag__close&quot; aria-label=&quot;Quitar filtro Ubicación: Remoto&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+  &lt;span class=&quot;ro-tag&quot;&gt;Nivel: Senior &lt;button class=&quot;ro-tag__close&quot; aria-label=&quot;Quitar filtro Nivel: Senior&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da al botón de cierre un aria-label específico, idealmente con el valor del tag.</li><li>Usa tag para selección o filtros que el usuario puede deshacer.</li><li>Agrupa varios tags con espaciado y wrap para que no se corten en móvil.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No uses tag para navegación permanente: usa un link o Breadcrumb.</li><li>No quites el aria-label del botón de cierre confiando solo en el icono.</li><li>No pongas texto largo dentro de un tag; resúmelo o usa Badge/Alert.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="badge.html">badge</a> · <a href="combobox.html">combobox</a> · <a href="tags-input.html">tags-input</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

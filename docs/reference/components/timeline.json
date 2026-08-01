@@ -1,0 +1,65 @@
+{
+  "name": "timeline",
+  "title": "Timeline",
+  "group": "Contenido y estructura",
+  "maturity": "experimental",
+  "summary": "Línea de tiempo de eventos ordenados, marcada como lista para que se anuncie el número de elementos.",
+  "whenToUse": [
+    "Mostrar el historial o avance de un proceso con eventos fechados (estado de un pedido, progreso de un cohort).",
+    "Resumir una secuencia de hitos pasados, en curso y futuros en una sola vista."
+  ],
+  "whenNotToUse": [
+    "Para pasos de un formulario multi-paso que el usuario debe completar en orden: usa Stepper.",
+    "Para una lista simple sin relación temporal entre ítems: usa List group."
+  ],
+  "anatomy": {
+    "html": "<ol class=\"ro-timeline\">\n  <li class=\"ro-timeline__item ro-timeline__item--done\">\n    <div class=\"ro-timeline__time\">27 abr</div>\n    <div class=\"ro-timeline__title\">Inscripción confirmada</div>\n    <div class=\"ro-timeline__text\">Te uniste al cohort de abril.</div>\n  </li>\n  <li class=\"ro-timeline__item ro-timeline__item--active\">\n    <div class=\"ro-timeline__time\">Hoy</div>\n    <div class=\"ro-timeline__title\">Módulo 4 en curso</div>\n    <div class=\"ro-timeline__text\">El arte del technical brief.</div>\n  </li>\n  <li class=\"ro-timeline__item\">\n    <div class=\"ro-timeline__time\">Próximo</div>\n    <div class=\"ro-timeline__title\">Sesión en vivo</div>\n  </li>\n</ol>",
+    "notes": [
+      "Usa <ol> cuando el orden cronológico es significativo (la mayoría de los casos); <ul> si el orden no aporta información.",
+      "El punto y la línea conectora son ::before/::after puramente decorativos: no existen como nodos del DOM, así que no necesitan aria-hidden.",
+      "ro-timeline__item--active y --done comunican el estado con color; el texto (\"Hoy\", \"27 abr\") es lo que realmente transmite el significado a un lector de pantalla."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-timeline", "desc": "Lista base (<ol> u <ul>), sin viñetas nativas." },
+      { "name": "ro-timeline__item", "desc": "Elemento de la línea de tiempo con punto y conector." },
+      { "name": "ro-timeline__item--active", "desc": "Hito en curso (punto de color secundario)." },
+      { "name": "ro-timeline__item--done", "desc": "Hito completado (punto sólido oscuro)." },
+      { "name": "ro-timeline__time", "desc": "Fecha u hora del hito, en mayúsculas/monoespaciada." },
+      { "name": "ro-timeline__title", "desc": "Título breve del hito." },
+      { "name": "ro-timeline__text", "desc": "Descripción de apoyo opcional." }
+    ],
+    "data": [],
+    "tokens": ["--ro-ink-20", "--ro-white", "--ro-ink-10", "--ro-secondary", "--ro-secondary-ring", "--ro-ink", "--ro-font-mono"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [],
+    "notes": [
+      "Al ser una lista (<ol>/<ul>), el lector de pantalla anuncia el número total de hitos y la posición de cada uno automáticamente.",
+      "No confíes solo en el color del punto (--active/--done) para indicar el estado; acompaña con texto explícito cuando el estado importe para entender el hito (p. ej. \"Completado\", \"En curso\").",
+      "Si un hito incluye una acción (enlace, botón), esta debe tener su propio nombre accesible, igual que en cualquier otro contenido."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Historial de cohort",
+      "html": "<ol class=\"ro-timeline\" style=\"max-width:480px\">\n  <li class=\"ro-timeline__item ro-timeline__item--done\">\n    <div class=\"ro-timeline__time\">27 abr</div>\n    <div class=\"ro-timeline__title\">Inscripción confirmada</div>\n    <div class=\"ro-timeline__text\">Te uniste al cohort de abril.</div>\n  </li>\n  <li class=\"ro-timeline__item ro-timeline__item--active\">\n    <div class=\"ro-timeline__time\">Hoy</div>\n    <div class=\"ro-timeline__title\">Módulo 4 en curso</div>\n    <div class=\"ro-timeline__text\">El arte del \"Technical Brief\".</div>\n  </li>\n  <li class=\"ro-timeline__item\">\n    <div class=\"ro-timeline__time\">Próximo</div>\n    <div class=\"ro-timeline__title\">Sesión en vivo</div>\n    <div class=\"ro-timeline__text\">Revisión de código grupal.</div>\n  </li>\n</ol>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa una lista ordenada nativa (<ol>) cuando la cronología importa.",
+      "Incluye una fecha u hora legible por cada hito.",
+      "Combina color y texto para comunicar el estado de cada hito."
+    ],
+    "dont": [
+      "No uses timeline para pasos que el usuario debe completar interactivamente; eso es Stepper.",
+      "No dependas solo del color del punto para indicar completado/activo/pendiente.",
+      "No conviertas la lista en <div>s sueltos: pierdes el conteo automático de elementos."
+    ]
+  },
+  "related": ["stepper", "description-list", "card"]
+}

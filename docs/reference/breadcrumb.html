@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Breadcrumb — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Seleccion y navegacion</p>
+      <div class="dx-ref-title"><h1>Breadcrumb</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Muestra la ruta jerárquica desde el inicio hasta la página actual, con el tramo final marcado como posición activa.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Contenido anidado en varios niveles (curso › semana › módulo) donde el usuario se beneficia de subir un nivel rápido.</li><li>Reforzar la ubicación dentro de una jerarquía profunda, además del nav principal.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>En sitios planos de uno o dos niveles: el breadcrumb no aporta información nueva.</li><li>Como sustituto del nav principal: el breadcrumb muestra jerarquía, no las secciones disponibles.</li><li>Para pasos de un flujo (cuenta → perfil → pago): usa Stepper, que expresa progreso, no jerarquía.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;nav class=&quot;ro-breadcrumbs&quot; aria-label=&quot;Ruta de navegación&quot;&gt;
+  &lt;a href=&quot;/&quot;&gt;Inicio&lt;/a&gt;
+  &lt;span class=&quot;ro-breadcrumbs__sep&quot;&gt;›&lt;/span&gt;
+  &lt;a href=&quot;/proyectos&quot;&gt;Mis Proyectos&lt;/a&gt;
+  &lt;span class=&quot;ro-breadcrumbs__sep&quot;&gt;›&lt;/span&gt;
+  &lt;span class=&quot;ro-breadcrumbs__current&quot; aria-current=&quot;page&quot;&gt;Frontend&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El contenedor es un landmark &lt;nav&gt; con aria-label (&quot;Ruta de navegación&quot; o equivalente); sin nombre se confunde con el nav principal.</li><li>Todos los tramos salvo el último son enlaces reales; el tramo final es texto plano (no enlace a sí mismo) con aria-current=&quot;page&quot;.</li><li>El separador (ro-breadcrumbs__sep) es puramente visual: no lleva rol ni se anuncia como contenido.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-breadcrumbs</code></td><td>Contenedor base.</td></tr><tr><td><code>.ro-breadcrumbs--mono</code></td><td>Variante mono/mayúsculas usada en barras de contexto compactas.</td></tr><tr><td><code>.ro-breadcrumbs__sep</code></td><td>Separador visual entre tramos.</td></tr><tr><td><code>.ro-breadcrumbs__current</code></td><td>Tramo final: la página actual (texto, no enlace).</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-text-sm</code> <code>--ro-ink-60</code> <code>--ro-ink-40</code> <code>--ro-weight-semibold</code> <code>--ro-font-mono</code> <code>--ro-tracking-wider</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab / Shift+Tab</kbd></td><td>Recorre los enlaces de los tramos anteriores; el tramo actual no es enfocable por no ser interactivo.</td></tr><tr><td><kbd>Enter</kbd></td><td>Sigue el enlace del tramo enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/tabs-accordion-navigation.html">tabs-accordion-navigation</a></p><ul class="dx-ref-list"><li>Mismo patrón que Nav: landmark con nombre y aria-current=&quot;page&quot; en el tramo activo, sin depender solo de la clase ro-breadcrumbs__current.</li><li>El separador no debe anunciarse como parte del contenido: no le pongas texto significativo ni aria-label.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Breadcrumb estándar</div>
+  <div class="dx-demo"><nav class="ro-breadcrumbs" aria-label="Ruta de navegación">
+  <a href="#">Inicio</a><span class="ro-breadcrumbs__sep">›</span>
+  <a href="#">Mis Proyectos</a><span class="ro-breadcrumbs__sep">›</span>
+  <span class="ro-breadcrumbs__current" aria-current="page">Frontend</span>
+</nav></div>
+  <pre class="dx-ref-code"><code>&lt;nav class=&quot;ro-breadcrumbs&quot; aria-label=&quot;Ruta de navegación&quot;&gt;
+  &lt;a href=&quot;#&quot;&gt;Inicio&lt;/a&gt;&lt;span class=&quot;ro-breadcrumbs__sep&quot;&gt;›&lt;/span&gt;
+  &lt;a href=&quot;#&quot;&gt;Mis Proyectos&lt;/a&gt;&lt;span class=&quot;ro-breadcrumbs__sep&quot;&gt;›&lt;/span&gt;
+  &lt;span class=&quot;ro-breadcrumbs__current&quot; aria-current=&quot;page&quot;&gt;Frontend&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Variante mono (barra de contexto)</div>
+  <div class="dx-demo"><nav class="ro-breadcrumbs ro-breadcrumbs--mono" aria-label="Ruta de navegación (mono)">
+  <a href="#">Frontend · 4 semanas</a><span class="ro-breadcrumbs__sep">›</span>
+  <a href="#">Semana 1</a><span class="ro-breadcrumbs__sep">›</span>
+  <span class="ro-breadcrumbs__current" aria-current="page">Mód. 04</span>
+</nav></div>
+  <pre class="dx-ref-code"><code>&lt;nav class=&quot;ro-breadcrumbs ro-breadcrumbs--mono&quot; aria-label=&quot;Ruta de navegación (mono)&quot;&gt;
+  &lt;a href=&quot;#&quot;&gt;Frontend · 4 semanas&lt;/a&gt;&lt;span class=&quot;ro-breadcrumbs__sep&quot;&gt;›&lt;/span&gt;
+  &lt;a href=&quot;#&quot;&gt;Semana 1&lt;/a&gt;&lt;span class=&quot;ro-breadcrumbs__sep&quot;&gt;›&lt;/span&gt;
+  &lt;span class=&quot;ro-breadcrumbs__current&quot; aria-current=&quot;page&quot;&gt;Mód. 04&lt;/span&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Da nombre al landmark con aria-label para diferenciarlo del nav principal.</li><li>Deja el último tramo como texto con aria-current=&quot;page&quot;, no como enlace a la propia página.</li><li>Ordena los tramos de más general a más específico.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No lo uses como único mecanismo de navegación: complementa al nav, no lo reemplaza.</li><li>No conviertas el tramo actual en un enlace clicable hacia sí mismo.</li><li>No abuses de rutas de un solo nivel: si no hay jerarquía, omite el breadcrumb.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="nav.html">nav</a> · <a href="sidebar.html">sidebar</a> · <a href="pagination.html">pagination</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

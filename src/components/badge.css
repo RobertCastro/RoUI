@@ -24,8 +24,8 @@
 .ro-status-chip {
   display: inline-flex; align-items: center; gap: 0.625rem;
   border-radius: var(--ro-radius-full);
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--ro-on-dark-10);
+  background: var(--ro-on-dark-06);
   padding: 0.375rem 0.875rem 0.375rem 0.5rem;
   font-size: 0.6875rem; font-weight: var(--ro-weight-bold);
   text-transform: uppercase; letter-spacing: var(--ro-tracking-wide);

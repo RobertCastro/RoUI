@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avatar — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Contenido y estructura</p>
+      <div class="dx-ref-title"><h1>Avatar</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Imagen o iniciales que representan a un usuario o entidad, en tamaño fijo y forma circular.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Identificar a un usuario o entidad en un header, menú, tabla o lista.</li><li>Mostrar varios participantes agrupados con ro-avatar-stack.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para un icono de acción genérico sin identidad asociada: usa Icon o un botón de solo icono.</li><li>Para el logotipo principal de la marca: usa una imagen normal, no este componente.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-avatar&quot;&gt;&lt;img src=&quot;/avatars/maria.jpg&quot; alt=&quot;María Gómez&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;ro-avatar&quot;&gt;MG&lt;/span&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Con imagen: el &lt;img&gt; lleva alt descriptivo (nombre de la persona o entidad), salvo que un nombre visible ya esté junto al avatar, en cuyo caso alt=&quot;&quot;.</li><li>Sin imagen: el texto de iniciales es el contenido accesible; no necesita aria-label adicional.</li><li>Si el avatar en sí es un control (abre un menú de cuenta), usa &lt;button class=&quot;ro-avatar&quot;&gt; con aria-label propio (p. ej. &quot;Cuenta&quot;).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-avatar</code></td><td>Círculo base de 2.25rem con iniciales o imagen.</td></tr><tr><td><code>.ro-avatar--sm</code></td><td>Tamaño compacto (1.625rem), útil en tablas y listas.</td></tr><tr><td><code>.ro-avatar--lg</code></td><td>Tamaño grande (3rem).</td></tr><tr><td><code>.ro-avatar-stack</code></td><td>Agrupa varios avatares superpuestos con borde de separación.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-full</code> <code>--ro-secondary</code> <code>--ro-ink</code> <code>--ro-focus-ring</code> <code>--ro-white</code> <code>--ro-duration</code> <code>--ro-ease</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Un avatar de solo imagen lleva alt descriptivo, o alt=&quot;&quot; si es puramente decorativo junto a un nombre visible; nunca dejes el atributo alt fuera del &lt;img&gt;.</li><li>En ro-avatar-stack, el último elemento suele mostrar un contador (&quot;+64&quot;); dale un aria-label con el total real si el número no es evidente por contexto.</li><li>Las iniciales como fallback deben mantener contraste suficiente frente al fondo del círculo (no solo depender del color).</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Imagen e iniciales</div>
+  <div class="dx-demo"><span class="ro-avatar"><img src="/avatars/maria.jpg" alt="María Gómez"></span>
+<span class="ro-avatar">RC</span>
+<span class="ro-avatar ro-avatar--sm">JP</span>
+<span class="ro-avatar ro-avatar--lg">AB</span></div>
+  <pre class="dx-ref-code"><code>&lt;span class=&quot;ro-avatar&quot;&gt;&lt;img src=&quot;/avatars/maria.jpg&quot; alt=&quot;María Gómez&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;ro-avatar&quot;&gt;RC&lt;/span&gt;
+&lt;span class=&quot;ro-avatar ro-avatar--sm&quot;&gt;JP&lt;/span&gt;
+&lt;span class=&quot;ro-avatar ro-avatar--lg&quot;&gt;AB&lt;/span&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Pila de avatares</div>
+  <div class="dx-demo"><div class="ro-avatar-stack">
+  <span class="ro-avatar">A</span>
+  <span class="ro-avatar">B</span>
+  <span class="ro-avatar">C</span>
+  <span class="ro-avatar" aria-label="64 personas más">+64</span>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-avatar-stack&quot;&gt;
+  &lt;span class=&quot;ro-avatar&quot;&gt;A&lt;/span&gt;
+  &lt;span class=&quot;ro-avatar&quot;&gt;B&lt;/span&gt;
+  &lt;span class=&quot;ro-avatar&quot;&gt;C&lt;/span&gt;
+  &lt;span class=&quot;ro-avatar&quot; aria-label=&quot;64 personas más&quot;&gt;+64&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa iniciales (2 letras) como fallback consistente cuando no hay imagen.</li><li>Da nombre accesible al avatar cuando es un control interactivo (menú de cuenta).</li><li>Combina ro-avatar-stack con un contador cuando el grupo excede el espacio disponible.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No dejes un &lt;img&gt; sin alt ni uses alt genérico como &quot;avatar&quot; o &quot;foto&quot;.</li><li>No uses el avatar como único indicador de identidad si el nombre no aparece en ningún lugar cercano.</li><li>No mezcles tamaños de avatar dentro de una misma pila.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="header.html">header</a> · <a href="card.html">card</a> · <a href="list-group.html">list-group</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

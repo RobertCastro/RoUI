@@ -37,7 +37,7 @@
 .ro-menu__item .ro-menu__check { margin-left: auto; color: var(--ro-secondary); opacity: 0; }
 .ro-menu__item[aria-current="true"] .ro-menu__check { opacity: 1; }
 .ro-menu__item--danger { color: var(--ro-error); }
-.ro-menu__item--danger:hover { background: rgba(239,68,68,0.08); color: var(--ro-error); }
+.ro-menu__item--danger:hover { background: var(--ro-error-08); color: var(--ro-error); }
 
 .ro-menu__sep { height: 1px; margin: 6px 4px; background: var(--ro-ink-06); }
 

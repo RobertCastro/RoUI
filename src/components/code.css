@@ -19,7 +19,7 @@
 .ro-codeblock__bar {
   display: flex; align-items: center; justify-content: space-between;
   margin: -16px -18px 12px; padding: 10px 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+  border-bottom: 1px solid var(--ro-on-dark-10);
   font-family: var(--ro-font-mono); font-size: 11px; color: var(--ro-on-dark-60);
   text-transform: uppercase; letter-spacing: var(--ro-tracking-wider);
 }

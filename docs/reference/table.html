@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Table — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Datos y estado</p>
+      <div class="dx-ref-title"><h1>Table</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Tabla de datos tabulares con cabeceras semánticas y variantes de hover/zebra.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Mostrar filas de datos comparables con las mismas columnas (usuarios, transacciones, registros).</li><li>Cuando el usuario necesita escanear y comparar valores por columna.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para pares término-valor sueltos: usa Description list.</li><li>Para una lista simple de ítems sin columnas: usa List group.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-table-wrap&quot; tabindex=&quot;0&quot; role=&quot;region&quot; aria-label=&quot;Tabla de builders&quot;&gt;
+  &lt;table class=&quot;ro-table ro-table--hover&quot;&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope=&quot;col&quot;&gt;Nombre&lt;/th&gt;
+        &lt;th scope=&quot;col&quot;&gt;Proyecto&lt;/th&gt;
+        &lt;th scope=&quot;col&quot; class=&quot;ro-table__num&quot;&gt;Módulos&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;th scope=&quot;row&quot; style=&quot;font-weight:inherit;text-align:left;padding:14px 16px;border-bottom:1px solid var(--ro-ink-06)&quot;&gt;María A.&lt;/th&gt;
+        &lt;td class=&quot;ro-muted&quot;&gt;Edición con IA&lt;/td&gt;
+        &lt;td class=&quot;ro-table__num&quot;&gt;12&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+        <ul class="dx-ref-list"><li>ro-table-wrap aporta el borde, el radio y el overflow-x del contenedor.</li><li>Las cabeceras de columna usan th scope=&quot;col&quot;; si la primera celda identifica la fila, usa th scope=&quot;row&quot; en vez de td.</li><li>ro-table__num alinea a la derecha y usa fuente mono, pensado para columnas numéricas.</li><li>El th de fila no hereda el padding/borde de tbody td (la hoja de estilos solo apunta a td); replica esos estilos en línea o con una clase de utilidad si lo usas.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-table-wrap</code></td><td>Contenedor con borde, radio y scroll horizontal.</td></tr><tr><td><code>.ro-table</code></td><td>Tabla base con border-collapse y tipografía compacta.</td></tr><tr><td><code>.ro-table--hover</code></td><td>Resalta la fila bajo el cursor.</td></tr><tr><td><code>.ro-table--zebra</code></td><td>Alterna el fondo de filas pares.</td></tr><tr><td><code>.ro-table__num</code></td><td>Alinea a la derecha con fuente mono (columnas numéricas).</td></tr><tr><td><code>.ro-table-toolbar</code></td><td>Barra superior con título y acciones, antes de la tabla.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-ink-10</code> <code>--ro-ink-06</code> <code>--ro-ink-02</code> <code>--ro-font-mono</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Flechas</kbd></td><td>Con el contenedor de scroll enfocado (tabindex=0), desplaza la tabla horizontalmente cuando el contenido excede el ancho disponible.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>th scope=&quot;col&quot; en cabeceras de columna y scope=&quot;row&quot; en la celda que identifica cada fila.</li><li>Una tabla con scroll horizontal se envuelve en un contenedor con tabindex=&quot;0&quot; y aria-label descriptivo para que sea navegable por teclado.</li><li>No comuniques el estado de una celda solo con color: combina con texto o un badge con icono.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Con barra superior y badges de estado</div>
+  <div class="dx-demo"><div class="ro-table-wrap" tabindex="0" role="region" aria-label="Tabla de builders">
+  <div class="ro-table-toolbar">
+    <h3 class="ro-h3">Builders</h3>
+    <span class="ro-badge ro-badge--soft">71 activos</span>
+  </div>
+  <table class="ro-table ro-table--hover">
+    <thead>
+      <tr><th scope="col">Nombre</th><th scope="col">Proyecto</th><th scope="col">Estado</th><th scope="col" class="ro-table__num">Módulos</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="ro-row" style="gap:10px"><span class="ro-avatar ro-avatar--sm">MA</span> María A.</div></td>
+        <td class="ro-muted">Edición con IA</td>
+        <td><span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--success"></span> Activo</span></td>
+        <td class="ro-table__num">12</td>
+      </tr>
+      <tr>
+        <td><div class="ro-row" style="gap:10px"><span class="ro-avatar ro-avatar--sm">JP</span> Juan P.</div></td>
+        <td class="ro-muted">Gestión de leads</td>
+        <td><span class="ro-badge ro-badge--soft"><span class="ro-dot ro-dot--warning"></span> Pausa</span></td>
+        <td class="ro-table__num">7</td>
+      </tr>
+    </tbody>
+  </table>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-table-wrap&quot; tabindex=&quot;0&quot; role=&quot;region&quot; aria-label=&quot;Tabla de builders&quot;&gt;
+  &lt;div class=&quot;ro-table-toolbar&quot;&gt;
+    &lt;h3 class=&quot;ro-h3&quot;&gt;Builders&lt;/h3&gt;
+    &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;71 activos&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;table class=&quot;ro-table ro-table--hover&quot;&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Nombre&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Proyecto&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Estado&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;ro-table__num&quot;&gt;Módulos&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;div class=&quot;ro-row&quot; style=&quot;gap:10px&quot;&gt;&lt;span class=&quot;ro-avatar ro-avatar--sm&quot;&gt;MA&lt;/span&gt; María A.&lt;/div&gt;&lt;/td&gt;
+        &lt;td class=&quot;ro-muted&quot;&gt;Edición con IA&lt;/td&gt;
+        &lt;td&gt;&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;&lt;span class=&quot;ro-dot ro-dot--success&quot;&gt;&lt;/span&gt; Activo&lt;/span&gt;&lt;/td&gt;
+        &lt;td class=&quot;ro-table__num&quot;&gt;12&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;div class=&quot;ro-row&quot; style=&quot;gap:10px&quot;&gt;&lt;span class=&quot;ro-avatar ro-avatar--sm&quot;&gt;JP&lt;/span&gt; Juan P.&lt;/div&gt;&lt;/td&gt;
+        &lt;td class=&quot;ro-muted&quot;&gt;Gestión de leads&lt;/td&gt;
+        &lt;td&gt;&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;&lt;span class=&quot;ro-dot ro-dot--warning&quot;&gt;&lt;/span&gt; Pausa&lt;/span&gt;&lt;/td&gt;
+        &lt;td class=&quot;ro-table__num&quot;&gt;7&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Variante zebra</div>
+  <div class="dx-demo"><div class="ro-table-wrap">
+  <table class="ro-table ro-table--zebra">
+    <thead><tr><th scope="col">Módulo</th><th scope="col" class="ro-table__num">Avance</th></tr></thead>
+    <tbody>
+      <tr><td>Technical brief</td><td class="ro-table__num">100%</td></tr>
+      <tr><td>Prompting avanzado</td><td class="ro-table__num">66%</td></tr>
+      <tr><td>Revisión de código</td><td class="ro-table__num">0%</td></tr>
+    </tbody>
+  </table>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-table-wrap&quot;&gt;
+  &lt;table class=&quot;ro-table ro-table--zebra&quot;&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Módulo&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;ro-table__num&quot;&gt;Avance&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Technical brief&lt;/td&gt;&lt;td class=&quot;ro-table__num&quot;&gt;100%&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Prompting avanzado&lt;/td&gt;&lt;td class=&quot;ro-table__num&quot;&gt;66%&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Revisión de código&lt;/td&gt;&lt;td class=&quot;ro-table__num&quot;&gt;0%&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa th scope=&quot;col&quot; / scope=&quot;row&quot; en vez de td para cabeceras.</li><li>Envuelve tablas anchas en un contenedor con overflow y tabindex=0 + aria-label.</li><li>Alinea columnas numéricas a la derecha con ro-table__num.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No comuniques estado solo con color: acompaña el badge de texto e icono/dot.</li><li>No uses una tabla para maquetar contenido que no es tabular.</li><li>No quites el borde inferior de todas las filas sin otra forma de separación visual.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="badge.html">badge</a> · <a href="pagination.html">pagination</a> · <a href="toolbar.html">toolbar</a> · <a href="empty.html">empty</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

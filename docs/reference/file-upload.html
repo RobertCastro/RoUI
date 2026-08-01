@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>File upload — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Formularios</p>
+      <div class="dx-ref-title"><h1>File upload</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Dropzone para subir archivos por arrastre o por clic, con resalte visual al soltar sobre ella.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Subir uno o varios archivos (imágenes, documentos) donde arrastrar-y-soltar agiliza la tarea.</li><li>Cuando conviene comunicar formatos y tamaño máximo aceptados junto al control.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para adjuntar un solo archivo pequeño en un formulario muy compacto: un input[type=file] simple puede bastar.</li><li>Cuando el archivo se genera o selecciona desde el propio sistema sin necesidad de arrastre (por ejemplo, una foto de perfil ya provista): considera un flujo más directo.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-dropzone&quot;&gt;
+  &lt;svg class=&quot;ro-icon ro-icon--lg ro-dropzone__icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-upload&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;div&gt;&lt;strong&gt;Arrastra un archivo&lt;/strong&gt; o haz clic para subir&lt;/div&gt;
+  &lt;div class=&quot;ro-dropzone__hint&quot;&gt;PNG, JPG o PDF · máx 10 MB&lt;/div&gt;
+  &lt;input type=&quot;file&quot; hidden&gt;
+&lt;/label&gt;</code></pre>
+        <ul class="dx-ref-list"><li>El &lt;label&gt; envuelve al input[type=file] oculto: clic en cualquier parte de la zona abre el selector nativo de archivos.</li><li>El estado de arrastre activo se marca con la clase is-dragover (aplicada por script al recibir dragenter).</li><li>El icono es decorativo (aria-hidden); el texto &quot;Arrastra un archivo o haz clic para subir&quot; es lo que da contexto real.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-dropzone</code></td><td>Contenedor/label de la zona de arrastre.</td></tr><tr><td><code>.ro-dropzone__icon</code></td><td>Icono decorativo dentro de la zona.</td></tr><tr><td><code>.ro-dropzone__hint</code></td><td>Texto secundario con formatos y límites aceptados.</td></tr><tr><td><code>.is-dragover</code></td><td>Estado aplicado mientras se arrastra un archivo sobre la zona.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-secondary</code> <code>--ro-secondary-soft</code> <code>--ro-ink-20</code> <code>--ro-ink-02</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab</kbd></td><td>Enfoca la zona (a través del input[type=file] nativo).</td></tr><tr><td><kbd>Enter / Espacio</kbd></td><td>Abre el selector de archivos del sistema operativo.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/native-controls.html">native-controls</a></p><ul class="dx-ref-list"><li>Al ser un &lt;label&gt; sobre un input[type=file] real, hereda foco, activación por teclado y el selector nativo del sistema operativo.</li><li>El arrastre (drag &amp; drop) es una mejora adicional: la zona debe seguir siendo utilizable solo con teclado vía el input nativo.</li><li>Comunica formatos y tamaño máximo como texto visible (ro-dropzone__hint), no solo con el atributo accept del input.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Dropzone básica</div>
+  <div class="dx-demo"><label class="ro-dropzone" style="max-width:420px">
+  <svg class="ro-icon ro-icon--lg ro-dropzone__icon"><use href="#ro-i-upload"></use></svg>
+  <div><strong>Arrastra un archivo</strong> o haz clic para subir</div>
+  <div class="ro-dropzone__hint">PNG, JPG o PDF · máx 10 MB</div>
+  <input type="file" accept=".png,.jpg,.jpeg,.pdf" hidden>
+</label></div>
+  <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-dropzone&quot; style=&quot;max-width:420px&quot;&gt;
+  &lt;svg class=&quot;ro-icon ro-icon--lg ro-dropzone__icon&quot;&gt;&lt;use href=&quot;#ro-i-upload&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;div&gt;&lt;strong&gt;Arrastra un archivo&lt;/strong&gt; o haz clic para subir&lt;/div&gt;
+  &lt;div class=&quot;ro-dropzone__hint&quot;&gt;PNG, JPG o PDF · máx 10 MB&lt;/div&gt;
+  &lt;input type=&quot;file&quot; accept=&quot;.png,.jpg,.jpeg,.pdf&quot; hidden&gt;
+&lt;/label&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Dropzone en estado de arrastre activo</div>
+  <div class="dx-demo"><label class="ro-dropzone is-dragover" style="max-width:420px">
+  <svg class="ro-icon ro-icon--lg ro-dropzone__icon"><use href="#ro-i-upload"></use></svg>
+  <div><strong>Suelta el archivo aquí</strong></div>
+  <div class="ro-dropzone__hint">PNG, JPG o PDF · máx 10 MB</div>
+  <input type="file" hidden>
+</label></div>
+  <pre class="dx-ref-code"><code>&lt;label class=&quot;ro-dropzone is-dragover&quot; style=&quot;max-width:420px&quot;&gt;
+  &lt;svg class=&quot;ro-icon ro-icon--lg ro-dropzone__icon&quot;&gt;&lt;use href=&quot;#ro-i-upload&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+  &lt;div&gt;&lt;strong&gt;Suelta el archivo aquí&lt;/strong&gt;&lt;/div&gt;
+  &lt;div class=&quot;ro-dropzone__hint&quot;&gt;PNG, JPG o PDF · máx 10 MB&lt;/div&gt;
+  &lt;input type=&quot;file&quot; hidden&gt;
+&lt;/label&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Indica formatos y tamaño máximo aceptados como texto visible.</li><li>Mantén siempre disponible el clic/teclado como alternativa al arrastre.</li><li>Muestra feedback claro (lista, progreso o error) después de soltar o seleccionar el archivo.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No dependas solo del arrastre: usuarios de teclado y móvil necesitan el input nativo funcional.</li><li>No ocultes errores de formato o tamaño; muéstralos junto a la zona con ro-error-text.</li><li>No uses un &lt;div&gt; con listeners de drag en vez de &lt;label&gt; + input[type=file] real.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="form.html">form</a> · <a href="tags-input.html">tags-input</a> · <a href="progress.html">progress</a> · <a href="input-group.html">input-group</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

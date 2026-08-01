@@ -2,7 +2,7 @@
 .ro-overlay {
   position: fixed; inset: 0; z-index: var(--ro-z-modal);
   display: none; align-items: center; justify-content: center; padding: 16px;
-  background: rgba(23, 23, 25, 0.45);
+  background: var(--ro-ink-45);
   animation: ro-fade 0.15s var(--ro-ease);
 }
 .ro-overlay[hidden] { display: none; }

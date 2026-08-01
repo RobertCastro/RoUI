@@ -1,0 +1,73 @@
+{
+  "name": "input-group",
+  "title": "Input group",
+  "group": "Formularios",
+  "maturity": "experimental",
+  "summary": "Agrupa un input con un prefijo y/o sufijo (texto, icono o botón) como un único control visual.",
+  "whenToUse": [
+    "Mostrar una unidad, moneda o símbolo pegado al valor (USD, %, @, $).",
+    "Adjuntar una acción directamente relacionada con el campo, como un botón de buscar o enviar."
+  ],
+  "whenNotToUse": [
+    "Para incrementar/decrementar un número: usa Number input.",
+    "Cuando el prefijo o sufijo no aporta significado real: un input simple con Form es suficiente."
+  ],
+  "anatomy": {
+    "html": "<label class=\"ro-label\" for=\"amount\">Monto</label>\n<div class=\"ro-input-group\">\n  <span class=\"ro-input-group__addon\">$</span>\n  <input id=\"amount\" placeholder=\"0.00\" inputmode=\"decimal\">\n  <span class=\"ro-input-group__addon\">USD</span>\n</div>",
+    "notes": [
+      "El addon es visual: no reemplaza el <label>. Sigue asociando el input con for/id o aria-label.",
+      "ro-input-group__btn convierte el sufijo en un botón de acción (debe ser <button type=\"button\">).",
+      "El foco visible aparece en todo el grupo (focus-within), no solo en el input interno."
+    ]
+  },
+  "api": {
+    "classes": [
+      { "name": "ro-input-group", "desc": "Contenedor que agrupa addon(s) e input." },
+      { "name": "ro-input-group__addon", "desc": "Prefijo o sufijo de texto/icono, no interactivo." },
+      { "name": "ro-input-group__btn", "desc": "Sufijo interactivo (botón de acción)." },
+      { "name": "ro-input-group__btn--accent", "desc": "Botón de acción con color de marca." }
+    ],
+    "data": [],
+    "tokens": ["--ro-radius-xl", "--ro-focus-ring", "--ro-ink-10", "--ro-ink-04", "--ro-ink-60"],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/native-controls.md",
+    "keyboard": [
+      ["Tab / Shift+Tab", "Mueve el foco entre el input y el botón addon (si existe)."],
+      ["Enter / Espacio", "Activa el botón addon enfocado."]
+    ],
+    "notes": [
+      "Si no hay un <label> visible fuera del grupo, da nombre accesible al input con aria-label.",
+      "El addon de texto (ro-input-group__addon) no es focuseable ni anunciado como control; es contexto visual.",
+      "El botón addon es un <button> nativo con su propio texto o aria-label si es solo icono."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Usuario con prefijo",
+      "html": "<label class=\"ro-label\" for=\"handle\">Usuario</label>\n<div class=\"ro-input-group\">\n  <span class=\"ro-input-group__addon\">@</span>\n  <input id=\"handle\" placeholder=\"usuario\">\n</div>"
+    },
+    {
+      "title": "Buscar con botón",
+      "html": "<div class=\"ro-input-group\">\n  <input aria-label=\"Buscar builders\" placeholder=\"Buscar builders…\">\n  <button class=\"ro-input-group__btn\" type=\"button\">Buscar</button>\n</div>"
+    },
+    {
+      "title": "Icono como prefijo",
+      "html": "<div class=\"ro-input-group\">\n  <span class=\"ro-input-group__addon\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-mail\"></use></svg></span>\n  <input type=\"email\" aria-label=\"Correo electrónico\" placeholder=\"tucorreo@empresa.com\">\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Mantén el texto del addon corto (1-4 caracteres o un icono).",
+      "Usa type=\"button\" en el botón addon para que no envíe el formulario por accidente.",
+      "Da nombre accesible al input (label externo o aria-label) aunque el addon sugiera el contexto."
+    ],
+    "dont": [
+      "No pongas información imprescindible solo en el addon de texto.",
+      "No apiles más de un botón addon: usa un input-group con un solo botón de acción.",
+      "No uses el addon como único indicador de error; combina con aria-invalid y ro-error-text."
+    ]
+  },
+  "related": ["form", "number-input", "tags-input", "combobox"]
+}

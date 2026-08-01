@@ -35,14 +35,14 @@ Ultima actualizacion: 2026-07-20
 
 - Fase 7 no puede cerrarse sin un producto real en produccion que adopte RoUI; la
   instrumentacion de metricas y el ciclo de feedback dependen de esa decision.
-- Queda trabajo continuo de adopcion: documentar los 40 manifiestos restantes,
-  tematizar demos, mejorar reflow/RTL de plantillas y preparar documentacion
-  multi-version.
+- Queda trabajo continuo de adopcion: tematizar demos, mejorar reflow/RTL de
+  plantillas y preparar documentacion multi-version. (F5-006 completo: los 40
+  manifiestos restantes ya estan documentados, referencia en 49/49.)
 - Aplicar la proteccion de rama `main` y revisar PRs de Dependabot (#34-#39)
   dependen del mantenedor.
-- El presupuesto de paquete esta ajustado: 59 193 / 65 536 bytes comprimidos y
-  275 789 / 278 528 bytes descomprimidos. Nuevos entrypoints deben reducir
-  contenido o justificar el incremento.
+- El presupuesto de paquete esta ajustado: 59 343 / 65 536 bytes comprimidos y
+  276 048 / 278 528 bytes descomprimidos (~2.4 KiB de margen). Nuevos
+  entrypoints deben reducir contenido o justificar el incremento.
 
 ## Evidencia de la última ejecución
 
@@ -59,6 +59,11 @@ Ultima actualizacion: 2026-07-20
 - Fase 5 incorporo documentacion como producto: referencia generada,
   contratos de accesibilidad, migracion, ejemplos verificables, busqueda y
   changelog.
+- F5-006 (2026-07-20, trabajo continuo): referencia completa en 49/49
+  componentes. Nuevo contrato `content-and-status.md` para patrones sin
+  primitiva JS (contenido, estructura, estado/datos); 127 snippets verificados
+  contra clases/iconos reales; corregido un gap real de CSS
+  (`.ro-calendar__pad` sin regla propia).
 - Fase 6 incorporo releases y gobernanza: Changesets, publicacion npm,
   provenance, CodeQL, SBOM, dependency-review, Dependabot, CODEOWNERS,
   CONTRIBUTING, SECURITY y SUPPORT.
