@@ -46,7 +46,7 @@ utilidad reusable para eso ni para proporciones comunes.
   excepción que `768px` en F0-012). Digest actualizado (384→386).
 - **Demo de aspect-ratio con proporción incorrecta**: los primeros ejemplos
   reusaban `.dx-box` (que trae `padding: 16px` fijo); con `box-sizing:
-  border-box` el padding se resta del alto calculado por `aspect-ratio`,
+border-box` el padding se resta del alto calculado por `aspect-ratio`,
   dando un ratio medido de 1.62/1.26 en vez de 1.78/1.33 (16/9 y 4/3
   exactos). Corregido quitando el padding en línea (`padding:0`) — la clase
   de la librería (`aspect-ratio: 16/9`) siempre fue correcta; el error era

@@ -22,23 +22,18 @@
     ]
   },
   "api": {
-    "classes": [
-      { "name": "ro-nav-link", "desc": "Enlace de navegación en forma de píldora." }
-    ],
+    "classes": [{ "name": "ro-nav-link", "desc": "Enlace de navegación en forma de píldora." }],
     "data": [],
-    "tokens": [
-      "--ro-radius-full",
-      "--ro-ink-60",
-      "--ro-ink-04",
-      "--ro-ink-06",
-      "--ro-transition"
-    ],
+    "tokens": ["--ro-radius-full", "--ro-ink-60", "--ro-ink-04", "--ro-ink-06", "--ro-transition"],
     "primitive": null
   },
   "a11y": {
     "contract": "accessibility/tabs-accordion-navigation.md",
     "keyboard": [
-      ["Tab / Shift+Tab", "Recorre los enlaces en orden del documento (no hay roving tabindex: son enlaces nativos)."],
+      [
+        "Tab / Shift+Tab",
+        "Recorre los enlaces en orden del documento (no hay roving tabindex: son enlaces nativos)."
+      ],
       ["Enter", "Sigue el enlace enfocado."]
     ],
     "notes": [

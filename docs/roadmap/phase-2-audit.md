@@ -11,13 +11,13 @@ que decisiones visuales se dispersen antes de construir primitivas accesibles.
 
 ## Entregables
 
-| Tarea | Resultado | Evidencia |
-|---|---|---|
-| F2-001 | Fuente única DTCG y generación | PR #9, ADR-0006 |
-| F2-002 | Temas light, dark y high-contrast | PR #10 |
-| F2-003 | Tokens de componente para Button/Card/Form | PR #11 |
-| F2-004 | Gate de contraste WCAG AA | PR #12 |
-| F2-005 | Inventario y gate de literales | PR #13 |
+| Tarea  | Resultado                                  | Evidencia       |
+| ------ | ------------------------------------------ | --------------- |
+| F2-001 | Fuente única DTCG y generación             | PR #9, ADR-0006 |
+| F2-002 | Temas light, dark y high-contrast          | PR #10          |
+| F2-003 | Tokens de componente para Button/Card/Form | PR #11          |
+| F2-004 | Gate de contraste WCAG AA                  | PR #12          |
+| F2-005 | Inventario y gate de literales             | PR #13          |
 
 ## Evidencia de calidad
 

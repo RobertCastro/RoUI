@@ -31,10 +31,19 @@ contenedor es <code>role=&quot;tablist&quot;</code> con un nombre accesible; cad
 <code>role=&quot;tabpanel&quot;</code> con <code>aria-labelledby</code> y <code>tabindex=&quot;0&quot;</code> cuando su contenido no
 es enfocable por sí mismo.</p>
 <pre><code class="language-html">&lt;div class=&quot;ro-tabs&quot; role=&quot;tablist&quot; aria-label=&quot;Detalle del módulo&quot; data-ro-tabs&gt;
-  &lt;button class=&quot;ro-tab&quot; role=&quot;tab&quot; id=&quot;t-temario&quot;
-    aria-selected=&quot;true&quot; aria-controls=&quot;p-temario&quot;&gt;Temario&lt;/button&gt;
-  &lt;button class=&quot;ro-tab&quot; role=&quot;tab&quot; id=&quot;t-discusion&quot;
-    aria-selected=&quot;false&quot; aria-controls=&quot;p-discusion&quot; tabindex=&quot;-1&quot;&gt;Discusión&lt;/button&gt;
+  &lt;button class=&quot;ro-tab&quot; role=&quot;tab&quot; id=&quot;t-temario&quot; aria-selected=&quot;true&quot; aria-controls=&quot;p-temario&quot;&gt;
+    Temario
+  &lt;/button&gt;
+  &lt;button
+    class=&quot;ro-tab&quot;
+    role=&quot;tab&quot;
+    id=&quot;t-discusion&quot;
+    aria-selected=&quot;false&quot;
+    aria-controls=&quot;p-discusion&quot;
+    tabindex=&quot;-1&quot;
+  &gt;
+    Discusión
+  &lt;/button&gt;
 &lt;/div&gt;
 &lt;div id=&quot;p-temario&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;t-temario&quot; tabindex=&quot;0&quot;&gt;…&lt;/div&gt;
 &lt;div id=&quot;p-discusion&quot; role=&quot;tabpanel&quot; aria-labelledby=&quot;t-discusion&quot; tabindex=&quot;0&quot; hidden&gt;…&lt;/div&gt;
@@ -57,15 +66,28 @@ botón e inicia con <code>hidden</code>.</p>
 <pre><code class="language-html">&lt;div class=&quot;ro-accordion&quot;&gt;
   &lt;div class=&quot;ro-accordion__item&quot; data-ro-disclosure-root&gt;
     &lt;h3 class=&quot;ro-accordion__heading&quot;&gt;
-      &lt;button class=&quot;ro-accordion__head&quot; data-ro-disclosure-trigger
-        aria-expanded=&quot;false&quot; aria-controls=&quot;acc-1&quot;&gt;
+      &lt;button
+        class=&quot;ro-accordion__head&quot;
+        data-ro-disclosure-trigger
+        aria-expanded=&quot;false&quot;
+        aria-controls=&quot;acc-1&quot;
+      &gt;
         ¿Qué incluye el curso?
         &lt;svg class=&quot;ro-icon ro-icon--sm ro-accordion__chevron&quot; aria-hidden=&quot;true&quot;&gt;
-          &lt;use href=&quot;#ro-i-chevron-down&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+          &lt;use href=&quot;#ro-i-chevron-down&quot;&gt;&lt;/use&gt;
+        &lt;/svg&gt;
       &lt;/button&gt;
     &lt;/h3&gt;
-    &lt;div class=&quot;ro-accordion__panel&quot; id=&quot;acc-1&quot; role=&quot;region&quot;
-      aria-label=&quot;¿Qué incluye el curso?&quot; data-ro-disclosure-panel hidden&gt;…&lt;/div&gt;
+    &lt;div
+      class=&quot;ro-accordion__panel&quot;
+      id=&quot;acc-1&quot;
+      role=&quot;region&quot;
+      aria-label=&quot;¿Qué incluye el curso?&quot;
+      data-ro-disclosure-panel
+      hidden
+    &gt;
+      …
+    &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>

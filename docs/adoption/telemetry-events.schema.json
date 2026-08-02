@@ -9,7 +9,13 @@
   "properties": {
     "event": {
       "type": "string",
-      "enum": ["adoption_started", "component_used", "primitive_used", "migration_run", "version_upgraded"]
+      "enum": [
+        "adoption_started",
+        "component_used",
+        "primitive_used",
+        "migration_run",
+        "version_upgraded"
+      ]
     },
     "project": {
       "type": "string",

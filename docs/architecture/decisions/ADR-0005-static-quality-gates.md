@@ -28,4 +28,3 @@ vulnerables antes de abrir la fase de componentes accesibles.
 - La auditoria de desarrollo se revisa antes de incorporar nuevas herramientas,
   pero no bloquea releases de la libreria publicada si las dependencias de
   produccion estan limpias.
-

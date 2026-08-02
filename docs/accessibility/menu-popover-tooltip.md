@@ -12,10 +12,22 @@ panel inicia con `hidden`, usa `role="menu"` y cada acción usa `role="menuitem"
 
 ```html
 <div class="ro-dropdown" data-ro-disclosure-root>
-  <button data-ro-disclosure-trigger aria-haspopup="menu"
-    aria-controls="account-menu" aria-expanded="false">Cuenta</button>
-  <div class="ro-menu" id="account-menu" data-ro-disclosure-panel
-    role="menu" aria-label="Cuenta" hidden>
+  <button
+    data-ro-disclosure-trigger
+    aria-haspopup="menu"
+    aria-controls="account-menu"
+    aria-expanded="false"
+  >
+    Cuenta
+  </button>
+  <div
+    class="ro-menu"
+    id="account-menu"
+    data-ro-disclosure-panel
+    role="menu"
+    aria-label="Cuenta"
+    hidden
+  >
     <a class="ro-menu__item" role="menuitem" href="/profile">Mi perfil</a>
     <button class="ro-menu__item" role="menuitem">Cerrar sesión</button>
   </div>

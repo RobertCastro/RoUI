@@ -29,7 +29,10 @@
       { "name": "ro-btn--soft", "desc": "Fondo tenue, énfasis medio." },
       { "name": "ro-btn--subtle", "desc": "Sin fondo hasta el hover." },
       { "name": "ro-btn--ghost", "desc": "Solo borde; acción secundaria." },
-      { "name": "ro-btn--sm", "desc": "Tamaño compacto (padding fijo, no depende de la densidad)." },
+      {
+        "name": "ro-btn--sm",
+        "desc": "Tamaño compacto (padding fijo, no depende de la densidad)."
+      },
       { "name": "ro-btn--lg", "desc": "Tamaño grande (padding fijo, no depende de la densidad)." },
       { "name": "ro-btn-icon", "desc": "Botón cuadrado de solo icono (requiere aria-label)." }
     ],

@@ -18,9 +18,9 @@ const cssFiles = walk(src, ".css");
 const componentFiles = cssFiles.filter((file) => file.includes("/components/"));
 const indexPath = resolve(src, "index.css");
 const index = readFileSync(indexPath, "utf8");
-const imports = [...index.matchAll(
-  /@import\s+["']\.\/(.+?)["'](?:\s+layer\(([^)]+)\))?;/g,
-)].map((match) => match[1]);
+const imports = [...index.matchAll(/@import\s+["']\.\/(.+?)["'](?:\s+layer\(([^)]+)\))?;/g)].map(
+  (match) => match[1],
+);
 const duplicateImports = imports.filter((item, index) => imports.indexOf(item) !== index);
 const missingImports = imports.filter((file) => {
   try {
@@ -74,8 +74,10 @@ const report = {
 
 console.log(JSON.stringify(report, null, 2));
 
-const structuralErrorCount = Object.values(report.structuralErrors)
-  .reduce((total, entries) => total + entries.length, 0);
+const structuralErrorCount = Object.values(report.structuralErrors).reduce(
+  (total, entries) => total + entries.length,
+  0,
+);
 if (structuralErrorCount > 0) {
   console.error(`Baseline fallo con ${structuralErrorCount} errores estructurales.`);
   process.exitCode = 1;

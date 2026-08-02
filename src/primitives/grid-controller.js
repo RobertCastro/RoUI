@@ -2,11 +2,13 @@ const CELL = "[role='gridcell']";
 const ROW = "[role='row']";
 
 function isDay(cell) {
-  return !!cell
-    && cell.tagName === "BUTTON"
-    && cell.getAttribute("role") === "gridcell"
-    && !cell.hidden
-    && cell.getAttribute("aria-disabled") !== "true";
+  return (
+    !!cell &&
+    cell.tagName === "BUTTON" &&
+    cell.getAttribute("role") === "gridcell" &&
+    !cell.hidden &&
+    cell.getAttribute("aria-disabled") !== "true"
+  );
 }
 
 /**
@@ -23,7 +25,9 @@ export function createGridController(grid, options = {}) {
   const document = grid.ownerDocument;
   const onSelect = typeof options.onSelect === "function" ? options.onSelect : null;
 
-  function days() { return [...grid.querySelectorAll(CELL)].filter(isDay); }
+  function days() {
+    return [...grid.querySelectorAll(CELL)].filter(isDay);
+  }
   function weekRows() {
     return [...grid.querySelectorAll(ROW)].filter((row) => [...row.children].some(isDay));
   }
@@ -71,24 +75,43 @@ export function createGridController(grid, options = {}) {
     if (cell && onSelect) onSelect(cell);
   }
   function onKeydown(event) {
-    if (event.key === "ArrowRight") { event.preventDefault(); step(1); }
-    else if (event.key === "ArrowLeft") { event.preventDefault(); step(-1); }
-    else if (event.key === "ArrowDown") { event.preventDefault(); vertical(1); }
-    else if (event.key === "ArrowUp") { event.preventDefault(); vertical(-1); }
-    else if (event.key === "Home") { event.preventDefault(); edge("home"); }
-    else if (event.key === "End") { event.preventDefault(); edge("end"); }
-    else if (event.key === "Enter" || event.key === " ") { event.preventDefault(); select(); }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      step(1);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      step(-1);
+    } else if (event.key === "ArrowDown") {
+      event.preventDefault();
+      vertical(1);
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      vertical(-1);
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      edge("home");
+    } else if (event.key === "End") {
+      event.preventDefault();
+      edge("end");
+    } else if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      select();
+    }
   }
   function onClick(event) {
     const cell = event.target.closest(CELL);
-    if (cell && isDay(cell) && grid.contains(cell)) { roveTo(cell); if (onSelect) onSelect(cell); }
+    if (cell && isDay(cell) && grid.contains(cell)) {
+      roveTo(cell);
+      if (onSelect) onSelect(cell);
+    }
   }
 
   // Roving inicial: día seleccionado, día marcado como actual, o el primero.
   const list = days();
-  const initial = list.find((d) => d.getAttribute("aria-selected") === "true")
-    || list.find((d) => d.hasAttribute("data-ro-grid-current"))
-    || list[0];
+  const initial =
+    list.find((d) => d.getAttribute("aria-selected") === "true") ||
+    list.find((d) => d.hasAttribute("data-ro-grid-current")) ||
+    list[0];
   list.forEach((d) => d.setAttribute("tabindex", d === initial ? "0" : "-1"));
 
   grid.addEventListener("keydown", onKeydown);
@@ -96,7 +119,9 @@ export function createGridController(grid, options = {}) {
 
   return {
     grid,
-    focusDay(cell) { if (isDay(cell)) roveTo(cell); },
+    focusDay(cell) {
+      if (isDay(cell)) roveTo(cell);
+    },
     destroy() {
       grid.removeEventListener("keydown", onKeydown);
       grid.removeEventListener("click", onClick);

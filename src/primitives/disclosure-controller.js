@@ -1,12 +1,13 @@
 const MENU_ITEM = "[role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio']";
 
 function menuItems(panel) {
-  return [...panel.querySelectorAll(MENU_ITEM)].filter((item) => (
-    !item.hidden
-    && !item.hasAttribute("disabled")
-    && item.getAttribute("aria-disabled") !== "true"
-    && typeof item.focus === "function"
-  ));
+  return [...panel.querySelectorAll(MENU_ITEM)].filter(
+    (item) =>
+      !item.hidden &&
+      !item.hasAttribute("disabled") &&
+      item.getAttribute("aria-disabled") !== "true" &&
+      typeof item.focus === "function",
+  );
 }
 
 /**
@@ -25,9 +26,10 @@ export function createDisclosureController(root, options = {}) {
   const isMenu = panel.getAttribute("role") === "menu";
   // Menu y Popover se descartan al interactuar fuera o con Escape. Un disclosure
   // persistente (p. ej. Accordion) permanece abierto hasta togglear su disparador.
-  const dismissible = options.dismissOnOutside === undefined
-    ? !root.hasAttribute("data-ro-disclosure-persistent")
-    : Boolean(options.dismissOnOutside);
+  const dismissible =
+    options.dismissOnOutside === undefined
+      ? !root.hasAttribute("data-ro-disclosure-persistent")
+      : Boolean(options.dismissOnOutside);
 
   function isOpen() {
     return !panel.hidden && panel.classList.contains("is-open");
@@ -116,7 +118,9 @@ export function createDisclosureController(root, options = {}) {
     const item = event.target.closest(MENU_ITEM);
     if (!item || !panel.contains(item) || item.hasAttribute("data-ro-keep-open")) return;
     if (root.hasAttribute("data-ro-select-single")) {
-      menuItems(panel).forEach((entry) => entry.setAttribute("aria-current", String(entry === item)));
+      menuItems(panel).forEach((entry) =>
+        entry.setAttribute("aria-current", String(entry === item)),
+      );
     }
     close();
   }

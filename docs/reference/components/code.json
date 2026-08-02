@@ -26,12 +26,27 @@
     "classes": [
       { "name": "ro-code", "desc": "Código inline: fondo tenue, fuente mono, radio pequeño." },
       { "name": "ro-codeblock", "desc": "Bloque de código oscuro con scroll horizontal." },
-      { "name": "ro-codeblock--light", "desc": "Variante clara del bloque, con borde en vez de fondo oscuro." },
-      { "name": "ro-codeblock__bar", "desc": "Barra superior opcional: lenguaje + acción de copiar." },
+      {
+        "name": "ro-codeblock--light",
+        "desc": "Variante clara del bloque, con borde en vez de fondo oscuro."
+      },
+      {
+        "name": "ro-codeblock__bar",
+        "desc": "Barra superior opcional: lenguaje + acción de copiar."
+      },
       { "name": "ro-kbd", "desc": "Representa una tecla individual de un atajo de teclado." }
     ],
     "data": [],
-    "tokens": ["--ro-font-mono", "--ro-text-sm", "--ro-ink-05", "--ro-ink", "--ro-on-dark", "--ro-radius-sm", "--ro-radius-xl", "--ro-radius-md"],
+    "tokens": [
+      "--ro-font-mono",
+      "--ro-text-sm",
+      "--ro-ink-05",
+      "--ro-ink",
+      "--ro-on-dark",
+      "--ro-radius-sm",
+      "--ro-radius-xl",
+      "--ro-radius-md"
+    ],
     "primitive": null
   },
   "a11y": {

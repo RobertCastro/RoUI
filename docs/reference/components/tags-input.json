@@ -23,7 +23,10 @@
   "api": {
     "classes": [
       { "name": "ro-tags-input", "desc": "Contenedor del campo (chips + input)." },
-      { "name": "ro-tags-input__field", "desc": "Input de texto donde se escribe el siguiente tag." },
+      {
+        "name": "ro-tags-input__field",
+        "desc": "Input de texto donde se escribe el siguiente tag."
+      },
       { "name": "ro-tag", "desc": "Chip de un tag ya confirmado (reusa el componente Tag)." },
       { "name": "ro-tag__close", "desc": "Botón para quitar el chip." }
     ],

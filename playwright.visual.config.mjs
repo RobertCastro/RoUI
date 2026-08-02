@@ -22,7 +22,10 @@ export default defineConfig({
     deviceScaleFactor: 1,
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 900 } } },
+    {
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 900 } },
+    },
   ],
   webServer: {
     command: `python3 -m http.server ${PORT}`,

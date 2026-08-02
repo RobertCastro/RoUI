@@ -23,13 +23,7 @@ function run(command, args, cwd = root) {
 }
 
 try {
-  run("npm", [
-    "pack",
-    "--json",
-    "--ignore-scripts",
-    "--pack-destination",
-    fixture,
-  ]);
+  run("npm", ["pack", "--json", "--ignore-scripts", "--pack-destination", fixture]);
   const filename = readdirSync(fixture).find((name) => name.endsWith(".tgz"));
   if (!filename) throw new Error("npm pack no genero un tarball");
   const tarball = join(fixture, filename);
@@ -38,14 +32,11 @@ try {
     join(fixture, "package.json"),
     JSON.stringify({ name: "roui-package-fixture", private: true }),
   );
-  run("npm", [
-    "install",
-    "--ignore-scripts",
-    "--no-package-lock",
-    "--no-audit",
-    "--no-fund",
-    tarball,
-  ], fixture);
+  run(
+    "npm",
+    ["install", "--ignore-scripts", "--no-package-lock", "--no-audit", "--no-fund", tarball],
+    fixture,
+  );
 
   writeFileSync(
     join(fixture, "verify.cjs"),

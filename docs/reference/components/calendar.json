@@ -27,7 +27,10 @@
     "classes": [
       { "name": "ro-calendar", "desc": "Raíz del calendario (ancho fijo)." },
       { "name": "ro-calendar__header", "desc": "Cabecera con título del mes y navegación." },
-      { "name": "ro-calendar__title", "desc": "Texto \"Mes Año\", referenciado por aria-labelledby." },
+      {
+        "name": "ro-calendar__title",
+        "desc": "Texto \"Mes Año\", referenciado por aria-labelledby."
+      },
       { "name": "ro-calendar__nav", "desc": "Grupo de botones mes anterior/siguiente." },
       { "name": "ro-calendar__grid", "desc": "Cuadrícula (role=grid) de 7 columnas." },
       { "name": "ro-calendar__row", "desc": "Fila semántica (role=row, display:contents)." },
@@ -38,21 +41,47 @@
       { "name": "ro-calendar__day--in-range", "desc": "Día dentro de un rango seleccionado." }
     ],
     "data": [
-      { "name": "data-calendar", "desc": "Marca el contenedor a inicializar (usado por el renderer de referencia)." },
+      {
+        "name": "data-calendar",
+        "desc": "Marca el contenedor a inicializar (usado por el renderer de referencia)."
+      },
       { "name": "data-year / data-month", "desc": "Año y mes (0-indexado) a renderizar." },
-      { "name": "data-today / data-selected", "desc": "Día del mes marcado como hoy / como seleccionado." },
-      { "name": "data-ro-grid-current", "desc": "En una celda de día: la marca como \"hoy\" para el roving tabindex inicial." },
-      { "name": "data-datepicker", "desc": "En el disclosure contenedor: indica que es un date picker (campo + popover)." },
-      { "name": "data-datepicker-value", "desc": "Elemento del campo donde se escribe la fecha elegida." }
+      {
+        "name": "data-today / data-selected",
+        "desc": "Día del mes marcado como hoy / como seleccionado."
+      },
+      {
+        "name": "data-ro-grid-current",
+        "desc": "En una celda de día: la marca como \"hoy\" para el roving tabindex inicial."
+      },
+      {
+        "name": "data-datepicker",
+        "desc": "En el disclosure contenedor: indica que es un date picker (campo + popover)."
+      },
+      {
+        "name": "data-datepicker-value",
+        "desc": "Elemento del campo donde se escribe la fecha elegida."
+      }
     ],
-    "tokens": ["--ro-secondary", "--ro-secondary-tint", "--ro-ink", "--ro-ink-05", "--ro-ink-20", "--ro-ink-40", "--ro-white"],
+    "tokens": [
+      "--ro-secondary",
+      "--ro-secondary-tint",
+      "--ro-ink",
+      "--ro-ink-05",
+      "--ro-ink-20",
+      "--ro-ink-40",
+      "--ro-white"
+    ],
     "primitive": { "import": "createGridController", "module": "grid-controller" }
   },
   "a11y": {
     "contract": "accessibility/combobox-calendar-command-palette.md",
     "keyboard": [
       ["ArrowRight / ArrowLeft", "Mueve al día siguiente/anterior."],
-      ["ArrowDown / ArrowUp", "Mueve una semana abajo/arriba manteniendo la columna (día de la semana)."],
+      [
+        "ArrowDown / ArrowUp",
+        "Mueve una semana abajo/arriba manteniendo la columna (día de la semana)."
+      ],
       ["Home / End", "Va al primer/último día enfocable de la semana actual."],
       ["Enter / Espacio", "Selecciona el día enfocado (marca aria-selected=\"true\")."],
       ["Tab / Shift+Tab", "Entra y sale de la cuadrícula por un único día (roving tabindex)."]

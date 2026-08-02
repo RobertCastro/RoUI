@@ -15,21 +15,21 @@ sin definicion. Tambien reporta indicadores de deuda sin bloquear la Fase 0.
 
 ## Estado inicial
 
-| Indicador | Valor inicial |
-|---|---:|
-| Archivos CSS de componentes | 49 |
-| Archivos CSS totales en `src` | 61 |
-| Imports en `src/index.css` | 60 |
-| Iconos | 55 |
-| Custom properties definidas | 124 |
-| Colores literales detectados | 75 |
-| Valores `px` literales detectados | 401 |
-| Bundle sin minificar | 71.6 KB aproximados |
-| Bundle minificado | 54.8 KB aproximados |
-| Pruebas unitarias | 0 |
-| Pruebas de navegador | 0 |
-| Pruebas automatizadas de accesibilidad | 0 |
-| Componentes `stable` | 0 |
+| Indicador                              |       Valor inicial |
+| -------------------------------------- | ------------------: |
+| Archivos CSS de componentes            |                  49 |
+| Archivos CSS totales en `src`          |                  61 |
+| Imports en `src/index.css`             |                  60 |
+| Iconos                                 |                  55 |
+| Custom properties definidas            |                 124 |
+| Colores literales detectados           |                  75 |
+| Valores `px` literales detectados      |                 401 |
+| Bundle sin minificar                   | 71.6 KB aproximados |
+| Bundle minificado                      | 54.8 KB aproximados |
+| Pruebas unitarias                      |                   0 |
+| Pruebas de navegador                   |                   0 |
+| Pruebas automatizadas de accesibilidad |                   0 |
+| Componentes `stable`                   |                   0 |
 
 ## Fallos conocidos iniciales
 

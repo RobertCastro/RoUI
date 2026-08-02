@@ -17,18 +17,18 @@ Todos los componentes se consideran `experimental`. Ninguno tiene hoy el
 conjunto exigido de pruebas de comportamiento, axe, navegadores y regresion
 visual para subir a `stable`.
 
-| Grupo | Componentes/archivos | Riesgo principal |
-|---|---|---|
-| Fundamentos visuales | typography, icon, divider, code, prose | Contrato y pruebas visuales |
-| Acciones | button, button-group, toolbar | Estados, teclado y touch targets |
-| Formularios | form, input-group, number-input, slider, rating, file-upload, tags-input | Semantica, errores y teclado |
-| Seleccion/navegacion | nav, segmented, pagination, breadcrumb, sidebar, tree, list-group | Roles, flechas, foco y RTL |
-| Overlays | modal, drawer, popover, tooltip, menu, command-palette | Focus trap, portal, colisiones y Escape |
-| Datos/estado | table, badge, tag, progress, progress-ring, spinner, skeleton | Anuncios, tablas responsive y reduced motion |
-| Feedback | alert, toast, banner, empty | Live regions, cierre y contraste |
-| Contenido/estructura | card, avatar, header, footer, description-list, timeline | Semantica y composicion |
-| Disclosure | accordion, stepper | Estado ARIA y teclado |
-| Fecha/entrada compleja | calendar, combobox | Patrones APG y localizacion |
+| Grupo                  | Componentes/archivos                                                     | Riesgo principal                             |
+| ---------------------- | ------------------------------------------------------------------------ | -------------------------------------------- |
+| Fundamentos visuales   | typography, icon, divider, code, prose                                   | Contrato y pruebas visuales                  |
+| Acciones               | button, button-group, toolbar                                            | Estados, teclado y touch targets             |
+| Formularios            | form, input-group, number-input, slider, rating, file-upload, tags-input | Semantica, errores y teclado                 |
+| Seleccion/navegacion   | nav, segmented, pagination, breadcrumb, sidebar, tree, list-group        | Roles, flechas, foco y RTL                   |
+| Overlays               | modal, drawer, popover, tooltip, menu, command-palette                   | Focus trap, portal, colisiones y Escape      |
+| Datos/estado           | table, badge, tag, progress, progress-ring, spinner, skeleton            | Anuncios, tablas responsive y reduced motion |
+| Feedback               | alert, toast, banner, empty                                              | Live regions, cierre y contraste             |
+| Contenido/estructura   | card, avatar, header, footer, description-list, timeline                 | Semantica y composicion                      |
+| Disclosure             | accordion, stepper                                                       | Estado ARIA y teclado                        |
+| Fecha/entrada compleja | calendar, combobox                                                       | Patrones APG y localizacion                  |
 
 ## Orden de promocion
 
@@ -43,4 +43,3 @@ visual para subir a `stable`.
 Un componente solo cambia de nivel mediante una tarea que demuestre contrato,
 documentacion, teclado, axe, navegadores y visuales requeridos por la Definition
 of Done.
-

@@ -12,13 +12,13 @@ codigo fuente.
 
 ## Entregables
 
-| Tarea | Resultado | Evidencia |
-|---|---|---|
-| F5-001 | Estructura de referencia + generador desde manifiesto + Button | done, PR #21 |
-| F5-002 | Contratos de accesibilidad renderizados y enlazados | done, PR #22 |
+| Tarea  | Resultado                                                          | Evidencia    |
+| ------ | ------------------------------------------------------------------ | ------------ |
+| F5-001 | Estructura de referencia + generador desde manifiesto + Button     | done, PR #21 |
+| F5-002 | Contratos de accesibilidad renderizados y enlazados                | done, PR #22 |
 | F5-003 | Ejemplos verificables (gate anti-divergencia) y demos interactivas | done, PR #23 |
-| F5-004 | Madurez, do/don't y guia de migracion | done, PR #24 |
-| F5-005 | Busqueda y navegacion por versiones | done, PR #25 |
+| F5-004 | Madurez, do/don't y guia de migracion                              | done, PR #24 |
+| F5-005 | Busqueda y navegacion por versiones                                | done, PR #25 |
 
 ## Evidencia de calidad
 

@@ -38,17 +38,18 @@ el propio contenedor.</li>
 <li>Drawer utiliza el mismo contrato. Elija <code>aside</code> cuando el panel sea una
 región complementaria; el rol modal sigue siendo <code>dialog</code>.</li>
 </ul>
-<pre><code class="language-html">&lt;button
-  id=&quot;edit-trigger&quot;
-  aria-haspopup=&quot;dialog&quot;
-  aria-controls=&quot;edit-dialog&quot;
-  aria-expanded=&quot;false&quot;&gt;
+<pre><code class="language-html">&lt;button id=&quot;edit-trigger&quot; aria-haspopup=&quot;dialog&quot; aria-controls=&quot;edit-dialog&quot; aria-expanded=&quot;false&quot;&gt;
   Editar perfil
 &lt;/button&gt;
 
 &lt;div class=&quot;ro-overlay&quot; id=&quot;edit-dialog&quot; hidden&gt;
-  &lt;section class=&quot;ro-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot;
-    aria-labelledby=&quot;edit-title&quot; tabindex=&quot;-1&quot;&gt;
+  &lt;section
+    class=&quot;ro-modal&quot;
+    role=&quot;dialog&quot;
+    aria-modal=&quot;true&quot;
+    aria-labelledby=&quot;edit-title&quot;
+    tabindex=&quot;-1&quot;
+  &gt;
     &lt;header class=&quot;ro-modal__header&quot;&gt;
       &lt;h2 class=&quot;ro-modal__title&quot; id=&quot;edit-title&quot;&gt;Editar perfil&lt;/h2&gt;
       &lt;button type=&quot;button&quot; data-ro-overlay-close aria-label=&quot;Cerrar&quot;&gt;×&lt;/button&gt;

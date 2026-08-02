@@ -28,17 +28,26 @@
       { "name": "ro-card-dark", "desc": "Tarjeta sólida invertida (fondo oscuro)." },
       { "name": "ro-card__header", "desc": "Fila superior: título y acción alineados." },
       { "name": "ro-card__footer", "desc": "Fila inferior de acciones." },
-      { "name": "ro-card-row", "desc": "Fila completa clicable; aplícala sobre un <a>, no un <div>." }
+      {
+        "name": "ro-card-row",
+        "desc": "Fila completa clicable; aplícala sobre un <a>, no un <div>."
+      }
     ],
     "data": [],
-    "tokens": ["--ro-radius-card", "--ro-card-bg", "--ro-card-border", "--ro-card-fg", "--ro-radius-xl", "--ro-radius-2xl", "--ro-transition"],
+    "tokens": [
+      "--ro-radius-card",
+      "--ro-card-bg",
+      "--ro-card-border",
+      "--ro-card-fg",
+      "--ro-radius-xl",
+      "--ro-radius-2xl",
+      "--ro-transition"
+    ],
     "primitive": null
   },
   "a11y": {
     "contract": "accessibility/content-and-status.md",
-    "keyboard": [
-      ["Enter", "Activa el enlace de la tarjeta (variante ro-card-row)."]
-    ],
+    "keyboard": [["Enter", "Activa el enlace de la tarjeta (variante ro-card-row)."]],
     "notes": [
       "Una tarjeta íntegramente clicable usa un <a> que envuelve el contenido; evita anidar otro elemento interactivo (botón, enlace) dentro de esa misma área.",
       "Si la tarjeta no es clicable en su totalidad, cualquier acción interna (botón, enlace) debe tener su propio nombre accesible; no dependas del contexto visual de la tarjeta."

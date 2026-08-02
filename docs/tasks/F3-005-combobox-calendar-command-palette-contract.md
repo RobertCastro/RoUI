@@ -33,20 +33,20 @@ teclado; la paleta abría un overlay propio sin `role=dialog` ni `role=listbox`.
 
 - [x] `combobox-controller` publicado, con pruebas de teclado, filtrado y cierre.
 - [x] Combobox migrado a `role=combobox`/`role=listbox`/`role=option` con
-  `aria-activedescendant`.
+      `aria-activedescendant`.
 - [x] Command Palette: combobox `inline` dentro de `role=dialog` modal
-  (`overlay-controller` + `combobox-controller`), atajo `⌘K` y cierre con `Escape`.
+      (`overlay-controller` + `combobox-controller`), atajo `⌘K` y cierre con `Escape`.
 - [x] Calendar con `role=grid` y navegación por teclado.
 
 ## Criterios de aceptación
 
 - [x] Combobox: listbox con opciones `role=option`, `aria-expanded`,
-  `aria-controls`, `aria-activedescendant`; flechas, `Home`/`End`, `Enter`,
-  `Escape` y filtrado sin mover el foco del input.
+      `aria-controls`, `aria-activedescendant`; flechas, `Home`/`End`, `Enter`,
+      `Escape` y filtrado sin mover el foco del input.
 - [x] Command Palette: `role=dialog` modal con foco atrapado, combobox interno y
-  cierre con `Escape`.
+      cierre con `Escape`.
 - [x] Calendar: `role=grid`, celdas navegables por teclado y día seleccionado con
-  `aria-selected`.
+      `aria-selected`.
 - [x] Controladores empaquetados, usados en las demos y con pruebas.
 - [x] `npm run validate` y `git diff --check` verdes dentro del presupuesto.
 

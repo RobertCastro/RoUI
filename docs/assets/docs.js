@@ -16,13 +16,18 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
     // Se resuelve desde este módulo (docs/assets/), no desde la página, para que
     // funcione a cualquier profundidad (docs/*.html y docs/reference/*.html).
     var url = new URL("../../dist/icons.svg", import.meta.url).href;
-    fetch(url).then(function (r) { return r.ok ? r.text() : ""; }).then(function (svg) {
-      if (!svg) return;
-      var holder = document.createElement("div");
-      holder.style.display = "none";
-      holder.innerHTML = svg;
-      document.body.insertBefore(holder, document.body.firstChild);
-    }).catch(function () {});
+    fetch(url)
+      .then(function (r) {
+        return r.ok ? r.text() : "";
+      })
+      .then(function (svg) {
+        if (!svg) return;
+        var holder = document.createElement("div");
+        holder.style.display = "none";
+        holder.innerHTML = svg;
+        document.body.insertBefore(holder, document.body.firstChild);
+      })
+      .catch(function () {});
   })();
 
   /* DISCLOSURES: Menu y Popover comparten la primitiva pública generada. */
@@ -40,10 +45,11 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
      [data-select="cls"] donde cls = la clase de modificador activo.
      Opcional: [data-output="<selector>"] para escribir el item elegido. */
   document.querySelectorAll("[data-select]").forEach(function (group) {
-    var activeCls = group.getAttribute("data-select");          // p.ej. ro-pill--active
-    var itemSel = "." + activeCls.split("--")[0];               // p.ej. .ro-pill
+    var activeCls = group.getAttribute("data-select"); // p.ej. ro-pill--active
+    var itemSel = "." + activeCls.split("--")[0]; // p.ej. .ro-pill
     var out = group.getAttribute("data-output")
-      ? document.querySelector(group.getAttribute("data-output")) : null;
+      ? document.querySelector(group.getAttribute("data-output"))
+      : null;
     var prefix = group.getAttribute("data-output-prefix") || "";
     group.addEventListener("click", function (e) {
       var item = e.target.closest(itemSel);
@@ -76,7 +82,8 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
      solo aportamos el icono desde el sprite de RoUI. */
   var TOAST_ICONS = { success: "circle-check", error: "triangle-alert", info: "info", close: "x" };
   var toaster = createToastController({
-    reducedMotion: window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    reducedMotion:
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     icon: function (variant) {
       var name = TOAST_ICONS[variant];
       if (!name) return "";
@@ -96,7 +103,10 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
   /* TAG removible: clic en .ro-tag__close elimina su .ro-tag. */
   document.addEventListener("click", function (e) {
     var close = e.target.closest(".ro-tag__close");
-    if (close) { var t = close.closest(".ro-tag"); if (t) t.remove(); }
+    if (close) {
+      var t = close.closest(".ro-tag");
+      if (t) t.remove();
+    }
   });
 
   /* DEMO: botón con carga temporal [data-loading-demo]. */
@@ -104,7 +114,9 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
     btn.addEventListener("click", function () {
       if (btn.classList.contains("is-loading")) return;
       btn.classList.add("is-loading");
-      setTimeout(function () { btn.classList.remove("is-loading"); }, 1600);
+      setTimeout(function () {
+        btn.classList.remove("is-loading");
+      }, 1600);
     });
   });
 
@@ -117,13 +129,15 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
     var empty = root.querySelector(".ro-combobox__empty");
     createComboboxController(root, {
       onFilter: function (query) {
-        var q = query.toLowerCase(), visible = 0;
+        var q = query.toLowerCase(),
+          visible = 0;
         list.querySelectorAll('[role="option"]').forEach(function (op) {
           var match = op.textContent.toLowerCase().indexOf(q) !== -1;
-          op.hidden = !match; if (match) visible++;
+          op.hidden = !match;
+          if (match) visible++;
         });
         if (empty) empty.hidden = visible !== 0;
-      }
+      },
     });
   });
 
@@ -134,13 +148,19 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
     function addTag(text) {
       var t = document.createElement("span");
       t.className = "ro-tag";
-      t.innerHTML = text + ' <button class="ro-tag__close" aria-label="Quitar"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button>';
+      t.innerHTML =
+        text +
+        ' <button class="ro-tag__close" aria-label="Quitar"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-x"></use></svg></button>';
       wrap.insertBefore(t, field);
     }
     field.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" && field.value.trim()) { e.preventDefault(); addTag(field.value.trim()); field.value = ""; }
-      else if (e.key === "Backspace" && !field.value) {
-        var tags = wrap.querySelectorAll(".ro-tag"); if (tags.length) tags[tags.length - 1].remove();
+      if (e.key === "Enter" && field.value.trim()) {
+        e.preventDefault();
+        addTag(field.value.trim());
+        field.value = "";
+      } else if (e.key === "Backspace" && !field.value) {
+        var tags = wrap.querySelectorAll(".ro-tag");
+        if (tags.length) tags[tags.length - 1].remove();
       }
     });
   });
@@ -153,46 +173,94 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
       var star = e.target.closest(".ro-rating__star");
       if (!star) return;
       var idx = stars.indexOf(star);
-      stars.forEach(function (s, i) { s.classList.toggle("is-active", i <= idx); });
+      stars.forEach(function (s, i) {
+        s.classList.toggle("is-active", i <= idx);
+      });
     });
   });
 
   /* DROPZONE: estado de arrastre (demo). */
   document.querySelectorAll(".ro-dropzone").forEach(function (dz) {
     var input = dz.querySelector('input[type="file"]');
-    dz.addEventListener("click", function () { if (input) input.click(); });
+    dz.addEventListener("click", function () {
+      if (input) input.click();
+    });
     ["dragenter", "dragover"].forEach(function (ev) {
-      dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add("is-dragover"); });
+      dz.addEventListener(ev, function (e) {
+        e.preventDefault();
+        dz.classList.add("is-dragover");
+      });
     });
     ["dragleave", "drop"].forEach(function (ev) {
-      dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove("is-dragover"); });
+      dz.addEventListener(ev, function (e) {
+        e.preventDefault();
+        dz.classList.remove("is-dragover");
+      });
     });
   });
 
   /* SLIDER: refleja el valor en [data-slider-output]. */
   document.querySelectorAll(".ro-slider[data-output]").forEach(function (sl) {
     var out = document.querySelector(sl.getAttribute("data-output"));
-    var sync = function () { if (out) out.textContent = sl.value; };
-    sl.addEventListener("input", sync); sync();
+    var sync = function () {
+      if (out) out.textContent = sl.value;
+    };
+    sl.addEventListener("input", sync);
+    sync();
   });
 
   /* CALENDAR: renderiza [data-calendar] como role=grid con navegación por teclado. */
-  var MONTHS = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-  var DOW = [["L","Lunes"],["M","Martes"],["X","Miércoles"],["J","Jueves"],["V","Viernes"],["S","Sábado"],["D","Domingo"]];
+  var MONTHS = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+  var DOW = [
+    ["L", "Lunes"],
+    ["M", "Martes"],
+    ["X", "Miércoles"],
+    ["J", "Jueves"],
+    ["V", "Viernes"],
+    ["S", "Sábado"],
+    ["D", "Domingo"],
+  ];
   document.querySelectorAll("[data-calendar]").forEach(function (cal) {
     var grid = cal.querySelector(".ro-calendar__grid");
     var title = cal.querySelector(".ro-calendar__title");
-    var y = +cal.dataset.year, m = +cal.dataset.month;
-    var today = +cal.dataset.today || 0, sel = +cal.dataset.selected || 0;
-    if (title) { title.id = title.id || ("cal-title-" + y + "-" + m); title.textContent = MONTHS[m] + " " + y; }
+    var y = +cal.dataset.year,
+      m = +cal.dataset.month;
+    var today = +cal.dataset.today || 0,
+      sel = +cal.dataset.selected || 0;
+    if (title) {
+      title.id = title.id || "cal-title-" + y + "-" + m;
+      title.textContent = MONTHS[m] + " " + y;
+    }
     grid.setAttribute("role", "grid");
     if (title && title.id) grid.setAttribute("aria-labelledby", title.id);
 
-    var first = (new Date(y, m, 1).getDay() + 6) % 7;          // lunes primero
+    var first = (new Date(y, m, 1).getDay() + 6) % 7; // lunes primero
     var days = new Date(y, m + 1, 0).getDate();
-    var html = '<div class="ro-calendar__row" role="row">' + DOW.map(function (d) {
-      return '<div class="ro-calendar__dow" role="columnheader" aria-label="' + d[1] + '">' + d[0] + "</div>";
-    }).join("") + "</div>";
+    var html =
+      '<div class="ro-calendar__row" role="row">' +
+      DOW.map(function (d) {
+        return (
+          '<div class="ro-calendar__dow" role="columnheader" aria-label="' +
+          d[1] +
+          '">' +
+          d[0] +
+          "</div>"
+        );
+      }).join("") +
+      "</div>";
     var cells = [];
     for (var i = 0; i < first; i++) cells.push("");
     for (var d = 1; d <= days; d++) cells.push(d);
@@ -201,11 +269,27 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
       html += '<div class="ro-calendar__row" role="row">';
       for (var c = w; c < w + 7; c++) {
         var v = cells[c];
-        if (v === "") { html += '<div class="ro-calendar__pad" role="gridcell"></div>'; continue; }
+        if (v === "") {
+          html += '<div class="ro-calendar__pad" role="gridcell"></div>';
+          continue;
+        }
         var cls = "ro-calendar__day" + (v === today ? " ro-calendar__day--today" : "");
-        html += '<button class="' + cls + '" role="gridcell" tabindex="-1" aria-selected="' + (v === sel)
-          + '"' + (v === today ? " data-ro-grid-current" : "")
-          + ' aria-label="' + v + " de " + MONTHS[m] + " de " + y + '">' + v + "</button>";
+        html +=
+          '<button class="' +
+          cls +
+          '" role="gridcell" tabindex="-1" aria-selected="' +
+          (v === sel) +
+          '"' +
+          (v === today ? " data-ro-grid-current" : "") +
+          ' aria-label="' +
+          v +
+          " de " +
+          MONTHS[m] +
+          " de " +
+          y +
+          '">' +
+          v +
+          "</button>";
       }
       html += "</div>";
     }
@@ -213,7 +297,9 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
 
     createGridController(grid, {
       onSelect: function (day) {
-        grid.querySelectorAll('[role="gridcell"][aria-selected="true"]').forEach(function (s) { s.setAttribute("aria-selected", "false"); });
+        grid.querySelectorAll('[role="gridcell"][aria-selected="true"]').forEach(function (s) {
+          s.setAttribute("aria-selected", "false");
+        });
         day.setAttribute("aria-selected", "true");
         var dp = cal.closest("[data-datepicker]");
         if (!dp) return;
@@ -236,20 +322,27 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
     createComboboxController(cmdk, {
       inline: true,
       onFilter: function (query) {
-        var q = query.toLowerCase(), any = false;
+        var q = query.toLowerCase(),
+          any = false;
         cmdk.querySelectorAll('[role="option"]').forEach(function (op) {
           var match = op.textContent.toLowerCase().indexOf(q) !== -1;
-          op.hidden = !match; if (match) any = true;
+          op.hidden = !match;
+          if (match) any = true;
         });
         if (empty) empty.hidden = any;
       },
-      onSelect: function () { if (overlay) overlay.close(); },
+      onSelect: function () {
+        if (overlay) overlay.close();
+      },
     });
     document.addEventListener("keydown", function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k" && overlay) {
         e.preventDefault();
         overlay.open();
-        if (input) { input.value = ""; input.dispatchEvent(new Event("input")); }
+        if (input) {
+          input.value = "";
+          input.dispatchEvent(new Event("input"));
+        }
       }
     });
   });
@@ -257,10 +350,13 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
   /* TREE: clic en fila con hijos alterna el nodo. */
   document.querySelectorAll(".ro-tree").forEach(function (tree) {
     tree.addEventListener("click", function (e) {
-      var row = e.target.closest(".ro-tree__row"); if (!row) return;
+      var row = e.target.closest(".ro-tree__row");
+      if (!row) return;
       var item = row.closest(".ro-tree__item");
       if (item && item.querySelector(".ro-tree__children")) item.classList.toggle("is-open");
-      tree.querySelectorAll(".ro-tree__row--active").forEach(function (r) { r.classList.remove("ro-tree__row--active"); });
+      tree.querySelectorAll(".ro-tree__row--active").forEach(function (r) {
+        r.classList.remove("ro-tree__row--active");
+      });
       row.classList.add("ro-tree__row--active");
     });
   });
@@ -272,7 +368,8 @@ import { createToastController } from "../../dist/primitives/toast-controller.js
       b.addEventListener("click", function () {
         var step = b.dataset.step === "-" ? -1 : 1;
         var v = parseInt(input.value || "0", 10) + step;
-        var min = input.min !== "" ? +input.min : -Infinity, max = input.max !== "" ? +input.max : Infinity;
+        var min = input.min !== "" ? +input.min : -Infinity,
+          max = input.max !== "" ? +input.max : Infinity;
         input.value = Math.max(min, Math.min(max, v));
       });
     });

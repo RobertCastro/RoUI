@@ -44,13 +44,13 @@ fallara, validar de nuevo.
 
 ## Mapeo de contratos de accesibilidad
 
-| Contrato | Componentes |
-|---|---|
-| `native-controls.md` | form, input-group, number-input, slider, rating, file-upload, tags-input |
-| `tabs-accordion-navigation.md` | nav, breadcrumb, pagination, sidebar, accordion, stepper |
-| `combobox-calendar-command-palette.md` | combobox, calendar, command-palette |
-| `toast.md` | toast, banner |
-| `content-and-status.md` (nuevo) | typography, icon, divider, code, prose, segmented, tree, list-group, table, badge, tag, progress, progress-ring, spinner, skeleton, empty, card, avatar, header, footer, description-list, timeline |
+| Contrato                               | Componentes                                                                                                                                                                                         |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `native-controls.md`                   | form, input-group, number-input, slider, rating, file-upload, tags-input                                                                                                                            |
+| `tabs-accordion-navigation.md`         | nav, breadcrumb, pagination, sidebar, accordion, stepper                                                                                                                                            |
+| `combobox-calendar-command-palette.md` | combobox, calendar, command-palette                                                                                                                                                                 |
+| `toast.md`                             | toast, banner                                                                                                                                                                                       |
+| `content-and-status.md` (nuevo)        | typography, icon, divider, code, prose, segmented, tree, list-group, table, badge, tag, progress, progress-ring, spinner, skeleton, empty, card, avatar, header, footer, description-list, timeline |
 
 ## Progreso
 
@@ -65,7 +65,7 @@ fallara, validar de nuevo.
 - [x] El índice muestra 49/49 documentados, sin ningún "pendiente".
 - [x] Cada manifiesto usa solo clases e iconos reales (verificado por gate).
 - [x] Los componentes sin controlador de teclado completo (segmented, tree) lo
-  declaran explícitamente en `whenNotToUse`, sin inventar comportamiento.
+      declaran explícitamente en `whenNotToUse`, sin inventar comportamiento.
 - [x] `npm run validate` y `git diff --check` verdes dentro del presupuesto.
 
 ## Plan de validacion

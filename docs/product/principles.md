@@ -19,4 +19,3 @@
    implementaciones.
 10. **Documentacion como producto.** Ejemplos y referencias se mantienen con la
     misma exigencia que el codigo publicado.
-

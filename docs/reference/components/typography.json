@@ -23,13 +23,22 @@
   },
   "api": {
     "classes": [
-      { "name": "ro-display", "desc": "Titular más grande, para heros y encabezados de dashboard." },
+      {
+        "name": "ro-display",
+        "desc": "Titular más grande, para heros y encabezados de dashboard."
+      },
       { "name": "ro-h2", "desc": "Título de sección grande (fuente display)." },
       { "name": "ro-h3", "desc": "Título de subsección o tarjeta." },
       { "name": "ro-body", "desc": "Texto de cuerpo por defecto." },
       { "name": "ro-muted", "desc": "Modificador: atenúa el color del texto (--ro-text-muted)." },
-      { "name": "ro-eyebrow", "desc": "Etiqueta corta en mayúsculas, color de marca, para preceder un título." },
-      { "name": "ro-eyebrow--ink", "desc": "Variante de eyebrow en tono neutro (ink) en vez de color de marca." }
+      {
+        "name": "ro-eyebrow",
+        "desc": "Etiqueta corta en mayúsculas, color de marca, para preceder un título."
+      },
+      {
+        "name": "ro-eyebrow--ink",
+        "desc": "Variante de eyebrow en tono neutro (ink) en vez de color de marca."
+      }
     ],
     "data": [],
     "tokens": [

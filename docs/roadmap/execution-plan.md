@@ -99,4 +99,3 @@ version mayor, deprecacion cuando corresponda y guia de migracion.
 6. Fase 5: documentacion contractual.
 7. Fase 6: releases, seguridad y gobernanza.
 8. Fase 7: pilotos y adopcion multi-proyecto.
-

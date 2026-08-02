@@ -3,11 +3,25 @@ import test from "node:test";
 import { createComboboxController } from "../src/primitives/combobox-controller.js";
 
 class FakeDocument {
-  constructor() { this.activeElement = null; this.listeners = new Map(); }
-  addEventListener(type, listener) { this.listeners.set(type, listener); }
-  removeEventListener(type) { this.listeners.delete(type); }
+  constructor() {
+    this.activeElement = null;
+    this.listeners = new Map();
+  }
+  addEventListener(type, listener) {
+    this.listeners.set(type, listener);
+  }
+  removeEventListener(type) {
+    this.listeners.delete(type);
+  }
   dispatch(type, target) {
-    const event = { type, target, defaultPrevented: false, preventDefault() { this.defaultPrevented = true; } };
+    const event = {
+      type,
+      target,
+      defaultPrevented: false,
+      preventDefault() {
+        this.defaultPrevented = true;
+      },
+    };
     this.listeners.get(type)?.(event);
     return event;
   }
@@ -26,23 +40,54 @@ class FakeElement {
     this.listeners = new Map();
     this.items = [];
   }
-  append(child) { this.children.push(child); return child; }
-  contains(element) { return element === this || this.children.some((c) => c.contains(element)); }
-  querySelector() { return null; }
-  querySelectorAll() { return this.items; }
-  getAttribute(name) { return this.attributes.has(name) ? this.attributes.get(name) : null; }
-  setAttribute(name, value) { this.attributes.set(name, String(value)); }
-  removeAttribute(name) { this.attributes.delete(name); }
-  hasAttribute(name) { return this.attributes.has(name); }
+  append(child) {
+    this.children.push(child);
+    return child;
+  }
+  contains(element) {
+    return element === this || this.children.some((c) => c.contains(element));
+  }
+  querySelector() {
+    return null;
+  }
+  querySelectorAll() {
+    return this.items;
+  }
+  getAttribute(name) {
+    return this.attributes.has(name) ? this.attributes.get(name) : null;
+  }
+  setAttribute(name, value) {
+    this.attributes.set(name, String(value));
+  }
+  removeAttribute(name) {
+    this.attributes.delete(name);
+  }
+  hasAttribute(name) {
+    return this.attributes.has(name);
+  }
   closest(selector) {
     if (selector.includes("role='option'") && this.getAttribute("role") === "option") return this;
     return null;
   }
-  focus() { this.ownerDocument.activeElement = this; }
-  addEventListener(type, listener) { this.listeners.set(type, listener); }
-  removeEventListener(type) { this.listeners.delete(type); }
+  focus() {
+    this.ownerDocument.activeElement = this;
+  }
+  addEventListener(type, listener) {
+    this.listeners.set(type, listener);
+  }
+  removeEventListener(type) {
+    this.listeners.delete(type);
+  }
   dispatch(type, target, key) {
-    const event = { type, target: target || this, key, defaultPrevented: false, preventDefault() { this.defaultPrevented = true; } };
+    const event = {
+      type,
+      target: target || this,
+      key,
+      defaultPrevented: false,
+      preventDefault() {
+        this.defaultPrevented = true;
+      },
+    };
     this.listeners.get(type)?.(event);
     return event;
   }
@@ -91,14 +136,16 @@ test("Enter selecciona la opción activa y cierra", () => {
 test("al filtrar, una opción oculta deja de estar activa", () => {
   const { input, opts } = fixture({
     onFilter(query) {
-      opts.forEach((o) => { o.hidden = o.textContent.toLowerCase().indexOf(query.toLowerCase()) === -1; });
+      opts.forEach((o) => {
+        o.hidden = o.textContent.toLowerCase().indexOf(query.toLowerCase()) === -1;
+      });
     },
   });
   input.dispatch("keydown", input, "ArrowDown"); // activa JavaScript
   input.value = "ty";
   input.dispatch("input", input);
-  assert.equal(opts[0].hidden, true);   // JavaScript oculto
-  assert.equal(opts[1].hidden, false);  // TypeScript visible
+  assert.equal(opts[0].hidden, true); // JavaScript oculto
+  assert.equal(opts[1].hidden, false); // TypeScript visible
   assert.equal(input.getAttribute("aria-activedescendant"), null);
 });
 
@@ -117,11 +164,20 @@ test("modo inline (Command Palette): Enter ejecuta onSelect y Escape no se captu
   const root = new FakeElement(document);
   const input = root.append(new FakeElement(document, { role: "combobox", id: "cb" }));
   const listbox = root.append(new FakeElement(document, { role: "listbox", id: "lb" }));
-  const o0 = listbox.append(new FakeElement(document, { role: "option", id: "c0" })); o0.textContent = "Ir a Inicio";
-  const o1 = listbox.append(new FakeElement(document, { role: "option", id: "c1" })); o1.textContent = "Ajustes";
+  const o0 = listbox.append(new FakeElement(document, { role: "option", id: "c0" }));
+  o0.textContent = "Ir a Inicio";
+  const o1 = listbox.append(new FakeElement(document, { role: "option", id: "c1" }));
+  o1.textContent = "Ajustes";
   listbox.items = [o0, o1];
   let picked = null;
-  createComboboxController(root, { input, listbox, inline: true, onSelect: (op) => { picked = op; } });
+  createComboboxController(root, {
+    input,
+    listbox,
+    inline: true,
+    onSelect: (op) => {
+      picked = op;
+    },
+  });
   assert.equal(input.getAttribute("aria-expanded"), "true");
   assert.equal(listbox.hidden, false);
   input.dispatch("keydown", input, "ArrowDown");

@@ -24,11 +24,20 @@
   "api": {
     "classes": [
       { "name": "ro-rail", "desc": "Panel lateral (columna del layout de 2-3 columnas)." },
-      { "name": "ro-rail--left", "desc": "Variante con borde a la derecha, para el rail izquierdo." },
-      { "name": "ro-rail--right", "desc": "Variante con borde a la izquierda, para el rail derecho." },
+      {
+        "name": "ro-rail--left",
+        "desc": "Variante con borde a la derecha, para el rail izquierdo."
+      },
+      {
+        "name": "ro-rail--right",
+        "desc": "Variante con borde a la izquierda, para el rail derecho."
+      },
       { "name": "ro-rail__head", "desc": "Cabecera del rail (título, progreso)." },
       { "name": "ro-rail__title", "desc": "Título mono en mayúsculas de la cabecera." },
-      { "name": "ro-accordion-head", "desc": "Cabecera plegable para agrupar items (p. ej. por semana)." },
+      {
+        "name": "ro-accordion-head",
+        "desc": "Cabecera plegable para agrupar items (p. ej. por semana)."
+      },
       { "name": "ro-nav-item", "desc": "Fila de navegación individual dentro del rail." },
       { "name": "ro-nav-item--active", "desc": "Ítem actualmente seleccionado." },
       { "name": "ro-nav-item__meta", "desc": "Texto secundario mono (p. ej. \"Mód 04 · Video\")." },

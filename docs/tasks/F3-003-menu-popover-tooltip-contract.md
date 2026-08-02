@@ -32,13 +32,13 @@ que las tecnologías de asistencia no podían asociar al disparador.
 ## Criterios de aceptación
 
 - [x] Menu define `menu`/`menuitem`, nombre, `aria-expanded` y teclado
-  Arrow, Home, End, Escape y Tab.
+      Arrow, Home, End, Escape y Tab.
 - [x] Popover declara su relación con el disparador y cierra por Escape o
-  interacción exterior sin comportarse como un modal.
+      interacción exterior sin comportarse como un modal.
 - [x] Tooltip usa un elemento con `role="tooltip"` asociado por
-  `aria-describedby`; no contiene controles interactivos.
+      `aria-describedby`; no contiene controles interactivos.
 - [x] El controlador público se empaqueta, se usa en las demos y tiene pruebas
-  de teclado, selección y cierre exterior.
+      de teclado, selección y cierre exterior.
 - [x] El paquete conserva sus presupuestos sin publicar fuentes duplicadas.
 
 ## Plan de validación

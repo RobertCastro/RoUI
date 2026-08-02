@@ -29,10 +29,22 @@ equivocado a tecnologías de asistencia.</p>
 con <code>aria-haspopup=&quot;menu&quot;</code>, <code>aria-controls</code> y <code>aria-expanded=&quot;false&quot;</code>. El
 panel inicia con <code>hidden</code>, usa <code>role=&quot;menu&quot;</code> y cada acción usa <code>role=&quot;menuitem&quot;</code>.</p>
 <pre><code class="language-html">&lt;div class=&quot;ro-dropdown&quot; data-ro-disclosure-root&gt;
-  &lt;button data-ro-disclosure-trigger aria-haspopup=&quot;menu&quot;
-    aria-controls=&quot;account-menu&quot; aria-expanded=&quot;false&quot;&gt;Cuenta&lt;/button&gt;
-  &lt;div class=&quot;ro-menu&quot; id=&quot;account-menu&quot; data-ro-disclosure-panel
-    role=&quot;menu&quot; aria-label=&quot;Cuenta&quot; hidden&gt;
+  &lt;button
+    data-ro-disclosure-trigger
+    aria-haspopup=&quot;menu&quot;
+    aria-controls=&quot;account-menu&quot;
+    aria-expanded=&quot;false&quot;
+  &gt;
+    Cuenta
+  &lt;/button&gt;
+  &lt;div
+    class=&quot;ro-menu&quot;
+    id=&quot;account-menu&quot;
+    data-ro-disclosure-panel
+    role=&quot;menu&quot;
+    aria-label=&quot;Cuenta&quot;
+    hidden
+  &gt;
     &lt;a class=&quot;ro-menu__item&quot; role=&quot;menuitem&quot; href=&quot;/profile&quot;&gt;Mi perfil&lt;/a&gt;
     &lt;button class=&quot;ro-menu__item&quot; role=&quot;menuitem&quot;&gt;Cerrar sesión&lt;/button&gt;
   &lt;/div&gt;

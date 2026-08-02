@@ -41,8 +41,8 @@ const toaster = createToastController({
   icon: (variant) =&gt; spriteFor(variant), // opcional: markup de icono por variante
 });
 
-toaster.success(&quot;Cambios guardados&quot;);                 // role=status
-toaster.error(&quot;No se pudo guardar. Reintenta.&quot;);       // role=alert
+toaster.success(&quot;Cambios guardados&quot;); // role=status
+toaster.error(&quot;No se pudo guardar. Reintenta.&quot;); // role=alert
 toaster.info(&quot;Tienes 2 notificaciones&quot;, { duration: 0 }); // persistente
 </code></pre>
 <h2>Comportamiento</h2>

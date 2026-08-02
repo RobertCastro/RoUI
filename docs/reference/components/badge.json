@@ -30,10 +30,19 @@
       { "name": "ro-dot--success", "desc": "Punto en color de éxito." },
       { "name": "ro-dot--warning", "desc": "Punto en color de advertencia." },
       { "name": "ro-dot--error", "desc": "Punto en color de error." },
-      { "name": "ro-status-chip", "desc": "Chip de estado sobre fondo oscuro (barras de contexto)." }
+      {
+        "name": "ro-status-chip",
+        "desc": "Chip de estado sobre fondo oscuro (barras de contexto)."
+      }
     ],
     "data": [],
-    "tokens": ["--ro-radius-full", "--ro-secondary", "--ro-primary-soft", "--ro-primary", "--ro-ink-04"],
+    "tokens": [
+      "--ro-radius-full",
+      "--ro-secondary",
+      "--ro-primary-soft",
+      "--ro-primary",
+      "--ro-ink-04"
+    ],
     "primitive": null
   },
   "a11y": {

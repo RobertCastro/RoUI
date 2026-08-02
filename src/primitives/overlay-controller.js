@@ -20,12 +20,13 @@ const FOCUSABLE = [
 const scrollLocks = new WeakMap();
 
 function getFocusable(panel) {
-  return [...panel.querySelectorAll(FOCUSABLE)].filter((element) => (
-    !element.hidden
-    && !element.hasAttribute("disabled")
-    && element.getAttribute("aria-hidden") !== "true"
-    && typeof element.focus === "function"
-  ));
+  return [...panel.querySelectorAll(FOCUSABLE)].filter(
+    (element) =>
+      !element.hidden &&
+      !element.hasAttribute("disabled") &&
+      element.getAttribute("aria-hidden") !== "true" &&
+      typeof element.focus === "function",
+  );
 }
 
 function lockScroll(document) {
@@ -59,7 +60,8 @@ export function createOverlayController(root, options = {}) {
 
   const document = root.ownerDocument;
   const panel = options.panel || root.querySelector("[role='dialog'], [role='alertdialog']");
-  if (!panel) throw new TypeError("El overlay necesita un panel con role=dialog o role=alertdialog");
+  if (!panel)
+    throw new TypeError("El overlay necesita un panel con role=dialog o role=alertdialog");
 
   const closeOnBackdrop = options.closeOnBackdrop !== false;
   let opener = null;
@@ -69,9 +71,10 @@ export function createOverlayController(root, options = {}) {
   }
 
   function focusInitial() {
-    const requested = typeof options.initialFocus === "string"
-      ? panel.querySelector(options.initialFocus)
-      : options.initialFocus;
+    const requested =
+      typeof options.initialFocus === "string"
+        ? panel.querySelector(options.initialFocus)
+        : options.initialFocus;
     const target = requested || getFocusable(panel)[0] || panel;
     target.focus({ preventScroll: true });
   }

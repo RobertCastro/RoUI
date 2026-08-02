@@ -54,10 +54,7 @@
       "Da a la barra un nombre accesible con aria-label.",
       "Agrupa acciones afines y sepáralas con ro-toolbar__sep."
     ],
-    "dont": [
-      "No metas la navegación del sitio en una toolbar.",
-      "No hagas enfocable el separador."
-    ]
+    "dont": ["No metas la navegación del sitio en una toolbar.", "No hagas enfocable el separador."]
   },
   "related": ["button", "button-group", "menu"]
 }

@@ -46,4 +46,3 @@ Una tarea solo puede marcarse `done` si aplica y cumple lo siguiente.
 Toda excepcion debe indicar: regla omitida, motivo, riesgo, responsable, fecha
 de expiracion y tarea que eliminara la deuda. Una excepcion indefinida no es
 valida.
-

@@ -24,7 +24,10 @@
   "api": {
     "classes": [
       { "name": "ro-stepper", "desc": "Contenedor horizontal (fila) de pasos." },
-      { "name": "ro-stepper--vertical", "desc": "Variante vertical, con el conector a la izquierda." },
+      {
+        "name": "ro-stepper--vertical",
+        "desc": "Variante vertical, con el conector a la izquierda."
+      },
       { "name": "ro-step-item", "desc": "Un paso individual." },
       { "name": "ro-step-item.is-done", "desc": "Paso completado." },
       { "name": "ro-step-item.is-current", "desc": "Paso activo." },
@@ -33,7 +36,13 @@
       { "name": "ro-step-body", "desc": "Bloque de título y descripción (vertical)." }
     ],
     "data": [],
-    "tokens": ["--ro-ink-10", "--ro-ink-20", "--ro-secondary", "--ro-secondary-ring", "--ro-radius-full"],
+    "tokens": [
+      "--ro-ink-10",
+      "--ro-ink-20",
+      "--ro-secondary",
+      "--ro-secondary-ring",
+      "--ro-radius-full"
+    ],
     "primitive": null
   },
   "a11y": {

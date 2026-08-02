@@ -26,12 +26,12 @@ framework-agnóstica ya documentada (CSS + primitivas vanilla JS).
 - Incluido: 3 tokens de ancho nuevos (`content-narrow` 48rem, `content-wide`
   96rem, más el `content-max` 80rem existente); variantes
   `.ro-container--{narrow,wide,fluid}`; nueva clase `.ro-layout-rail` (rail único
-  + main, sin el hueco vacío que dejaría reusar `.ro-layout-3col` con un solo
-  rail); reescritura completa de `docs/layouts.html` (composición corregida,
-  sección Container con demo de límites y tabla de variantes, Stack & Row,
-  guía de uso por primitiva); plantilla nueva `docs/templates/sidebar.html`
-  (main + 1 sidebar, patrón que no existía); enlaces de navegación actualizados
-  en 6 archivos.
+  - main, sin el hueco vacío que dejaría reusar `.ro-layout-3col` con un solo
+    rail); reescritura completa de `docs/layouts.html` (composición corregida,
+    sección Container con demo de límites y tabla de variantes, Stack & Row,
+    guía de uso por primitiva); plantilla nueva `docs/templates/sidebar.html`
+    (main + 1 sidebar, patrón que no existía); enlaces de navegación actualizados
+    en 6 archivos.
 - Excluido: página centrada, listado de tarjetas con componentes reales,
   formulario, página de documentación como patrón público — fuera de alcance
   por decisión explícita del usuario.
@@ -48,22 +48,22 @@ la nueva sección "Composición".
 
 - [x] Tokens `content-narrow`/`content-wide` + variantes de `.ro-container`.
 - [x] `.ro-layout-rail` (nueva): confirmado que reusar `.ro-layout-3col` con un
-  solo `<aside>` dejaría un hueco de 440px vacío a ≥1280px (bug evitado antes
-  de escribir la plantilla).
+      solo `<aside>` dejaría un hueco de 440px vacío a ≥1280px (bug evitado antes
+      de escribir la plantilla).
 - [x] `docs/layouts.html` reescrita: árbol de composición corregido, sección
-  Container (demo de límites + tabla de variantes + barras proporcionales),
-  Stack & Row, guía "cuándo usar" en cada sección.
+      Container (demo de límites + tabla de variantes + barras proporcionales),
+      Stack & Row, guía "cuándo usar" en cada sección.
 - [x] `docs/templates/sidebar.html`: plantilla real (directorio con nav lateral
-  fija + listado), verificada en navegador.
+      fija + listado), verificada en navegador.
 - [x] Navegación actualizada en index/layouts/icons/components/tokens.html y en
-  el `nav()` de `build-reference.mjs` (afecta 60 páginas generadas).
+      el `nav()` de `build-reference.mjs` (afecta 60 páginas generadas).
 
 ## Criterios de aceptacion
 
 - [x] Cada literal/afirmación de la auditoría original verificado contra el
-  código real antes de aceptarlo (no se asumió nada).
+      código real antes de aceptarlo (no se asumió nada).
 - [x] La sección Container muestra el límite visualmente y documenta las 4
-  variantes con su valor exacto y cuándo usar cada una.
+      variantes con su valor exacto y cuándo usar cada una.
 - [x] El nuevo patrón main+1 sidebar existe, renderiza correctamente y pasa axe.
 - [x] `npm run validate` verde dentro del presupuesto.
 

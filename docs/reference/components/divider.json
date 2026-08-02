@@ -24,11 +24,24 @@
   "api": {
     "classes": [
       { "name": "ro-divider", "desc": "Línea horizontal de 1px. Se usa sobre <hr>." },
-      { "name": "ro-divider--vertical", "desc": "Variante vertical, para separar elementos en una fila." },
-      { "name": "ro-divider-text", "desc": "Contenedor con etiqueta centrada y líneas a los lados (p. ej. \"o\")." }
+      {
+        "name": "ro-divider--vertical",
+        "desc": "Variante vertical, para separar elementos en una fila."
+      },
+      {
+        "name": "ro-divider-text",
+        "desc": "Contenedor con etiqueta centrada y líneas a los lados (p. ej. \"o\")."
+      }
     ],
     "data": [],
-    "tokens": ["--ro-ink-10", "--ro-space-3", "--ro-space-4", "--ro-font-mono", "--ro-text-xs", "--ro-tracking-wider"],
+    "tokens": [
+      "--ro-ink-10",
+      "--ro-space-3",
+      "--ro-space-4",
+      "--ro-font-mono",
+      "--ro-text-xs",
+      "--ro-tracking-wider"
+    ],
     "primitive": null
   },
   "a11y": {

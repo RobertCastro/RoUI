@@ -47,7 +47,7 @@ Do/Don't → Relacionados.
 
 - [x] El manifiesto se valida (campos y madurez) y falla si es invalido.
 - [x] `build:reference` genera `docs/reference/*.html`; `check:reference` detecta
-  drift en `validate`.
+      drift en `validate`.
 - [x] La pagina de Button y el indice pasan axe y renderizan las demos vivas.
 - [x] La referencia es alcanzable desde el nav del sitio.
 - [x] `npm run validate` y `git diff --check` verdes.

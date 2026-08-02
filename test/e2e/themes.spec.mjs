@@ -15,7 +15,10 @@ for (const [theme, tokens] of Object.entries(THEMES)) {
     await page.evaluate((t) => document.documentElement.setAttribute("data-ro-theme", t), theme);
     const values = await page.evaluate((names) => {
       const s = getComputedStyle(document.documentElement);
-      return names.reduce((acc, n) => { acc[n] = s.getPropertyValue(n).trim().toLowerCase(); return acc; }, {});
+      return names.reduce((acc, n) => {
+        acc[n] = s.getPropertyValue(n).trim().toLowerCase();
+        return acc;
+      }, {});
     }, Object.keys(tokens));
     for (const [name, expected] of Object.entries(tokens)) {
       expect(values[name]).toBe(expected);

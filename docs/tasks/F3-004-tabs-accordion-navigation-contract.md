@@ -33,16 +33,16 @@ página actual. F3-003 dejó desbloqueada esta tarea.
 ## Criterios de aceptación
 
 - [x] Tabs declara `role=tablist/tab/tabpanel`, `aria-selected`, `aria-controls`
-  y `aria-labelledby`; solo la pestaña activa es tabbable (roving tabindex).
+      y `aria-labelledby`; solo la pestaña activa es tabbable (roving tabindex).
 - [x] Teclado de Tabs: Flecha (según orientación), `Home`, `End` mueven; la
-  activación automática selecciona al enfocar y el panel inactivo queda `hidden`.
+      activación automática selecciona al enfocar y el panel inactivo queda `hidden`.
 - [x] Accordion usa `button` con `aria-expanded`/`aria-controls` dentro de un
-  encabezado y región `role=region` etiquetada; abre y cierra por teclado.
+      encabezado y región `role=region` etiquetada; abre y cierra por teclado.
 - [x] La navegación de ejemplo expone `nav` con nombre y `aria-current="page"`.
 - [x] El controlador `tabs-controller` se empaqueta, se usa en las demos y tiene
-  pruebas de foco inicial, roving, flechas, `Home`/`End` y activación.
+      pruebas de foco inicial, roving, flechas, `Home`/`End` y activación.
 - [x] `npm run validate` y `git diff --check` quedan verdes sin romper el
-  presupuesto del paquete.
+      presupuesto del paquete.
 
 ## Plan de validación
 

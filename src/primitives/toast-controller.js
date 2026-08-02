@@ -10,7 +10,8 @@ const VARIANT_ROLE = { error: "alert" };
  * `options.icon`, de modo que la primitiva no depende de un set de iconos.
  */
 export function createToastController(options = {}) {
-  const document = options.document || (typeof globalThis !== "undefined" ? globalThis.document : null);
+  const document =
+    options.document || (typeof globalThis !== "undefined" ? globalThis.document : null);
   if (!document || typeof document.createElement !== "function") {
     throw new TypeError("createToastController necesita un document");
   }
@@ -20,7 +21,7 @@ export function createToastController(options = {}) {
   const clearTimer = options.timers?.clear || ((id) => clearTimeout(id));
   const icon = typeof options.icon === "function" ? options.icon : null;
   const closeLabel = options.closeLabel || "Cerrar";
-  const leaveMs = options.reducedMotion ? 0 : (options.leaveMs == null ? 160 : options.leaveMs);
+  const leaveMs = options.reducedMotion ? 0 : options.leaveMs == null ? 160 : options.leaveMs;
 
   let region = options.region || null;
   function ensureRegion() {
@@ -79,7 +80,10 @@ export function createToastController(options = {}) {
     function remove() {
       if (removed) return;
       removed = true;
-      if (timer) { clearTimer(timer); timer = null; }
+      if (timer) {
+        clearTimer(timer);
+        timer = null;
+      }
       active.delete(handle);
       if (leaveMs > 0 && typeof el.classList?.add === "function") {
         el.classList.add("is-leaving");
@@ -100,7 +104,9 @@ export function createToastController(options = {}) {
       timer = null;
       if (typeof options.now === "function") remaining -= options.now() - startedAt;
     }
-    function resume() { if (!removed && !timer) schedule(); }
+    function resume() {
+      if (!removed && !timer) schedule();
+    }
 
     const close = dismissible ? el.querySelector(".ro-toast__close") : null;
     if (close) close.addEventListener("click", remove);
@@ -118,11 +124,21 @@ export function createToastController(options = {}) {
 
   return {
     show,
-    success(message, opts) { return show({ ...opts, variant: "success", message }); },
-    error(message, opts) { return show({ ...opts, variant: "error", message }); },
-    info(message, opts) { return show({ ...opts, variant: "info", message }); },
-    get region() { return region; },
-    dismissAll() { [...active].forEach((h) => h.dismiss()); },
+    success(message, opts) {
+      return show({ ...opts, variant: "success", message });
+    },
+    error(message, opts) {
+      return show({ ...opts, variant: "error", message });
+    },
+    info(message, opts) {
+      return show({ ...opts, variant: "info", message });
+    },
+    get region() {
+      return region;
+    },
+    dismissAll() {
+      [...active].forEach((h) => h.dismiss());
+    },
     destroy() {
       this.dismissAll();
       if (region && !options.region && typeof region.remove === "function") region.remove();

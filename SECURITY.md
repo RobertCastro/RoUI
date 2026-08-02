@@ -7,9 +7,9 @@ en
 [docs/governance/support-deprecation-policy.md](docs/governance/support-deprecation-policy.md).
 
 | Versión | Soporte |
-|---|---|
-| 1.1.x | ✅ |
-| < 1.1 | ❌ |
+| ------- | ------- |
+| 1.1.x   | ✅      |
+| < 1.1   | ❌      |
 
 ## Reportar una vulnerabilidad
 

@@ -34,7 +34,7 @@ componente documentado.
 - [x] Índice con sección "Contratos de accesibilidad".
 - [x] Sprite inyectado en las páginas de componente (iconos en demos).
 - [x] Lote: button-group, toolbar (native-controls), alert (toast), tooltip
-  (menu-popover-tooltip). 5/49 documentados.
+      (menu-popover-tooltip). 5/49 documentados.
 
 ## Criterios de aceptacion
 

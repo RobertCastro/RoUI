@@ -12,4 +12,3 @@ Antes de migrar, cada paquete candidato debe declarar:
 La primera migracion debe conservar `npm run validate` como puerta de calidad y
 probar el tarball de cada paquete publicable. No se crean paquetes de marcador
 de posicion ni se migra por anticipacion.
-

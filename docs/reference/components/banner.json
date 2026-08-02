@@ -29,7 +29,14 @@
       { "name": "ro-banner__close", "desc": "Botón de cierre." }
     ],
     "data": [],
-    "tokens": ["--ro-ink", "--ro-on-dark", "--ro-primary", "--ro-secondary", "--ro-ink-04", "--ro-space-3"],
+    "tokens": [
+      "--ro-ink",
+      "--ro-on-dark",
+      "--ro-primary",
+      "--ro-secondary",
+      "--ro-ink-04",
+      "--ro-space-3"
+    ],
     "primitive": null
   },
   "a11y": {

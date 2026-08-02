@@ -58,4 +58,3 @@ Objetivo: validar el sistema en productos independientes y medir impacto.
 
 Salidas: pilotos, plantillas, codemods, telemetria de adopcion, soporte y
 metricas de velocidad, defectos y migraciones.
-

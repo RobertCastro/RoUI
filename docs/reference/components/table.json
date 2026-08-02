@@ -25,28 +25,70 @@
   "api": {
     "classes": [
       { "name": "ro-table-wrap", "desc": "Contenedor con borde, radio y scroll horizontal." },
-      { "name": "ro-table-wrap--scroll", "desc": "Alto acotado (480px por defecto, ajustable con --ro-table-scroll-max) + scroll vertical. Úsala junto con ro-table--sticky." },
+      {
+        "name": "ro-table-wrap--scroll",
+        "desc": "Alto acotado (480px por defecto, ajustable con --ro-table-scroll-max) + scroll vertical. Úsala junto con ro-table--sticky."
+      },
       { "name": "ro-table", "desc": "Tabla base con border-collapse y tipografía compacta." },
       { "name": "ro-table--hover", "desc": "Resalta la fila bajo el cursor." },
       { "name": "ro-table--zebra", "desc": "Alterna el fondo de filas pares." },
-      { "name": "ro-table--sticky", "desc": "Fija el thead al hacer scroll vertical (requiere ro-table-wrap--scroll)." },
-      { "name": "ro-table__num", "desc": "Alinea a la derecha con fuente mono (columnas numéricas)." },
-      { "name": "ro-table__sort", "desc": "Botón dentro de un th para disparar el reordenamiento; el estado visual (color del icono) sigue el aria-sort del th." },
-      { "name": "ro-table__select", "desc": "Celda angosta y centrada para el checkbox de selección de fila." },
-      { "name": "ro-table__empty-cell", "desc": "Quita el padding de la celda que envuelve a .ro-empty en el estado vacío integrado." },
-      { "name": "ro-table-toolbar", "desc": "Barra superior con título y acciones, antes de la tabla." }
+      {
+        "name": "ro-table--sticky",
+        "desc": "Fija el thead al hacer scroll vertical (requiere ro-table-wrap--scroll)."
+      },
+      {
+        "name": "ro-table__num",
+        "desc": "Alinea a la derecha con fuente mono (columnas numéricas)."
+      },
+      {
+        "name": "ro-table__sort",
+        "desc": "Botón dentro de un th para disparar el reordenamiento; el estado visual (color del icono) sigue el aria-sort del th."
+      },
+      {
+        "name": "ro-table__select",
+        "desc": "Celda angosta y centrada para el checkbox de selección de fila."
+      },
+      {
+        "name": "ro-table__empty-cell",
+        "desc": "Quita el padding de la celda que envuelve a .ro-empty en el estado vacío integrado."
+      },
+      {
+        "name": "ro-table-toolbar",
+        "desc": "Barra superior con título y acciones, antes de la tabla."
+      }
     ],
     "data": [
-      { "name": "aria-sort", "desc": "En el th ordenable: \"none\" | \"ascending\" | \"descending\". El consumidor lo actualiza al reordenar; RoUI solo estiliza el icono según su valor." }
+      {
+        "name": "aria-sort",
+        "desc": "En el th ordenable: \"none\" | \"ascending\" | \"descending\". El consumidor lo actualiza al reordenar; RoUI solo estiliza el icono según su valor."
+      }
     ],
-    "tokens": ["--ro-radius-xl", "--ro-ink-10", "--ro-ink-06", "--ro-ink-04", "--ro-ink-02", "--ro-ink-30", "--ro-ink-50", "--ro-font-mono", "--ro-table-scroll-max", "--ro-table-cell-py", "--ro-table-cell-px"],
+    "tokens": [
+      "--ro-radius-xl",
+      "--ro-ink-10",
+      "--ro-ink-06",
+      "--ro-ink-04",
+      "--ro-ink-02",
+      "--ro-ink-30",
+      "--ro-ink-50",
+      "--ro-font-mono",
+      "--ro-table-scroll-max",
+      "--ro-table-cell-py",
+      "--ro-table-cell-px"
+    ],
     "primitive": null
   },
   "a11y": {
     "contract": "accessibility/content-and-status.md",
     "keyboard": [
-      ["Flechas", "Con el contenedor de scroll enfocado (tabindex=0), desplaza la tabla horizontalmente cuando el contenido excede el ancho disponible."],
-      ["Tab", "Llega al botón de orden dentro de un th ordenable y a cada checkbox de selección de fila, como cualquier control interactivo."],
+      [
+        "Flechas",
+        "Con el contenedor de scroll enfocado (tabindex=0), desplaza la tabla horizontalmente cuando el contenido excede el ancho disponible."
+      ],
+      [
+        "Tab",
+        "Llega al botón de orden dentro de un th ordenable y a cada checkbox de selección de fila, como cualquier control interactivo."
+      ],
       ["Espacio / Enter", "Activa el botón de orden o marca/desmarca el checkbox enfocado."]
     ],
     "notes": [

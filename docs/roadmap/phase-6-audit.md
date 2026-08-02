@@ -11,13 +11,13 @@ automatizado, publicacion verificable y controles de seguridad y gobernanza.
 
 ## Entregables
 
-| Tarea | Resultado | Evidencia |
-|---|---|---|
-| F6-001 | Versionado y changelog con Changesets | done, PR #27 |
-| F6-002 | Publicacion con provenance y canary | done, PR #29 |
-| F6-003 | CodeQL, SBOM, dependency-review y Dependabot | done, PR #30 |
+| Tarea  | Resultado                                                   | Evidencia    |
+| ------ | ----------------------------------------------------------- | ------------ |
+| F6-001 | Versionado y changelog con Changesets                       | done, PR #27 |
+| F6-002 | Publicacion con provenance y canary                         | done, PR #29 |
+| F6-003 | CodeQL, SBOM, dependency-review y Dependabot                | done, PR #30 |
 | F6-004 | Gobernanza (CODEOWNERS, plantillas, CONTRIBUTING, SECURITY) | done, PR #32 |
-| F6-005 | Politica de soporte, deprecaciones y vulnerabilidades | done, PR #33 |
+| F6-005 | Politica de soporte, deprecaciones y vulnerabilidades       | done, PR #33 |
 
 ## Evidencia de calidad
 

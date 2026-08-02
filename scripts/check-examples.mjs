@@ -20,9 +20,7 @@ const sprite = readFileSync(resolve(root, "dist/icons.svg"), "utf8");
 const cssClasses = new Set(
   [...css.matchAll(/\.(ro-[a-z0-9]+(?:[-_]{1,2}[a-z0-9]+)*)/g)].map((m) => m[1]),
 );
-const iconIds = new Set(
-  [...sprite.matchAll(/id="(ro-i-[a-z0-9-]+)"/g)].map((m) => m[1]),
-);
+const iconIds = new Set([...sprite.matchAll(/id="(ro-i-[a-z0-9-]+)"/g)].map((m) => m[1]));
 
 function snippetProblems(html) {
   const problems = [];
@@ -74,9 +72,9 @@ if (existsSync(pilotPath)) {
     "@robertcastro/roui@1.1.0/dist/primitives/overlay-controller.js",
     "@robertcastro/roui@1.1.0/dist/primitives/tabs-controller.js",
     "@robertcastro/roui@1.1.0/dist/primitives/toast-controller.js",
-    "data-ro-theme=\"light\"",
-    "role=\"tablist\"",
-    "role=\"dialog\"",
+    'data-ro-theme="light"',
+    'role="tablist"',
+    'role="dialog"',
   ];
   required.forEach((needle) => {
     if (!html.includes(needle)) problems.push(`piloto sin contrato requerido: ${needle}`);
@@ -95,4 +93,6 @@ if (failures > 0) {
   console.error(`\nEjemplos con divergencias: ${failures} problema(s).`);
   process.exit(1);
 }
-console.log(`Ejemplos verificados: ${snippets} snippet(s) en ${files.length} componente(s) y piloto local, sin divergencias.`);
+console.log(
+  `Ejemplos verificados: ${snippets} snippet(s) en ${files.length} componente(s) y piloto local, sin divergencias.`,
+);

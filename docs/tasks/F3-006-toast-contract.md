@@ -41,16 +41,16 @@ presupuesto de `check:size` se mantiene sin cambios (no requiere ADR).
 - [x] `toast-controller` publicado, con pruebas de anuncio, cierre y pausa.
 - [x] Cada toast se inserta con `role=status` (éxito/info) o `role=alert` (error).
 - [x] Cierre automático configurable con pausa en `pointer`/`focus` y botón de
-  cierre con `aria-label` y anillo de foco.
+      cierre con `aria-label` y anillo de foco.
 - [x] Demo (`docs.js`) migrada a la primitiva; icono inyectado desde el sprite.
 - [x] `src/icons/icons.json` excluido del tarball para respetar el presupuesto.
 
 ## Criterios de aceptación
 
 - [x] Toast: `role=status` para éxito/info y `role=alert` para errores; sin robar
-  el foco.
+      el foco.
 - [x] Cierre automático por defecto (5000 ms), `duration: 0` persistente, y pausa
-  al pasar el puntero o enfocar.
+      al pasar el puntero o enfocar.
 - [x] Botón de cierre con `aria-label`, foco visible y `dismissAll()`/`dismiss()`.
 - [x] Controlador empaquetado, usado en la demo y con pruebas.
 - [x] `npm run validate` y `git diff --check` verdes dentro del presupuesto.

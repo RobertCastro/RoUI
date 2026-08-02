@@ -26,7 +26,10 @@
       { "name": "ro-list", "desc": "Contenedor de la tarjeta (borde, radio, overflow)." },
       { "name": "ro-list__item", "desc": "Fila individual." },
       { "name": "ro-list__item--active", "desc": "Fila destacada como seleccionada/actual." },
-      { "name": "ro-list__item--link", "desc": "Aplica el estilo hover de enlace a una fila que no es <a> (p. ej. un <button>)." },
+      {
+        "name": "ro-list__item--link",
+        "desc": "Aplica el estilo hover de enlace a una fila que no es <a> (p. ej. un <button>)."
+      },
       { "name": "ro-list__title", "desc": "Texto principal de la fila." },
       { "name": "ro-list__meta", "desc": "Texto secundario de la fila." }
     ],
@@ -46,8 +49,14 @@
   "a11y": {
     "contract": "accessibility/content-and-status.md",
     "keyboard": [
-      ["Tab / Shift+Tab", "Recorre las filas clicables (enlaces o botones) en orden del documento."],
-      ["Enter / Espacio", "Activa la fila enfocada según sea <a> (Enter) o <button> (Enter/Espacio)."]
+      [
+        "Tab / Shift+Tab",
+        "Recorre las filas clicables (enlaces o botones) en orden del documento."
+      ],
+      [
+        "Enter / Espacio",
+        "Activa la fila enfocada según sea <a> (Enter) o <button> (Enter/Espacio)."
+      ]
     ],
     "notes": [
       "No hay controlador de teclado propio: la accesibilidad depende por completo de usar elementos nativos interactivos (<a>, <button>) para cada fila clicable, en vez de un <div> con onclick.",

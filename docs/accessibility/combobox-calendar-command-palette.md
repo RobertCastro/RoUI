@@ -13,8 +13,15 @@ Un `input role="combobox"` controla un `role="listbox"` de opciones
 ```html
 <div class="ro-combobox" data-ro-combobox>
   <div class="ro-field">
-    <input class="ro-input" id="cb" role="combobox" aria-expanded="false"
-      aria-controls="cb-list" aria-autocomplete="list" aria-label="Busca un lenguaje">
+    <input
+      class="ro-input"
+      id="cb"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="cb-list"
+      aria-autocomplete="list"
+      aria-label="Busca un lenguaje"
+    />
   </div>
   <div class="ro-combobox__list" id="cb-list" role="listbox" aria-label="Lenguajes">
     <div class="ro-combobox__option" role="option">JavaScript</div>
@@ -27,7 +34,11 @@ Un `input role="combobox"` controla un `role="listbox"` de opciones
 ```js
 import { createComboboxController } from "@robertcastro/roui/primitives/combobox-controller";
 
-createComboboxController(root, { onFilter: (query) => { /* oculta opciones */ } });
+createComboboxController(root, {
+  onFilter: (query) => {
+    /* oculta opciones */
+  },
+});
 ```
 
 `ArrowDown`/`ArrowUp` recorren (con wrap), `Home`/`End` van a los extremos,
@@ -47,8 +58,14 @@ y restauración del disparador); la lista la gestiona `combobox-controller` con
 <div class="ro-cmdk-overlay" id="cmdk" data-ro-overlay-root hidden>
   <div class="ro-cmdk" role="dialog" aria-modal="true" aria-label="Paleta de comandos" data-ro-cmdk>
     <div class="ro-cmdk__search">
-      <input id="cmdk-input" role="combobox" aria-expanded="true"
-        aria-controls="cmdk-list" aria-autocomplete="list" aria-label="Buscar comandos">
+      <input
+        id="cmdk-input"
+        role="combobox"
+        aria-expanded="true"
+        aria-controls="cmdk-list"
+        aria-autocomplete="list"
+        aria-label="Buscar comandos"
+      />
     </div>
     <div class="ro-cmdk__list" id="cmdk-list" role="listbox" aria-label="Comandos">
       <div class="ro-cmdk__group" role="presentation">Navegar</div>
@@ -74,12 +91,21 @@ huecos del mes son celdas vacías no enfocables.
 ```html
 <div class="ro-calendar__grid" role="grid" aria-labelledby="cal-title">
   <div class="ro-calendar__row" role="row">
-    <div class="ro-calendar__dow" role="columnheader" aria-label="Lunes">L</div> …
+    <div class="ro-calendar__dow" role="columnheader" aria-label="Lunes">L</div>
+    …
   </div>
   <div class="ro-calendar__row" role="row">
     <div class="ro-calendar__pad" role="gridcell"></div>
-    <button class="ro-calendar__day" role="gridcell" tabindex="-1"
-      aria-selected="false" aria-label="1 de Junio de 2026">1</button> …
+    <button
+      class="ro-calendar__day"
+      role="gridcell"
+      tabindex="-1"
+      aria-selected="false"
+      aria-label="1 de Junio de 2026"
+    >
+      1
+    </button>
+    …
   </div>
 </div>
 ```
@@ -87,7 +113,11 @@ huecos del mes son celdas vacías no enfocables.
 ```js
 import { createGridController } from "@robertcastro/roui/primitives/grid-controller";
 
-createGridController(grid, { onSelect: (dayButton) => { /* marca aria-selected */ } });
+createGridController(grid, {
+  onSelect: (dayButton) => {
+    /* marca aria-selected */
+  },
+});
 ```
 
 Una sola celda es tabbable (**roving tabindex**): el día seleccionado, el marcado

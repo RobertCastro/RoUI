@@ -11,13 +11,13 @@ transformar los tokens o crear adaptadores de componentes.
 
 ## Entregables
 
-| Tarea | Resultado | Evidencia |
-|---|---|---|
-| F1-001 | Preset Tailwind CJS/ESM publicado | PR #2 |
-| F1-002 | Entry points CSS públicos y granulares | PR #3 |
-| F1-003 | Reset explícito y cascade layers | PR #4 |
-| F1-004 | Fixtures esbuild y Tailwind desde tarball | PR #5 |
-| F1-005 | Criterios de adopción de workspaces | PR #6, ADR-0004 |
+| Tarea  | Resultado                                   | Evidencia       |
+| ------ | ------------------------------------------- | --------------- |
+| F1-001 | Preset Tailwind CJS/ESM publicado           | PR #2           |
+| F1-002 | Entry points CSS públicos y granulares      | PR #3           |
+| F1-003 | Reset explícito y cascade layers            | PR #4           |
+| F1-004 | Fixtures esbuild y Tailwind desde tarball   | PR #5           |
+| F1-005 | Criterios de adopción de workspaces         | PR #6, ADR-0004 |
 | F1-006 | Lint, presupuesto y auditoría de producción | PR #7, ADR-0005 |
 
 ## Evidencia de calidad

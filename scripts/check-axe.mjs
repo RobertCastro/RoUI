@@ -92,7 +92,10 @@ for (const page of PAGES) {
   // eslint-disable-next-line no-await-in-loop
   const violations = await scan(page);
   const nodes = reportPage(page, violations);
-  if (nodes > 0) { failing.push(page); totalNodes += nodes; }
+  if (nodes > 0) {
+    failing.push(page);
+    totalNodes += nodes;
+  }
 }
 
 if (failing.length > 0) {
@@ -101,4 +104,6 @@ if (failing.length > 0) {
   );
   process.exit(1);
 }
-console.log(`\naxe correcto: ${PAGES.length} páginas sin violaciones (contraste vía check:contrast; estados dinámicos en Fase 4).`);
+console.log(
+  `\naxe correcto: ${PAGES.length} páginas sin violaciones (contraste vía check:contrast; estados dinámicos en Fase 4).`,
+);

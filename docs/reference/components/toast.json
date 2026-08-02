@@ -34,7 +34,14 @@
       { "name": "ro-toast__close", "desc": "Botón de cierre manual." }
     ],
     "data": [],
-    "tokens": ["--ro-z-modal", "--ro-radius-xl", "--ro-shadow-md", "--ro-success", "--ro-error", "--ro-secondary"],
+    "tokens": [
+      "--ro-z-modal",
+      "--ro-radius-xl",
+      "--ro-shadow-md",
+      "--ro-success",
+      "--ro-error",
+      "--ro-secondary"
+    ],
     "primitive": { "import": "createToastController", "module": "toast-controller" }
   },
   "a11y": {

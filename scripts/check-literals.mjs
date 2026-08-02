@@ -31,9 +31,16 @@ for (const file of walk(source)) {
 }
 occurrences.sort();
 const digest = createHash("sha256").update(occurrences.join("\n")).digest("hex");
-const totals = Object.fromEntries(patterns.map(([kind]) => [kind, occurrences.filter((entry) => entry.startsWith(`${kind}:`)).length]));
+const totals = Object.fromEntries(
+  patterns.map(([kind]) => [
+    kind,
+    occurrences.filter((entry) => entry.startsWith(`${kind}:`)).length,
+  ]),
+);
 console.log(`Literales fuera de tokens: ${totals.color} colores, ${totals.pixel} valores px`);
 console.log(`Inventario SHA-256: ${digest}`);
 if (digest !== expectedDigest) {
-  throw new Error("El inventario de literales cambió; migra el valor a un token o actualiza la excepción documentada.");
+  throw new Error(
+    "El inventario de literales cambió; migra el valor a un token o actualiza la excepción documentada.",
+  );
 }

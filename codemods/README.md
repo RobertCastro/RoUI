@@ -7,12 +7,12 @@ Transformaciones automatizadas para migrar marcado a los contratos de RoUI.
 Reemplaza las clases modificadoras de estado heredadas por su atributo ARIA
 equivalente, de forma quirúrgica (preserva el resto del marcado).
 
-| Antes (clase) | Después (atributo) |
-|---|---|
-| `ro-tab--active` | `aria-selected="true"` |
-| `ro-nav-link--active` | `aria-current="page"` |
-| `ro-calendar__day--selected` | `aria-selected="true"` |
-| `ro-breadcrumbs__current--active` | `aria-current="page"` |
+| Antes (clase)                     | Después (atributo)     |
+| --------------------------------- | ---------------------- |
+| `ro-tab--active`                  | `aria-selected="true"` |
+| `ro-nav-link--active`             | `aria-current="page"`  |
+| `ro-calendar__day--selected`      | `aria-selected="true"` |
+| `ro-breadcrumbs__current--active` | `aria-current="page"`  |
 
 ### Uso
 

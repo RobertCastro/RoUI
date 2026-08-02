@@ -6,7 +6,16 @@ import { fileURLToPath } from "node:url";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const sourcePath = resolve(root, "tokens/tokens.json");
 const source = JSON.parse(readFileSync(sourcePath, "utf8"));
-const allowedFiles = new Set(["colors", "typography", "spacing", "effects", "layout", "themes", "components", "density"]);
+const allowedFiles = new Set([
+  "colors",
+  "typography",
+  "spacing",
+  "effects",
+  "layout",
+  "themes",
+  "components",
+  "density",
+]);
 const tokens = new Map();
 
 if (source.$schema !== "https://design-tokens.github.io/community-group/format/") {
@@ -37,7 +46,11 @@ const baseVariables = new Map(
     .filter((token) => token.cssFile !== "themes" && token.cssFile !== "density")
     .map((token) => [token.cssVariable, token.id]),
 );
-if (baseVariables.size !== [...tokens.values()].filter((token) => token.cssFile !== "themes" && token.cssFile !== "density").length) {
+if (
+  baseVariables.size !==
+  [...tokens.values()].filter((token) => token.cssFile !== "themes" && token.cssFile !== "density")
+    .length
+) {
   throw new Error("Variables CSS duplicadas fuera de temas");
 }
 
@@ -46,7 +59,8 @@ function resolveAlias(value, stack = []) {
   if (!match) return value;
   const target = tokens.get(match[1]);
   if (!target) throw new Error(`Referencia inexistente: ${match[1]}`);
-  if (stack.includes(target.id)) throw new Error(`Referencia circular: ${[...stack, target.id].join(" -> ")}`);
+  if (stack.includes(target.id))
+    throw new Error(`Referencia circular: ${[...stack, target.id].join(" -> ")}`);
   return resolveAlias(target.value, [...stack, target.id]);
 }
 
@@ -65,7 +79,9 @@ function value(id) {
 }
 
 function fontFamily(id) {
-  return value(id).split(",").map((item) => item.trim().replace(/^"|"$/g, ""));
+  return value(id)
+    .split(",")
+    .map((item) => item.trim().replace(/^"|"$/g, ""));
 }
 
 function cssFile(file) {
@@ -100,56 +116,90 @@ function cssFile(file) {
 const tailwind = {
   theme: {
     extend: {
-      colors: Object.fromEntries([
-        ["ink", "colors.ink"], ["ink-soft", "colors.ink-soft"],
-        ["primary", "colors.primary"], ["secondary", "colors.secondary"],
-        ["graybrand", "colors.gray"], ["sky", "colors.sky"],
-        ["success", "colors.success"], ["warning", "colors.warning"],
-        ["error", "colors.error"], ["info", "colors.info"],
-      ].map(([name, id]) => [name, value(id)])),
+      colors: Object.fromEntries(
+        [
+          ["ink", "colors.ink"],
+          ["ink-soft", "colors.ink-soft"],
+          ["primary", "colors.primary"],
+          ["secondary", "colors.secondary"],
+          ["graybrand", "colors.gray"],
+          ["sky", "colors.sky"],
+          ["success", "colors.success"],
+          ["warning", "colors.warning"],
+          ["error", "colors.error"],
+          ["info", "colors.info"],
+        ].map(([name, id]) => [name, value(id)]),
+      ),
       fontFamily: {
         display: fontFamily("typography.font-display"),
         sans: fontFamily("typography.font-sans"),
         mono: fontFamily("typography.font-mono"),
       },
       fontSize: {
-        display: [value("typography.text-display"), {
-          lineHeight: value("typography.leading-tight"),
-          letterSpacing: value("typography.tracking-tight"),
-        }],
+        display: [
+          value("typography.text-display"),
+          {
+            lineHeight: value("typography.leading-tight"),
+            letterSpacing: value("typography.tracking-tight"),
+          },
+        ],
       },
-      letterSpacing: Object.fromEntries([
-        ["tight", "typography.tracking-tight"], ["wide", "typography.tracking-wide"],
-        ["wider", "typography.tracking-wider"],
-      ].map(([name, id]) => [name, value(id)])),
-      borderRadius: Object.fromEntries([
-        ["card", "spacing.radius-card"], ["banner", "spacing.radius-banner"],
-      ].map(([name, id]) => [name, value(id)])),
-      boxShadow: Object.fromEntries([
-        ["brand-sm", "effects.shadow-sm"], ["brand-md", "effects.shadow-md"],
-        ["focus", "effects.focus-ring"],
-      ].map(([name, id]) => [name, value(id)])),
+      letterSpacing: Object.fromEntries(
+        [
+          ["tight", "typography.tracking-tight"],
+          ["wide", "typography.tracking-wide"],
+          ["wider", "typography.tracking-wider"],
+        ].map(([name, id]) => [name, value(id)]),
+      ),
+      borderRadius: Object.fromEntries(
+        [
+          ["card", "spacing.radius-card"],
+          ["banner", "spacing.radius-banner"],
+        ].map(([name, id]) => [name, value(id)]),
+      ),
+      boxShadow: Object.fromEntries(
+        [
+          ["brand-sm", "effects.shadow-sm"],
+          ["brand-md", "effects.shadow-md"],
+          ["focus", "effects.focus-ring"],
+        ].map(([name, id]) => [name, value(id)]),
+      ),
       transitionTimingFunction: { "brand-out": value("effects.ease-out") },
-      spacing: Object.fromEntries([
-        ["header", "layout.header-h"], ["subheader", "layout.subheader-h"],
-        ["rail-left", "layout.rail-left"], ["rail-right", "layout.rail-right"],
-      ].map(([name, id]) => [name, value(id)])),
+      spacing: Object.fromEntries(
+        [
+          ["header", "layout.header-h"],
+          ["subheader", "layout.subheader-h"],
+          ["rail-left", "layout.rail-left"],
+          ["rail-right", "layout.rail-right"],
+        ].map(([name, id]) => [name, value(id)]),
+      ),
       maxWidth: { content: value("layout.content-max") },
       gridTemplateColumns: {
         "3col": `${value("layout.rail-left")} minmax(0,1fr) ${value("layout.rail-right")}`,
         "2col": `minmax(0,1fr) ${value("layout.rail-right")}`,
       },
-      zIndex: Object.fromEntries([
-        ["header", "layout.z-header"], ["overlay", "layout.z-overlay"], ["modal", "layout.z-modal"],
-      ].map(([name, id]) => [name, String(value(id))])),
+      zIndex: Object.fromEntries(
+        [
+          ["header", "layout.z-header"],
+          ["overlay", "layout.z-overlay"],
+          ["modal", "layout.z-modal"],
+        ].map(([name, id]) => [name, String(value(id))]),
+      ),
     },
   },
 };
 
 const outputs = new Map([
-  ...["colors", "typography", "spacing", "effects", "layout", "themes", "components", "density"].map((file) => [
-    resolve(root, `src/tokens/${file}.css`), cssFile(file),
-  ]),
+  ...[
+    "colors",
+    "typography",
+    "spacing",
+    "effects",
+    "layout",
+    "themes",
+    "components",
+    "density",
+  ].map((file) => [resolve(root, `src/tokens/${file}.css`), cssFile(file)]),
   [
     resolve(root, "tokens/tailwind.preset.cjs"),
     `/** Generado desde tokens/tokens.json. No editar a mano. */\nmodule.exports = ${JSON.stringify(tailwind, null, 2)};\n`,

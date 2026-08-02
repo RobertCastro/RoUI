@@ -26,12 +26,21 @@ const check = process.argv.includes("--check");
 const GROUPS = [
   ["Fundamentos visuales", ["typography", "icon", "divider", "code", "prose"]],
   ["Acciones", ["button", "button-group", "toolbar"]],
-  ["Formularios", ["form", "input-group", "number-input", "slider", "rating", "file-upload", "tags-input"]],
-  ["Seleccion y navegacion", ["nav", "segmented", "pagination", "breadcrumb", "sidebar", "tree", "list-group"]],
+  [
+    "Formularios",
+    ["form", "input-group", "number-input", "slider", "rating", "file-upload", "tags-input"],
+  ],
+  [
+    "Seleccion y navegacion",
+    ["nav", "segmented", "pagination", "breadcrumb", "sidebar", "tree", "list-group"],
+  ],
   ["Overlays", ["modal", "drawer", "popover", "tooltip", "menu", "command-palette"]],
   ["Datos y estado", ["table", "badge", "tag", "progress", "progress-ring", "spinner", "skeleton"]],
   ["Feedback", ["alert", "toast", "banner", "empty"]],
-  ["Contenido y estructura", ["card", "avatar", "header", "footer", "description-list", "timeline"]],
+  [
+    "Contenido y estructura",
+    ["card", "avatar", "header", "footer", "description-list", "timeline"],
+  ],
   ["Disclosure", ["accordion", "stepper"]],
   ["Fecha y entrada compleja", ["calendar", "combobox"]],
 ];
@@ -44,9 +53,12 @@ const MATURITY_INFO = {
   deprecated: "Tiene reemplazo y fecha de retiro; evita adoptarlo.",
 };
 
-const esc = (s) => String(s == null ? "" : s)
-  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-  .replace(/"/g, "&quot;");
+const esc = (s) =>
+  String(s == null ? "" : s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 
 function validate(m, file) {
   const req = ["name", "title", "group", "maturity", "summary", "anatomy", "api", "a11y"];
@@ -103,23 +115,31 @@ function example(ex) {
 function apiSection(api) {
   const parts = [];
   if (api.classes && api.classes.length) {
-    parts.push(`<h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody>${
-      api.classes.map((c) => `<tr><td><code>.${esc(c.name)}</code></td><td>${esc(c.desc)}</td></tr>`).join("")
-    }</tbody></table>`);
+    parts.push(
+      `<h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody>${api.classes
+        .map((c) => `<tr><td><code>.${esc(c.name)}</code></td><td>${esc(c.desc)}</td></tr>`)
+        .join("")}</tbody></table>`,
+    );
   }
   if (api.data && api.data.length) {
-    parts.push(`<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody>${
-      api.data.map((d) => `<tr><td><code>${esc(d.name)}</code></td><td>${esc(d.desc)}</td></tr>`).join("")
-    }</tbody></table>`);
+    parts.push(
+      `<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody>${api.data
+        .map((d) => `<tr><td><code>${esc(d.name)}</code></td><td>${esc(d.desc)}</td></tr>`)
+        .join("")}</tbody></table>`,
+    );
   }
   if (api.tokens && api.tokens.length) {
-    parts.push(`<h3>Tokens que consume</h3><p class="dx-ref-tokens">${
-      api.tokens.map((t) => `<code>${esc(t)}</code>`).join(" ")
-    }</p>`);
+    parts.push(
+      `<h3>Tokens que consume</h3><p class="dx-ref-tokens">${api.tokens
+        .map((t) => `<code>${esc(t)}</code>`)
+        .join(" ")}</p>`,
+    );
   }
   if (api.primitive) {
     const p = api.primitive;
-    parts.push(`<h3>Primitiva</h3><pre class="dx-ref-code"><code>${esc("import { " + p.import + " } from \"@robertcastro/roui/primitives/" + p.module + "\";")}</code></pre>`);
+    parts.push(
+      `<h3>Primitiva</h3><pre class="dx-ref-code"><code>${esc("import { " + p.import + ' } from "@robertcastro/roui/primitives/' + p.module + '";')}</code></pre>`,
+    );
   } else {
     parts.push(`<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>`);
   }
@@ -127,7 +147,9 @@ function apiSection(api) {
 }
 
 function keyboard(a11y) {
-  const rows = (a11y.keyboard || []).map((k) => `<tr><td><kbd>${esc(k[0])}</kbd></td><td>${esc(k[1])}</td></tr>`).join("");
+  const rows = (a11y.keyboard || [])
+    .map((k) => `<tr><td><kbd>${esc(k[0])}</kbd></td><td>${esc(k[1])}</td></tr>`)
+    .join("");
   const table = rows
     ? `<table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody>${rows}</tbody></table>`
     : "";
@@ -138,7 +160,9 @@ function keyboard(a11y) {
 
 function page(m) {
   const dodont = m.dodont || { do: [], dont: [] };
-  const related = (m.related || []).map((r) => `<a href="${esc(r)}.html">${esc(r)}</a>`).join(" · ");
+  const related = (m.related || [])
+    .map((r) => `<a href="${esc(r)}.html">${esc(r)}</a>`)
+    .join(" · ");
   return `${head(m.title, "../")}
 <body class="ro-root">
   <div class="dx">
@@ -200,26 +224,36 @@ function page(m) {
 
 function indexPage(byName, contractFiles = [], version = "") {
   const contracts = contractFiles.length
-    ? `<section class="dx-section" data-ref-group aria-label="Contratos de accesibilidad"><h2>Contratos de accesibilidad</h2><div class="dx-ref-grid">${
-        contractFiles.map((f) => {
+    ? `<section class="dx-section" data-ref-group aria-label="Contratos de accesibilidad"><h2>Contratos de accesibilidad</h2><div class="dx-ref-grid">${contractFiles
+        .map((f) => {
           const name = basename(f, ".md");
           return `<a class="dx-ref-card" data-search="${esc(name.replace(/-/g, " "))}" href="../accessibility/${esc(name)}.html"><span class="dx-ref-card__name">${esc(name.replace(/-/g, " "))}</span></a>`;
-        }).join("")
-      }</div></section>`
+        })
+        .join("")}</div></section>`
     : "";
   const groups = GROUPS.map(([name, comps]) => {
-    const cards = comps.map((c) => {
-      const m = byName.get(c);
-      const status = m ? "" : ' <span class="dx-ref-pending">pendiente</span>';
-      const title = m ? m.title : c;
-      const mat = m ? badge(m.maturity) : "";
-      const inner = `<span class="dx-ref-card__name">${esc(title)}</span>${mat}${status}`;
-      const hay = [c, title, name, m ? m.summary : "", m ? (m.api?.classes || []).map((k) => k.name).join(" ") : ""].join(" ").toLowerCase();
-      const attr = ` data-search="${esc(hay)}"`;
-      return m
-        ? `<a class="dx-ref-card"${attr} href="${esc(c)}.html">${inner}</a>`
-        : `<div class="dx-ref-card dx-ref-card--pending"${attr}>${inner}</div>`;
-    }).join("");
+    const cards = comps
+      .map((c) => {
+        const m = byName.get(c);
+        const status = m ? "" : ' <span class="dx-ref-pending">pendiente</span>';
+        const title = m ? m.title : c;
+        const mat = m ? badge(m.maturity) : "";
+        const inner = `<span class="dx-ref-card__name">${esc(title)}</span>${mat}${status}`;
+        const hay = [
+          c,
+          title,
+          name,
+          m ? m.summary : "",
+          m ? (m.api?.classes || []).map((k) => k.name).join(" ") : "",
+        ]
+          .join(" ")
+          .toLowerCase();
+        const attr = ` data-search="${esc(hay)}"`;
+        return m
+          ? `<a class="dx-ref-card"${attr} href="${esc(c)}.html">${inner}</a>`
+          : `<div class="dx-ref-card dx-ref-card--pending"${attr}>${inner}</div>`;
+      })
+      .join("");
     return `<section class="dx-section" data-ref-group aria-label="${esc(name)}"><h2>${esc(name)}</h2><div class="dx-ref-grid">${cards}</div></section>`;
   }).join("\n");
   const total = GROUPS.reduce((a, [, c]) => a + c.length, 0);
@@ -236,9 +270,9 @@ function indexPage(byName, contractFiles = [], version = "") {
       <p class="dx-ref-note dx-ref-search-empty" hidden>Sin resultados.</p>
       <section class="dx-section" id="madurez" aria-label="Niveles de madurez">
         <h2>Niveles de madurez</h2>
-        <div class="dx-ref-maturity-legend">${
-          Object.entries(MATURITY_INFO).map(([lvl, desc]) => `<div>${badge(lvl)}<span>${esc(desc)}</span></div>`).join("")
-        }</div>
+        <div class="dx-ref-maturity-legend">${Object.entries(MATURITY_INFO)
+          .map(([lvl, desc]) => `<div>${badge(lvl)}<span>${esc(desc)}</span></div>`)
+          .join("")}</div>
         <p class="dx-ref-note">Un componente solo cambia de nivel mediante una tarea que demuestre contrato, documentación, teclado, axe, navegadores y visuales (ver Definition of Done).</p>
       </section>
       ${groups}
@@ -301,7 +335,9 @@ const manifests = files.map((f) => {
 const byName = new Map(manifests.map((m) => [m.name, m]));
 
 const contractFiles = existsSync(a11yDir)
-  ? readdirSync(a11yDir).filter((f) => f.endsWith(".md")).sort()
+  ? readdirSync(a11yDir)
+      .filter((f) => f.endsWith(".md"))
+      .sort()
   : [];
 
 const version = JSON.parse(readFileSync(resolve(root, "package.json"), "utf8")).version || "";
@@ -310,26 +346,41 @@ const outputs = new Map();
 for (const m of manifests) outputs.set(resolve(refDir, `${m.name}.html`), page(m));
 outputs.set(resolve(refDir, "index.html"), indexPage(byName, contractFiles, version));
 for (const f of contractFiles) {
-  outputs.set(resolve(a11yDir, f.replace(/\.md$/, ".html")), prosePage("Accesibilidad", "Accesibilidad", readFileSync(resolve(a11yDir, f), "utf8")));
+  outputs.set(
+    resolve(a11yDir, f.replace(/\.md$/, ".html")),
+    prosePage("Accesibilidad", "Accesibilidad", readFileSync(resolve(a11yDir, f), "utf8")),
+  );
 }
 const gettingStartedMd = resolve(refDir, "getting-started.md");
 if (existsSync(gettingStartedMd)) {
-  outputs.set(resolve(refDir, "getting-started.html"), prosePage("Adopción", "Empezar", readFileSync(gettingStartedMd, "utf8")));
+  outputs.set(
+    resolve(refDir, "getting-started.html"),
+    prosePage("Adopción", "Empezar", readFileSync(gettingStartedMd, "utf8")),
+  );
 }
 const migrationMd = resolve(refDir, "migration.md");
 if (existsSync(migrationMd)) {
-  outputs.set(resolve(refDir, "migration.html"), prosePage("Guía", "Migración", readFileSync(migrationMd, "utf8")));
+  outputs.set(
+    resolve(refDir, "migration.html"),
+    prosePage("Guía", "Migración", readFileSync(migrationMd, "utf8")),
+  );
 }
 const changelogMd = resolve(root, "CHANGELOG.md");
 if (existsSync(changelogMd)) {
-  outputs.set(resolve(refDir, "changelog.html"), prosePage("Versiones", "Changelog", readFileSync(changelogMd, "utf8")));
+  outputs.set(
+    resolve(refDir, "changelog.html"),
+    prosePage("Versiones", "Changelog", readFileSync(changelogMd, "utf8")),
+  );
 }
 
 let drift = 0;
 for (const [path, html] of outputs) {
   if (check) {
     const current = existsSync(path) ? readFileSync(path, "utf8") : "";
-    if (current !== html) { drift += 1; console.error(`✗ desactualizado: ${path.replace(root + "/", "")}`); }
+    if (current !== html) {
+      drift += 1;
+      console.error(`✗ desactualizado: ${path.replace(root + "/", "")}`);
+    }
   } else {
     writeFileSync(path, html);
   }
@@ -337,10 +388,14 @@ for (const [path, html] of outputs) {
 
 if (check) {
   if (drift > 0) {
-    console.error(`\nReferencia desactualizada en ${drift} archivo(s). Corre "npm run build:reference".`);
+    console.error(
+      `\nReferencia desactualizada en ${drift} archivo(s). Corre "npm run build:reference".`,
+    );
     process.exit(1);
   }
   console.log(`Referencia sincronizada: ${manifests.length} componente(s) + índice.`);
 } else {
-  console.log(`✓ Referencia generada: ${manifests.length} componente(s) + índice (${dirname(refDir).length ? "docs/reference/" : ""}).`);
+  console.log(
+    `✓ Referencia generada: ${manifests.length} componente(s) + índice (${dirname(refDir).length ? "docs/reference/" : ""}).`,
+  );
 }

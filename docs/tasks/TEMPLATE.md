@@ -37,4 +37,3 @@ Por que se necesita y que evidencia origina la tarea.
 - Comandos ejecutados:
 - Riesgos pendientes:
 - Siguiente tarea desbloqueada:
-

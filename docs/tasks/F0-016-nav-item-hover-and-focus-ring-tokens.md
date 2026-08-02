@@ -76,7 +76,7 @@ el `<input class="ro-input">` mostraba, además del anillo redondeado correcto
 de `.ro-field`, un **segundo contorno rectangular** ajustado al propio input.
 `getComputedStyle` confirmó `outline: 2px solid rgb(169, 160, 236)` — el
 `:focus-visible { outline: 2px solid var(--ro-secondary); outline-offset: 2px; }`
-de `reset.css`, aplicándose *encima* de `.ro-input { outline: none }`
+de `reset.css`, aplicándose _encima_ de `.ro-input { outline: none }`
 (`form.css`, capa `roui.components`).
 
 Causa raíz: `reset.css` se carga como hoja de estilos independiente y **nunca

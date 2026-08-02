@@ -45,7 +45,10 @@
   "a11y": {
     "contract": "accessibility/content-and-status.md",
     "keyboard": [
-      ["Tab / Shift+Tab", "No aplica hoy: las filas no son enfocables por teclado (son <div>, no controles nativos)."],
+      [
+        "Tab / Shift+Tab",
+        "No aplica hoy: las filas no son enfocables por teclado (son <div>, no controles nativos)."
+      ],
       ["Clic", "Único mecanismo actual para expandir/colapsar una rama o seleccionar un nodo."]
     ],
     "notes": [

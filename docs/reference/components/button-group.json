@@ -48,10 +48,7 @@
     }
   ],
   "dodont": {
-    "do": [
-      "Agrupa solo acciones del mismo contexto.",
-      "Mantén etiquetas cortas y paralelas."
-    ],
+    "do": ["Agrupa solo acciones del mismo contexto.", "Mantén etiquetas cortas y paralelas."],
     "dont": [
       "No mezcles acciones destructivas y neutras sin distinción.",
       "No uses el grupo para selección excluyente."

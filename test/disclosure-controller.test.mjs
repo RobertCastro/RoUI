@@ -4,17 +4,37 @@ import { createDisclosureController } from "../src/primitives/disclosure-control
 
 class FakeClassList {
   #values = new Set();
-  add(value) { this.#values.add(value); }
-  remove(value) { this.#values.delete(value); }
-  contains(value) { return this.#values.has(value); }
+  add(value) {
+    this.#values.add(value);
+  }
+  remove(value) {
+    this.#values.delete(value);
+  }
+  contains(value) {
+    return this.#values.has(value);
+  }
 }
 
 class FakeDocument {
-  constructor() { this.activeElement = null; this.listeners = new Map(); }
-  addEventListener(type, listener) { this.listeners.set(type, listener); }
-  removeEventListener(type) { this.listeners.delete(type); }
+  constructor() {
+    this.activeElement = null;
+    this.listeners = new Map();
+  }
+  addEventListener(type, listener) {
+    this.listeners.set(type, listener);
+  }
+  removeEventListener(type) {
+    this.listeners.delete(type);
+  }
   dispatch(type, target, key) {
-    const event = { target, key, defaultPrevented: false, preventDefault() { this.defaultPrevented = true; } };
+    const event = {
+      target,
+      key,
+      defaultPrevented: false,
+      preventDefault() {
+        this.defaultPrevented = true;
+      },
+    };
     this.listeners.get(type)?.(event);
     return event;
   }
@@ -31,23 +51,56 @@ class FakeElement {
     this.listeners = new Map();
     this.items = [];
   }
-  append(child) { this.children.push(child); return child; }
-  contains(element) { return element === this || this.children.some((child) => child.contains(element)); }
-  querySelectorAll() { return this.items; }
-  querySelector() { return null; }
-  hasAttribute(name) { return this.attributes.has(name); }
-  getAttribute(name) { return this.attributes.get(name) || null; }
-  setAttribute(name, value) { this.attributes.set(name, String(value)); }
-  addEventListener(type, listener) { this.listeners.set(type, listener); }
-  removeEventListener(type) { this.listeners.delete(type); }
-  closest(selector) {
-    if (selector.includes("data-ro-disclosure-close") && this.hasAttribute("data-ro-disclosure-close")) return this;
-    if (selector.includes("role='menuitem'") && this.getAttribute("role") === "menuitem") return this;
+  append(child) {
+    this.children.push(child);
+    return child;
+  }
+  contains(element) {
+    return element === this || this.children.some((child) => child.contains(element));
+  }
+  querySelectorAll() {
+    return this.items;
+  }
+  querySelector() {
     return null;
   }
-  focus() { this.ownerDocument.activeElement = this; }
+  hasAttribute(name) {
+    return this.attributes.has(name);
+  }
+  getAttribute(name) {
+    return this.attributes.get(name) || null;
+  }
+  setAttribute(name, value) {
+    this.attributes.set(name, String(value));
+  }
+  addEventListener(type, listener) {
+    this.listeners.set(type, listener);
+  }
+  removeEventListener(type) {
+    this.listeners.delete(type);
+  }
+  closest(selector) {
+    if (
+      selector.includes("data-ro-disclosure-close") &&
+      this.hasAttribute("data-ro-disclosure-close")
+    )
+      return this;
+    if (selector.includes("role='menuitem'") && this.getAttribute("role") === "menuitem")
+      return this;
+    return null;
+  }
+  focus() {
+    this.ownerDocument.activeElement = this;
+  }
   dispatch(type, target = this, key) {
-    const event = { target, key, defaultPrevented: false, preventDefault() { this.defaultPrevented = true; } };
+    const event = {
+      target,
+      key,
+      defaultPrevented: false,
+      preventDefault() {
+        this.defaultPrevented = true;
+      },
+    };
     this.listeners.get(type)?.(event);
     return event;
   }

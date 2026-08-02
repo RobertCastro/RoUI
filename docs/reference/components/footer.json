@@ -24,7 +24,10 @@
   "api": {
     "classes": [
       { "name": "ro-footer", "desc": "Contenedor base con fondo tenue y borde superior." },
-      { "name": "ro-footer__cols", "desc": "Grid de columnas (marca + hasta 3 grupos de enlaces)." },
+      {
+        "name": "ro-footer__cols",
+        "desc": "Grid de columnas (marca + hasta 3 grupos de enlaces)."
+      },
       { "name": "ro-footer__brand", "desc": "Nombre o logotipo dentro de la primera columna." },
       { "name": "ro-footer__col", "desc": "Columna individual con título y enlaces." },
       { "name": "ro-footer__bottom", "desc": "Barra inferior con copyright y créditos." },

@@ -13,56 +13,56 @@ controlador correspondiente gestione el estado.
 
 ## Tabs
 
-| Antes | Ahora |
-|---|---|
-| `.ro-tab--active` | `.ro-tab[aria-selected="true"]` |
+| Antes                       | Ahora                                             |
+| --------------------------- | ------------------------------------------------- |
+| `.ro-tab--active`           | `.ro-tab[aria-selected="true"]`                   |
 | Cambiar clase por JS propio | `createTabsController` (roving tabindex, flechas) |
-| Panel oculto con clase | Panel con `role="tabpanel"` y atributo `hidden` |
+| Panel oculto con clase      | Panel con `role="tabpanel"` y atributo `hidden`   |
 
 ## Navegación
 
-| Antes | Ahora |
-|---|---|
-| `.ro-nav-link--active` | `.ro-nav-link[aria-current="page"]` |
+| Antes                          | Ahora                                  |
+| ------------------------------ | -------------------------------------- |
+| `.ro-nav-link--active`         | `.ro-nav-link[aria-current="page"]`    |
 | Breadcrumb con clase de estado | Último tramo con `aria-current="page"` |
 
 ## Accordion
 
-| Antes | Ahora |
-|---|---|
-| `.is-open` en el ítem | `createDisclosureController` con `data-ro-disclosure-persistent` |
-| Panel mostrado por clase | `role="region"` + atributo `hidden` |
-| Sin estado en el encabezado | Botón con `aria-expanded` y `aria-controls` |
+| Antes                       | Ahora                                                            |
+| --------------------------- | ---------------------------------------------------------------- |
+| `.is-open` en el ítem       | `createDisclosureController` con `data-ro-disclosure-persistent` |
+| Panel mostrado por clase    | `role="region"` + atributo `hidden`                              |
+| Sin estado en el encabezado | Botón con `aria-expanded` y `aria-controls`                      |
 
 ## Combobox
 
-| Antes | Ahora |
-|---|---|
-| `.is-open` en la lista | `input[aria-expanded]` + `listbox` con `hidden` |
-| `.is-active` en la opción | `[role="option"][aria-selected="true"]` |
-| Foco movido a la opción | Foco en el input + `aria-activedescendant` |
+| Antes                     | Ahora                                           |
+| ------------------------- | ----------------------------------------------- |
+| `.is-open` en la lista    | `input[aria-expanded]` + `listbox` con `hidden` |
+| `.is-active` en la opción | `[role="option"][aria-selected="true"]`         |
+| Foco movido a la opción   | Foco en el input + `aria-activedescendant`      |
 
 ## Command Palette
 
-| Antes | Ahora |
-|---|---|
-| Overlay propio ad-hoc | `role="dialog"` modal vía `createOverlayController` |
-| Lista con clases de estado | Combobox `inline` dentro del diálogo |
-| Sin atajo estándar | `Ctrl/Cmd+K`, cierre con `Escape` |
+| Antes                      | Ahora                                               |
+| -------------------------- | --------------------------------------------------- |
+| Overlay propio ad-hoc      | `role="dialog"` modal vía `createOverlayController` |
+| Lista con clases de estado | Combobox `inline` dentro del diálogo                |
+| Sin atajo estándar         | `Ctrl/Cmd+K`, cierre con `Escape`                   |
 
 ## Calendar
 
-| Antes | Ahora |
-|---|---|
-| `--selected` por clic | `role="grid"` + `[role="gridcell"][aria-selected="true"]` |
-| Sin teclado | `createGridController` (flechas por día/semana, `Home`/`End`) |
+| Antes                 | Ahora                                                         |
+| --------------------- | ------------------------------------------------------------- |
+| `--selected` por clic | `role="grid"` + `[role="gridcell"][aria-selected="true"]`     |
+| Sin teclado           | `createGridController` (flechas por día/semana, `Home`/`End`) |
 
 ## Toast
 
-| Antes | Ahora |
-|---|---|
+| Antes                        | Ahora                                                      |
+| ---------------------------- | ---------------------------------------------------------- |
 | `setTimeout` fijo, sin roles | `createToastController` con `role="status"`/`role="alert"` |
-| Sin pausa | Pausa el cierre al pasar el puntero o enfocar |
+| Sin pausa                    | Pausa el cierre al pasar el puntero o enfocar              |
 
 ## Cómo actualizar
 

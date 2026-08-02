@@ -23,10 +23,19 @@
   },
   "api": {
     "classes": [
-      { "name": "ro-ring", "desc": "Anillo circular; usa la variable --val (0–100) y opcionalmente --size." },
-      { "name": "ro-ring--ink", "desc": "Variante en color de tinta (ink) en vez de la lavanda de marca." },
+      {
+        "name": "ro-ring",
+        "desc": "Anillo circular; usa la variable --val (0–100) y opcionalmente --size."
+      },
+      {
+        "name": "ro-ring--ink",
+        "desc": "Variante en color de tinta (ink) en vez de la lavanda de marca."
+      },
       { "name": "ro-ring--lg", "desc": "Tamaño grande (88px) con texto interior mayor." },
-      { "name": "ro-ring__hole", "desc": "Círculo interior que oculta el centro del conic-gradient y aloja el texto." }
+      {
+        "name": "ro-ring__hole",
+        "desc": "Círculo interior que oculta el centro del conic-gradient y aloja el texto."
+      }
     ],
     "data": [],
     "tokens": ["--ro-secondary", "--ro-ink-06", "--ro-white", "--ro-ink"],

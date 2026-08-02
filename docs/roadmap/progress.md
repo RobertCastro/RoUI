@@ -1,35 +1,35 @@
 # Estado del programa
 
-Ultima actualizacion: 2026-08-01
+Ultima actualizacion: 2026-08-02
 
 ## Fases
 
-| Fase | Estado | Progreso | Condicion siguiente |
-|---|---|---:|---|
-| 0. Sistema de ejecucion | done | 100% | Cerrada y aprobada |
-| 1. Fundamentos | done | 100% | Cerrada y aprobada |
-| 2. Tokens y temas | done | 100% | Cerrada y aprobada |
-| 3. Primitivas accesibles | done | 100% | Cerrada y aprobada (phase-3-audit) |
-| 4. Pruebas integrales | done | 100% | Cerrada y aprobada (phase-4-audit); PR #19 en main |
-| 5. Documentacion | done | 100% | Cerrada y aprobada (phase-5-audit) |
-| 6. Releases y gobernanza | done | 100% | Cerrada y aprobada (phase-6-audit); 1.1.0 publicado |
-| 7. Adopcion | in-progress | 92% | Piloto local listo; cierre depende de producto real en produccion |
+| Fase                     | Estado      | Progreso | Condicion siguiente                                               |
+| ------------------------ | ----------- | -------: | ----------------------------------------------------------------- |
+| 0. Sistema de ejecucion  | done        |     100% | Cerrada y aprobada                                                |
+| 1. Fundamentos           | done        |     100% | Cerrada y aprobada                                                |
+| 2. Tokens y temas        | done        |     100% | Cerrada y aprobada                                                |
+| 3. Primitivas accesibles | done        |     100% | Cerrada y aprobada (phase-3-audit)                                |
+| 4. Pruebas integrales    | done        |     100% | Cerrada y aprobada (phase-4-audit); PR #19 en main                |
+| 5. Documentacion         | done        |     100% | Cerrada y aprobada (phase-5-audit)                                |
+| 6. Releases y gobernanza | done        |     100% | Cerrada y aprobada (phase-6-audit); 1.1.0 publicado               |
+| 7. Adopcion              | in-progress |      92% | Piloto local listo; cierre depende de producto real en produccion |
 
 ## Entregables de Fase 0
 
-| ID | Entregable | Estado |
-|---|---|---|
-| F0-001 | Manual operativo para agentes | verified |
-| F0-002 | Vision y principios | verified |
-| F0-003 | Arquitectura objetivo | verified |
+| ID     | Entregable                                 | Estado   |
+| ------ | ------------------------------------------ | -------- |
+| F0-001 | Manual operativo para agentes              | verified |
+| F0-002 | Vision y principios                        | verified |
+| F0-003 | Arquitectura objetivo                      | verified |
 | F0-004 | Roadmap, fase activa y control de progreso | verified |
 | F0-005 | Definition of Done y estrategia de pruebas | verified |
-| F0-006 | ADR de tokens y paquetes | accepted |
-| F0-007 | Inventario de componentes y madurez | verified |
-| F0-008 | Matriz de soporte | verified |
-| F0-009 | Baseline automatizado | verified |
-| F0-010 | CI minima de pull requests | verified |
-| F0-011 | Backlog detallado de Fase 1 | verified |
+| F0-006 | ADR de tokens y paquetes                   | accepted |
+| F0-007 | Inventario de componentes y madurez        | verified |
+| F0-008 | Matriz de soporte                          | verified |
+| F0-009 | Baseline automatizado                      | verified |
+| F0-010 | CI minima de pull requests                 | verified |
+| F0-011 | Backlog detallado de Fase 1                | verified |
 
 ## Riesgos activos
 
@@ -40,9 +40,14 @@ Ultima actualizacion: 2026-08-01
   manifiestos restantes ya estan documentados, referencia en 49/49.)
 - Aplicar la proteccion de rama `main` y revisar PRs de Dependabot (#34-#39)
   dependen del mantenedor.
-- El presupuesto de paquete esta ajustado: 59 982 / 65 536 bytes comprimidos y
-  277 472 / 278 528 bytes descomprimidos (~1 KiB de margen, tras F0-012). Nuevos
-  entrypoints deben reducir contenido o justificar el incremento.
+- El presupuesto de paquete: 61 936 / 65 536 bytes comprimidos y
+  287 082 / 294 912 bytes descomprimidos (~7.6 KiB de margen, tras F0-020;
+  `limits.unpacked` subio de 272KB a 288KB en F0-017 con justificacion
+  documentada). Nuevos entrypoints deben reducir contenido o justificar el
+  incremento.
+- Backlog detallado de Fase 1 (F0-011) cerrado por completo: los 17 items
+  quedan `completed` tras F0-020. Trabajo de adopcion continuo (Fase 7)
+  sigue abierto por separado — ver fila de Fase 7 en la tabla de arriba.
 
 ## Evidencia de la última ejecución
 
@@ -191,3 +196,20 @@ Ultima actualizacion: 2026-08-01
   por nivel de densidad, sin regresion en el valor base) y
   `npm run validate` (0 fallos). Presupuesto: 61874/65536 comprimidos,
   286412/294912 descomprimidos (~8.3 KiB de margen).
+- F0-020 / backlog #17 cerrado (2026-08-01), **ultimo item del backlog
+  detallado de Fase 1 — los 17 quedan `completed`**. Se confirmo que
+  stylelint y CHANGELOG.md (via Changesets) ya existian y funcionaban; se
+  agrego Prettier (`.prettierrc.json`, `.prettierignore`, scripts
+  `format`/`check:format`, este ultimo ahora parte de `npm run validate`).
+  CSS y HTML quedan fuera del alcance de Prettier por decision consultada
+  con el usuario: el formato por defecto de Prettier en CSS (una propiedad
+  por linea) media +4.6% en las fuentes y arriesgaba el presupuesto de
+  paquete de nuevo; en HTML auto-cierra void elements y corta elementos
+  inline de forma invasiva sobre markup de demo escrito a mano. Se
+  reformatearon 125 archivos `.md`/`.mjs`/`.js` dentro de alcance. Se
+  agregaron 3 secciones nuevas a `getting-started.md`: Densidad, RTL (deja
+  explicito que lo probado es "sin scroll horizontal", no mirroring visual
+  garantizado) y Accesibilidad (mapa de los 6 contratos publicados).
+  Verificado con `npm run check:axe` (68/68) y `npm run validate` (0
+  fallos, incluye el nuevo `check:format`). Presupuesto: 61936/65536
+  comprimidos, 287082/294912 descomprimidos (~7.6 KiB de margen).

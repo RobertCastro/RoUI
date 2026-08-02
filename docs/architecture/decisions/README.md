@@ -6,4 +6,3 @@ Estados permitidos: `proposed`, `accepted`, `superseded`, `deprecated`.
 
 Cada ADR debe incluir contexto, decision, alternativas, consecuencias y plan de
 validacion. Una decision aceptada solo se reemplaza mediante otro ADR.
-

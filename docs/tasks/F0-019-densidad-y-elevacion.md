@@ -44,7 +44,7 @@ Se consultó al usuario el alcance de ambas piezas antes de implementar (ver
   `density` de `tokens/tokens.json` → `src/tokens/density.css`. Conectados a
   3 componentes reales: `.ro-btn` (`button.css`), `.ro-input-box` +
   `.ro-input-group` input (`form.css`/`input-group.css`), `.ro-table tbody
-  td` (`table.css`).
+td` (`table.css`).
 - Excluido: refactor completo de densidad a todos los componentes
   (accordion, card, menu-item, etc.) — alcance grande, no pedido; queda como
   candidato futuro con el mismo patrón ya establecido.
@@ -54,7 +54,7 @@ Se consultó al usuario el alcance de ambas piezas antes de implementar (ver
   cambiar por el contexto ambiental.
 - Cambio visual deliberado y disclosed: el input de `.ro-input-group` pasa de
   `10px 12px` a `var(--ro-input-py) var(--ro-input-px)` (`0.625rem
-  0.875rem` = `10px 14px`) — mismo token que `.ro-input-box`, 2px más de
+0.875rem` = `10px 14px`) — mismo token que `.ro-input-box`, 2px más de
   padding horizontal. Consistencia entre dos inputs casi idénticos, no un
   ajuste accidental.
 

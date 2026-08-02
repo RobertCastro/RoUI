@@ -19,17 +19,18 @@ del marcado, los textos y el momento de apertura.
   región complementaria; el rol modal sigue siendo `dialog`.
 
 ```html
-<button
-  id="edit-trigger"
-  aria-haspopup="dialog"
-  aria-controls="edit-dialog"
-  aria-expanded="false">
+<button id="edit-trigger" aria-haspopup="dialog" aria-controls="edit-dialog" aria-expanded="false">
   Editar perfil
 </button>
 
 <div class="ro-overlay" id="edit-dialog" hidden>
-  <section class="ro-modal" role="dialog" aria-modal="true"
-    aria-labelledby="edit-title" tabindex="-1">
+  <section
+    class="ro-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="edit-title"
+    tabindex="-1"
+  >
     <header class="ro-modal__header">
       <h2 class="ro-modal__title" id="edit-title">Editar perfil</h2>
       <button type="button" data-ro-overlay-close aria-label="Cerrar">×</button>

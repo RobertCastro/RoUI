@@ -6,19 +6,19 @@ cómo y con qué esquema, para que conectarlo sea directo.
 
 ## Qué medir
 
-| Métrica | Qué indica | Fuente |
-|---|---|---|
-| Proyectos que adoptan RoUI | Alcance | Inventario manual / registro |
-| Componentes en uso por proyecto | Profundidad de adopción | Escaneo de clases `ro-` en el código |
-| Cobertura de primitivas | Uso de comportamiento accesible | Imports de `@robertcastro/roui/primitives/*` |
-| Esfuerzo de migración | Fricción de adopción | Tiempo/PRs para migrar (codemod + manual) |
-| Defectos reportados por área | Calidad percibida | Issues etiquetados |
-| Velocidad de UI | Impacto en el equipo | Antes/después en el piloto |
+| Métrica                         | Qué indica                      | Fuente                                       |
+| ------------------------------- | ------------------------------- | -------------------------------------------- |
+| Proyectos que adoptan RoUI      | Alcance                         | Inventario manual / registro                 |
+| Componentes en uso por proyecto | Profundidad de adopción         | Escaneo de clases `ro-` en el código         |
+| Cobertura de primitivas         | Uso de comportamiento accesible | Imports de `@robertcastro/roui/primitives/*` |
+| Esfuerzo de migración           | Fricción de adopción            | Tiempo/PRs para migrar (codemod + manual)    |
+| Defectos reportados por área    | Calidad percibida               | Issues etiquetados                           |
+| Velocidad de UI                 | Impacto en el equipo            | Antes/después en el piloto                   |
 
 ## Principios
 
 - **Privacidad primero**: no recojas datos personales ni de usuarios finales. La
-  telemetría de adopción mide *proyectos y equipos*, no personas.
+  telemetría de adopción mide _proyectos y equipos_, no personas.
 - **Opt-in y transparente**: cualquier telemetría en tiempo de build debe ser
   explícita y documentada; por defecto, apagada.
 - **Preferir señales del repositorio**: muchas métricas se obtienen escaneando el

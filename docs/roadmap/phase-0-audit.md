@@ -12,19 +12,19 @@ ejecuten el roadmap sin perder alcance, decisiones ni evidencia.
 
 ## Entregables
 
-| Entregable | Resultado | Evidencia |
-|---|---|---|
-| Manual operativo | Cumplido | `AGENTS.md` |
-| Vision y principios | Cumplido | `docs/product/` |
-| Arquitectura objetivo | Cumplido | `target-architecture.md` |
-| Plan y control de fases | Cumplido | `docs/roadmap/` |
-| Definition of Done | Cumplido | `docs/quality/definition-of-done.md` |
-| ADR fundamentales | Aceptados | ADR-0001 y ADR-0002 |
-| Inventario | Cumplido | 49 componentes clasificados |
-| Matriz de soporte | Cumplido | `support-matrix.md` |
-| Baseline automatizado | Cumplido | `npm run baseline` |
-| CI minima | Cumplido | PR #1, job verde en 11 s |
-| Backlog de Fase 1 | Cumplido | F1-001 a F1-006 |
+| Entregable              | Resultado | Evidencia                            |
+| ----------------------- | --------- | ------------------------------------ |
+| Manual operativo        | Cumplido  | `AGENTS.md`                          |
+| Vision y principios     | Cumplido  | `docs/product/`                      |
+| Arquitectura objetivo   | Cumplido  | `target-architecture.md`             |
+| Plan y control de fases | Cumplido  | `docs/roadmap/`                      |
+| Definition of Done      | Cumplido  | `docs/quality/definition-of-done.md` |
+| ADR fundamentales       | Aceptados | ADR-0001 y ADR-0002                  |
+| Inventario              | Cumplido  | 49 componentes clasificados          |
+| Matriz de soporte       | Cumplido  | `support-matrix.md`                  |
+| Baseline automatizado   | Cumplido  | `npm run baseline`                   |
+| CI minima               | Cumplido  | PR #1, job verde en 11 s             |
+| Backlog de Fase 1       | Cumplido  | F1-001 a F1-006                      |
 
 ## Comparacion de baseline
 

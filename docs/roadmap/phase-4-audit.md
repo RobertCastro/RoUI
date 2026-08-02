@@ -11,13 +11,13 @@ reproducibles sobre las primitivas y componentes publicados en Fase 3.
 
 ## Entregables
 
-| Tarea | Resultado | Evidencia |
-|---|---|---|
-| F4-001 | Gate axe estatico (axe-core + jsdom) en `validate` y CI | done |
-| F4-002 | Playwright: overlays (Dialog, Drawer, Command Palette) | done |
-| F4-003 | Playwright: teclado de Tabs, Combobox y Calendar | done |
-| F4-004 | Regresion visual de 7 paginas (baselines darwin + workflow Linux) | done |
-| F4-005 | Matriz: Chromium/Firefox/WebKit, temas y RTL | done |
+| Tarea  | Resultado                                                         | Evidencia |
+| ------ | ----------------------------------------------------------------- | --------- |
+| F4-001 | Gate axe estatico (axe-core + jsdom) en `validate` y CI           | done      |
+| F4-002 | Playwright: overlays (Dialog, Drawer, Command Palette)            | done      |
+| F4-003 | Playwright: teclado de Tabs, Combobox y Calendar                  | done      |
+| F4-004 | Regresion visual de 7 paginas (baselines darwin + workflow Linux) | done      |
+| F4-005 | Matriz: Chromium/Firefox/WebKit, temas y RTL                      | done      |
 
 ## Evidencia de calidad
 

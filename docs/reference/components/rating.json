@@ -24,7 +24,10 @@
     "classes": [
       { "name": "ro-rating", "desc": "Contenedor del grupo de estrellas." },
       { "name": "ro-rating__star", "desc": "Botón de una estrella individual." },
-      { "name": "ro-rating--readonly", "desc": "Variante de solo lectura (sin cursor de interacción)." }
+      {
+        "name": "ro-rating--readonly",
+        "desc": "Variante de solo lectura (sin cursor de interacción)."
+      }
     ],
     "data": [],
     "tokens": ["--ro-ink-20", "--ro-primary"],

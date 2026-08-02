@@ -25,10 +25,19 @@
       { "name": "ro-dropzone", "desc": "Contenedor/label de la zona de arrastre." },
       { "name": "ro-dropzone__icon", "desc": "Icono decorativo dentro de la zona." },
       { "name": "ro-dropzone__hint", "desc": "Texto secundario con formatos y límites aceptados." },
-      { "name": "is-dragover", "desc": "Estado aplicado mientras se arrastra un archivo sobre la zona." }
+      {
+        "name": "is-dragover",
+        "desc": "Estado aplicado mientras se arrastra un archivo sobre la zona."
+      }
     ],
     "data": [],
-    "tokens": ["--ro-radius-xl", "--ro-secondary", "--ro-secondary-soft", "--ro-ink-20", "--ro-ink-02"],
+    "tokens": [
+      "--ro-radius-xl",
+      "--ro-secondary",
+      "--ro-secondary-soft",
+      "--ro-ink-20",
+      "--ro-ink-02"
+    ],
     "primitive": null
   },
   "a11y": {

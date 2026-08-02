@@ -21,9 +21,7 @@
     ]
   },
   "api": {
-    "classes": [
-      { "name": "ro-slider", "desc": "Clase única del input range estilizado." }
-    ],
+    "classes": [{ "name": "ro-slider", "desc": "Clase única del input range estilizado." }],
     "data": [],
     "tokens": ["--ro-radius-full", "--ro-secondary", "--ro-ink-10", "--ro-focus-ring"],
     "primitive": null

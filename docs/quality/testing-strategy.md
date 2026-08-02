@@ -21,14 +21,14 @@
 
 ## Gate por tipo de cambio
 
-| Cambio | Validaciones minimas |
-|---|---|
-| Token | esquema, referencias, snapshots, contraste, outputs |
-| CSS visual | lint, visual, responsive, temas |
-| Componente interactivo | unit, teclado, axe, navegador, visual |
-| Export/paquete | build, npm pack, fixtures consumidoras |
-| Documentacion | build, enlaces, snippets ejecutables |
-| Breaking change | anteriores + migracion y versionado |
+| Cambio                 | Validaciones minimas                                |
+| ---------------------- | --------------------------------------------------- |
+| Token                  | esquema, referencias, snapshots, contraste, outputs |
+| CSS visual             | lint, visual, responsive, temas                     |
+| Componente interactivo | unit, teclado, axe, navegador, visual               |
+| Export/paquete         | build, npm pack, fixtures consumidoras              |
+| Documentacion          | build, enlaces, snippets ejecutables                |
+| Breaking change        | anteriores + migracion y versionado                 |
 
 ## Regla de evidencia
 
@@ -40,4 +40,3 @@ deben registrar navegador, viewport, pasos y resultado.
 La seleccion final de herramientas se registrara mediante ADR. La adopcion
 prevista evaluara Stylelint, Vitest, Testing Library, Playwright, axe y una
 solucion de snapshots visuales compatible con el presupuesto y CI.
-

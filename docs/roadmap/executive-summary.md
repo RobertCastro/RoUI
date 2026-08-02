@@ -13,16 +13,16 @@ por CDN, con tokens, 49 componentes, layouts y controladores de comportamiento.
 Ejecutado por fases con Definition of Done, gates automatizados y auditoría humana
 por cierre.
 
-| Fase | Estado | Resultado clave |
-|---|---|---|
-| 0. Sistema de ejecución | done | Roadmap, DoD, baseline y CI mínima |
-| 1. Fundamentos y empaquetado | done | Bundle por capas, exports, fixtures consumidoras |
-| 2. Tokens y temas | done | Fuente única DTCG, temas light/dark/high-contrast, contraste AA |
-| 3. Primitivas accesibles | done | 6 primitivas ESM (overlay, disclosure, tabs, combobox, grid, toast) con contratos ARIA |
-| 4. Pruebas integrales | done | axe, Playwright (96 pruebas en 3 motores), regresión visual, matriz |
-| 5. Documentación como producto | done | Referencia por componente, contratos, migración, búsqueda, changelog |
-| 6. Releases y gobernanza | done | 1.1.0 publicado con provenance; Changesets, CodeQL, SBOM, Dependabot, gobernanza |
-| 7. Adopción multi-proyecto | 90% | Guía de arranque, starters (vanilla/React/Vue), codemod y plantillas de métricas/soporte |
+| Fase                           | Estado | Resultado clave                                                                          |
+| ------------------------------ | ------ | ---------------------------------------------------------------------------------------- |
+| 0. Sistema de ejecución        | done   | Roadmap, DoD, baseline y CI mínima                                                       |
+| 1. Fundamentos y empaquetado   | done   | Bundle por capas, exports, fixtures consumidoras                                         |
+| 2. Tokens y temas              | done   | Fuente única DTCG, temas light/dark/high-contrast, contraste AA                          |
+| 3. Primitivas accesibles       | done   | 6 primitivas ESM (overlay, disclosure, tabs, combobox, grid, toast) con contratos ARIA   |
+| 4. Pruebas integrales          | done   | axe, Playwright (96 pruebas en 3 motores), regresión visual, matriz                      |
+| 5. Documentación como producto | done   | Referencia por componente, contratos, migración, búsqueda, changelog                     |
+| 6. Releases y gobernanza       | done   | 1.1.0 publicado con provenance; Changesets, CodeQL, SBOM, Dependabot, gobernanza         |
+| 7. Adopción multi-proyecto     | 90%    | Guía de arranque, starters (vanilla/React/Vue), codemod y plantillas de métricas/soporte |
 
 ## Logros
 

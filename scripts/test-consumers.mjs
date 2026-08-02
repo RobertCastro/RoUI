@@ -25,8 +25,9 @@ function run(command, args, cwd = root) {
 }
 
 function onlyFile(directory, extension) {
-  const files = readdirSync(directory, { recursive: true })
-    .filter((file) => file.endsWith(extension));
+  const files = readdirSync(directory, { recursive: true }).filter((file) =>
+    file.endsWith(extension),
+  );
   if (files.length !== 1) throw new Error(`Se esperaba un ${extension} en ${directory}`);
   return join(directory, files[0]);
 }
@@ -39,10 +40,19 @@ try {
 
   for (const name of ["esbuild-vanilla", "tailwind"]) {
     const fixture = join(consumers, name);
-    run("npm", [
-      "install", "--ignore-scripts", "--no-package-lock", "--no-save",
-      "--no-audit", "--no-fund", tarball,
-    ], fixture);
+    run(
+      "npm",
+      [
+        "install",
+        "--ignore-scripts",
+        "--no-package-lock",
+        "--no-save",
+        "--no-audit",
+        "--no-fund",
+        tarball,
+      ],
+      fixture,
+    );
   }
 
   const esbuild = resolve(root, "node_modules/.bin/esbuild");

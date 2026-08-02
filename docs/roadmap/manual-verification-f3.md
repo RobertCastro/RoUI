@@ -26,7 +26,7 @@ Regla de oro: **navega con teclado** (`Tab`, `Shift+Tab`, flechas, `Enter`,
 
 Nota visual: estos contratos **no cambian el diseño**; el estado activo debe verse
 igual que antes. Lo nuevo visible es el **anillo de foco** al navegar por teclado
-y el respeto a *reducir movimiento*. Si un estado dejó de resaltarse, es un bug de
+y el respeto a _reducir movimiento_. Si un estado dejó de resaltarse, es un bug de
 migración.
 
 ## F3-004 · Tabs, Accordion y navegación
@@ -69,7 +69,7 @@ migración.
 
 ## axe (chequeo rápido)
 
-Con la extensión *axe DevTools* en el navegador, escanea `components.html` y las
+Con la extensión _axe DevTools_ en el navegador, escanea `components.html` y las
 plantillas. Objetivo: **0 violations** de roles, nombres accesibles y contraste.
 La matriz formal (axe automatizado + navegadores + regresión visual) llega en
 Fase 4; esto es una verificación puntual.

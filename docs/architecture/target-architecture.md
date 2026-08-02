@@ -63,4 +63,3 @@ La matriz exacta se definira durante la Fase 0. Como minimo debe incluir:
 Requieren ADR: fuente de tokens, estructura de paquetes, dependencia base de
 accesibilidad, formato de modulos, estrategia de theming, compatibilidad,
 versionado y cualquier cambio dificil de revertir.
-

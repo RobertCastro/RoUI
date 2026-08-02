@@ -14,10 +14,19 @@ es enfocable por sí mismo.
 
 ```html
 <div class="ro-tabs" role="tablist" aria-label="Detalle del módulo" data-ro-tabs>
-  <button class="ro-tab" role="tab" id="t-temario"
-    aria-selected="true" aria-controls="p-temario">Temario</button>
-  <button class="ro-tab" role="tab" id="t-discusion"
-    aria-selected="false" aria-controls="p-discusion" tabindex="-1">Discusión</button>
+  <button class="ro-tab" role="tab" id="t-temario" aria-selected="true" aria-controls="p-temario">
+    Temario
+  </button>
+  <button
+    class="ro-tab"
+    role="tab"
+    id="t-discusion"
+    aria-selected="false"
+    aria-controls="p-discusion"
+    tabindex="-1"
+  >
+    Discusión
+  </button>
 </div>
 <div id="p-temario" role="tabpanel" aria-labelledby="t-temario" tabindex="0">…</div>
 <div id="p-discusion" role="tabpanel" aria-labelledby="t-discusion" tabindex="0" hidden>…</div>
@@ -47,15 +56,28 @@ botón e inicia con `hidden`.
 <div class="ro-accordion">
   <div class="ro-accordion__item" data-ro-disclosure-root>
     <h3 class="ro-accordion__heading">
-      <button class="ro-accordion__head" data-ro-disclosure-trigger
-        aria-expanded="false" aria-controls="acc-1">
+      <button
+        class="ro-accordion__head"
+        data-ro-disclosure-trigger
+        aria-expanded="false"
+        aria-controls="acc-1"
+      >
         ¿Qué incluye el curso?
         <svg class="ro-icon ro-icon--sm ro-accordion__chevron" aria-hidden="true">
-          <use href="#ro-i-chevron-down"></use></svg>
+          <use href="#ro-i-chevron-down"></use>
+        </svg>
       </button>
     </h3>
-    <div class="ro-accordion__panel" id="acc-1" role="region"
-      aria-label="¿Qué incluye el curso?" data-ro-disclosure-panel hidden>…</div>
+    <div
+      class="ro-accordion__panel"
+      id="acc-1"
+      role="region"
+      aria-label="¿Qué incluye el curso?"
+      data-ro-disclosure-panel
+      hidden
+    >
+      …
+    </div>
   </div>
 </div>
 ```

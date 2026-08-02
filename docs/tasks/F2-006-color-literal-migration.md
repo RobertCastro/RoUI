@@ -70,7 +70,7 @@ cambio de valor renderizado, no una migración 1:1.
 
 - [x] `check:literals` reporta 0 colores (era 39); 382 px sin cambios.
 - [x] Los 39 sitios de uso verificados con fidelidad exacta (computed style en
-  navegador coincide con el rgba original, salvo el ajuste documentado).
+      navegador coincide con el rgba original, salvo el ajuste documentado).
 - [x] `npm run validate` verde dentro del presupuesto (con margen mejorado).
 - [x] Política y hash-lock actualizados con justificación completa.
 

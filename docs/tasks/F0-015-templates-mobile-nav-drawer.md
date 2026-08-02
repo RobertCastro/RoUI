@@ -23,6 +23,7 @@ El usuario revisó `docs/layouts.html` y las plantillas y señaló: "el botón
 copiar una navegación aparentemente funcional que en móvil no abre nada."
 
 Se verificó contra el código real:
+
 - `src/components/header.css`: `.ro-burger { display: grid; }` y
   `.ro-header__nav { display: none; }` por defecto, ambos invertidos a
   `≥768px`. El botón es visible exactamente en el rango donde la nav

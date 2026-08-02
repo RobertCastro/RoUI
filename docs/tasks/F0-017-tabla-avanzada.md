@@ -87,7 +87,7 @@ Fase 1. `limits.packed` (comprimido) no se tocó: seguía con margen holgado
 
 - Resultado: Table pasa de tener solo hover/zebra/alineación numérica a
   cubrir las 5 capacidades pedidas en el backlog. Sigue `maturity:
-  "experimental"` (sin primitiva JS propia).
+"experimental"` (sin primitiva JS propia).
 - Archivos: `src/components/table.css`,
   `docs/reference/components/table.json`, `docs/reference/table.html`
   (generado), `scripts/check-literals.mjs` (digest), `scripts/check-package-size.mjs`

@@ -14,11 +14,11 @@ aun como unidad con consumidor, version o ciclo de build independiente.
 
 ## Alternativas evaluadas
 
-| Opcion | Ventaja | Costo actual |
-|---|---|---|
-| Mantener repositorio unico | Minima complejidad y un solo grafo de build | Menor aislamiento futuro |
-| npm workspaces | Aisla paquetes cuando aparezcan | Paquetes vacios, migracion y tooling adicional ahora |
-| Turborepo/Nx | Cache y orquestacion a gran escala | Complejidad adicional sin tareas paralelas reales |
+| Opcion                     | Ventaja                                     | Costo actual                                         |
+| -------------------------- | ------------------------------------------- | ---------------------------------------------------- |
+| Mantener repositorio unico | Minima complejidad y un solo grafo de build | Menor aislamiento futuro                             |
+| npm workspaces             | Aisla paquetes cuando aparezcan             | Paquetes vacios, migracion y tooling adicional ahora |
+| Turborepo/Nx               | Cache y orquestacion a gran escala          | Complejidad adicional sin tareas paralelas reales    |
 
 ## Decision
 
@@ -51,4 +51,3 @@ independientes suficientes para aprovechar cache/orquestacion.
 - Evitamos paquetes sin consumidor o responsabilidad definida.
 - La estructura destino sigue documentada, pero no se adelanta su migracion.
 - La Fase 2 puede crear el primer limite de paquete real si DTCG lo requiere.
-

@@ -25,10 +25,21 @@
       { "name": "ro-avatar", "desc": "Círculo base de 2.25rem con iniciales o imagen." },
       { "name": "ro-avatar--sm", "desc": "Tamaño compacto (1.625rem), útil en tablas y listas." },
       { "name": "ro-avatar--lg", "desc": "Tamaño grande (3rem)." },
-      { "name": "ro-avatar-stack", "desc": "Agrupa varios avatares superpuestos con borde de separación." }
+      {
+        "name": "ro-avatar-stack",
+        "desc": "Agrupa varios avatares superpuestos con borde de separación."
+      }
     ],
     "data": [],
-    "tokens": ["--ro-radius-full", "--ro-secondary", "--ro-ink", "--ro-focus-ring", "--ro-white", "--ro-duration", "--ro-ease"],
+    "tokens": [
+      "--ro-radius-full",
+      "--ro-secondary",
+      "--ro-ink",
+      "--ro-focus-ring",
+      "--ro-white",
+      "--ro-duration",
+      "--ro-ease"
+    ],
     "primitive": null
   },
   "a11y": {

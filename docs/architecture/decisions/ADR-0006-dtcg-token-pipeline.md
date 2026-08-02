@@ -27,4 +27,3 @@ artefactos contra la fuente antes de escribirlos.
 - La CI falla si se modifica un artefacto generado sin su fuente.
 - Futuros temas y salidas de plataforma se agregan al generador o a un paquete
   de transformación cuando exista un consumidor real.
-

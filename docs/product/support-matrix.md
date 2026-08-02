@@ -3,22 +3,22 @@
 Esta matriz es la direccion de soporte. Las versiones exactas se fijaran y se
 automatizaran durante Fase 1.
 
-| Superficie | Objetivo | Estado actual |
-|---|---|---|
-| Node para tooling | Node 20 o superior | Node 20 en workflows |
-| Chromium | Dos versiones estables recientes | Sin pruebas |
-| Firefox | Dos versiones estables recientes | Sin pruebas |
-| WebKit/Safari | Dos versiones estables recientes | Sin pruebas |
-| Movil | iOS Safari y Chrome Android recientes | Demo responsive manual |
-| HTML/CSS vanilla | Soporte de primera clase | Fixture esbuild compilada desde tarball |
-| Tailwind | Integracion versionada | Fixture Tailwind 3 compilada desde tarball |
-| React/Next | Adaptador prioritario futuro | No implementado |
-| Vue/Svelte/Angular | Segun demanda validada | No implementado |
-| SSR | Sin errores de importacion o hidratacion | No evaluado |
-| RTL | Componentes estables | No evaluado |
-| Localizacion | Contenido largo y formatos locales | No evaluado |
-| Accesibilidad | WCAG 2.2 AA | Parcial, sin auditoria completa |
-| Temas | Light, dark y high contrast | Solo light/base |
+| Superficie         | Objetivo                                 | Estado actual                              |
+| ------------------ | ---------------------------------------- | ------------------------------------------ |
+| Node para tooling  | Node 20 o superior                       | Node 20 en workflows                       |
+| Chromium           | Dos versiones estables recientes         | Sin pruebas                                |
+| Firefox            | Dos versiones estables recientes         | Sin pruebas                                |
+| WebKit/Safari      | Dos versiones estables recientes         | Sin pruebas                                |
+| Movil              | iOS Safari y Chrome Android recientes    | Demo responsive manual                     |
+| HTML/CSS vanilla   | Soporte de primera clase                 | Fixture esbuild compilada desde tarball    |
+| Tailwind           | Integracion versionada                   | Fixture Tailwind 3 compilada desde tarball |
+| React/Next         | Adaptador prioritario futuro             | No implementado                            |
+| Vue/Svelte/Angular | Segun demanda validada                   | No implementado                            |
+| SSR                | Sin errores de importacion o hidratacion | No evaluado                                |
+| RTL                | Componentes estables                     | No evaluado                                |
+| Localizacion       | Contenido largo y formatos locales       | No evaluado                                |
+| Accesibilidad      | WCAG 2.2 AA                              | Parcial, sin auditoria completa            |
+| Temas              | Light, dark y high contrast              | Solo light/base                            |
 
 ## Politica
 

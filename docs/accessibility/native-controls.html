@@ -24,9 +24,7 @@
 <h2>Button</h2>
 <p>Usa <code>&lt;button&gt;</code> para acciones y <code>&lt;a&gt;</code> solo para navegación real. Todo botón debe
 tener nombre accesible: texto visible o <code>aria-label</code> cuando solo contiene icono.</p>
-<pre><code class="language-html">&lt;button class=&quot;ro-btn ro-btn--primary&quot; type=&quot;button&quot;&gt;
-  Guardar cambios
-&lt;/button&gt;
+<pre><code class="language-html">&lt;button class=&quot;ro-btn ro-btn--primary&quot; type=&quot;button&quot;&gt;Guardar cambios&lt;/button&gt;
 
 &lt;button class=&quot;ro-btn-icon&quot; type=&quot;button&quot; aria-label=&quot;Cerrar diálogo&quot;&gt;
   &lt;svg class=&quot;ro-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-x&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
@@ -50,16 +48,11 @@ con <code>aria-describedby</code>; los errores usan <code>aria-invalid=&quot;tru
   autocomplete=&quot;email&quot;
   required
   aria-describedby=&quot;email-help&quot;
-&gt;
+/&gt;
 &lt;p id=&quot;email-help&quot; class=&quot;ro-hint&quot;&gt;Usaremos este correo para avisos.&lt;/p&gt;
 </code></pre>
 <pre><code class="language-html">&lt;label class=&quot;ro-label&quot; for=&quot;workspace&quot;&gt;Nombre del workspace&lt;/label&gt;
-&lt;input
-  id=&quot;workspace&quot;
-  class=&quot;ro-input-box&quot;
-  aria-invalid=&quot;true&quot;
-  aria-describedby=&quot;workspace-error&quot;
-&gt;
+&lt;input id=&quot;workspace&quot; class=&quot;ro-input-box&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;workspace-error&quot; /&gt;
 &lt;p id=&quot;workspace-error&quot; class=&quot;ro-error-text&quot;&gt;El nombre ya está en uso.&lt;/p&gt;
 </code></pre>
 <ul>

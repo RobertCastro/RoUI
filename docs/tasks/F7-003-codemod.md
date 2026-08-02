@@ -35,7 +35,7 @@ tedioso y propenso a error. Un codemod aplica las conversiones seguras.
 ## Criterios de aceptacion
 
 - [x] El codemod convierte las clases de estado en atributos ARIA sin tocar el
-  resto del marcado.
+      resto del marcado.
 - [x] Dry-run informa y `--write` aplica; idempotente en lo básico.
 - [x] Pruebas verdes dentro de `npm run validate` (35 pruebas).
 - [x] Documentado y enlazado; los límites (comportamiento) quedan claros.

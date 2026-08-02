@@ -7,8 +7,8 @@ el cierre automático, la pausa al interactuar y el botón de cierre.
 ## Anuncio (regiones vivas)
 
 Cada toast se inserta como su propia región viva, según el patrón **Alert** de
-WAI-ARIA: los avisos de éxito e info usan `role="status"` (anuncio *cortés*, no
-interrumpe) y los errores usan `role="alert"` (anuncio *asertivo*, interrumpe al
+WAI-ARIA: los avisos de éxito e info usan `role="status"` (anuncio _cortés_, no
+interrumpe) y los errores usan `role="alert"` (anuncio _asertivo_, interrumpe al
 lector). No se traslada el foco al toast; el usuario sigue en su tarea y el
 lector de pantalla lee el mensaje al insertarse el nodo.
 
@@ -26,8 +26,8 @@ const toaster = createToastController({
   icon: (variant) => spriteFor(variant), // opcional: markup de icono por variante
 });
 
-toaster.success("Cambios guardados");                 // role=status
-toaster.error("No se pudo guardar. Reintenta.");       // role=alert
+toaster.success("Cambios guardados"); // role=status
+toaster.error("No se pudo guardar. Reintenta."); // role=alert
 toaster.info("Tienes 2 notificaciones", { duration: 0 }); // persistente
 ```
 
@@ -41,7 +41,7 @@ toaster.info("Tienes 2 notificaciones", { duration: 0 }); // persistente
   usa el botón de cierre.
 - **Cierre manual**: cada toast incluye un `button.ro-toast__close` con
   `aria-label` (por defecto «Cerrar») y anillo de foco visible; `dismissible:
-  false` lo omite. `dismiss()` en el handle y `dismissAll()` cierran por código.
+false` lo omite. `dismiss()` en el handle y `dismissAll()` cierran por código.
 - **Movimiento reducido**: con `reducedMotion: true` se elimina la animación de
   entrada/salida (también cubierto por `@media (prefers-reduced-motion)` en CSS).
 

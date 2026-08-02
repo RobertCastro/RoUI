@@ -29,7 +29,13 @@
       { "name": "ro-tag__close", "desc": "Botón circular de quitar; requiere aria-label." }
     ],
     "data": [],
-    "tokens": ["--ro-radius-full", "--ro-ink-06", "--ro-primary-soft", "--ro-secondary", "--ro-ink-20"],
+    "tokens": [
+      "--ro-radius-full",
+      "--ro-ink-06",
+      "--ro-primary-soft",
+      "--ro-secondary",
+      "--ro-ink-20"
+    ],
     "primitive": null
   },
   "a11y": {

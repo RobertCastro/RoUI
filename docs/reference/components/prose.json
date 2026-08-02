@@ -22,7 +22,10 @@
   },
   "api": {
     "classes": [
-      { "name": "ro-prose", "desc": "Contenedor: aplica tipografía y espaciado a los elementos HTML nativos que contiene." }
+      {
+        "name": "ro-prose",
+        "desc": "Contenedor: aplica tipografía y espaciado a los elementos HTML nativos que contiene."
+      }
     ],
     "data": [],
     "tokens": [

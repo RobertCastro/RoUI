@@ -26,7 +26,10 @@
       { "name": "ro-number__btn", "desc": "Botón de stepper (− o +)." }
     ],
     "data": [
-      { "name": "data-step", "desc": "En el botón: dirección del paso (\"-\" o \"+\") que lee el script del stepper." }
+      {
+        "name": "data-step",
+        "desc": "En el botón: dirección del paso (\"-\" o \"+\") que lee el script del stepper."
+      }
     ],
     "tokens": ["--ro-radius-lg", "--ro-focus-ring", "--ro-ink-10", "--ro-ink-05", "--ro-ink-60"],
     "primitive": null
@@ -34,7 +37,10 @@
   "a11y": {
     "contract": "accessibility/native-controls.md",
     "keyboard": [
-      ["Flecha arriba / abajo", "Incrementa o decrementa el valor con el input enfocado (spinners nativos)."],
+      [
+        "Flecha arriba / abajo",
+        "Incrementa o decrementa el valor con el input enfocado (spinners nativos)."
+      ],
       ["Tab / Shift+Tab", "Recorre botón menos → input → botón más."],
       ["Enter / Espacio", "Activa el stepper enfocado."]
     ],

@@ -23,15 +23,29 @@
   "api": {
     "classes": [
       { "name": "ro-timeline", "desc": "Lista base (<ol> u <ul>), sin viñetas nativas." },
-      { "name": "ro-timeline__item", "desc": "Elemento de la línea de tiempo con punto y conector." },
+      {
+        "name": "ro-timeline__item",
+        "desc": "Elemento de la línea de tiempo con punto y conector."
+      },
       { "name": "ro-timeline__item--active", "desc": "Hito en curso (punto de color secundario)." },
       { "name": "ro-timeline__item--done", "desc": "Hito completado (punto sólido oscuro)." },
-      { "name": "ro-timeline__time", "desc": "Fecha u hora del hito, en mayúsculas/monoespaciada." },
+      {
+        "name": "ro-timeline__time",
+        "desc": "Fecha u hora del hito, en mayúsculas/monoespaciada."
+      },
       { "name": "ro-timeline__title", "desc": "Título breve del hito." },
       { "name": "ro-timeline__text", "desc": "Descripción de apoyo opcional." }
     ],
     "data": [],
-    "tokens": ["--ro-ink-20", "--ro-white", "--ro-ink-10", "--ro-secondary", "--ro-secondary-ring", "--ro-ink", "--ro-font-mono"],
+    "tokens": [
+      "--ro-ink-20",
+      "--ro-white",
+      "--ro-ink-10",
+      "--ro-secondary",
+      "--ro-secondary-ring",
+      "--ro-ink",
+      "--ro-font-mono"
+    ],
     "primitive": null
   },
   "a11y": {

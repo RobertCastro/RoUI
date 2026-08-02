@@ -27,16 +27,35 @@
     "classes": [
       { "name": "ro-combobox", "desc": "Raíz posicionada (relative) que ancla la lista flotante." },
       { "name": "ro-field", "desc": "Envoltorio del campo de texto (icono + input)." },
-      { "name": "ro-combobox__list", "desc": "Panel flotante de opciones (listbox), oculto por [hidden]." },
+      {
+        "name": "ro-combobox__list",
+        "desc": "Panel flotante de opciones (listbox), oculto por [hidden]."
+      },
       { "name": "ro-combobox__option", "desc": "Opción individual (role=option)." },
-      { "name": "ro-combobox__empty", "desc": "Mensaje de \"sin coincidencias\", oculto por defecto." }
+      {
+        "name": "ro-combobox__empty",
+        "desc": "Mensaje de \"sin coincidencias\", oculto por defecto."
+      }
     ],
     "data": [
       { "name": "data-ro-combobox", "desc": "Marca la raíz que envuelve el campo y la lista." },
-      { "name": "data-ro-combobox-inline", "desc": "Modo inline (usado por Command palette): la lista siempre está visible, sin abrir/cerrar propio ni captura de Escape." },
-      { "name": "data-value", "desc": "En una opción: valor a usar en vez de su texto visible al seleccionarla." }
+      {
+        "name": "data-ro-combobox-inline",
+        "desc": "Modo inline (usado por Command palette): la lista siempre está visible, sin abrir/cerrar propio ni captura de Escape."
+      },
+      {
+        "name": "data-value",
+        "desc": "En una opción: valor a usar en vez de su texto visible al seleccionarla."
+      }
     ],
-    "tokens": ["--ro-radius-xl", "--ro-radius-lg", "--ro-shadow-md", "--ro-z-overlay", "--ro-ink-05", "--ro-ink-10"],
+    "tokens": [
+      "--ro-radius-xl",
+      "--ro-radius-lg",
+      "--ro-shadow-md",
+      "--ro-z-overlay",
+      "--ro-ink-05",
+      "--ro-ink-10"
+    ],
     "primitive": { "import": "createComboboxController", "module": "combobox-controller" }
   },
   "a11y": {

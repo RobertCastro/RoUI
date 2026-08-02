@@ -1,12 +1,13 @@
 const TAB = "[role='tab']";
 
 function tabs(tablist) {
-  return [...tablist.querySelectorAll(TAB)].filter((tab) => (
-    !tab.hidden
-    && !tab.hasAttribute("disabled")
-    && tab.getAttribute("aria-disabled") !== "true"
-    && typeof tab.focus === "function"
-  ));
+  return [...tablist.querySelectorAll(TAB)].filter(
+    (tab) =>
+      !tab.hidden &&
+      !tab.hasAttribute("disabled") &&
+      tab.getAttribute("aria-disabled") !== "true" &&
+      typeof tab.focus === "function",
+  );
 }
 
 /**
@@ -20,9 +21,10 @@ export function createTabsController(tablist, options = {}) {
     throw new TypeError("tablist debe ser un elemento del documento");
   }
   const document = tablist.ownerDocument;
-  const manual = options.manual === undefined
-    ? tablist.hasAttribute("data-ro-tabs-manual")
-    : Boolean(options.manual);
+  const manual =
+    options.manual === undefined
+      ? tablist.hasAttribute("data-ro-tabs-manual")
+      : Boolean(options.manual);
   const vertical = tablist.getAttribute("aria-orientation") === "vertical";
   const nextKey = vertical ? "ArrowDown" : "ArrowRight";
   const prevKey = vertical ? "ArrowUp" : "ArrowLeft";
@@ -71,13 +73,24 @@ export function createTabsController(tablist, options = {}) {
   }
 
   function onKeydown(event) {
-    if (event.key === nextKey) { event.preventDefault(); move(1); }
-    else if (event.key === prevKey) { event.preventDefault(); move(-1); }
-    else if (event.key === "Home") { event.preventDefault(); edge("home"); }
-    else if (event.key === "End") { event.preventDefault(); edge("end"); }
-    else if (manual && (event.key === "Enter" || event.key === " ")) {
+    if (event.key === nextKey) {
+      event.preventDefault();
+      move(1);
+    } else if (event.key === prevKey) {
+      event.preventDefault();
+      move(-1);
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      edge("home");
+    } else if (event.key === "End") {
+      event.preventDefault();
+      edge("end");
+    } else if (manual && (event.key === "Enter" || event.key === " ")) {
       const tab = event.target.closest(TAB);
-      if (tab && tablist.contains(tab)) { event.preventDefault(); select(tab); }
+      if (tab && tablist.contains(tab)) {
+        event.preventDefault();
+        select(tab);
+      }
     }
   }
 
@@ -88,8 +101,8 @@ export function createTabsController(tablist, options = {}) {
 
   // Estado inicial derivado del marcado: respeta la pestana marcada o la primera.
   const initialList = tabs(tablist);
-  const initial = initialList.find((tab) => tab.getAttribute("aria-selected") === "true")
-    || initialList[0];
+  const initial =
+    initialList.find((tab) => tab.getAttribute("aria-selected") === "true") || initialList[0];
   if (initial) select(initial, { focus: false });
 
   tablist.addEventListener("keydown", onKeydown);

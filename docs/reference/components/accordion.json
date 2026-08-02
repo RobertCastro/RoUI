@@ -25,25 +25,49 @@
     "classes": [
       { "name": "ro-accordion", "desc": "Contenedor con borde que agrupa los items." },
       { "name": "ro-accordion__item", "desc": "Una sección (root del disclosure)." },
-      { "name": "ro-accordion__heading", "desc": "Elemento de encabezado real que envuelve el botón." },
+      {
+        "name": "ro-accordion__heading",
+        "desc": "Elemento de encabezado real que envuelve el botón."
+      },
       { "name": "ro-accordion__head", "desc": "Botón disparador (data-ro-disclosure-trigger)." },
       { "name": "ro-accordion__chevron", "desc": "Icono que rota según aria-expanded." },
       { "name": "ro-accordion__panel", "desc": "Cuerpo de la sección (data-ro-disclosure-panel)." }
     ],
     "data": [
-      { "name": "data-ro-disclosure-root", "desc": "Marca el contenedor de cada sección independiente." },
-      { "name": "data-ro-disclosure-persistent", "desc": "Evita el cierre al hacer clic fuera o con Escape (comportamiento de accordion, distinto de menu/popover)." },
+      {
+        "name": "data-ro-disclosure-root",
+        "desc": "Marca el contenedor de cada sección independiente."
+      },
+      {
+        "name": "data-ro-disclosure-persistent",
+        "desc": "Evita el cierre al hacer clic fuera o con Escape (comportamiento de accordion, distinto de menu/popover)."
+      },
       { "name": "data-ro-disclosure-trigger", "desc": "En el botón: alterna el panel asociado." },
-      { "name": "data-ro-disclosure-panel", "desc": "En el panel: contenido que se muestra u oculta." }
+      {
+        "name": "data-ro-disclosure-panel",
+        "desc": "En el panel: contenido que se muestra u oculta."
+      }
     ],
-    "tokens": ["--ro-radius-xl", "--ro-ink-10", "--ro-ink-06", "--ro-text-sm", "--ro-weight-semibold"],
+    "tokens": [
+      "--ro-radius-xl",
+      "--ro-ink-10",
+      "--ro-ink-06",
+      "--ro-text-sm",
+      "--ro-weight-semibold"
+    ],
     "primitive": { "import": "createDisclosureController", "module": "disclosure-controller" }
   },
   "a11y": {
     "contract": "accessibility/tabs-accordion-navigation.md",
     "keyboard": [
-      ["Tab / Shift+Tab", "Mueve el foco entre encabezados y hacia/desde el contenido de la página."],
-      ["Enter / Espacio", "Alterna (abre o cierra) la sección del encabezado enfocado, vía el botón nativo."]
+      [
+        "Tab / Shift+Tab",
+        "Mueve el foco entre encabezados y hacia/desde el contenido de la página."
+      ],
+      [
+        "Enter / Espacio",
+        "Alterna (abre o cierra) la sección del encabezado enfocado, vía el botón nativo."
+      ]
     ],
     "notes": [
       "Es persistente (data-ro-disclosure-persistent): a diferencia de Menu y Popover, NO se cierra al hacer clic fuera ni con la tecla Escape; permanece abierta hasta que el usuario vuelve a togglear su encabezado.",

@@ -4,7 +4,10 @@ import { createToastController } from "../src/primitives/toast-controller.js";
 
 function descendants(el) {
   const out = [];
-  el.children.forEach((child) => { out.push(child); out.push(...descendants(child)); });
+  el.children.forEach((child) => {
+    out.push(child);
+    out.push(...descendants(child));
+  });
   return out;
 }
 
@@ -22,18 +25,40 @@ class FakeElement {
     this.listeners = new Map();
     const self = this;
     this.classList = {
-      add(name) { self.attributes.set("class:" + name, true); self.className += " " + name; },
-      contains(name) { return self.attributes.has("class:" + name); },
+      add(name) {
+        self.attributes.set("class:" + name, true);
+        self.className += " " + name;
+      },
+      contains(name) {
+        return self.attributes.has("class:" + name);
+      },
     };
   }
-  append(child) { child.parent = this; this.children.push(child); return child; }
-  remove() { if (this.parent) { this.parent.children = this.parent.children.filter((c) => c !== this); this.parent = null; } }
-  setAttribute(name, value) { this.attributes.set(name, String(value)); }
-  getAttribute(name) { return this.attributes.has(name) ? this.attributes.get(name) : null; }
-  hasAttribute(name) { return this.attributes.has(name); }
+  append(child) {
+    child.parent = this;
+    this.children.push(child);
+    return child;
+  }
+  remove() {
+    if (this.parent) {
+      this.parent.children = this.parent.children.filter((c) => c !== this);
+      this.parent = null;
+    }
+  }
+  setAttribute(name, value) {
+    this.attributes.set(name, String(value));
+  }
+  getAttribute(name) {
+    return this.attributes.has(name) ? this.attributes.get(name) : null;
+  }
+  hasAttribute(name) {
+    return this.attributes.has(name);
+  }
   querySelector(selector) {
     const cls = selector.replace(/^\./, "");
-    return descendants(this).find((el) => (" " + el.className + " ").includes(" " + cls + " ")) || null;
+    return (
+      descendants(this).find((el) => (" " + el.className + " ").includes(" " + cls + " ")) || null
+    );
   }
   addEventListener(type, listener) {
     if (!this.listeners.has(type)) this.listeners.set(type, []);
@@ -46,8 +71,12 @@ class FakeElement {
 }
 
 class FakeDocument {
-  constructor() { this.body = new FakeElement(this, "body"); }
-  createElement(tag) { return new FakeElement(this, tag); }
+  constructor() {
+    this.body = new FakeElement(this, "body");
+  }
+  createElement(tag) {
+    return new FakeElement(this, tag);
+  }
 }
 
 // Registro de timers controlable a mano.
@@ -55,10 +84,22 @@ function fakeTimers() {
   const pending = new Map();
   let id = 0;
   return {
-    set(fn, ms) { const key = ++id; pending.set(key, { fn, ms }); return key; },
-    clear(key) { pending.delete(key); },
-    flush() { const items = [...pending.values()]; pending.clear(); items.forEach((t) => t.fn()); },
-    size() { return pending.size; },
+    set(fn, ms) {
+      const key = ++id;
+      pending.set(key, { fn, ms });
+      return key;
+    },
+    clear(key) {
+      pending.delete(key);
+    },
+    flush() {
+      const items = [...pending.values()];
+      pending.clear();
+      items.forEach((t) => t.fn());
+    },
+    size() {
+      return pending.size;
+    },
   };
 }
 

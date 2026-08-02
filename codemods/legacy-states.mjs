@@ -29,11 +29,17 @@ function apply(html, rule) {
   let count = 0;
   const re = new RegExp(`class="([^"]*\\b${rule.token}\\b[^"]*)"`, "g");
   const out = html.replace(re, (match, cls) => {
-    const cleaned = cls.split(/\s+/).filter((c) => c && c !== rule.token).join(" ");
+    const cleaned = cls
+      .split(/\s+/)
+      .filter((c) => c && c !== rule.token)
+      .join(" ");
     count += 1;
     const attrName = rule.attr.split("=")[0];
     // Evita duplicar el atributo si el bloque ya lo trae cerca (idempotencia básica).
-    return `class="${cleaned}" ${rule.attr}`.replace(new RegExp(` ${attrName}="[^"]*"( ${attrName}="[^"]*")`), "$1");
+    return `class="${cleaned}" ${rule.attr}`.replace(
+      new RegExp(` ${attrName}="[^"]*"( ${attrName}="[^"]*")`),
+      "$1",
+    );
   });
   return { out, count };
 }
@@ -54,41 +60,49 @@ export function migrate(html) {
 if (import.meta.url === `file://${process.argv[1]}`) cli();
 
 function cli() {
-const args = process.argv.slice(2);
-const write = args.includes("--write");
-const files = args.filter((a) => a !== "--write");
+  const args = process.argv.slice(2);
+  const write = args.includes("--write");
+  const files = args.filter((a) => a !== "--write");
 
-if (files.length === 0) {
-  console.error("Uso: node codemods/legacy-states.mjs <archivo> [...] [--write]");
-  process.exit(1);
-}
-
-let totalChanges = 0;
-let changedFiles = 0;
-
-for (const file of files) {
-  if (!existsSync(file)) { console.error(`✗ no existe: ${file}`); continue; }
-  const original = readFileSync(file, "utf8");
-  let html = original;
-  let fileChanges = 0;
-  const perRule = [];
-  for (const rule of RULES) {
-    const { out, count } = apply(html, rule);
-    html = out;
-    if (count) { fileChanges += count; perRule.push(`${rule.token} → ${rule.attr.split("=")[0]} (${count})`); }
+  if (files.length === 0) {
+    console.error("Uso: node codemods/legacy-states.mjs <archivo> [...] [--write]");
+    process.exit(1);
   }
-  if (fileChanges === 0) continue;
-  changedFiles += 1;
-  totalChanges += fileChanges;
-  console.log(`${write ? "✓" : "•"} ${file}: ${fileChanges} cambio(s) — ${perRule.join(", ")}`);
-  if (write) writeFileSync(file, html);
-}
 
-if (totalChanges === 0) {
-  console.log("Sin patrones heredados que migrar.");
-} else if (!write) {
-  console.log(`\n${totalChanges} cambio(s) en ${changedFiles} archivo(s). Repite con --write para aplicarlos.`);
-} else {
-  console.log(`\nAplicados ${totalChanges} cambio(s) en ${changedFiles} archivo(s).`);
-}
+  let totalChanges = 0;
+  let changedFiles = 0;
+
+  for (const file of files) {
+    if (!existsSync(file)) {
+      console.error(`✗ no existe: ${file}`);
+      continue;
+    }
+    const original = readFileSync(file, "utf8");
+    let html = original;
+    let fileChanges = 0;
+    const perRule = [];
+    for (const rule of RULES) {
+      const { out, count } = apply(html, rule);
+      html = out;
+      if (count) {
+        fileChanges += count;
+        perRule.push(`${rule.token} → ${rule.attr.split("=")[0]} (${count})`);
+      }
+    }
+    if (fileChanges === 0) continue;
+    changedFiles += 1;
+    totalChanges += fileChanges;
+    console.log(`${write ? "✓" : "•"} ${file}: ${fileChanges} cambio(s) — ${perRule.join(", ")}`);
+    if (write) writeFileSync(file, html);
+  }
+
+  if (totalChanges === 0) {
+    console.log("Sin patrones heredados que migrar.");
+  } else if (!write) {
+    console.log(
+      `\n${totalChanges} cambio(s) en ${changedFiles} archivo(s). Repite con --write para aplicarlos.`,
+    );
+  } else {
+    console.log(`\nAplicados ${totalChanges} cambio(s) en ${changedFiles} archivo(s).`);
+  }
 }

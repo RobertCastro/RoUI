@@ -22,7 +22,10 @@
   },
   "api": {
     "classes": [
-      { "name": "ro-icon", "desc": "Clase base: tamaño medio (--ro-icon-md), stroke currentColor." },
+      {
+        "name": "ro-icon",
+        "desc": "Clase base: tamaño medio (--ro-icon-md), stroke currentColor."
+      },
       { "name": "ro-icon--xs", "desc": "Tamaño extra pequeño (--ro-icon-xs)." },
       { "name": "ro-icon--sm", "desc": "Tamaño pequeño (--ro-icon-sm)." },
       { "name": "ro-icon--lg", "desc": "Tamaño grande (--ro-icon-lg)." }

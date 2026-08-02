@@ -24,9 +24,15 @@
   "api": {
     "classes": [
       { "name": "ro-breadcrumbs", "desc": "Contenedor base." },
-      { "name": "ro-breadcrumbs--mono", "desc": "Variante mono/mayúsculas usada en barras de contexto compactas." },
+      {
+        "name": "ro-breadcrumbs--mono",
+        "desc": "Variante mono/mayúsculas usada en barras de contexto compactas."
+      },
       { "name": "ro-breadcrumbs__sep", "desc": "Separador visual entre tramos." },
-      { "name": "ro-breadcrumbs__current", "desc": "Tramo final: la página actual (texto, no enlace)." }
+      {
+        "name": "ro-breadcrumbs__current",
+        "desc": "Tramo final: la página actual (texto, no enlace)."
+      }
     ],
     "data": [],
     "tokens": [
@@ -42,7 +48,10 @@
   "a11y": {
     "contract": "accessibility/tabs-accordion-navigation.md",
     "keyboard": [
-      ["Tab / Shift+Tab", "Recorre los enlaces de los tramos anteriores; el tramo actual no es enfocable por no ser interactivo."],
+      [
+        "Tab / Shift+Tab",
+        "Recorre los enlaces de los tramos anteriores; el tramo actual no es enfocable por no ser interactivo."
+      ],
       ["Enter", "Sigue el enlace del tramo enfocado."]
     ],
     "notes": [

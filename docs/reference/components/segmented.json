@@ -41,7 +41,10 @@
   "a11y": {
     "contract": "accessibility/content-and-status.md",
     "keyboard": [
-      ["Tab / Shift+Tab", "Entra y sale del grupo (cada botón es tabbable por separado; no hay roving tabindex)."],
+      [
+        "Tab / Shift+Tab",
+        "Entra y sale del grupo (cada botón es tabbable por separado; no hay roving tabindex)."
+      ],
       ["Enter / Espacio", "Activa la opción enfocada (comportamiento nativo del <button>)."]
     ],
     "notes": [

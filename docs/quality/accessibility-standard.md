@@ -25,4 +25,3 @@ HTML nativa cuando esta sea suficiente.
 Automatizacion con axe y pruebas de teclado, complementadas con auditorias
 manuales y lectores de pantalla en componentes de alta complejidad. Pasar axe
 no equivale por si solo a cumplir este estandar.
-

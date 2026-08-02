@@ -30,8 +30,15 @@ campo de texto.</p>
 (el foco permanece en el input), no moviendo el foco.</p>
 <pre><code class="language-html">&lt;div class=&quot;ro-combobox&quot; data-ro-combobox&gt;
   &lt;div class=&quot;ro-field&quot;&gt;
-    &lt;input class=&quot;ro-input&quot; id=&quot;cb&quot; role=&quot;combobox&quot; aria-expanded=&quot;false&quot;
-      aria-controls=&quot;cb-list&quot; aria-autocomplete=&quot;list&quot; aria-label=&quot;Busca un lenguaje&quot;&gt;
+    &lt;input
+      class=&quot;ro-input&quot;
+      id=&quot;cb&quot;
+      role=&quot;combobox&quot;
+      aria-expanded=&quot;false&quot;
+      aria-controls=&quot;cb-list&quot;
+      aria-autocomplete=&quot;list&quot;
+      aria-label=&quot;Busca un lenguaje&quot;
+    /&gt;
   &lt;/div&gt;
   &lt;div class=&quot;ro-combobox__list&quot; id=&quot;cb-list&quot; role=&quot;listbox&quot; aria-label=&quot;Lenguajes&quot;&gt;
     &lt;div class=&quot;ro-combobox__option&quot; role=&quot;option&quot;&gt;JavaScript&lt;/div&gt;
@@ -42,7 +49,11 @@ campo de texto.</p>
 </code></pre>
 <pre><code class="language-js">import { createComboboxController } from &quot;@robertcastro/roui/primitives/combobox-controller&quot;;
 
-createComboboxController(root, { onFilter: (query) =&gt; { /* oculta opciones */ } });
+createComboboxController(root, {
+  onFilter: (query) =&gt; {
+    /* oculta opciones */
+  },
+});
 </code></pre>
 <p><code>ArrowDown</code>/<code>ArrowUp</code> recorren (con wrap), <code>Home</code>/<code>End</code> van a los extremos,
 <code>Enter</code> selecciona la opción activa y rellena el input, <code>Escape</code> cierra y un
@@ -57,8 +68,14 @@ y restauración del disparador); la lista la gestiona <code>combobox-controller<
 <pre><code class="language-html">&lt;div class=&quot;ro-cmdk-overlay&quot; id=&quot;cmdk&quot; data-ro-overlay-root hidden&gt;
   &lt;div class=&quot;ro-cmdk&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-label=&quot;Paleta de comandos&quot; data-ro-cmdk&gt;
     &lt;div class=&quot;ro-cmdk__search&quot;&gt;
-      &lt;input id=&quot;cmdk-input&quot; role=&quot;combobox&quot; aria-expanded=&quot;true&quot;
-        aria-controls=&quot;cmdk-list&quot; aria-autocomplete=&quot;list&quot; aria-label=&quot;Buscar comandos&quot;&gt;
+      &lt;input
+        id=&quot;cmdk-input&quot;
+        role=&quot;combobox&quot;
+        aria-expanded=&quot;true&quot;
+        aria-controls=&quot;cmdk-list&quot;
+        aria-autocomplete=&quot;list&quot;
+        aria-label=&quot;Buscar comandos&quot;
+      /&gt;
     &lt;/div&gt;
     &lt;div class=&quot;ro-cmdk__list&quot; id=&quot;cmdk-list&quot; role=&quot;listbox&quot; aria-label=&quot;Comandos&quot;&gt;
       &lt;div class=&quot;ro-cmdk__group&quot; role=&quot;presentation&quot;&gt;Navegar&lt;/div&gt;
@@ -79,18 +96,31 @@ paleta. Los encabezados de grupo son <code>role=&quot;presentation&quot;</code>.
 huecos del mes son celdas vacías no enfocables.</p>
 <pre><code class="language-html">&lt;div class=&quot;ro-calendar__grid&quot; role=&quot;grid&quot; aria-labelledby=&quot;cal-title&quot;&gt;
   &lt;div class=&quot;ro-calendar__row&quot; role=&quot;row&quot;&gt;
-    &lt;div class=&quot;ro-calendar__dow&quot; role=&quot;columnheader&quot; aria-label=&quot;Lunes&quot;&gt;L&lt;/div&gt; …
+    &lt;div class=&quot;ro-calendar__dow&quot; role=&quot;columnheader&quot; aria-label=&quot;Lunes&quot;&gt;L&lt;/div&gt;
+    …
   &lt;/div&gt;
   &lt;div class=&quot;ro-calendar__row&quot; role=&quot;row&quot;&gt;
     &lt;div class=&quot;ro-calendar__pad&quot; role=&quot;gridcell&quot;&gt;&lt;/div&gt;
-    &lt;button class=&quot;ro-calendar__day&quot; role=&quot;gridcell&quot; tabindex=&quot;-1&quot;
-      aria-selected=&quot;false&quot; aria-label=&quot;1 de Junio de 2026&quot;&gt;1&lt;/button&gt; …
+    &lt;button
+      class=&quot;ro-calendar__day&quot;
+      role=&quot;gridcell&quot;
+      tabindex=&quot;-1&quot;
+      aria-selected=&quot;false&quot;
+      aria-label=&quot;1 de Junio de 2026&quot;
+    &gt;
+      1
+    &lt;/button&gt;
+    …
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
 <pre><code class="language-js">import { createGridController } from &quot;@robertcastro/roui/primitives/grid-controller&quot;;
 
-createGridController(grid, { onSelect: (dayButton) =&gt; { /* marca aria-selected */ } });
+createGridController(grid, {
+  onSelect: (dayButton) =&gt; {
+    /* marca aria-selected */
+  },
+});
 </code></pre>
 <p>Una sola celda es tabbable (<strong>roving tabindex</strong>): el día seleccionado, el marcado
 <code>data-ro-grid-current</code> (hoy) o el primero. <code>ArrowLeft</code>/<code>ArrowRight</code> mueven por día,

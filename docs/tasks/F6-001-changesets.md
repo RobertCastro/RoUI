@@ -42,7 +42,7 @@ publicar y del bump de versión.
 
 - [x] `changeset status` reconoce el bump pendiente (minor).
 - [x] `changeset:version` sube la versión, consolida el CHANGELOG y regenera la
-  referencia (verificado localmente y revertido).
+      referencia (verificado localmente y revertido).
 - [x] `.changeset/` no entra al tarball; `CHANGELOG.md` sí.
 - [x] `npm run validate` y `git diff --check` verdes.
 

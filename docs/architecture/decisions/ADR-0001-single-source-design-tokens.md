@@ -18,8 +18,7 @@ TypeScript y configuracion Tailwind.
 Los artefactos generados incluiran cabecera de no edicion y CI verificara que
 el repositorio este actualizado despues de ejecutar el generador.
 
-La aceptacion autoriza preparar esta migracion en Fase 1 y ejecutarla en Fase
-2. No autoriza mantener en paralelo fuentes editables despues de la migracion.
+La aceptacion autoriza preparar esta migracion en Fase 1 y ejecutarla en Fase 2. No autoriza mantener en paralelo fuentes editables despues de la migracion.
 
 ## Alternativas
 

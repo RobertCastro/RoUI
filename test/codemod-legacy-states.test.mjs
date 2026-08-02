@@ -16,12 +16,16 @@ test("ro-nav-link--active se convierte en aria-current=page", () => {
 });
 
 test("ro-calendar__day--selected se convierte en aria-selected", () => {
-  const { out } = migrate('<button class="ro-calendar__day ro-calendar__day--selected">12</button>');
+  const { out } = migrate(
+    '<button class="ro-calendar__day ro-calendar__day--selected">12</button>',
+  );
   assert.match(out, /class="ro-calendar__day" aria-selected="true"/);
 });
 
 test("preserva otros atributos y clases", () => {
-  const { out } = migrate('<button class="ro-tab ro-tab--active" role="tab" id="t1" tabindex="0">Uno</button>');
+  const { out } = migrate(
+    '<button class="ro-tab ro-tab--active" role="tab" id="t1" tabindex="0">Uno</button>',
+  );
   assert.match(out, /role="tab"/);
   assert.match(out, /id="t1"/);
   assert.match(out, /tabindex="0"/);

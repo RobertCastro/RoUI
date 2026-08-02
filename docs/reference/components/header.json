@@ -23,11 +23,17 @@
   },
   "api": {
     "classes": [
-      { "name": "ro-header", "desc": "Contenedor flex de la cabecera; fija su altura con --ro-header-h." },
+      {
+        "name": "ro-header",
+        "desc": "Contenedor flex de la cabecera; fija su altura con --ro-header-h."
+      },
       { "name": "ro-header__brand", "desc": "Zona del logotipo/nombre, siempre visible." },
       { "name": "ro-header__nav", "desc": "Navegación principal; oculta en mobile por defecto." },
       { "name": "ro-header__title", "desc": "Título centrado opcional (visible desde tablet)." },
-      { "name": "ro-header__actions", "desc": "Grupo de acciones a la derecha (notificaciones, cuenta, menú)." },
+      {
+        "name": "ro-header__actions",
+        "desc": "Grupo de acciones a la derecha (notificaciones, cuenta, menú)."
+      },
       { "name": "ro-nav-link", "desc": "Enlace de la navegación principal." },
       { "name": "ro-burger", "desc": "Botón de menú hamburguesa, visible solo en mobile." }
     ],

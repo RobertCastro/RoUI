@@ -3,9 +3,9 @@
 El paquete npm de RoUI no puede superar los siguientes limites sin un ADR
 aceptado o una justificación trazable en la tarea activa, conforme a ADR-0005:
 
-| Medida | Limite |
-|---|---:|
-| Tarball comprimido | 64 KiB |
+| Medida                  |  Limite |
+| ----------------------- | ------: |
+| Tarball comprimido      |  64 KiB |
 | Contenido descomprimido | 272 KiB |
 
 `npm run check:size` empaqueta el artefacto real y aplica ambos limites. Los

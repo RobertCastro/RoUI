@@ -27,14 +27,14 @@ teclado, por lo que cada consumidor debía reconstruir un comportamiento crític
 ## Criterios de aceptación
 
 - [x] Dialog y Drawer documentan el rol, nombre accesible, foco inicial,
-  `Escape`, `Tab`, cierre y restauración.
+      `Escape`, `Tab`, cierre y restauración.
 - [x] El controlador público atrapa foco, restaura el disparador y bloquea
-  scroll mientras un overlay está abierto.
+      scroll mientras un overlay está abierto.
 - [x] Los ejemplos consumen el controlador generado, no una copia para docs.
 - [x] Reduced motion elimina las animaciones de apertura.
 - [x] Tests verifican foco, teclado, cierre y el entrypoint empaquetado.
 - [x] El presupuesto de paquete conserva límite comprimido y registra el coste
-  del nuevo entrypoint público.
+      del nuevo entrypoint público.
 
 ## Plan de validación
 

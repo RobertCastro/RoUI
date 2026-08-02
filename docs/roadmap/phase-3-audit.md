@@ -13,14 +13,14 @@ controladores verificables para los patrones compuestos.
 
 ## Entregables
 
-| Tarea | Resultado | Evidencia |
-|---|---|---|
-| F3-001 | Contratos de Button y Form nativos | done |
-| F3-002 | Dialog y Drawer con foco, Escape y restauracion | done, PR #18 |
-| F3-003 | Menu, Popover y Tooltip | done |
-| F3-004 | Tabs, Accordion y navegacion (roving, disclosure persistente) | done, `a9ab286` |
-| F3-005 | Combobox, Calendar y Command Palette | done, `0628ab1`..`d0cdb25` |
-| F3-006 | Toast con regiones vivas y cierre pausable | done, `1b8f624` |
+| Tarea  | Resultado                                                     | Evidencia                  |
+| ------ | ------------------------------------------------------------- | -------------------------- |
+| F3-001 | Contratos de Button y Form nativos                            | done                       |
+| F3-002 | Dialog y Drawer con foco, Escape y restauracion               | done, PR #18               |
+| F3-003 | Menu, Popover y Tooltip                                       | done                       |
+| F3-004 | Tabs, Accordion y navegacion (roving, disclosure persistente) | done, `a9ab286`            |
+| F3-005 | Combobox, Calendar y Command Palette                          | done, `0628ab1`..`d0cdb25` |
+| F3-006 | Toast con regiones vivas y cierre pausable                    | done, `1b8f624`            |
 
 ## Primitivas publicadas
 

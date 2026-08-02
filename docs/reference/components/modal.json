@@ -31,10 +31,16 @@
       { "name": "ro-modal__footer", "desc": "Pie con acciones." }
     ],
     "data": [
-      { "name": "data-ro-overlay-root", "desc": "Marca el contenedor del overlay (inicia hidden)." },
+      {
+        "name": "data-ro-overlay-root",
+        "desc": "Marca el contenedor del overlay (inicia hidden)."
+      },
       { "name": "data-ro-overlay-open", "desc": "En el disparador: id del overlay a abrir." },
       { "name": "data-ro-overlay-close", "desc": "En un control: lo cierra." },
-      { "name": "data-ro-overlay-backdrop", "desc": "Zona de fondo que cierra al hacer clic (opcional)." }
+      {
+        "name": "data-ro-overlay-backdrop",
+        "desc": "Zona de fondo que cierra al hacer clic (opcional)."
+      }
     ],
     "tokens": ["--ro-radius-2xl", "--ro-shadow-xl", "--ro-z-modal", "--ro-white"],
     "primitive": { "import": "createOverlayController", "module": "overlay-controller" }

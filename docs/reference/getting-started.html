@@ -27,7 +27,7 @@ adoptarlo con un bundler (npm) o sin build (CDN).</p>
 <pre><code class="language-bash">npm install @robertcastro/roui
 </code></pre>
 <p>Importa el bundle una vez en tu entrada:</p>
-<pre><code class="language-js">import &quot;@robertcastro/roui&quot;;           // bundle completo (dist/roui.css)
+<pre><code class="language-js">import &quot;@robertcastro/roui&quot;; // bundle completo (dist/roui.css)
 </code></pre>
 <p>O de forma granular:</p>
 <pre><code class="language-js">import &quot;@robertcastro/roui/tokens.css&quot;;
@@ -35,8 +35,7 @@ import &quot;@robertcastro/roui/reset.css&quot;;
 import &quot;@robertcastro/roui/components/button.css&quot;;
 </code></pre>
 <h2>Sin build (CDN)</h2>
-<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot;
-  href=&quot;https://cdn.jsdelivr.net/npm/@robertcastro/roui/dist/roui.min.css&quot;&gt;
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@robertcastro/roui/dist/roui.min.css&quot; /&gt;
 </code></pre>
 <h2>Usar un componente</h2>
 <p>Los componentes son HTML + clases <code>ro-</code>:</p>
@@ -44,15 +43,48 @@ import &quot;@robertcastro/roui/components/button.css&quot;;
 </code></pre>
 <h2>Temas</h2>
 <p>Activa un tema con <code>data-ro-theme</code> en un contenedor (o en <code>html</code>):</p>
-<pre><code class="language-html">&lt;html data-ro-theme=&quot;dark&quot;&gt; … &lt;/html&gt;
+<pre><code class="language-html">&lt;html data-ro-theme=&quot;dark&quot;&gt;
+  …
+&lt;/html&gt;
 </code></pre>
 <p>Temas disponibles: <code>light</code>, <code>dark</code>, <code>high-contrast</code>. Remapean los tokens
 semánticos (<code>--ro-bg</code>, <code>--ro-text</code>, <code>--ro-surface</code>, …).</p>
+<h2>Densidad</h2>
+<p>Activa un modo de densidad con <code>data-ro-density</code> en cualquier contenedor:</p>
+<pre><code class="language-html">&lt;div data-ro-density=&quot;compact&quot;&gt;…&lt;/div&gt;
+</code></pre>
+<p>Valores: <code>compact</code>, <code>comfortable</code>. Sin el atributo, el tamaño no cambia (es el
+valor por defecto). Ajusta el padding de Button, Input y celdas de Table vía
+<code>--ro-btn-py/px</code>, <code>--ro-input-py/px</code> y <code>--ro-table-cell-py/px</code> — los demás
+componentes todavía no responden a la densidad. Las variantes de tamaño
+explícitas (<code>ro-btn--sm</code>, <code>ro-btn--lg</code>) fijan su propio padding y no cambian
+con la densidad.</p>
+<h2>RTL</h2>
+<p>RoUI se probó con <code>dir=&quot;rtl&quot;</code> en la galería de componentes y en la plantilla
+de módulo (Chromium, Firefox y WebKit): no genera scroll horizontal. Esa
+prueba verifica que el layout no se rompe, <strong>no</strong> que cada componente se
+refleje visualmente — la mayoría del CSS usa propiedades físicas
+(<code>padding-left</code>, <code>text-align: left</code>, …) en vez de propiedades lógicas
+(<code>padding-inline</code>, …), que sí son las únicas 3 hojas de estilo
+(<code>shell.css</code>, <code>header.css</code>, <code>toolbar.css</code>) que se voltean solas con <code>dir</code>.
+El resto se beneficia parcialmente del comportamiento nativo de flex/grid con
+<code>gap</code> (que sí invierte el eje principal), pero iconos direccionales
+(<code>chevron-left/right</code>, <code>arrow-left/right</code>) no cambian de sentido automáticamente.
+Si adoptas RTL, probá los componentes concretos que uses y esperá tener que
+sobreescribir manualmente la dirección de esos iconos por ahora.</p>
+<h2>Accesibilidad</h2>
+<p>Cada componente documenta su propio contrato de teclado y ARIA en su página de
+referencia (sección &quot;Accesibilidad&quot;), agrupados también por patrón en
+<code>accessibility/*.html</code>: overlays (<code>dialog-drawer</code>, <code>menu-popover-tooltip</code>),
+navegación (<code>tabs-accordion-navigation</code>), controles nativos
+(<code>native-controls</code>), contenido y estado (<code>content-and-status</code>, <code>toast</code>) y
+combobox/calendar/command-palette. Todos verificados con axe (0 violaciones)
+y, para los patrones con comportamiento, con pruebas de teclado en navegador
+(foco, trap, <code>Escape</code>, roving tabindex).</p>
 <h2>Primitivas accesibles</h2>
 <p>Los patrones con comportamiento (Dialog, Combobox, Tabs, …) usan primitivas ESM
 sin dependencias. Ejemplo de un diálogo modal:</p>
-<pre><code class="language-js">import { createOverlayController }
-  from &quot;@robertcastro/roui/primitives/overlay-controller&quot;;
+<pre><code class="language-js">import { createOverlayController } from &quot;@robertcastro/roui/primitives/overlay-controller&quot;;
 
 const overlay = createOverlayController(document.getElementById(&quot;mi-dialogo&quot;));
 document.getElementById(&quot;abrir&quot;).addEventListener(&quot;click&quot;, () =&gt; overlay.open());

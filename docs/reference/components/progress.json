@@ -23,7 +23,10 @@
   "api": {
     "classes": [
       { "name": "ro-progress", "desc": "Track (contenedor) de la barra." },
-      { "name": "ro-progress__fill", "desc": "Relleno; su ancho inline representa el % de avance." },
+      {
+        "name": "ro-progress__fill",
+        "desc": "Relleno; su ancho inline representa el % de avance."
+      },
       { "name": "ro-progress--on-dark", "desc": "Variante más delgada para fondos oscuros." }
     ],
     "data": [],
