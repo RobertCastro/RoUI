@@ -82,8 +82,9 @@ Ultima actualizacion: 2026-08-01
   el burger a un drawer real via `overlay-controller` (mismo contrato que
   Modal), con el contenido de nav principal + rail izquierdo segun cada
   plantilla. Verificado en vivo (apertura/cierre, foco, `aria-expanded`) y
-  via `npm run validate` (0 fallos, presupuesto sin cambios). Pendiente como
-  siguiente paso: documentar el patron rail+drawer en `docs/layouts.html`.
+  via `npm run validate` (0 fallos, presupuesto sin cambios). Documentado el
+  patron rail+drawer en `docs/layouts.html` en un cambio posterior (ver mas
+  abajo, tras F0-016).
 - F0-016 (2026-08-01): dos bugs visuales reales senalados por el usuario en
   `sidebar.html` — (1) `.ro-nav-item:hover` tenia mas especificidad que
   `.ro-nav-item--active`, dejando texto blanco sobre fondo casi blanco al
@@ -131,3 +132,11 @@ Ultima actualizacion: 2026-08-01
   piloto local `examples/pilot-dashboard`, codemod `legacy-states`, marco de
   metricas, esquema de telemetria y proceso de soporte/feedback estan listos o
   en `review`. El cierre requiere adopcion en produccion.
+- F0-015, siguiente paso cerrado (2026-08-01): el usuario senalo como
+  prioridad maxima dejar explicito en `docs/layouts.html` que
+  `.ro-layout-rail`/`.ro-layout-3col` ocultan el rail por completo bajo
+  768px (no lo apilan) y que un `.ro-burger` sin Drawer conectado es un
+  boton inerte. Agregado el bloque "Comportamiento en movil (obligatorio,
+  no opcional)" en la seccion "App shell con rail", con enlace al contrato
+  `accessibility/dialog-drawer.html`. Verificado con `npm run check:axe`
+  (0 violaciones) y `npm run validate` (0 fallos, presupuesto sin cambios).

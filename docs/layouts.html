@@ -170,6 +170,23 @@
           </div>
           <p class="ro-muted" style="font-size:13px;margin:4px 0 0">.ro-layout-3col — &lt;md: 1 columna · md–xl: rail izq + main · ≥xl: 3 columnas</p>
         </div>
+        <p class="dx-sub">Comportamiento en móvil (obligatorio, no opcional)</p>
+        <p style="color:var(--ro-ink-60);font-size:14px;max-width:70ch">
+          "&lt;md: 1 columna" no significa que el rail se apila debajo del contenido: el rail
+          <strong>desaparece por completo</strong> (<span class="dx-code">.ro-rail { display: none }</span>,
+          visible recién en <span class="dx-code">≥768px</span>). Por debajo de ese punto también se oculta
+          <span class="dx-code">.ro-header__nav</span>, así que sin una alternativa la página queda sin
+          navegación alcanzable en móvil.
+        </p>
+        <p style="color:var(--ro-ink-60);font-size:14px;max-width:70ch">
+          La alternativa es <span class="dx-code">.ro-burger</span> (visible solo por debajo de
+          <span class="dx-code">768px</span>) conectado a un <strong>Drawer</strong> real vía
+          <span class="dx-code">overlay-controller</span> — el mismo contrato de foco, Escape y backdrop que
+          Modal. No es opcional: un burger sin drawer es un botón que no hace nada. Las 3 plantillas de esta
+          página ya implementan el patrón completo (nav principal + nav del rail dentro del drawer); úsalas
+          como referencia antes de construir una página nueva con rail. Contrato de accesibilidad:
+          <a href="accessibility/dialog-drawer.html">dialog-drawer</a>.
+        </p>
       </div>
     </main>
   </div>

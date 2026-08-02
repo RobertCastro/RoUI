@@ -79,10 +79,18 @@ Se verificó contra el código real:
 
 ## Siguiente
 
-Queda pendiente (no reportado como bug, señalado como mejora en la misma
-revisión): documentar en `docs/layouts.html` que el rail desaparece bajo
-`768px` y qué lo reemplaza (drawer desde el burger), y enlazar desde ahí al
-contrato de Drawer (`docs/accessibility/dialog-drawer.md`).
+Resuelto en un cambio posterior de esta misma tarea: el usuario marcó esto
+como la prioridad más importante ("dejar claro que `.ro-layout-rail` oculta
+el rail en móvil y necesita un Drawer"). Se agregó a `docs/layouts.html`,
+sección "App shell con rail", un bloque "Comportamiento en móvil (obligatorio,
+no opcional)" que aclara explícitamente que `<md: 1 columna` significa que el
+rail **desaparece** (no se apila), que `.ro-header__nav` también se oculta en
+ese rango, y que la alternativa obligatoria es el drawer implementado en
+F0-015 (no opcional — "un burger sin drawer es un botón que no hace nada").
+Enlaza al contrato `accessibility/dialog-drawer.html`. Verificado con
+`npm run check:axe` (0 violaciones en `docs/layouts.html`) y
+`npm run validate` (0 fallos, presupuesto sin cambios ya que `docs/` no forma
+parte del paquete publicado).
 
 ## Cierre
 
