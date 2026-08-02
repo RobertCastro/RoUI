@@ -80,7 +80,7 @@ function nav(active, depth) {
   <div class="dx-nav-group"><h4>Inicio</h4>${a("index.html", "Introducción", "")}</div>
   <div class="dx-nav-group"><h4>Fundamentos</h4>${a("tokens.html", "Tokens / Variables", "")}${a("icons.html", "Iconos", "")}${a("layouts.html", "Layouts &amp; Grid", "")}</div>
   <div class="dx-nav-group"><h4>Componentes</h4>${a("components.html", "Galería", "")}<a href="${depth}reference/index.html"${active === "reference" ? ' class="is-active"' : ""}>Referencia</a></div>
-  <div class="dx-nav-group"><h4>Plantillas</h4>${a("templates/dashboard.html", "Dashboard", "")}${a("templates/module-3col.html", "Módulo (3 columnas)", "")}</div>
+  <div class="dx-nav-group"><h4>Plantillas</h4>${a("templates/dashboard.html", "Dashboard", "")}${a("templates/sidebar.html", "Panel con sidebar", "")}${a("templates/module-3col.html", "Módulo (3 columnas)", "")}</div>
 </aside>`;
 }
 

@@ -21,8 +21,13 @@ de uso. Dos `rgba(0,0,0,0)` se reemplazaron por la palabra clave `transparent`
 (`rgba(0,0,0,0.08)`) en vez del token de borde hairline ya establecido en el
 resto del sistema (`--ro-ink-10`); se corrigió por consistencia — cambio de
 diseño imperceptible pero deliberado, no una migración de valor-por-valor.
-Huella actual: `02eff92953c6c57cc157fe229375c59d47457afe84b6e015def1c54c879c3633`
-(0 colores, 382 px — sin cambios en píxeles).
+**Layout con rail único (2026-08-01):** se añadió `.ro-layout-rail` (nueva sección
+"App shell con rail" en `docs/layouts.html`), que reutiliza el breakpoint
+`768px` ya existente en `.ro-layout-3col`/`.ro-rail--left` — una ocurrencia más
+del mismo literal ya clasificado como excepción de breakpoint, no deuda nueva.
+
+Huella actual: `16c79accc8a17bd3613f7af0b249ef01b456066e2df587628e69aa61de0ef3b8`
+(0 colores, 383 px).
 
 Excepciones permitidas actualmente:
 

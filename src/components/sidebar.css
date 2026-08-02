@@ -19,6 +19,7 @@
 }
 .ro-nav-item:hover { background: var(--ro-ink-04); }
 .ro-nav-item--active { background: var(--ro-ink); color: var(--ro-white); }
+.ro-nav-item--active:hover { background: var(--ro-ink); }
 .ro-nav-item--active .ro-nav-item__meta { color: var(--ro-on-dark-60); }
 .ro-nav-item__meta { font-family: var(--ro-font-mono); font-size: 0.625rem;
   text-transform: uppercase; letter-spacing: var(--ro-tracking-wide); color: var(--ro-ink-50); }

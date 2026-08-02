@@ -6,6 +6,10 @@
 .ro-container { width: 100%; max-width: var(--ro-content-max); margin-inline: auto; padding-inline: 1rem; }
 @media (min-width: 640px)  { .ro-container { padding-inline: 1.5rem; } }
 @media (min-width: 1024px) { .ro-container { padding-inline: 2rem; } }
+/* Variantes de ancho: mismo padding responsive, distinto max-width. */
+.ro-container--narrow { max-width: var(--ro-content-narrow); }
+.ro-container--wide   { max-width: var(--ro-content-wide); }
+.ro-container--fluid  { max-width: none; }
 
 .ro-stack { display: flex; flex-direction: column; gap: var(--ro-space-4); }
 .ro-stack--sm { gap: var(--ro-space-2); }

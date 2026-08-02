@@ -20,7 +20,7 @@
   --ro-control-bg: var(--ro-surface);
   --ro-control-border: var(--ro-border-color);
   --ro-control-fg: var(--ro-text);
-  --ro-control-focus-border: var(--ro-accent);
+  --ro-control-focus-border: var(--ro-secondary);
   --ro-control-placeholder: var(--ro-text-muted);
   --ro-control-switch-checked: var(--ro-text);
   --ro-control-switch-thumb: var(--ro-surface);

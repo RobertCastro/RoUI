@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Plantilla · Módulo (3 columnas) — RoUI DS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/base/reset.css">
   <link rel="stylesheet" href="../../dist/roui.css">
   <style>.ico{width:16px;height:16px;display:inline-block;border:2px solid currentColor;border-radius:4px;flex:none}</style>
 </head>
@@ -28,9 +29,46 @@
       <button class="ro-btn-icon" title="Tus herramientas"><svg class="ro-icon"><use href="#ro-i-wrench"></use></svg></button>
       <button class="ro-btn-icon" title="Notificaciones" style="position:relative"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg><span class="ro-dot-badge"></span></button>
       <button class="ro-avatar">RC</button>
-      <button class="ro-btn-icon ro-burger" aria-label="Menú"><svg class="ro-icon ro-icon--lg" aria-hidden="true"><use href="#ro-i-menu"></use></svg></button>
+      <button class="ro-btn-icon ro-burger" aria-label="Menú" data-ro-overlay-open="mobile-nav" aria-haspopup="dialog" aria-controls="mobile-nav" aria-expanded="false"><svg class="ro-icon ro-icon--lg" aria-hidden="true"><use href="#ro-i-menu"></use></svg></button>
     </div>
   </header>
+
+  <!-- Drawer de navegación móvil: bajo 768px .ro-header__nav y .ro-rail--left se ocultan
+       (ver header.css y three-col.css); el burger es el único acceso a ambos en ese rango.
+       El rail derecho (Recursos) es progressive disclosure desde 1280px, no forma parte de este fix. -->
+  <div class="ro-drawer-root" id="mobile-nav" data-ro-overlay-root hidden>
+    <div class="ro-drawer-overlay" data-ro-overlay-backdrop></div>
+    <aside class="ro-drawer ro-drawer--left" role="dialog" aria-modal="true" aria-labelledby="mobile-nav-t" tabindex="-1">
+      <div class="ro-drawer__header">
+        <h2 class="ro-drawer__title" id="mobile-nav-t">Menú</h2>
+        <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-x"></use></svg></button>
+      </div>
+      <div class="ro-drawer__body">
+        <nav aria-label="Principal">
+          <a class="ro-nav-item" href="#"><span class="ro-nav-item__label">Inicio</span></a>
+          <a class="ro-nav-item" href="#"><span class="ro-nav-item__label">Mis Proyectos</span></a>
+          <a class="ro-nav-item" href="#"><span class="ro-nav-item__label">Sesiones</span></a>
+          <a class="ro-nav-item" href="#" aria-current="page"><span class="ro-nav-item__label">Directorio</span></a>
+          <a class="ro-nav-item" href="#"><span class="ro-nav-item__label">Explorar</span></a>
+        </nav>
+        <div class="ro-rail__head" style="padding-inline:0.5rem">
+          <span class="ro-rail__title">Clases del curso</span>
+        </div>
+        <nav aria-label="Clases del curso">
+          <button class="ro-accordion-head"><span class="ro-nav-item__meta">Sem 01</span>
+            <strong style="font-size:14px">Semana 1</strong><span class="ro-spacer"></span><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-down"></use></svg></button>
+          <a class="ro-nav-item"><span class="ro-step ro-step--done"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span>
+            <span><span class="ro-nav-item__meta">Mód 00 · Video</span><br><span class="ro-nav-item__label">Estado actual de AI</span></span></a>
+          <a class="ro-nav-item"><span class="ro-step ro-step--done"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span>
+            <span><span class="ro-nav-item__meta">Mód 01 · Video</span><br><span class="ro-nav-item__label">Input &gt; Proceso &gt; Output</span></span></a>
+          <a class="ro-nav-item ro-nav-item--active"><span class="ro-step ro-step--current"></span>
+            <span><span class="ro-nav-item__meta">Mód 04 · Video</span><br><span class="ro-nav-item__label">El Arte del "Technical Brief"</span></span></a>
+          <a class="ro-nav-item"><span class="ro-step"></span>
+            <span><span class="ro-nav-item__meta">Mód 05 · Video</span><br><span class="ro-nav-item__label">Desarrollo Guiado por Especificación</span></span></a>
+        </nav>
+      </div>
+    </aside>
+  </div>
 
   <div class="ro-app__body">
     <div class="ro-context-bar" role="region" aria-label="Contexto del módulo">
@@ -122,6 +160,21 @@
     fetch(new URL('../../dist/icons.svg', document.baseURI).href)
       .then(function (r) { return r.ok ? r.text() : ''; })
       .then(function (svg) { if (!svg) return; var d = document.createElement('div'); d.style.display = 'none'; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
+  </script>
+
+  <!-- Drawer de navegación móvil: mismo contrato que Modal (overlay-controller). -->
+  <script type="module">
+    import { createOverlayController } from '../../dist/primitives/overlay-controller.js';
+    var overlays = new Map();
+    document.querySelectorAll('[data-ro-overlay-root]').forEach(function (root) {
+      overlays.set(root.id, createOverlayController(root));
+    });
+    document.querySelectorAll('[data-ro-overlay-open]').forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        var overlay = overlays.get(trigger.getAttribute('data-ro-overlay-open'));
+        if (overlay) overlay.open(trigger);
+      });
+    });
   </script>
 </body>
 </html>

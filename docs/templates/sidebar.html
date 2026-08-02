@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plantilla · Panel con sidebar — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../src/base/reset.css">
+  <link rel="stylesheet" href="../../dist/roui.css">
+</head>
+<body class="ro-app ro-root">
+
+  <header class="ro-header">
+    <a class="ro-header__brand"><strong style="font-size:20px">RoUI</strong></a>
+    <button class="ro-switcher">
+      <svg class="ro-icon ro-icon--sm"><use href="#ro-i-building-2"></use></svg> Acme Inc
+      <svg class="ro-icon ro-icon--xs"><use href="#ro-i-chevron-down"></use></svg>
+    </button>
+    <nav class="ro-header__nav" aria-label="Principal">
+      <a class="ro-nav-link" href="#" aria-current="page">Directorio</a>
+      <a class="ro-nav-link" href="#">Mis Proyectos</a>
+      <a class="ro-nav-link" href="#">Sesiones</a>
+      <a class="ro-nav-link" href="#">Explorar</a>
+    </nav>
+    <div class="ro-header__actions">
+      <button class="ro-btn-icon" title="Notificaciones" style="position:relative"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg><span class="ro-dot-badge"></span></button>
+      <button class="ro-avatar">RC</button>
+      <button class="ro-btn-icon ro-burger" aria-label="Menú" data-ro-overlay-open="mobile-nav" aria-haspopup="dialog" aria-controls="mobile-nav" aria-expanded="false"><svg class="ro-icon ro-icon--lg" aria-hidden="true"><use href="#ro-i-menu"></use></svg></button>
+    </div>
+  </header>
+
+  <!-- Drawer de navegación móvil: bajo 768px .ro-header__nav y .ro-rail--left se ocultan
+       (ver header.css y three-col.css); el burger es el único acceso a ambos en ese rango. -->
+  <div class="ro-drawer-root" id="mobile-nav" data-ro-overlay-root hidden>
+    <div class="ro-drawer-overlay" data-ro-overlay-backdrop></div>
+    <aside class="ro-drawer ro-drawer--left" role="dialog" aria-modal="true" aria-labelledby="mobile-nav-t" tabindex="-1">
+      <div class="ro-drawer__header">
+        <h2 class="ro-drawer__title" id="mobile-nav-t">Menú</h2>
+        <button class="ro-btn-icon" data-ro-overlay-close aria-label="Cerrar"><svg class="ro-icon" aria-hidden="true"><use href="#ro-i-x"></use></svg></button>
+      </div>
+      <div class="ro-drawer__body">
+        <nav aria-label="Principal">
+          <a class="ro-nav-item" href="#" aria-current="page"><span class="ro-nav-item__label">Directorio</span></a>
+          <a class="ro-nav-item" href="#"><span class="ro-nav-item__label">Mis Proyectos</span></a>
+          <a class="ro-nav-item" href="#"><span class="ro-nav-item__label">Sesiones</span></a>
+          <a class="ro-nav-item" href="#"><span class="ro-nav-item__label">Explorar</span></a>
+        </nav>
+        <div class="ro-rail__head" style="padding-inline:0.5rem">
+          <span class="ro-rail__title">Categorías</span>
+        </div>
+        <nav aria-label="Categorías">
+          <a class="ro-nav-item ro-nav-item--active" href="#">
+            <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-user"></use></svg>
+            <span class="ro-nav-item__label">Todos</span>
+          </a>
+          <a class="ro-nav-item" href="#">
+            <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-building-2"></use></svg>
+            <span class="ro-nav-item__label">Equipos</span>
+          </a>
+          <a class="ro-nav-item" href="#">
+            <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-calendar"></use></svg>
+            <span class="ro-nav-item__label">Sesiones</span>
+          </a>
+          <a class="ro-nav-item" href="#">
+            <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-settings"></use></svg>
+            <span class="ro-nav-item__label">Ajustes</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+  </div>
+
+  <div class="ro-app__body">
+    <div class="ro-layout-rail">
+      <!-- Rail único: nav lateral fija (sticky), sin rail derecho. -->
+      <aside class="ro-rail ro-rail--left" aria-label="Categorías del directorio">
+        <div class="ro-rail__head">
+          <span class="ro-rail__title">Categorías</span>
+        </div>
+        <nav class="ro-rail__scroll" style="padding:8px" aria-label="Categorías">
+          <a class="ro-nav-item ro-nav-item--active" href="#">
+            <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-user"></use></svg>
+            <span class="ro-nav-item__label">Todos</span>
+          </a>
+          <a class="ro-nav-item" href="#">
+            <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-building-2"></use></svg>
+            <span class="ro-nav-item__label">Equipos</span>
+          </a>
+          <a class="ro-nav-item" href="#">
+            <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-calendar"></use></svg>
+            <span class="ro-nav-item__label">Sesiones</span>
+          </a>
+          <a class="ro-nav-item" href="#">
+            <svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-settings"></use></svg>
+            <span class="ro-nav-item__label">Ajustes</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Contenido principal -->
+      <main class="ro-main">
+        <div class="ro-row ro-row--between ro-row--wrap">
+          <div>
+            <div class="ro-eyebrow ro-eyebrow--ink">Directorio</div>
+            <h1 class="ro-h2" style="margin-top:8px">Personas</h1>
+          </div>
+          <div class="ro-field" style="width:260px">
+            <svg class="ro-icon ro-icon--sm" style="color:var(--ro-ink-40)" aria-hidden="true"><use href="#ro-i-search"></use></svg>
+            <input class="ro-input" placeholder="Buscar…" aria-label="Buscar en el directorio">
+          </div>
+        </div>
+
+        <div class="ro-list">
+          <a class="ro-list__item" href="#">
+            <span class="ro-avatar ro-avatar--sm">MA</span>
+            <span><span class="ro-list__title">María Alonso</span><br><span class="ro-list__meta">Producto · Equipo Frontend</span></span>
+            <span class="ro-badge ro-badge--soft" style="margin-left:auto">Activa</span>
+          </a>
+          <a class="ro-list__item" href="#">
+            <span class="ro-avatar ro-avatar--sm">RC</span>
+            <span><span class="ro-list__title">Robert Castro</span><br><span class="ro-list__meta">Ingeniería · Design System</span></span>
+            <span class="ro-badge ro-badge--soft" style="margin-left:auto">Activa</span>
+          </a>
+          <a class="ro-list__item" href="#">
+            <span class="ro-avatar ro-avatar--sm">JP</span>
+            <span><span class="ro-list__title">Julián Pérez</span><br><span class="ro-list__meta">Diseño · Sistema visual</span></span>
+            <span class="ro-badge ro-badge--soft" style="margin-left:auto;color:var(--ro-ink-40)">Ausente</span>
+          </a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Inyecta el sprite de iconos (en producción puedes inline-arlo en el HTML) -->
+  <script>
+    fetch(new URL('../../dist/icons.svg', document.baseURI).href)
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (svg) { if (!svg) return; var d = document.createElement('div'); d.style.display = 'none'; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
+  </script>
+
+  <!-- Drawer de navegación móvil: mismo contrato que Modal (overlay-controller). -->
+  <script type="module">
+    import { createOverlayController } from '../../dist/primitives/overlay-controller.js';
+    var overlays = new Map();
+    document.querySelectorAll('[data-ro-overlay-root]').forEach(function (root) {
+      overlays.set(root.id, createOverlayController(root));
+    });
+    document.querySelectorAll('[data-ro-overlay-open]').forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        var overlay = overlays.get(trigger.getAttribute('data-ro-overlay-open'));
+        if (overlay) overlay.open(trigger);
+      });
+    });
+  </script>
+</body>
+</html>

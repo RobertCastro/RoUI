@@ -3,7 +3,7 @@
   display: flex; align-items: stretch; overflow: hidden;
   border: 1px solid var(--ro-ink-10); border-radius: var(--ro-radius-xl); background: var(--ro-white);
 }
-.ro-input-group:focus-within { box-shadow: var(--ro-focus-ring); border-color: var(--ro-secondary); }
+.ro-input-group:focus-within { box-shadow: var(--ro-focus-ring); border-color: var(--ro-control-focus-border); }
 .ro-input-group__addon {
   display: flex; align-items: center; padding: 0 12px; white-space: nowrap;
   background: var(--ro-ink-04); color: var(--ro-ink-60); font-size: var(--ro-text-sm);

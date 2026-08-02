@@ -1,4 +1,10 @@
-/* layouts/three-col.css — Layout de 3 columnas (rail · contenido · rail) + 2col. */
+/* layouts/three-col.css — Layouts con rail: 1 rail (izq) + contenido, y 3 columnas (rail · contenido · rail). */
+.ro-layout-rail {
+  display: grid; flex: 1; min-height: 0; grid-template-columns: 1fr;
+  transition: grid-template-columns 0.3s var(--ro-ease-out);
+}
+@media (min-width: 768px) { .ro-layout-rail { grid-template-columns: var(--ro-rail-left) minmax(0, 1fr); } }
+
 .ro-layout-3col {
   display: grid; flex: 1; min-height: 0; grid-template-columns: 1fr;
   transition: grid-template-columns 0.3s var(--ro-ease-out);

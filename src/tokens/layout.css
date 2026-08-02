@@ -5,6 +5,8 @@
   --ro-bp-sm: 640px;
   --ro-bp-xl: 1280px;
   --ro-content-max: 80rem;
+  --ro-content-narrow: 48rem;
+  --ro-content-wide: 96rem;
   --ro-header-h: 72px;
   --ro-rail-left: 280px;
   --ro-rail-right: 440px;

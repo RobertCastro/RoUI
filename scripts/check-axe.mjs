@@ -29,6 +29,7 @@ const PAGES = [
   "docs/components.html",
   "docs/templates/dashboard.html",
   "docs/templates/module-3col.html",
+  "docs/templates/sidebar.html",
 ];
 
 // Paginas generadas (F5-001/002): referencia y contratos de accesibilidad.

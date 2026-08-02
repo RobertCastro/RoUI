@@ -11,6 +11,21 @@
     .dx-box { background: var(--ro-secondary); color: var(--ro-ink); border-radius: 10px;
       padding: 16px; font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 12px; text-align: center; }
     .dx-box--alt { background: var(--ro-ink-06); }
+    /* Diagrama de composición: árbol de clases con indentación por nivel. */
+    .dx-tree { font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 13px; line-height: 1.9;
+      background: var(--ro-ink); color: var(--ro-on-dark-72); border-radius: 12px; padding: 18px 22px; overflow-x: auto; }
+    .dx-tree b { color: var(--ro-primary); font-weight: 700; }
+    .dx-tree small { color: var(--ro-on-dark-40); }
+    /* Demo de límites de .ro-container: barra de ancho completo con el borde del contenedor visible. */
+    .dx-bleed { background: var(--ro-ink-04); border-radius: 12px; overflow: hidden; }
+    .dx-bleed .ro-container { border-inline: 2px dashed var(--ro-secondary); background: var(--ro-secondary-soft); min-height: 64px;
+      display: flex; align-items: center; }
+    .dx-bleed .ro-container p { margin: 0; font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 12px; color: var(--ro-ink-60); }
+    /* Barras proporcionales para comparar anchos de variante (relativas a 96rem = wide). */
+    .dx-widthbar-row { display: flex; align-items: center; gap: 12px; margin: 10px 0; }
+    .dx-widthbar-row .dx-code { flex: none; width: 190px; }
+    .dx-widthbar { height: 22px; border-radius: 6px; background: var(--ro-secondary); }
+    .dx-widthbar-track { flex: 1; background: var(--ro-ink-04); border-radius: 6px; }
   </style>
 </head>
 <body class="ro-root">
@@ -25,6 +40,7 @@
       <div class="dx-nav-group"><h4>Componentes</h4><a href="components.html">Galería de componentes</a><a href="reference/index.html">Referencia</a></div>
       <div class="dx-nav-group"><h4>Plantillas</h4>
         <a href="templates/dashboard.html">Dashboard</a>
+        <a href="templates/sidebar.html">Panel con sidebar</a>
         <a href="templates/module-3col.html">Módulo (3 columnas)</a></div>
     </aside>
 
@@ -32,9 +48,81 @@
       <h1>Layouts &amp; Grid</h1>
       <p class="dx-lead">Sistema de filas/columnas responsive. Redimensiona la ventana para ver los breakpoints (sm 640 · md 768 · lg 1024 · xl 1280).</p>
 
+      <div class="dx-section" style="margin-top:28px">
+        <h2>Composición</h2>
+        <p>Toda página parte de <span class="dx-code">.ro-app</span> y se ramifica en dos familias que
+          <b>no se combinan</b>: páginas centradas (con <span class="dx-code">.ro-container</span>) o
+          páginas de aplicación con rail lateral (sin contenedor centrado, a ancho completo).</p>
+        <pre class="dx-tree">.ro-app
+└── .ro-app__body
+    ├── <b>.ro-container</b>          <small>páginas centradas: dashboard, formularios, listados</small>
+    │   ├── .ro-stack / .ro-row    <small>apilar o alinear en fila</small>
+    │   ├── .ro-grid / .ro-cols-N  <small>columnas explícitas</small>
+    │   ├── .ro-cards              <small>tarjetas auto-fit</small>
+    │   └── .ro-layout-2col        <small>contenido + columna lateral (no sticky)</small>
+    │
+    └── <b>.ro-layout-rail</b> / <b>.ro-layout-3col</b>   <small>apps con nav lateral fija, ancho completo</small>
+        ├── .ro-rail--left         <small>+ .ro-rail--right en 3col</small>
+        └── .ro-main</pre>
+        <p class="dx-sub">Por qué no se anidan</p>
+        <p style="color:var(--ro-ink-60);font-size:14px;max-width:70ch">
+          <span class="dx-code">.ro-layout-rail</span> y <span class="dx-code">.ro-layout-3col</span> necesitan
+          llegar al borde de la pantalla para que el rail quede pegado al viewport; un
+          <span class="dx-code">.ro-container</span> con <span class="dx-code">max-width</span> se lo impediría.
+          Elige un lado del árbol según si la página tiene navegación lateral persistente (rail) o no (container).
+        </p>
+      </div>
+
+      <div class="dx-section">
+        <h2>Container</h2>
+        <p><span class="dx-code">.ro-container</span> centra el contenido y limita su ancho máximo; el padding
+          lateral crece en cada breakpoint (1rem → 1.5rem en sm → 2rem en lg). Es la base de cualquier página
+          sin rail: dashboards, formularios, listados, páginas de contenido.</p>
+
+        <p class="dx-sub">Límite visible (borde punteado = <span class="dx-code">.ro-container</span>)</p>
+        <div class="dx-bleed">
+          <div class="ro-container">
+            <p>.ro-container — el padding lateral crece en sm/lg; redimensiona la ventana para verlo</p>
+          </div>
+        </div>
+
+        <p class="dx-sub" style="margin-top:24px">Variantes de ancho</p>
+        <p style="color:var(--ro-ink-60);font-size:14px">Mismo padding responsive, distinto <span class="dx-code">max-width</span>. Úsalas cuando el contenido pida menos o más que el ancho por defecto (80rem).</p>
+        <table class="dx-table" style="margin-top:12px">
+          <thead><tr><th>Clase</th><th>max-width</th><th>Cuándo usarla</th></tr></thead>
+          <tbody>
+            <tr><td><code>.ro-container--narrow</code></td><td>48rem (768px)</td><td>Formularios largos, artículos, contenido de lectura de una sola columna.</td></tr>
+            <tr><td><code>.ro-container</code> (base)</td><td>80rem (1280px)</td><td>Dashboards, páginas con grid de tarjetas, el caso general.</td></tr>
+            <tr><td><code>.ro-container--wide</code></td><td>96rem (1536px)</td><td>Tablas anchas, layouts densos en datos que necesitan más espacio horizontal.</td></tr>
+            <tr><td><code>.ro-container--fluid</code></td><td>ninguno (100%)</td><td>Cuando otro elemento (una tabla, un editor) ya gestiona su propio scroll horizontal.</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:14px">
+          <div class="dx-widthbar-row"><span class="dx-code">--narrow · 48rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:50%"></div></div></div>
+          <div class="dx-widthbar-row"><span class="dx-code">(base) · 80rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:83%"></div></div></div>
+          <div class="dx-widthbar-row"><span class="dx-code">--wide · 96rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:100%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Stack &amp; Row</h2>
+        <p><span class="dx-code">.ro-stack</span> apila verticalmente con espaciado consistente (
+          <span class="dx-code">--sm</span>/<span class="dx-code">--lg</span> para ajustar el gap);
+          <span class="dx-code">.ro-row</span> alinea en fila. Son los bloques más usados dentro de cualquier
+          otro layout — casi todo lo demás en esta página los usa por dentro.</p>
+        <div class="dx-demo">
+          <div class="ro-stack ro-stack--sm" style="width:160px">
+            <div class="dx-box">uno</div><div class="dx-box dx-box--alt">dos</div><div class="dx-box">tres</div>
+          </div>
+          <div class="ro-row" style="flex:1">
+            <div class="dx-box">a</div><div class="dx-box dx-box--alt">b</div><div class="dx-box">c</div>
+          </div>
+        </div>
+      </div>
+
       <div class="dx-section">
         <h2>Grid 12 columnas</h2>
-        <p><span class="dx-code">.ro-grid</span> + <span class="dx-code">.ro-col-8 / .ro-col-4</span> (en mobile pasan a 12).</p>
+        <p><span class="dx-code">.ro-grid</span> + <span class="dx-code">.ro-col-8 / .ro-col-4</span> (en mobile pasan a 12). Úsalo cuando necesitas proporciones específicas entre bloques (8/4, 6/6…), no solo N columnas iguales.</p>
         <div class="ro-grid">
           <div class="ro-col-8"><div class="dx-box">.ro-col-8</div></div>
           <div class="ro-col-4"><div class="dx-box dx-box--alt">.ro-col-4</div></div>
@@ -45,7 +133,9 @@
 
       <div class="dx-section">
         <h2>Columnas iguales · auto-fit</h2>
-        <p><span class="dx-code">.ro-cols-3</span> (1→3 cols) y <span class="dx-code">.ro-cards</span> (auto-fill).</p>
+        <p><span class="dx-code">.ro-cols-3</span> (columnas iguales, 1→3 según breakpoint) para grupos de tamaño fijo;
+          <span class="dx-code">.ro-cards</span> (auto-fill, 260px mínimo) cuando el número de tarjetas es variable
+          y quieres que se ajuste solo sin media queries.</p>
         <div class="ro-cols-3" style="margin-bottom:14px">
           <div class="dx-box">1</div><div class="dx-box">2</div><div class="dx-box">3</div>
         </div>
@@ -56,22 +146,29 @@
       </div>
 
       <div class="dx-section">
-        <h2>App shell &amp; 3 columnas</h2>
-        <p>La estructura completa (header → context-bar → grid de 3 columnas con rails sticky) vive en las plantillas:</p>
+        <h2>App shell con rail</h2>
+        <p><span class="dx-code">.ro-layout-rail</span> (un rail) y <span class="dx-code">.ro-layout-3col</span>
+          (dos rails) sustituyen a <span class="dx-code">.ro-container</span> cuando la página tiene navegación
+          lateral fija (sticky) que debe llegar al borde de la pantalla. La estructura completa vive en las plantillas:</p>
         <div class="dx-demo">
-          <a class="ro-btn ro-btn--dark" href="templates/module-3col.html">Ver plantilla módulo (3 col) →</a>
-          <a class="ro-btn ro-btn--soft" href="templates/dashboard.html">Ver plantilla dashboard →</a>
+          <a class="ro-btn ro-btn--dark" href="templates/sidebar.html">Ver plantilla · 1 sidebar →</a>
+          <a class="ro-btn ro-btn--dark" href="templates/module-3col.html">Ver plantilla · 2 sidebars →</a>
+          <a class="ro-btn ro-btn--soft" href="templates/dashboard.html">Ver plantilla dashboard (container) →</a>
         </div>
         <p class="dx-sub">Esquema</p>
         <div class="dx-demo dx-demo--col">
           <div class="dx-box" style="background:var(--ro-ink);color:#fff">header (72px)</div>
-          <div class="dx-box" style="background:var(--ro-ink);color:#fff">context-bar</div>
-          <div style="display:grid;grid-template-columns:90px 1fr 130px;gap:8px;width:100%">
+          <div style="display:grid;grid-template-columns:90px 1fr;gap:8px;width:100%">
             <div class="dx-box dx-box--alt">rail<br>280</div>
-            <div class="dx-box">contenido · 1fr</div>
+            <div class="dx-box">.ro-main</div>
+          </div>
+          <p class="ro-muted" style="font-size:13px;margin:4px 0 0">.ro-layout-rail — &lt;md: 1 columna · ≥md: rail + main</p>
+          <div style="display:grid;grid-template-columns:90px 1fr 130px;gap:8px;width:100%;margin-top:10px">
+            <div class="dx-box dx-box--alt">rail<br>280</div>
+            <div class="dx-box">.ro-main</div>
             <div class="dx-box dx-box--alt">rail<br>440</div>
           </div>
-          <p class="ro-muted" style="font-size:13px;margin:0">&lt;md: 1 columna · md–xl: rail+contenido · ≥xl: 3 columnas</p>
+          <p class="ro-muted" style="font-size:13px;margin:4px 0 0">.ro-layout-3col — &lt;md: 1 columna · md–xl: rail izq + main · ≥xl: 3 columnas</p>
         </div>
       </div>
     </main>

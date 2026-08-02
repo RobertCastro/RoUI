@@ -1,6 +1,6 @@
 # Estado del programa
 
-Ultima actualizacion: 2026-07-20
+Ultima actualizacion: 2026-08-01
 
 ## Fases
 
@@ -40,15 +40,75 @@ Ultima actualizacion: 2026-07-20
   manifiestos restantes ya estan documentados, referencia en 49/49.)
 - Aplicar la proteccion de rama `main` y revisar PRs de Dependabot (#34-#39)
   dependen del mantenedor.
-- El presupuesto de paquete esta ajustado: 59 343 / 65 536 bytes comprimidos y
-  276 048 / 278 528 bytes descomprimidos (~2.4 KiB de margen). Nuevos
+- El presupuesto de paquete esta ajustado: 59 982 / 65 536 bytes comprimidos y
+  277 472 / 278 528 bytes descomprimidos (~1 KiB de margen, tras F0-012). Nuevos
   entrypoints deben reducir contenido o justificar el incremento.
 
 ## Evidencia de la última ejecución
 
-- `npm run validate` correcto el 2026-07-20: tokens, contraste, inventario de
-  literales, build, lint, baseline, 35 pruebas Node, tarball, fixtures
-  consumidoras, referencia, ejemplos, axe sobre 26 paginas y presupuesto.
+- `npm run validate` correcto el 2026-08-01: tokens, contraste, 0 literales de
+  color (39→0, F2-006), build, lint, baseline, 35 pruebas Node, tarball,
+  fixtures consumidoras, referencia (49/49), ejemplos, axe sobre 68 paginas y
+  presupuesto.
+- F2-006 (backlog, 2026-08-01): migracion completa de literales de color (39→0)
+  via 21 tokens de alfa nuevos; se corrigio de paso un ENOENT latente en
+  build-tokens.mjs y se publica `dist/tokens.json` compacto en vez de la fuente
+  legible, recuperando margen de presupuesto.
+- F0-012 (backlog #15, 2026-08-01): guia de composicion de layouts reescrita
+  (`docs/layouts.html`), seccion Container con limites visibles y variantes
+  `--narrow/--wide/--fluid`, y `.ro-layout-rail` (patron main+1 sidebar que no
+  existia) con su plantilla `docs/templates/sidebar.html`.
+- F0-013 (2026-08-01): 3 plantillas standalone pedian a Google Fonts un
+  subconjunto de pesos incompleto (faltaba Inter 300 y JetBrains Mono 400),
+  causando sustitucion visual de peso; corregido alineando el `<link>` al
+  mismo conjunto completo usado en el resto del sitio.
+- F0-014 (2026-08-01): bug mas severo detectado tras F0-013 — las mismas 3
+  plantillas standalone (`dashboard.html`, `module-3col.html`,
+  `sidebar.html`) nunca importaban `reset.css`, por lo que `.ro-root` nunca
+  recibia `font-family: var(--ro-font-sans)` (herencia real: fuente por
+  defecto del navegador, ej. Times) ni el resto del reset (`box-sizing`,
+  `:focus-visible`, `prefers-reduced-motion`). Causa raiz: decision de
+  arquitectura deliberada de no incluir reset global en el bundle
+  (`src/index.css`), correctamente documentada para consumidores reales en
+  `getting-started.md`, pero nunca aplicada por las propias plantillas del
+  sitio de docs. Corregido agregando el `<link>` a `src/base/reset.css` en
+  las 3 paginas. Verificado en vivo (CSSOM, `getComputedStyle`, captura) y
+  via `npm run validate` (0 fallos, presupuesto sin cambios).
+- F0-015 (2026-08-01): bug funcional detectado en revision del usuario sobre
+  `docs/layouts.html` — `.ro-burger` en las 3 plantillas standalone era
+  visible en movil (bajo 768px) pero sin comportamiento; en ese mismo rango
+  `.ro-header__nav` y (en sidebar/module-3col) `.ro-rail--left` se ocultan
+  via CSS, dejando el sitio sin navegacion alcanzable. Corregido conectando
+  el burger a un drawer real via `overlay-controller` (mismo contrato que
+  Modal), con el contenido de nav principal + rail izquierdo segun cada
+  plantilla. Verificado en vivo (apertura/cierre, foco, `aria-expanded`) y
+  via `npm run validate` (0 fallos, presupuesto sin cambios). Pendiente como
+  siguiente paso: documentar el patron rail+drawer en `docs/layouts.html`.
+- F0-016 (2026-08-01): dos bugs visuales reales senalados por el usuario en
+  `sidebar.html` — (1) `.ro-nav-item:hover` tenia mas especificidad que
+  `.ro-nav-item--active`, dejando texto blanco sobre fondo casi blanco al
+  pasar el cursor sobre el item activo; (2) anillo de foco de dos colores
+  (borde amarillo `--ro-accent` + resplandor morado `--ro-focus-ring`) en
+  `.ro-field`/`.ro-input-box`/`.ro-textarea`/`.ro-select-box`. La
+  investigacion del segundo bug expuso un problema de arquitectura mas
+  amplio en el paquete publicado: `themes.css` cargaba antes que
+  `components.css` en `src/index.css`, por lo que ningun override de tema
+  sobre un token base definido en `components.css` podia aplicarse nunca
+  (confirmado que esto ya afectaba, sin reportarse, a
+  `--ro-button-primary-fg`). Corregido el orden de import y alineados los
+  tokens de foco por tema. Verificado en vivo (computed styles en tema base,
+  dark y high-contrast) y via `npm run validate` (0 fallos). Un tercer bug
+  aparecio tras este fix: el usuario reporto que el borde del input seguia
+  visible. Se confirmo un doble outline (el anillo propio de `.ro-field` mas
+  un contorno rectangular de `reset.css`) causado porque `reset.css` nunca
+  estuvo envuelto en `@layer` — al ser CSS sin capa, gana siempre sobre
+  `outline: none` de cualquier componente con anillo de foco propio (12
+  selectores), rompiendo el uso documentado en `getting-started.md` para
+  cualquier consumidor real, no solo estas plantillas. Corregido envolviendo
+  `reset.css` en `@layer roui.reset`. Verificado con foco real (clic + Tab,
+  no `.focus()` por script): el doble outline desaparece y el reset sigue
+  aplicando su outline por defecto donde no hay anillo custom. Presupuesto
+  final: 278009/278528 (~519 bytes de margen, a vigilar).
 - `@robertcastro/roui@1.1.0` esta publicado con provenance; Fases 0-6 cerradas
   y aprobadas con auditorias `phase-0-audit` a `phase-6-audit`.
 - Primitivas publicas actuales: `overlay-controller`, `disclosure-controller`,
