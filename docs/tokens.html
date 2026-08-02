@@ -86,6 +86,44 @@
           </tbody>
         </table>
       </div>
+
+      <div class="dx-section">
+        <h2>Elevación · sombras</h2>
+        <p class="dx-lead" style="font-size:14px">Escala de 4 niveles. En uso real: <code>sm</code> para realces sutiles
+          (tab activo), <code>md</code> para popovers/menús/tooltips/toasts, <code>lg</code> para Drawer,
+          <code>xl</code> para Modal y Command Palette (los overlays más altos en z-index).</p>
+        <div class="dx-demo" style="gap:40px;padding-top:8px;padding-bottom:32px">
+          <div style="text-align:center"><div style="width:72px;height:72px;background:var(--ro-white);border-radius:12px;box-shadow:var(--ro-shadow-sm)"></div><code style="display:block;margin-top:12px">--ro-shadow-sm</code></div>
+          <div style="text-align:center"><div style="width:72px;height:72px;background:var(--ro-white);border-radius:12px;box-shadow:var(--ro-shadow-md)"></div><code style="display:block;margin-top:12px">--ro-shadow-md</code></div>
+          <div style="text-align:center"><div style="width:72px;height:72px;background:var(--ro-white);border-radius:12px;box-shadow:var(--ro-shadow-lg)"></div><code style="display:block;margin-top:12px">--ro-shadow-lg</code></div>
+          <div style="text-align:center"><div style="width:72px;height:72px;background:var(--ro-white);border-radius:12px;box-shadow:var(--ro-shadow-xl)"></div><code style="display:block;margin-top:12px">--ro-shadow-xl</code></div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Densidad</h2>
+        <p class="dx-lead" style="font-size:14px"><code>[data-ro-density="compact"]</code> /
+          <code>[data-ro-density="comfortable"]</code> en cualquier contenedor ajustan el padding de
+          Button, Input y celdas de Table vía <code>--ro-btn-py/px</code>, <code>--ro-input-py/px</code> y
+          <code>--ro-table-cell-py/px</code>. Sin el atributo, el tamaño por defecto no cambia.</p>
+        <div class="dx-demo" style="align-items:flex-start">
+          <div data-ro-density="compact" style="flex:1;min-width:180px">
+            <p class="dx-sub" style="margin-top:0">compact</p>
+            <button class="ro-btn ro-btn--dark">Botón</button>
+            <input class="ro-input-box" style="margin-top:10px;width:100%" placeholder="Input" readonly>
+          </div>
+          <div style="flex:1;min-width:180px">
+            <p class="dx-sub" style="margin-top:0">(base)</p>
+            <button class="ro-btn ro-btn--dark">Botón</button>
+            <input class="ro-input-box" style="margin-top:10px;width:100%" placeholder="Input" readonly>
+          </div>
+          <div data-ro-density="comfortable" style="flex:1;min-width:180px">
+            <p class="dx-sub" style="margin-top:0">comfortable</p>
+            <button class="ro-btn ro-btn--dark">Botón</button>
+            <input class="ro-input-box" style="margin-top:10px;width:100%" placeholder="Input" readonly>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </body>

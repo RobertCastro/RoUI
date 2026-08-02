@@ -18,7 +18,8 @@
       "ro-table-wrap aporta el borde, el radio y el overflow-x del contenedor.",
       "Las cabeceras de columna usan th scope=\"col\"; si la primera celda identifica la fila, usa th scope=\"row\" en vez de td.",
       "ro-table__num alinea a la derecha y usa fuente mono, pensado para columnas numéricas.",
-      "El th de fila no hereda el padding/borde de tbody td (la hoja de estilos solo apunta a td); replica esos estilos en línea o con una clase de utilidad si lo usas."
+      "El th de fila no hereda el padding/borde de tbody td (la hoja de estilos solo apunta a td); replica esos estilos en línea o con una clase de utilidad si lo usas.",
+      "El padding de tbody td responde a [data-ro-density=\"compact\"/\"comfortable\"] en cualquier ancestro vía --ro-table-cell-py/px; sin el atributo, el tamaño no cambia."
     ]
   },
   "api": {
@@ -38,7 +39,7 @@
     "data": [
       { "name": "aria-sort", "desc": "En el th ordenable: \"none\" | \"ascending\" | \"descending\". El consumidor lo actualiza al reordenar; RoUI solo estiliza el icono según su valor." }
     ],
-    "tokens": ["--ro-radius-xl", "--ro-ink-10", "--ro-ink-06", "--ro-ink-04", "--ro-ink-02", "--ro-ink-30", "--ro-ink-50", "--ro-font-mono", "--ro-table-scroll-max"],
+    "tokens": ["--ro-radius-xl", "--ro-ink-10", "--ro-ink-06", "--ro-ink-04", "--ro-ink-02", "--ro-ink-30", "--ro-ink-50", "--ro-font-mono", "--ro-table-scroll-max", "--ro-table-cell-py", "--ro-table-cell-px"],
     "primitive": null
   },
   "a11y": {

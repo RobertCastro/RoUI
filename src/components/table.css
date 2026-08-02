@@ -12,7 +12,7 @@
   text-transform: uppercase; letter-spacing: 0.06em; color: var(--ro-ink-50);
   border-bottom: 1px solid var(--ro-ink-10);
 }
-.ro-table tbody td { padding: 14px 16px; color: var(--ro-ink); border-bottom: 1px solid var(--ro-ink-06); }
+.ro-table tbody td { padding: var(--ro-table-cell-py) var(--ro-table-cell-px); color: var(--ro-ink); border-bottom: 1px solid var(--ro-ink-06); }
 .ro-table tbody tr:last-child td { border-bottom: 0; }
 .ro-table tbody tr { transition: background var(--ro-duration) var(--ro-ease); }
 .ro-table--hover tbody tr:hover { background: var(--ro-ink-02); }

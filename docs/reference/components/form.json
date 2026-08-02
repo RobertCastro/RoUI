@@ -17,7 +17,8 @@
     "notes": [
       "El wrapper es un <div> simple: el sistema no impone una clase de contenedor, solo el orden label → control → ayuda/error.",
       "El <label> se asocia al control por for/id; nunca sustituyas el label por un placeholder.",
-      "aria-describedby conecta el control con su ro-hint y/o ro-error-text (puede listar ambos ids separados por espacio)."
+      "aria-describedby conecta el control con su ro-hint y/o ro-error-text (puede listar ambos ids separados por espacio).",
+      "El padding de ro-input-box responde a [data-ro-density=\"compact\"/\"comfortable\"] en cualquier ancestro vía --ro-input-py/px; sin el atributo, el tamaño no cambia."
     ]
   },
   "api": {
@@ -43,7 +44,9 @@
       "--ro-focus-ring",
       "--ro-error",
       "--ro-radius-xl",
-      "--ro-radius-full"
+      "--ro-radius-full",
+      "--ro-input-py",
+      "--ro-input-px"
     ],
     "primitive": null
   },

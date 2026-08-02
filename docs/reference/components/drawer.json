@@ -36,7 +36,7 @@
       { "name": "data-ro-overlay-close", "desc": "Control de cierre." },
       { "name": "data-ro-overlay-backdrop", "desc": "Fondo que cierra al hacer clic." }
     ],
-    "tokens": ["--ro-radius-2xl", "--ro-shadow-md", "--ro-z-overlay", "--ro-white"],
+    "tokens": ["--ro-radius-2xl", "--ro-shadow-lg", "--ro-z-overlay", "--ro-white"],
     "primitive": { "import": "createOverlayController", "module": "overlay-controller" }
   },
   "a11y": {

@@ -18,3 +18,16 @@
 .ro-row--between { justify-content: space-between; }
 .ro-row--wrap { flex-wrap: wrap; }
 .ro-spacer { flex: 1 1 auto; }
+
+/* Ritmo vertical entre secciones de página (análogo al padding-inline de .ro-container). */
+.ro-section { padding-block: var(--ro-space-8); }
+@media (min-width: 1024px) { .ro-section { padding-block: var(--ro-space-10); } }
+.ro-section--sm { padding-block: var(--ro-space-6); }
+@media (min-width: 1024px) { .ro-section--sm { padding-block: var(--ro-space-8); } }
+
+/* Encabezado de página: eyebrow/título a la izquierda, acciones o stats a la derecha. */
+.ro-page-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  flex-wrap: wrap; gap: var(--ro-space-4);
+}
+.ro-page-header__actions { display: flex; align-items: center; flex-wrap: wrap; gap: var(--ro-space-3); }

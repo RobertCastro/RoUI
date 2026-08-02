@@ -1,0 +1,18 @@
+/* Generado desde tokens/tokens.json. No editar a mano. */
+[data-ro-density="compact"] {
+  --ro-btn-px: 0.875rem;
+  --ro-btn-py: 0.5rem;
+  --ro-input-px: 0.75rem;
+  --ro-input-py: 0.5rem;
+  --ro-table-cell-px: 12px;
+  --ro-table-cell-py: 8px;
+}
+
+[data-ro-density="comfortable"] {
+  --ro-btn-px: 1.25rem;
+  --ro-btn-py: 0.75rem;
+  --ro-input-px: 1rem;
+  --ro-input-py: 0.75rem;
+  --ro-table-cell-px: 20px;
+  --ro-table-cell-py: 18px;
+}

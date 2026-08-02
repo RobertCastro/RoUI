@@ -40,7 +40,7 @@
       { "name": "data-ro-cmdk", "desc": "Marca el panel de diálogo como paleta de comandos para inicializar el combobox inline." },
       { "name": "data-ro-combobox-inline", "desc": "Activa el modo inline del combobox-controller (alternativa a options.inline:true)." }
     ],
-    "tokens": ["--ro-radius-2xl", "--ro-shadow-md", "--ro-z-modal", "--ro-secondary-soft", "--ro-white"],
+    "tokens": ["--ro-radius-2xl", "--ro-shadow-xl", "--ro-z-modal", "--ro-secondary-soft", "--ro-white"],
     "primitive": { "import": "createOverlayController", "module": "overlay-controller" }
   },
   "a11y": {

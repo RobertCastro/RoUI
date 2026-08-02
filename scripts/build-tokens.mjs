@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const sourcePath = resolve(root, "tokens/tokens.json");
 const source = JSON.parse(readFileSync(sourcePath, "utf8"));
-const allowedFiles = new Set(["colors", "typography", "spacing", "effects", "layout", "themes", "components"]);
+const allowedFiles = new Set(["colors", "typography", "spacing", "effects", "layout", "themes", "components", "density"]);
 const tokens = new Map();
 
 if (source.$schema !== "https://design-tokens.github.io/community-group/format/") {
@@ -34,10 +34,10 @@ collect(source);
 
 const baseVariables = new Map(
   [...tokens.values()]
-    .filter((token) => token.cssFile !== "themes")
+    .filter((token) => token.cssFile !== "themes" && token.cssFile !== "density")
     .map((token) => [token.cssVariable, token.id]),
 );
-if (baseVariables.size !== [...tokens.values()].filter((token) => token.cssFile !== "themes").length) {
+if (baseVariables.size !== [...tokens.values()].filter((token) => token.cssFile !== "themes" && token.cssFile !== "density").length) {
   throw new Error("Variables CSS duplicadas fuera de temas");
 }
 
@@ -72,7 +72,7 @@ function cssFile(file) {
   const entries = [...tokens.values()]
     .filter((token) => token.cssFile === file)
     .sort((a, b) => a.cssVariable.localeCompare(b.cssVariable));
-  if (file === "themes") {
+  if (file === "themes" || file === "density") {
     const bySelector = new Map();
     for (const entry of entries) {
       if (!entry.selector) throw new Error(`Tema sin selector: ${entry.id}`);
@@ -147,7 +147,7 @@ const tailwind = {
 };
 
 const outputs = new Map([
-  ...["colors", "typography", "spacing", "effects", "layout", "themes", "components"].map((file) => [
+  ...["colors", "typography", "spacing", "effects", "layout", "themes", "components", "density"].map((file) => [
     resolve(root, `src/tokens/${file}.css`), cssFile(file),
   ]),
   [

@@ -21,6 +21,9 @@
     .dx-bleed .ro-container { border-inline: 2px dashed var(--ro-secondary); background: var(--ro-secondary-soft); min-height: 64px;
       display: flex; align-items: center; }
     .dx-bleed .ro-container p { margin: 0; font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 12px; color: var(--ro-ink-60); }
+    /* Demo de .ro-section: mismo lenguaje visual, borde punteado en block (vertical). */
+    .dx-bleed .ro-section { border-block: 2px dashed var(--ro-secondary); background: var(--ro-secondary-soft);
+      text-align: center; font-family: var(--ro-font-mono, var(--dx-font-mono)); font-size: 12px; color: var(--ro-ink-60); }
     /* Barras proporcionales para comparar anchos de variante (relativas a 96rem = wide). */
     .dx-widthbar-row { display: flex; align-items: center; gap: 12px; margin: 10px 0; }
     .dx-widthbar-row .dx-code { flex: none; width: 190px; }
@@ -101,6 +104,53 @@
           <div class="dx-widthbar-row"><span class="dx-code">--narrow · 48rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:50%"></div></div></div>
           <div class="dx-widthbar-row"><span class="dx-code">(base) · 80rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:83%"></div></div></div>
           <div class="dx-widthbar-row"><span class="dx-code">--wide · 96rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:100%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="dx-section">
+        <h2>Section, Page-header &amp; Aspect-ratio</h2>
+        <p class="dx-sub">Section — ritmo vertical</p>
+        <p style="color:var(--ro-ink-60);font-size:14px">
+          <span class="dx-code">.ro-section</span> aporta <span class="dx-code">padding-block</span> responsive
+          (2rem → 2.5rem en lg); <span class="dx-code">--sm</span> para bloques más compactos. Reemplaza el
+          <span class="dx-code">padding-top/bottom</span> en línea que antes se repetía en cada plantilla.
+        </p>
+        <div class="dx-demo dx-demo--col">
+          <div class="dx-bleed"><div class="ro-section">.ro-section</div></div>
+          <div class="dx-bleed"><div class="ro-section ro-section--sm">.ro-section--sm</div></div>
+        </div>
+
+        <p class="dx-sub" style="margin-top:24px">Page-header — encabezado de página</p>
+        <p style="color:var(--ro-ink-60);font-size:14px">
+          <span class="dx-code">.ro-page-header</span> alinea eyebrow/título a la izquierda y acciones o stats a
+          la derecha (<span class="dx-code">flex-end</span>, con wrap en mobile). Es el mismo patrón que
+          <span class="dx-code">dashboard.html</span> y <span class="dx-code">sidebar.html</span> repetían con
+          <span class="dx-code">.ro-row--between.ro-row--wrap</span> suelto.
+        </p>
+        <div class="dx-demo">
+          <div class="ro-page-header" style="width:100%">
+            <div>
+              <div class="ro-eyebrow ro-eyebrow--ink">Directorio</div>
+              <h1 class="ro-h2" style="margin-top:8px">Personas</h1>
+            </div>
+            <div class="ro-page-header__actions">
+              <button class="ro-btn ro-btn--soft ro-btn--sm">Filtrar</button>
+              <button class="ro-btn ro-btn--dark ro-btn--sm">Agregar →</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="dx-sub" style="margin-top:24px">Aspect-ratio</p>
+        <p style="color:var(--ro-ink-60);font-size:14px">
+          <span class="dx-code">.ro-aspect-video</span> (16/9) y <span class="dx-code">.ro-aspect-square</span>
+          (1/1) para los casos comunes; <span class="dx-code">.ro-aspect</span> con
+          <span class="dx-code">--ro-aspect</span> por instancia (p. ej.
+          <span class="dx-code">style="--ro-aspect: 4/3"</span>) para cualquier otra proporción.
+        </p>
+        <div class="dx-demo">
+          <div class="dx-box dx-box--alt ro-aspect-video" style="width:220px;padding:0;display:grid;place-items:center">16/9</div>
+          <div class="dx-box dx-box--alt ro-aspect-square" style="width:120px;padding:0;display:grid;place-items:center">1/1</div>
+          <div class="dx-box dx-box--alt ro-aspect" style="width:160px;padding:0;--ro-aspect:4/3;display:grid;place-items:center">4/3</div>
         </div>
       </div>
 

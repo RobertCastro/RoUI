@@ -28,7 +28,7 @@
       { "name": "ro-input-group__btn--accent", "desc": "Botón de acción con color de marca." }
     ],
     "data": [],
-    "tokens": ["--ro-radius-xl", "--ro-focus-ring", "--ro-ink-10", "--ro-ink-04", "--ro-ink-60"],
+    "tokens": ["--ro-radius-xl", "--ro-focus-ring", "--ro-ink-10", "--ro-ink-04", "--ro-ink-60", "--ro-input-py", "--ro-input-px"],
     "primitive": null
   },
   "a11y": {

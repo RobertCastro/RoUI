@@ -1,5 +1,7 @@
 /* Generado desde tokens/tokens.json. No editar a mano. */
 :root {
+  --ro-btn-px: 1rem;
+  --ro-btn-py: 0.625rem;
   --ro-button-dark-bg: var(--ro-text);
   --ro-button-dark-fg: var(--ro-surface);
   --ro-button-ghost-border: var(--ro-border-color);
@@ -25,4 +27,8 @@
   --ro-control-switch-checked: var(--ro-text);
   --ro-control-switch-thumb: var(--ro-surface);
   --ro-control-switch-track: var(--ro-border-color);
+  --ro-input-px: 0.875rem;
+  --ro-input-py: 0.625rem;
+  --ro-table-cell-px: 16px;
+  --ro-table-cell-py: 14px;
 }

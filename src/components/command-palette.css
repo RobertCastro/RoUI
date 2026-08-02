@@ -7,7 +7,7 @@
 .ro-cmdk-overlay.is-open { display: flex; }
 .ro-cmdk {
   width: min(560px, 92vw); background: var(--ro-white);
-  border-radius: var(--ro-radius-2xl); box-shadow: var(--ro-shadow-md); overflow: hidden;
+  border-radius: var(--ro-radius-2xl); box-shadow: var(--ro-shadow-xl); overflow: hidden;
   animation: ro-pop 0.18s var(--ro-ease-out);
 }
 .ro-cmdk__search { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--ro-ink-06); }

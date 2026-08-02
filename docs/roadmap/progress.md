@@ -157,3 +157,37 @@ Ultima actualizacion: 2026-08-01
   presupuesto"). Verificado con `npm run check:examples` (130 snippets),
   `npm run check:axe` (68/68) y `npm run validate` (0 fallos). Presupuesto
   final: 60436/65536 comprimidos, 280455/294912 descomprimidos.
+- F0-018 / backlog #15 cerrado (2026-08-01): `.ro-section`/`.ro-section--sm`
+  (ritmo vertical), `.ro-page-header`/`.ro-page-header__actions` y
+  `.ro-aspect-video`/`.ro-aspect-square`/`.ro-aspect`. Container sizes ya
+  estaba resuelto por F0-012. Dos bugs reales de la demo en
+  `docs/layouts.html` detectados y corregidos durante la verificacion (no
+  del CSS shippeado): las cajas de aspect-ratio median una proporcion
+  incorrecta por el padding de `.dx-box` restando del alto calculado
+  (corregido con `padding:0`); la demo de `.ro-section` no mostraba ningun
+  efecto porque `.dx-box`'s `padding:16px` (CSS sin capa en el propio
+  `layouts.html`) le ganaba incondicionalmente a `.ro-section`'s
+  `padding-block` (capa `roui.layouts`) — mismo patron de bug que el doble
+  outline de F0-016, corregido reemplazando la demo por el lenguaje visual
+  de `.dx-bleed` ya usado en Container. Verificado con medidas reales
+  (`getBoundingClientRect`/`getComputedStyle`): ratios 16/9, 1/1 y 4/3
+  exactos; padding-top 32px/24px segun variante. `npm run check:axe` y
+  `npm run validate`: 0 fallos. Presupuesto: 61005/65536 comprimidos,
+  282751/294912 descomprimidos (~12.16 KiB de margen).
+- F0-019 / backlog #16 cerrado (2026-08-01): sombras `--ro-shadow-lg`/`--xl`
+  agregadas a la escala (antes solo sm/md, y 8 componentes distintos
+  compartian el mismo md sin jerarquia); reasignados Modal y Command Palette
+  a xl, Drawer a lg (Popover/Menu/Tooltip/Toast/Combobox se quedan en md).
+  Modo densidad nuevo: `--ro-btn-py/px`, `--ro-input-py/px`,
+  `--ro-table-cell-py/px` con valor base identico al padding hardcodeado
+  previo (sin cambio visual por defecto) y overrides
+  `[data-ro-density="compact"/"comfortable"]` (mismo patron arquitectonico
+  que `[data-ro-theme]`, construido sobre el fix de orden de import de
+  F0-016). Conectado a 3 componentes reales: Button, Input (box + group),
+  Table. `.ro-btn--sm/--lg` fijan su propio padding y no responden a
+  densidad, por diseno. Primera migracion real de la prioridad 1 de
+  `literal-policy.md`: 386 → 382 px literales (tokenizacion de 4 paddings
+  hardcodeados). Verificado con `getComputedStyle` en vivo (padding exacto
+  por nivel de densidad, sin regresion en el valor base) y
+  `npm run validate` (0 fallos). Presupuesto: 61874/65536 comprimidos,
+  286412/294912 descomprimidos (~8.3 KiB de margen).

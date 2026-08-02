@@ -17,7 +17,8 @@
     "notes": [
       "El elemento base es <button> nativo: aporta rol, foco y activación por teclado.",
       "Declara siempre type (button|submit|reset) para evitar envíos accidentales.",
-      "Un botón solo de icono necesita nombre accesible (aria-label) y el svg con aria-hidden."
+      "Un botón solo de icono necesita nombre accesible (aria-label) y el svg con aria-hidden.",
+      "El padding base (sin ro-btn--sm/--lg) responde a [data-ro-density=\"compact\"/\"comfortable\"] en cualquier ancestro vía --ro-btn-py/px; ro-btn--sm/--lg fijan su propio padding y no cambian con la densidad — son variantes de tamaño explícitas, no el tamaño por defecto."
     ]
   },
   "api": {
@@ -28,8 +29,8 @@
       { "name": "ro-btn--soft", "desc": "Fondo tenue, énfasis medio." },
       { "name": "ro-btn--subtle", "desc": "Sin fondo hasta el hover." },
       { "name": "ro-btn--ghost", "desc": "Solo borde; acción secundaria." },
-      { "name": "ro-btn--sm", "desc": "Tamaño compacto." },
-      { "name": "ro-btn--lg", "desc": "Tamaño grande." },
+      { "name": "ro-btn--sm", "desc": "Tamaño compacto (padding fijo, no depende de la densidad)." },
+      { "name": "ro-btn--lg", "desc": "Tamaño grande (padding fijo, no depende de la densidad)." },
       { "name": "ro-btn-icon", "desc": "Botón cuadrado de solo icono (requiere aria-label)." }
     ],
     "data": [],
@@ -38,7 +39,9 @@
       "--ro-button-primary-fg",
       "--ro-radius-lg",
       "--ro-focus-ring",
-      "--ro-transition"
+      "--ro-transition",
+      "--ro-btn-py",
+      "--ro-btn-px"
     ],
     "primitive": null
   },

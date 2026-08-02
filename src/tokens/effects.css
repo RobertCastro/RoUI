@@ -12,7 +12,9 @@
   --ro-icon-sm: 16px;
   --ro-icon-stroke: 2;
   --ro-icon-xs: 14px;
+  --ro-shadow-lg: 0 12px 32px rgba(23, 23, 25, 0.12);
   --ro-shadow-md: 0 6px 20px rgba(23, 23, 25, 0.08);
   --ro-shadow-sm: 0 1px 2px rgba(23, 23, 25, 0.06);
+  --ro-shadow-xl: 0 20px 48px rgba(23, 23, 25, 0.16);
   --ro-transition: all {effects.duration} {effects.ease};
 }

@@ -5,7 +5,7 @@
 }
 .ro-drawer {
   position: fixed; z-index: calc(var(--ro-z-overlay) + 1);
-  background: var(--ro-white); box-shadow: var(--ro-shadow-md);
+  background: var(--ro-white); box-shadow: var(--ro-shadow-lg);
   display: flex; flex-direction: column;
   transition: transform 0.25s var(--ro-ease-out);
 }

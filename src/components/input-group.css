@@ -10,7 +10,7 @@
 }
 .ro-input-group input, .ro-input-group select {
   flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
-  padding: 10px 12px; font-family: var(--ro-font-sans); font-size: var(--ro-text-sm); color: var(--ro-ink);
+  padding: var(--ro-input-py) var(--ro-input-px); font-family: var(--ro-font-sans); font-size: var(--ro-text-sm); color: var(--ro-ink);
 }
 .ro-input-group__btn {
   border: 0; background: var(--ro-ink); color: var(--ro-white);

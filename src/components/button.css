@@ -3,7 +3,7 @@
   display: inline-flex; align-items: center; justify-content: center;
   gap: var(--ro-space-2); white-space: nowrap; border: 0;
   border-radius: var(--ro-radius-full);
-  padding: 0.625rem 1rem;
+  padding: var(--ro-btn-py) var(--ro-btn-px);
   font-family: var(--ro-font-sans);
   font-size: var(--ro-text-sm); font-weight: var(--ro-weight-semibold);
   line-height: 1.25rem; cursor: pointer; text-decoration: none;
