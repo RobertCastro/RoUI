@@ -21,6 +21,18 @@
       <p class="dx-eyebrow">Versiones</p>
       <article class="ro-prose dx-ref-contract">
 <h1>Changelog</h1>
+<h2>1.2.0</h2>
+<h3>Minor Changes</h3>
+<ul>
+<li>d090de9: Migra los 39 literales de color restantes fuera de tokens: 21 tokens de alfa nuevos (<code>--ro-ink-{14,25,28,30,45}</code>, <code>--ro-on-dark-{06,10,18,20,30}</code>, <code>--ro-primary-{13,40}</code>, <code>--ro-secondary-40</code>, <code>--ro-{info,success,warning,error}-{08,30}</code>).</li>
+<li>d090de9: Variantes de ancho de Container (<code>--narrow</code>/<code>--wide</code>/<code>--fluid</code>), nuevo layout de un solo rail (<code>.ro-layout-rail</code>) para apps con un sidebar, ritmo vertical entre secciones (<code>.ro-section</code>/<code>--sm</code>), patrón de encabezado de página (<code>.ro-page-header</code>/<code>__actions</code>) y utilidades de aspect-ratio (<code>.ro-aspect-video</code>, <code>.ro-aspect-square</code>, <code>.ro-aspect</code>).</li>
+<li>d090de9: Escala de elevación ampliada a 4 niveles (<code>--ro-shadow-lg</code>/<code>--ro-shadow-xl</code>, aplicados a Modal, Command Palette y Drawer) y modo de densidad opt-in (<code>[data-ro-density=&quot;compact&quot;|&quot;comfortable&quot;]</code>) que ajusta el padding de Button, Input y celdas de Table vía <code>--ro-btn-py/px</code>, <code>--ro-input-py/px</code> y <code>--ro-table-cell-py/px</code>. Sin el atributo, el tamaño no cambia.</li>
+<li>d090de9: Table: cabecera ordenable (<code>.ro-table__sort</code> + contrato <code>aria-sort</code>), selección de filas (<code>.ro-table__select</code>), header sticky con scroll vertical acotado (<code>.ro-table--sticky</code> + <code>.ro-table-wrap--scroll</code>) y estado vacío integrado (<code>.ro-table__empty-cell</code>).</li>
+</ul>
+<h3>Patch Changes</h3>
+<ul>
+<li>d090de9: Corrige tres bugs reales del paquete publicado: <code>.ro-nav-item:hover</code> tenía más especificidad que <code>.ro-nav-item--active</code>, dejando texto ilegible al pasar el cursor sobre el ítem activo; <code>--ro-control-focus-border</code> no coincidía en tono con <code>--ro-focus-ring</code> (y no cambiaba correctamente por tema, por un orden de import invertido entre <code>themes.css</code> y <code>components.css</code>); <code>reset.css</code> no estaba envuelto en <code>@layer</code>, por lo que su <code>outline</code> de <code>:focus-visible</code> rompía el <code>outline: none</code> de cualquier componente con anillo de foco propio (Button, Input, Avatar, Menu, Toast, Slider, …) en cuanto se importaba junto al bundle — el uso documentado en la guía de instalación.</li>
+</ul>
 <h2>1.1.0</h2>
 <h3>Minor Changes</h3>
 <ul>
