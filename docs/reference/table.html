@@ -20,7 +20,7 @@
     <main class="dx-main">
       <p class="dx-eyebrow">Datos y estado</p>
       <div class="dx-ref-title"><h1>Table</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
-      <p class="dx-lead">Tabla de datos tabulares con cabeceras semánticas y variantes de hover/zebra.</p>
+      <p class="dx-lead">Tabla de datos tabulares con cabeceras semánticas, orden, selección de filas, header sticky y variantes de hover/zebra.</p>
 
       <section class="dx-section" aria-label="Cuándo usarlo">
         <h2>Cuándo usarlo</h2>
@@ -53,21 +53,22 @@
 
       <section class="dx-section" aria-label="API">
         <h2>API</h2>
-        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-table-wrap</code></td><td>Contenedor con borde, radio y scroll horizontal.</td></tr><tr><td><code>.ro-table</code></td><td>Tabla base con border-collapse y tipografía compacta.</td></tr><tr><td><code>.ro-table--hover</code></td><td>Resalta la fila bajo el cursor.</td></tr><tr><td><code>.ro-table--zebra</code></td><td>Alterna el fondo de filas pares.</td></tr><tr><td><code>.ro-table__num</code></td><td>Alinea a la derecha con fuente mono (columnas numéricas).</td></tr><tr><td><code>.ro-table-toolbar</code></td><td>Barra superior con título y acciones, antes de la tabla.</td></tr></tbody></table>
-<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-ink-10</code> <code>--ro-ink-06</code> <code>--ro-ink-02</code> <code>--ro-font-mono</code></p>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-table-wrap</code></td><td>Contenedor con borde, radio y scroll horizontal.</td></tr><tr><td><code>.ro-table-wrap--scroll</code></td><td>Alto acotado (480px por defecto, ajustable con --ro-table-scroll-max) + scroll vertical. Úsala junto con ro-table--sticky.</td></tr><tr><td><code>.ro-table</code></td><td>Tabla base con border-collapse y tipografía compacta.</td></tr><tr><td><code>.ro-table--hover</code></td><td>Resalta la fila bajo el cursor.</td></tr><tr><td><code>.ro-table--zebra</code></td><td>Alterna el fondo de filas pares.</td></tr><tr><td><code>.ro-table--sticky</code></td><td>Fija el thead al hacer scroll vertical (requiere ro-table-wrap--scroll).</td></tr><tr><td><code>.ro-table__num</code></td><td>Alinea a la derecha con fuente mono (columnas numéricas).</td></tr><tr><td><code>.ro-table__sort</code></td><td>Botón dentro de un th para disparar el reordenamiento; el estado visual (color del icono) sigue el aria-sort del th.</td></tr><tr><td><code>.ro-table__select</code></td><td>Celda angosta y centrada para el checkbox de selección de fila.</td></tr><tr><td><code>.ro-table__empty-cell</code></td><td>Quita el padding de la celda que envuelve a .ro-empty en el estado vacío integrado.</td></tr><tr><td><code>.ro-table-toolbar</code></td><td>Barra superior con título y acciones, antes de la tabla.</td></tr></tbody></table>
+<h3>Atributos data</h3><table class="dx-table"><thead><tr><th>Atributo</th><th>Descripción</th></tr></thead><tbody><tr><td><code>aria-sort</code></td><td>En el th ordenable: &quot;none&quot; | &quot;ascending&quot; | &quot;descending&quot;. El consumidor lo actualiza al reordenar; RoUI solo estiliza el icono según su valor.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-xl</code> <code>--ro-ink-10</code> <code>--ro-ink-06</code> <code>--ro-ink-04</code> <code>--ro-ink-02</code> <code>--ro-ink-30</code> <code>--ro-ink-50</code> <code>--ro-font-mono</code> <code>--ro-table-scroll-max</code></p>
 <p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
       </section>
 
       <section class="dx-section" aria-label="Teclado y accesibilidad">
         <h2>Teclado y accesibilidad</h2>
-        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Flechas</kbd></td><td>Con el contenedor de scroll enfocado (tabindex=0), desplaza la tabla horizontalmente cuando el contenido excede el ancho disponible.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>th scope=&quot;col&quot; en cabeceras de columna y scope=&quot;row&quot; en la celda que identifica cada fila.</li><li>Una tabla con scroll horizontal se envuelve en un contenedor con tabindex=&quot;0&quot; y aria-label descriptivo para que sea navegable por teclado.</li><li>No comuniques el estado de una celda solo con color: combina con texto o un badge con icono.</li></ul>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Flechas</kbd></td><td>Con el contenedor de scroll enfocado (tabindex=0), desplaza la tabla horizontalmente cuando el contenido excede el ancho disponible.</td></tr><tr><td><kbd>Tab</kbd></td><td>Llega al botón de orden dentro de un th ordenable y a cada checkbox de selección de fila, como cualquier control interactivo.</td></tr><tr><td><kbd>Espacio / Enter</kbd></td><td>Activa el botón de orden o marca/desmarca el checkbox enfocado.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>th scope=&quot;col&quot; en cabeceras de columna y scope=&quot;row&quot; en la celda que identifica cada fila.</li><li>Una tabla con scroll horizontal se envuelve en un contenedor con tabindex=&quot;0&quot; y aria-label descriptivo para que sea navegable por teclado.</li><li>El th ordenable lleva aria-sort (&quot;none&quot;/&quot;ascending&quot;/&quot;descending&quot;); RoUI no reordena datos ni gestiona el estado, solo aporta el contrato visual — el consumidor actualiza aria-sort y reordena las filas.</li><li>El checkbox de &quot;seleccionar todo&quot; en el header necesita un aria-label propio (&quot;Seleccionar todas las filas&quot;); cada checkbox de fila necesita el suyo (p. ej. &quot;Seleccionar fila de María A.&quot;), ya que no hay texto de celda adyacente que sirva de nombre accesible.</li><li>El estado indeterminate del checkbox &quot;seleccionar todo&quot; (selección parcial) se fija por script (element.indeterminate = true); no existe como atributo HTML.</li><li>No comuniques el estado de una celda solo con color: combina con texto o un badge con icono.</li></ul>
       </section>
 
       <section class="dx-section" aria-label="Ejemplos">
         <h2>Ejemplos</h2>
         <div class="dx-ref-example">
   <div class="dx-ref-example__head">Con barra superior y badges de estado</div>
-  <div class="dx-demo"><div class="ro-table-wrap" tabindex="0" role="region" aria-label="Tabla de builders">
+  <div class="dx-demo"><div class="ro-table-wrap" tabindex="0" role="region" aria-label="Tabla de builders con estado">
   <div class="ro-table-toolbar">
     <h3 class="ro-h3">Builders</h3>
     <span class="ro-badge ro-badge--soft">71 activos</span>
@@ -92,7 +93,7 @@
     </tbody>
   </table>
 </div></div>
-  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-table-wrap&quot; tabindex=&quot;0&quot; role=&quot;region&quot; aria-label=&quot;Tabla de builders&quot;&gt;
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-table-wrap&quot; tabindex=&quot;0&quot; role=&quot;region&quot; aria-label=&quot;Tabla de builders con estado&quot;&gt;
   &lt;div class=&quot;ro-table-toolbar&quot;&gt;
     &lt;h3 class=&quot;ro-h3&quot;&gt;Builders&lt;/h3&gt;
     &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;71 activos&lt;/span&gt;
@@ -141,13 +142,120 @@
   &lt;/table&gt;
 &lt;/div&gt;</code></pre>
 </div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Cabecera ordenable + selección de filas</div>
+  <div class="dx-demo"><div class="ro-table-wrap" tabindex="0" role="region" aria-label="Tabla de builders ordenable">
+  <table class="ro-table ro-table--hover">
+    <thead>
+      <tr>
+        <th scope="col" class="ro-table__select"><input type="checkbox" class="ro-check" aria-label="Seleccionar todas las filas"></th>
+        <th scope="col" aria-sort="ascending"><button class="ro-table__sort">Nombre <svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-arrow-up"></use></svg></button></th>
+        <th scope="col" aria-sort="none" class="ro-table__num"><button class="ro-table__sort"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-arrow-up-down"></use></svg> Módulos</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ro-table__select"><input type="checkbox" class="ro-check" checked aria-label="Seleccionar fila de María A."></td>
+        <td>María A.</td>
+        <td class="ro-table__num">12</td>
+      </tr>
+      <tr>
+        <td class="ro-table__select"><input type="checkbox" class="ro-check" aria-label="Seleccionar fila de Juan P."></td>
+        <td>Juan P.</td>
+        <td class="ro-table__num">7</td>
+      </tr>
+    </tbody>
+  </table>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-table-wrap&quot; tabindex=&quot;0&quot; role=&quot;region&quot; aria-label=&quot;Tabla de builders ordenable&quot;&gt;
+  &lt;table class=&quot;ro-table ro-table--hover&quot;&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th scope=&quot;col&quot; class=&quot;ro-table__select&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;ro-check&quot; aria-label=&quot;Seleccionar todas las filas&quot;&gt;&lt;/th&gt;
+        &lt;th scope=&quot;col&quot; aria-sort=&quot;ascending&quot;&gt;&lt;button class=&quot;ro-table__sort&quot;&gt;Nombre &lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-up&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/th&gt;
+        &lt;th scope=&quot;col&quot; aria-sort=&quot;none&quot; class=&quot;ro-table__num&quot;&gt;&lt;button class=&quot;ro-table__sort&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-up-down&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Módulos&lt;/button&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td class=&quot;ro-table__select&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;ro-check&quot; checked aria-label=&quot;Seleccionar fila de María A.&quot;&gt;&lt;/td&gt;
+        &lt;td&gt;María A.&lt;/td&gt;
+        &lt;td class=&quot;ro-table__num&quot;&gt;12&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td class=&quot;ro-table__select&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;ro-check&quot; aria-label=&quot;Seleccionar fila de Juan P.&quot;&gt;&lt;/td&gt;
+        &lt;td&gt;Juan P.&lt;/td&gt;
+        &lt;td class=&quot;ro-table__num&quot;&gt;7&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Header sticky (scroll vertical acotado)</div>
+  <div class="dx-demo"><div class="ro-table-wrap ro-table-wrap--scroll" style="--ro-table-scroll-max:180px" tabindex="0" role="region" aria-label="Tabla de módulos">
+  <table class="ro-table ro-table--sticky ro-table--zebra">
+    <thead><tr><th scope="col">Módulo</th><th scope="col" class="ro-table__num">Avance</th></tr></thead>
+    <tbody>
+      <tr><td>Estado actual de AI</td><td class="ro-table__num">100%</td></tr>
+      <tr><td>Input &gt; Proceso &gt; Output</td><td class="ro-table__num">100%</td></tr>
+      <tr><td>Technical brief</td><td class="ro-table__num">80%</td></tr>
+      <tr><td>Prompting avanzado</td><td class="ro-table__num">30%</td></tr>
+      <tr><td>Revisión de código</td><td class="ro-table__num">0%</td></tr>
+    </tbody>
+  </table>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-table-wrap ro-table-wrap--scroll&quot; style=&quot;--ro-table-scroll-max:180px&quot; tabindex=&quot;0&quot; role=&quot;region&quot; aria-label=&quot;Tabla de módulos&quot;&gt;
+  &lt;table class=&quot;ro-table ro-table--sticky ro-table--zebra&quot;&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Módulo&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;ro-table__num&quot;&gt;Avance&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Estado actual de AI&lt;/td&gt;&lt;td class=&quot;ro-table__num&quot;&gt;100%&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Input &amp;gt; Proceso &amp;gt; Output&lt;/td&gt;&lt;td class=&quot;ro-table__num&quot;&gt;100%&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Technical brief&lt;/td&gt;&lt;td class=&quot;ro-table__num&quot;&gt;80%&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Prompting avanzado&lt;/td&gt;&lt;td class=&quot;ro-table__num&quot;&gt;30%&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Revisión de código&lt;/td&gt;&lt;td class=&quot;ro-table__num&quot;&gt;0%&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Estado vacío integrado</div>
+  <div class="dx-demo"><div class="ro-table-wrap">
+  <table class="ro-table">
+    <thead><tr><th scope="col">Nombre</th><th scope="col">Proyecto</th><th scope="col" class="ro-table__num">Módulos</th></tr></thead>
+    <tbody>
+      <tr><td class="ro-table__empty-cell" colspan="3">
+        <div class="ro-empty">
+          <div class="ro-empty__icon"><svg class="ro-icon ro-icon--lg" aria-hidden="true"><use href="#ro-i-search"></use></svg></div>
+          <div class="ro-empty__title">Sin resultados</div>
+          <div class="ro-empty__text">No encontramos builders que coincidan con tu búsqueda.</div>
+        </div>
+      </td></tr>
+    </tbody>
+  </table>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-table-wrap&quot;&gt;
+  &lt;table class=&quot;ro-table&quot;&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Nombre&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Proyecto&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;ro-table__num&quot;&gt;Módulos&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td class=&quot;ro-table__empty-cell&quot; colspan=&quot;3&quot;&gt;
+        &lt;div class=&quot;ro-empty&quot;&gt;
+          &lt;div class=&quot;ro-empty__icon&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--lg&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-search&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/div&gt;
+          &lt;div class=&quot;ro-empty__title&quot;&gt;Sin resultados&lt;/div&gt;
+          &lt;div class=&quot;ro-empty__text&quot;&gt;No encontramos builders que coincidan con tu búsqueda.&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+</div>
       </section>
 
       <section class="dx-section" aria-label="Buenas prácticas">
         <h2>Do / Don't</h2>
         <div class="dx-ref-dodont">
-          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa th scope=&quot;col&quot; / scope=&quot;row&quot; en vez de td para cabeceras.</li><li>Envuelve tablas anchas en un contenedor con overflow y tabindex=0 + aria-label.</li><li>Alinea columnas numéricas a la derecha con ro-table__num.</li></ul></div>
-          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No comuniques estado solo con color: acompaña el badge de texto e icono/dot.</li><li>No uses una tabla para maquetar contenido que no es tabular.</li><li>No quites el borde inferior de todas las filas sin otra forma de separación visual.</li></ul></div>
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa th scope=&quot;col&quot; / scope=&quot;row&quot; en vez de td para cabeceras.</li><li>Envuelve tablas anchas en un contenedor con overflow y tabindex=0 + aria-label.</li><li>Alinea columnas numéricas a la derecha con ro-table__num.</li><li>Da un aria-label propio a cada checkbox de selección (el del header y el de cada fila).</li><li>Actualiza aria-sort en el th al reordenar — es lo único que hace visible el estado de orden.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No comuniques estado solo con color: acompaña el badge de texto e icono/dot.</li><li>No uses una tabla para maquetar contenido que no es tabular.</li><li>No quites el borde inferior de todas las filas sin otra forma de separación visual.</li><li>No uses ro-table--sticky sin ro-table-wrap--scroll (el header no tiene contra qué quedar fijo).</li></ul></div>
         </div>
       </section>
 

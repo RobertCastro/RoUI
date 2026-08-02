@@ -24,3 +24,22 @@
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: 14px 16px; border-bottom: 1px solid var(--ro-ink-06);
 }
+
+/* Cabecera ordenable (aria-sort en el th; el reordenamiento lo hace el consumidor) */
+.ro-table__sort {
+  display: inline-flex; align-items: center; gap: 0.375rem;
+  background: transparent; border: 0; padding: 0; margin: 0;
+  font: inherit; color: inherit; cursor: pointer;
+}
+.ro-table__sort .ro-icon { color: var(--ro-ink-30); }
+.ro-table__sort:hover .ro-icon { color: var(--ro-ink-50); }
+th[aria-sort="ascending"] .ro-table__sort .ro-icon,
+th[aria-sort="descending"] .ro-table__sort .ro-icon { color: var(--ro-ink); }
+
+.ro-table__select { width: 2.5rem; text-align: center; }
+
+/* Usar junto a .ro-table-wrap--scroll */
+.ro-table-wrap--scroll { --ro-table-scroll-max: 480px; max-height: var(--ro-table-scroll-max); overflow-y: auto; }
+.ro-table--sticky thead th { position: sticky; top: 0; z-index: 1; background: var(--ro-white); }
+
+.ro-table td.ro-table__empty-cell { padding: 0; }

@@ -140,3 +140,20 @@ Ultima actualizacion: 2026-08-01
   no opcional)" en la seccion "App shell con rail", con enlace al contrato
   `accessibility/dialog-drawer.html`. Verificado con `npm run check:axe`
   (0 violaciones) y `npm run validate` (0 fallos, presupuesto sin cambios).
+- F0-017 / backlog #13 (2026-08-01): "Tabla avanzada" — header sortable
+  (`.ro-table__sort`, contrato `aria-sort`, sin JS propio), seleccion de
+  filas (`.ro-table__select` + `.ro-check` ya existente), sticky header
+  (`.ro-table--sticky` + `.ro-table-wrap--scroll`) y estado vacio integrado
+  (`.ro-table__empty-cell` envolviendo a `.ro-empty`). La alineacion
+  numerica ya estaba resuelta de antes. Detectada y corregida una violacion
+  real de axe (`landmark-unique`, 3 ejemplos con el mismo aria-label) y un
+  falso positivo de baseline (`--ro-table-scroll-max` sin definir, resuelto
+  dandole un valor por defecto en su propia regla). Presupuesto de paquete
+  no alcanzaba (~1.9 KB por encima del margen de 519 bytes que quedaba);
+  consultado el usuario, se subio `limits.unpacked` en
+  `check-package-size.mjs` de 272KB a 288KB con justificacion documentada
+  en `docs/tasks/F0-017-tabla-avanzada.md` (la gobernanza de Fase 2 preve
+  este caso: "reducir contenido o justificar una modificacion del
+  presupuesto"). Verificado con `npm run check:examples` (130 snippets),
+  `npm run check:axe` (68/68) y `npm run validate` (0 fallos). Presupuesto
+  final: 60436/65536 comprimidos, 280455/294912 descomprimidos.

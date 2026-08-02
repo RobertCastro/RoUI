@@ -3,7 +3,7 @@
   "title": "Table",
   "group": "Datos y estado",
   "maturity": "experimental",
-  "summary": "Tabla de datos tabulares con cabeceras semánticas y variantes de hover/zebra.",
+  "summary": "Tabla de datos tabulares con cabeceras semánticas, orden, selección de filas, header sticky y variantes de hover/zebra.",
   "whenToUse": [
     "Mostrar filas de datos comparables con las mismas columnas (usuarios, transacciones, registros).",
     "Cuando el usuario necesita escanear y comparar valores por columna."
@@ -24,47 +24,74 @@
   "api": {
     "classes": [
       { "name": "ro-table-wrap", "desc": "Contenedor con borde, radio y scroll horizontal." },
+      { "name": "ro-table-wrap--scroll", "desc": "Alto acotado (480px por defecto, ajustable con --ro-table-scroll-max) + scroll vertical. Úsala junto con ro-table--sticky." },
       { "name": "ro-table", "desc": "Tabla base con border-collapse y tipografía compacta." },
       { "name": "ro-table--hover", "desc": "Resalta la fila bajo el cursor." },
       { "name": "ro-table--zebra", "desc": "Alterna el fondo de filas pares." },
+      { "name": "ro-table--sticky", "desc": "Fija el thead al hacer scroll vertical (requiere ro-table-wrap--scroll)." },
       { "name": "ro-table__num", "desc": "Alinea a la derecha con fuente mono (columnas numéricas)." },
+      { "name": "ro-table__sort", "desc": "Botón dentro de un th para disparar el reordenamiento; el estado visual (color del icono) sigue el aria-sort del th." },
+      { "name": "ro-table__select", "desc": "Celda angosta y centrada para el checkbox de selección de fila." },
+      { "name": "ro-table__empty-cell", "desc": "Quita el padding de la celda que envuelve a .ro-empty en el estado vacío integrado." },
       { "name": "ro-table-toolbar", "desc": "Barra superior con título y acciones, antes de la tabla." }
     ],
-    "data": [],
-    "tokens": ["--ro-radius-xl", "--ro-ink-10", "--ro-ink-06", "--ro-ink-02", "--ro-font-mono"],
+    "data": [
+      { "name": "aria-sort", "desc": "En el th ordenable: \"none\" | \"ascending\" | \"descending\". El consumidor lo actualiza al reordenar; RoUI solo estiliza el icono según su valor." }
+    ],
+    "tokens": ["--ro-radius-xl", "--ro-ink-10", "--ro-ink-06", "--ro-ink-04", "--ro-ink-02", "--ro-ink-30", "--ro-ink-50", "--ro-font-mono", "--ro-table-scroll-max"],
     "primitive": null
   },
   "a11y": {
     "contract": "accessibility/content-and-status.md",
     "keyboard": [
-      ["Flechas", "Con el contenedor de scroll enfocado (tabindex=0), desplaza la tabla horizontalmente cuando el contenido excede el ancho disponible."]
+      ["Flechas", "Con el contenedor de scroll enfocado (tabindex=0), desplaza la tabla horizontalmente cuando el contenido excede el ancho disponible."],
+      ["Tab", "Llega al botón de orden dentro de un th ordenable y a cada checkbox de selección de fila, como cualquier control interactivo."],
+      ["Espacio / Enter", "Activa el botón de orden o marca/desmarca el checkbox enfocado."]
     ],
     "notes": [
       "th scope=\"col\" en cabeceras de columna y scope=\"row\" en la celda que identifica cada fila.",
       "Una tabla con scroll horizontal se envuelve en un contenedor con tabindex=\"0\" y aria-label descriptivo para que sea navegable por teclado.",
+      "El th ordenable lleva aria-sort (\"none\"/\"ascending\"/\"descending\"); RoUI no reordena datos ni gestiona el estado, solo aporta el contrato visual — el consumidor actualiza aria-sort y reordena las filas.",
+      "El checkbox de \"seleccionar todo\" en el header necesita un aria-label propio (\"Seleccionar todas las filas\"); cada checkbox de fila necesita el suyo (p. ej. \"Seleccionar fila de María A.\"), ya que no hay texto de celda adyacente que sirva de nombre accesible.",
+      "El estado indeterminate del checkbox \"seleccionar todo\" (selección parcial) se fija por script (element.indeterminate = true); no existe como atributo HTML.",
       "No comuniques el estado de una celda solo con color: combina con texto o un badge con icono."
     ]
   },
   "examples": [
     {
       "title": "Con barra superior y badges de estado",
-      "html": "<div class=\"ro-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Tabla de builders\">\n  <div class=\"ro-table-toolbar\">\n    <h3 class=\"ro-h3\">Builders</h3>\n    <span class=\"ro-badge ro-badge--soft\">71 activos</span>\n  </div>\n  <table class=\"ro-table ro-table--hover\">\n    <thead>\n      <tr><th scope=\"col\">Nombre</th><th scope=\"col\">Proyecto</th><th scope=\"col\">Estado</th><th scope=\"col\" class=\"ro-table__num\">Módulos</th></tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><div class=\"ro-row\" style=\"gap:10px\"><span class=\"ro-avatar ro-avatar--sm\">MA</span> María A.</div></td>\n        <td class=\"ro-muted\">Edición con IA</td>\n        <td><span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--success\"></span> Activo</span></td>\n        <td class=\"ro-table__num\">12</td>\n      </tr>\n      <tr>\n        <td><div class=\"ro-row\" style=\"gap:10px\"><span class=\"ro-avatar ro-avatar--sm\">JP</span> Juan P.</div></td>\n        <td class=\"ro-muted\">Gestión de leads</td>\n        <td><span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--warning\"></span> Pausa</span></td>\n        <td class=\"ro-table__num\">7</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+      "html": "<div class=\"ro-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Tabla de builders con estado\">\n  <div class=\"ro-table-toolbar\">\n    <h3 class=\"ro-h3\">Builders</h3>\n    <span class=\"ro-badge ro-badge--soft\">71 activos</span>\n  </div>\n  <table class=\"ro-table ro-table--hover\">\n    <thead>\n      <tr><th scope=\"col\">Nombre</th><th scope=\"col\">Proyecto</th><th scope=\"col\">Estado</th><th scope=\"col\" class=\"ro-table__num\">Módulos</th></tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td><div class=\"ro-row\" style=\"gap:10px\"><span class=\"ro-avatar ro-avatar--sm\">MA</span> María A.</div></td>\n        <td class=\"ro-muted\">Edición con IA</td>\n        <td><span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--success\"></span> Activo</span></td>\n        <td class=\"ro-table__num\">12</td>\n      </tr>\n      <tr>\n        <td><div class=\"ro-row\" style=\"gap:10px\"><span class=\"ro-avatar ro-avatar--sm\">JP</span> Juan P.</div></td>\n        <td class=\"ro-muted\">Gestión de leads</td>\n        <td><span class=\"ro-badge ro-badge--soft\"><span class=\"ro-dot ro-dot--warning\"></span> Pausa</span></td>\n        <td class=\"ro-table__num\">7</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
     },
     {
       "title": "Variante zebra",
       "html": "<div class=\"ro-table-wrap\">\n  <table class=\"ro-table ro-table--zebra\">\n    <thead><tr><th scope=\"col\">Módulo</th><th scope=\"col\" class=\"ro-table__num\">Avance</th></tr></thead>\n    <tbody>\n      <tr><td>Technical brief</td><td class=\"ro-table__num\">100%</td></tr>\n      <tr><td>Prompting avanzado</td><td class=\"ro-table__num\">66%</td></tr>\n      <tr><td>Revisión de código</td><td class=\"ro-table__num\">0%</td></tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "title": "Cabecera ordenable + selección de filas",
+      "html": "<div class=\"ro-table-wrap\" tabindex=\"0\" role=\"region\" aria-label=\"Tabla de builders ordenable\">\n  <table class=\"ro-table ro-table--hover\">\n    <thead>\n      <tr>\n        <th scope=\"col\" class=\"ro-table__select\"><input type=\"checkbox\" class=\"ro-check\" aria-label=\"Seleccionar todas las filas\"></th>\n        <th scope=\"col\" aria-sort=\"ascending\"><button class=\"ro-table__sort\">Nombre <svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-up\"></use></svg></button></th>\n        <th scope=\"col\" aria-sort=\"none\" class=\"ro-table__num\"><button class=\"ro-table__sort\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-up-down\"></use></svg> Módulos</button></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td class=\"ro-table__select\"><input type=\"checkbox\" class=\"ro-check\" checked aria-label=\"Seleccionar fila de María A.\"></td>\n        <td>María A.</td>\n        <td class=\"ro-table__num\">12</td>\n      </tr>\n      <tr>\n        <td class=\"ro-table__select\"><input type=\"checkbox\" class=\"ro-check\" aria-label=\"Seleccionar fila de Juan P.\"></td>\n        <td>Juan P.</td>\n        <td class=\"ro-table__num\">7</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "title": "Header sticky (scroll vertical acotado)",
+      "html": "<div class=\"ro-table-wrap ro-table-wrap--scroll\" style=\"--ro-table-scroll-max:180px\" tabindex=\"0\" role=\"region\" aria-label=\"Tabla de módulos\">\n  <table class=\"ro-table ro-table--sticky ro-table--zebra\">\n    <thead><tr><th scope=\"col\">Módulo</th><th scope=\"col\" class=\"ro-table__num\">Avance</th></tr></thead>\n    <tbody>\n      <tr><td>Estado actual de AI</td><td class=\"ro-table__num\">100%</td></tr>\n      <tr><td>Input &gt; Proceso &gt; Output</td><td class=\"ro-table__num\">100%</td></tr>\n      <tr><td>Technical brief</td><td class=\"ro-table__num\">80%</td></tr>\n      <tr><td>Prompting avanzado</td><td class=\"ro-table__num\">30%</td></tr>\n      <tr><td>Revisión de código</td><td class=\"ro-table__num\">0%</td></tr>\n    </tbody>\n  </table>\n</div>"
+    },
+    {
+      "title": "Estado vacío integrado",
+      "html": "<div class=\"ro-table-wrap\">\n  <table class=\"ro-table\">\n    <thead><tr><th scope=\"col\">Nombre</th><th scope=\"col\">Proyecto</th><th scope=\"col\" class=\"ro-table__num\">Módulos</th></tr></thead>\n    <tbody>\n      <tr><td class=\"ro-table__empty-cell\" colspan=\"3\">\n        <div class=\"ro-empty\">\n          <div class=\"ro-empty__icon\"><svg class=\"ro-icon ro-icon--lg\" aria-hidden=\"true\"><use href=\"#ro-i-search\"></use></svg></div>\n          <div class=\"ro-empty__title\">Sin resultados</div>\n          <div class=\"ro-empty__text\">No encontramos builders que coincidan con tu búsqueda.</div>\n        </div>\n      </td></tr>\n    </tbody>\n  </table>\n</div>"
     }
   ],
   "dodont": {
     "do": [
       "Usa th scope=\"col\" / scope=\"row\" en vez de td para cabeceras.",
       "Envuelve tablas anchas en un contenedor con overflow y tabindex=0 + aria-label.",
-      "Alinea columnas numéricas a la derecha con ro-table__num."
+      "Alinea columnas numéricas a la derecha con ro-table__num.",
+      "Da un aria-label propio a cada checkbox de selección (el del header y el de cada fila).",
+      "Actualiza aria-sort en el th al reordenar — es lo único que hace visible el estado de orden."
     ],
     "dont": [
       "No comuniques estado solo con color: acompaña el badge de texto e icono/dot.",
       "No uses una tabla para maquetar contenido que no es tabular.",
-      "No quites el borde inferior de todas las filas sin otra forma de separación visual."
+      "No quites el borde inferior de todas las filas sin otra forma de separación visual.",
+      "No uses ro-table--sticky sin ro-table-wrap--scroll (el header no tiene contra qué quedar fijo)."
     ]
   },
   "related": ["badge", "pagination", "toolbar", "empty"]
