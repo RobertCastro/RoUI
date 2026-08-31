@@ -28,11 +28,12 @@ jobs:
         run: npm ci
       - name: Compilar bundle
         run: npm run build
-      - name: Ensamblar sitio (docs + dist + redirect)
+      - name: Ensamblar sitio (docs + dist + src + redirect)
         run: |
           mkdir -p _site
           cp -r docs _site/docs
           cp -r dist _site/dist
+          cp -r src _site/src
           printf '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=./docs/">' > _site/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
