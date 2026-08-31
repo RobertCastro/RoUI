@@ -24,6 +24,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Instalar dependencias
+        run: npm ci
       - name: Compilar bundle
         run: npm run build
       - name: Ensamblar sitio (docs + dist + redirect)
