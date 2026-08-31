@@ -213,3 +213,124 @@ Ultima actualizacion: 2026-08-02
   Verificado con `npm run check:axe` (68/68) y `npm run validate` (0
   fallos, incluye el nuevo `check:format`). Presupuesto: 61936/65536
   comprimidos, 287082/294912 descomprimidos (~7.6 KiB de margen).
+- `@robertcastro/roui@1.2.0` publicado en npm (2026-08-02): el lote F0-012 a
+  F0-020 vía Changesets. El workflow `release.yml` fallo dos veces antes de
+  publicar con exito — primero por falta del secret `NPM_TOKEN` (caia a
+  OIDC trusted publishing, no configurado, 404), luego por 2FA (403,
+  necesitaba un token con "bypass 2FA"). Resuelto con un Granular Access
+  Token scopeado solo a `@robertcastro/roui`. `publish.yml` (workflow
+  manual alternativo) tiene un bug real conocido y no corregido: no corre
+  `npm ci` antes de `npm publish`, por lo que el script `prepare` falla con
+  `ERR_MODULE_NOT_FOUND` (esbuild) — no usar ese workflow, usar `release.yml`.
+- F0-021 (2026-08-02): componente nuevo `offer-card` (tarjeta de oferta
+  generica), extraido midiendo estilos computados reales de dos cards de
+  `app.lab10.ai` (sin copiar HTML/CSS fuente ni contenido de negocio real).
+  Los colores medidos coincidieron exactamente con tokens ya existentes
+  (ink, secondary, primary, on-dark-72, radius-banner) — cero tokens nuevos
+  de color. Agregado `.ro-badge--accent` (reutilizable) + `.ro-offer-card`
+  con variantes `--dark`/`--accent`. Primera version (`course-card`)
+  corregida tras revision del usuario: texto no era 100% lorem ipsum
+  (aparecian palabras reales como "clases"/"inscritos"), el icono quedaba
+  apilado sobre el titulo en vez de junto a el, y el componente en si
+  (nombre de clase, titulo, icono book-open) exponia el dominio de origen
+  (cursos) — renombrado completo a `offer-card`, icono generico (`star`),
+  layout con icono+titulo en la misma fila, y el texto de ambos ejemplos
+  100% lorem ipsum (unica excepcion: `$199`, simbolo+numero, no es
+  palabra). Verificado con `getComputedStyle` en vivo (icono/titulo en la
+  misma fila; sin palabras prohibidas en el texto completo de la tarjeta),
+  `npm run check:examples`, `npm run check:axe` (69/69) y `npm run
+validate` (0 fallos). Presupuesto no alcanzaba en la primera version
+  (parte CSS nuevo, parte crecimiento real de CHANGELOG.md tras 1.2.0);
+  subido `limits.unpacked` de 288KB a 296KB, mismo patron ya acordado en
+  F0-017. Presupuesto final tras el rediseño: 63896/65536 comprimidos,
+  296447/303104 descomprimidos (~6.5 KiB de margen).
+- F0-022 (2026-08-02): componente nuevo `event-card` (fila de evento: bloque
+  de fecha + insignias + titulo + meta), extraido midiendo estilos
+  computados reales de `app.lab10.ai/eventos`. Lecciones de F0-021
+  aplicadas desde el primer intento: texto 100% lorem ipsum en badges,
+  meta, CTA y abreviatura de mes (sin "En vivo"/"Pasado"/"Ver
+  detalles"/"Lab10"/abreviaturas reales), sin necesidad de una segunda
+  correccion. El listado real codifica el bloque de fecha por color segun
+  categoria (rosa/verde, ninguno existente en la paleta de RoUI); en vez de
+  inventar tokens nuevos se uso `--ro-secondary-soft` (ya existente) como
+  default, documentado como sobreescribible por instancia. Verificado con
+  `getComputedStyle` en vivo (radio 18px, bloque de fecha 58x58/radio15px,
+  fuente monoespaciada de meta — todo exacto) y un filtro de palabras
+  prohibidas sobre el texto completo: sin coincidencias. `npm run
+check:examples`, `npm run check:axe` (70/70) y `npm run validate` (0
+  fallos). Presupuesto correcto sin subir el limite: 64518/65536
+  comprimidos (~1 KiB de margen), 300417/303104 descomprimidos (~2.6 KiB de
+  margen) — **margen ajustado, el proximo componente probablemente
+  requiera subir el limite o recortar contenido existente**.
+  Correccion post-entrega: el usuario pregunto si la tarjeta ocupa el 100%
+  del contenedor — no lo hacia (los ejemplos tenian `max-width:520px` a
+  mano). Se saco ese max-width y se agrego `width: 100%` +
+  `box-sizing: border-box` explicito a `.ro-event-card` (necesario porque
+  box-sizing:border-box solo es global si el consumidor importa
+  `reset.css`, que es opt-in). Verificado en vivo: las filas dentro de
+  `.ro-stack` miden exactamente el mismo ancho que el stack.
+- F0-023 (2026-08-02): auditoria de contenedores/colores/espacios en 4
+  paginas reales de `app.lab10.ai` (`/eventos`, modulo de curso, `/aprende`,
+  `/mi-perfil`), pedida por el usuario para encontrar mejoras aplicables a
+  RoUI. 6 hallazgos, todos aplicados: (1) `--ro-content-md` (896px) nuevo +
+  `--ro-content-wide` recalibrado de 1536 a 1440px; (2) `--ro-radius-card-lg`
+  (20px) nuevo, migrado el literal de event-card; (3) `--ro-secondary-featured`
+  (alias de `--ro-secondary-ring`, ya existia pero sin uso semantico de
+  fondo) + `--ro-secondary-strong` (#7c6fd6) nuevo; (4) padding de
+  `.ro-context-bar` en `≥640px` corregido de 32px a 24px — **el reporte
+  inicial se equivoco** comparando contra el valor base/mobile en vez del
+  breakpoint correcto, corregido en la direccion real tras revisar el CSS
+  completo; (5) `.ro-rail--panel` nuevo (rail flotante con gutter/radio/borde
+  completo, en vez de edge-to-edge) aplicado al rail derecho real de
+  `module-3col.html`; (6) `--ro-shadow-hero` + `.ro-card-dark--hero` nuevos,
+  aplicados al placeholder de video real de la misma plantilla. Verificado
+  con `getComputedStyle` en vivo (los 6 tokens + ambas clases nuevas
+  coinciden exacto con lo medido) y `npm run validate` (0 fallos, 70/70 axe).
+  Presupuesto no alcanzaba tras los 6 cambios; subido `limits.packed` 64→68KB
+  y `limits.unpacked` 296→312KB, mismo patron ya acordado. Final: 65185/69632
+  comprimidos (~4.3 KiB margen), 302932/319488 descomprimidos (~16.2 KiB
+  margen).
+- F0-024 (2026-08-02): `docs/templates/dashboard.html` genericado — todo el
+  texto de dominio (cohortes, modulos, semanas de curso, "aprender") se
+  reemplazo por un tema neutro de gestion de proyectos, reusando exactamente
+  los mismos componentes; de paso se corrigio "Semana 9 de 4" (sin sentido
+  gramatical en el original) por "9 de 12 tareas completadas". Ademas, dos
+  migraciones estructurales que F0-018 dejo explicitamente pendientes en
+  esta plantilla ("candidato futuro"): el padding en linea de `.ro-container`
+  reemplazado por `.ro-section`, y el header de pagina con estilo en linea
+  reemplazado por `.ro-page-header`. Bug real encontrado y corregido durante
+  la limpieza: el callout inferior usaba solo `.ro-callout--soft` (modificador)
+  sin la clase base `.ro-callout`, que es quien aporta layout/radio/padding
+  reales — un estilo en linea (`border-radius:16px;padding:18px`) estaba
+  compensando mal esa clase base faltante, no era redundante como parecia a
+  primera vista. Corregido agregando `.ro-callout` y envolviendo el
+  eyebrow+texto en un `<div>` propio (patron real ya documentado en
+  `docs/components.html`). Verificado con `getComputedStyle` en vivo
+  (`.ro-section` padding 32px, `.ro-page-header` flex correcto, callout
+  `border-radius:22px`/`padding:20px 28px` tras el fix), grep sin
+  coincidencias de dominio fuera de "En curso" (estado generico, no
+  relacionado), `npm run check:axe` y `npm run validate` (0 fallos,
+  presupuesto sin cambios — `docs/` no se empaqueta). Fuera de alcance,
+  no tocado: `docs/components.html` tiene su propio ejemplo de `.ro-callout`
+  con la palabra "cohort", pendiente si se pide una pasada similar.
+- F0-025 (2026-08-02): el usuario reporto iconos invisibles (bell + menu del
+  rail) en `sidebar.html`. Investigacion en vivo (getComputedStyle, captura a
+  escala nativa) no encontro bug de CSS/markup — confirmado con el usuario
+  que abria el archivo con doble clic (file://), no via servidor. Causa raiz:
+  las 3 plantillas standalone (dashboard, module-3col, sidebar) inyectaban el
+  sprite de iconos via `fetch('../../dist/icons.svg')`, y fetch() a un
+  recurso file:// es bloqueado por CORS — el sprite nunca se inyecta y TODOS
+  los `<use href="#ro-i-...">` de la pagina quedan sin simbolo, exactamente
+  el sintoma reportado. Corregido en las 3 plantillas (alcance confirmado con
+  el usuario): sprite inline estatico con solo los simbolos que cada pagina
+  usa (10/12/9 respectivamente), sin fetch ni dependencia de red — funciona
+  igual con doble clic que servido por HTTP. Ademas, agregado un patron real
+  de subitems en el menu de `sidebar.html` ("Equipos" con "Frontend"/
+  "Diseño"), reutilizando `disclosure-controller` (el mismo primitivo de
+  Accordion) en vez de inventar un mecanismo nuevo — persistente, con
+  aria-expanded/aria-controls correctos, aplicado en las dos copias del menu
+  (drawer movil + rail). CSS nuevo en `sidebar.css`: `.ro-nav-item__chevron`,
+  `.ro-nav-item__sub`, `.ro-nav-item--sub`. Verificado con
+  `getComputedStyle` en vivo, toggle real del disclosure, `npm run check:axe`
+  y `npm run validate` (0 fallos, presupuesto sin cambios — `docs/` no se
+  empaqueta).

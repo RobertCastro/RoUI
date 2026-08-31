@@ -11,6 +11,26 @@
 </head>
 <body class="ro-app ro-root">
 
+  <!-- Sprite de iconos inline (no vía fetch): así la plantilla funciona igual
+       abierta con doble clic (file://) que servida por HTTP — fetch() a un
+       archivo local falla por CORS y deja todos los iconos invisibles.
+       Iconos usados en esta página, copiados de dist/icons.svg; si agregás
+       un ro-i-* nuevo acá, copiá también su <symbol>. -->
+  <svg aria-hidden="true" style="display:none">
+    <symbol id="ro-i-bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol>
+    <symbol id="ro-i-book-open" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+    <symbol id="ro-i-building-2" viewBox="0 0 24 24"><path d="M10 12h4"/><path d="M10 8h4"/><path d="M14 21v-3a2 2 0 0 0-4 0v3"/><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/></symbol>
+    <symbol id="ro-i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="ro-i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="ro-i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="ro-i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="ro-i-external-link" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+    <symbol id="ro-i-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol>
+    <symbol id="ro-i-share-2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></symbol>
+    <symbol id="ro-i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></symbol>
+    <symbol id="ro-i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  </svg>
+
   <header class="ro-header">
     <a class="ro-header__brand"><strong style="font-size:20px">RoUI</strong></a>
     <button class="ro-switcher">
@@ -24,7 +44,7 @@
       <a class="ro-nav-link" href="#" aria-current="page">Directorio</a>
       <a class="ro-nav-link" href="#">Explorar</a>
     </nav>
-    <div class="ro-header__title ro-mono">El Arte del "Technical Brief"</div>
+    <div class="ro-header__title ro-mono">Definir el brief técnico</div>
     <div class="ro-header__actions">
       <button class="ro-btn-icon" title="Tus herramientas"><svg class="ro-icon"><use href="#ro-i-wrench"></use></svg></button>
       <button class="ro-btn-icon" title="Notificaciones" style="position:relative"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-bell"></use></svg><span class="ro-dot-badge"></span></button>
@@ -52,57 +72,57 @@
           <a class="ro-nav-item" href="#"><span class="ro-nav-item__label">Explorar</span></a>
         </nav>
         <div class="ro-rail__head" style="padding-inline:0.5rem">
-          <span class="ro-rail__title">Clases del curso</span>
+          <span class="ro-rail__title">Tareas del proyecto</span>
         </div>
-        <nav aria-label="Clases del curso">
-          <button class="ro-accordion-head"><span class="ro-nav-item__meta">Sem 01</span>
-            <strong style="font-size:14px">Semana 1</strong><span class="ro-spacer"></span><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-down"></use></svg></button>
+        <nav aria-label="Tareas del proyecto">
+          <button class="ro-accordion-head"><span class="ro-nav-item__meta">Fase 01</span>
+            <strong style="font-size:14px">Fase 1</strong><span class="ro-spacer"></span><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-down"></use></svg></button>
           <a class="ro-nav-item"><span class="ro-step ro-step--done"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span>
-            <span><span class="ro-nav-item__meta">Mód 00 · Video</span><br><span class="ro-nav-item__label">Estado actual de AI</span></span></a>
+            <span><span class="ro-nav-item__meta">Tarea 0 · Documento</span><br><span class="ro-nav-item__label">Diagnóstico inicial</span></span></a>
           <a class="ro-nav-item"><span class="ro-step ro-step--done"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span>
-            <span><span class="ro-nav-item__meta">Mód 01 · Video</span><br><span class="ro-nav-item__label">Input &gt; Proceso &gt; Output</span></span></a>
+            <span><span class="ro-nav-item__meta">Tarea 1 · Documento</span><br><span class="ro-nav-item__label">Definir alcance y objetivos</span></span></a>
           <a class="ro-nav-item ro-nav-item--active"><span class="ro-step ro-step--current"></span>
-            <span><span class="ro-nav-item__meta">Mód 04 · Video</span><br><span class="ro-nav-item__label">El Arte del "Technical Brief"</span></span></a>
+            <span><span class="ro-nav-item__meta">Tarea 4 · Documento</span><br><span class="ro-nav-item__label">Definir el brief técnico</span></span></a>
           <a class="ro-nav-item"><span class="ro-step"></span>
-            <span><span class="ro-nav-item__meta">Mód 05 · Video</span><br><span class="ro-nav-item__label">Desarrollo Guiado por Especificación</span></span></a>
+            <span><span class="ro-nav-item__meta">Tarea 5 · Documento</span><br><span class="ro-nav-item__label">Revisión con el equipo</span></span></a>
         </nav>
       </div>
     </aside>
   </div>
 
   <div class="ro-app__body">
-    <div class="ro-context-bar" role="region" aria-label="Contexto del módulo">
-      <div class="ro-breadcrumb"><b>Frontend · 4 semanas</b> › Semana 1 › <b>Mód. 04</b></div>
+    <div class="ro-context-bar" role="region" aria-label="Contexto de la tarea">
+      <div class="ro-breadcrumb"><b>Proyecto Alfa</b> › Fase 1 › <b>Tarea 4</b></div>
       <span class="ro-status-chip"><span class="ro-dot"></span> En curso</span>
       <div class="ro-spacer ro-hide-mobile"></div>
-      <button class="ro-btn ro-btn--primary ro-btn--sm">Siguiente módulo →</button>
+      <button class="ro-btn ro-btn--primary ro-btn--sm">Siguiente tarea →</button>
     </div>
 
     <div class="ro-layout-3col">
       <!-- COLUMNA 1 -->
-      <aside class="ro-rail ro-rail--left" aria-label="Clases del curso">
+      <aside class="ro-rail ro-rail--left" aria-label="Tareas del proyecto">
         <div class="ro-rail__head">
           <div class="ro-row ro-row--between">
-            <span class="ro-rail__title">Clases del curso</span>
+            <span class="ro-rail__title">Tareas del proyecto</span>
             <button class="ro-btn-icon ro-avatar--sm" aria-label="Colapsar panel"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
           </div>
           <div class="ro-row" style="margin-top:12px;gap:10px">
             <strong style="font-size:22px">8%</strong>
             <div style="flex:1"><div class="ro-progress"><div class="ro-progress__fill" style="width:8%"></div></div></div>
           </div>
-          <div class="ro-muted" style="font-size:12px;margin-top:6px">3/40 módulos</div>
+          <div class="ro-muted" style="font-size:12px;margin-top:6px">3/12 tareas</div>
         </div>
         <div class="ro-rail__scroll" style="padding:8px">
-          <button class="ro-accordion-head"><span class="ro-nav-item__meta">Sem 01</span>
-            <strong style="font-size:14px">Semana 1</strong><span class="ro-spacer"></span><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-down"></use></svg></button>
+          <button class="ro-accordion-head"><span class="ro-nav-item__meta">Fase 01</span>
+            <strong style="font-size:14px">Fase 1</strong><span class="ro-spacer"></span><svg class="ro-icon ro-icon--sm"><use href="#ro-i-chevron-down"></use></svg></button>
           <a class="ro-nav-item"><span class="ro-step ro-step--done"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span>
-            <span><span class="ro-nav-item__meta">Mód 00 · Video</span><br><span class="ro-nav-item__label">Estado actual de AI</span></span></a>
+            <span><span class="ro-nav-item__meta">Tarea 0 · Documento</span><br><span class="ro-nav-item__label">Diagnóstico inicial</span></span></a>
           <a class="ro-nav-item"><span class="ro-step ro-step--done"><svg class="ro-icon ro-icon--xs"><use href="#ro-i-check"></use></svg></span>
-            <span><span class="ro-nav-item__meta">Mód 01 · Video</span><br><span class="ro-nav-item__label">Input &gt; Proceso &gt; Output</span></span></a>
+            <span><span class="ro-nav-item__meta">Tarea 1 · Documento</span><br><span class="ro-nav-item__label">Definir alcance y objetivos</span></span></a>
           <a class="ro-nav-item ro-nav-item--active"><span class="ro-step ro-step--current"></span>
-            <span><span class="ro-nav-item__meta">Mód 04 · Video</span><br><span class="ro-nav-item__label">El Arte del "Technical Brief"</span></span></a>
+            <span><span class="ro-nav-item__meta">Tarea 4 · Documento</span><br><span class="ro-nav-item__label">Definir el brief técnico</span></span></a>
           <a class="ro-nav-item"><span class="ro-step"></span>
-            <span><span class="ro-nav-item__meta">Mód 05 · Video</span><br><span class="ro-nav-item__label">Desarrollo Guiado por Especificación</span></span></a>
+            <span><span class="ro-nav-item__meta">Tarea 5 · Documento</span><br><span class="ro-nav-item__label">Revisión con el equipo</span></span></a>
         </div>
       </aside>
 
@@ -110,57 +130,55 @@
       <main class="ro-main">
         <div class="ro-row ro-row--between ro-row--wrap">
           <div>
-            <div class="ro-eyebrow ro-eyebrow--ink">Módulo 04 · 6 min de video</div>
-            <h1 class="ro-h2" style="margin-top:8px">El Arte del "Technical Brief"</h1>
+            <div class="ro-eyebrow ro-eyebrow--ink">Tarea 4 · Documento</div>
+            <h1 class="ro-h2" style="margin-top:8px">Definir el brief técnico</h1>
           </div>
           <div class="ro-row">
-            <button class="ro-btn-icon ro-btn-icon--outline" aria-label="Módulo anterior"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
-            <button class="ro-btn-icon" style="background:var(--ro-ink);color:#fff" aria-label="Módulo siguiente"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg></button>
+            <button class="ro-btn-icon ro-btn-icon--outline" aria-label="Tarea anterior"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-left"></use></svg></button>
+            <button class="ro-btn-icon" style="background:var(--ro-ink);color:#fff" aria-label="Tarea siguiente"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-chevron-right"></use></svg></button>
             <button class="ro-btn ro-btn--soft ro-btn--sm"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-share-2"></use></svg> Compartir</button>
           </div>
         </div>
-        <div class="ro-card-dark" style="padding:0;aspect-ratio:16/9;display:grid;place-items:center">
-          <span style="opacity:.5;display:inline-flex;align-items:center;gap:8px"><svg class="ro-icon ro-icon--lg"><use href="#ro-i-play"></use></svg> Reproductor de video</span>
-        </div>
         <div class="ro-row" style="gap:18px">
-          <span class="ro-badge ro-badge--soft">6 min de video</span>
+          <span class="ro-badge ro-badge--soft">Documento</span>
           <span class="ro-badge ro-badge--soft">1 recurso</span>
           <span class="ro-badge ro-badge--soft">0 checkpoints</span>
         </div>
-        <p class="ro-body" style="max-width:65ch">
-          Aprendes que la calidad del código generado por IA depende de la calidad del contexto que le das.
-          El foco está en crear un Technical Brief claro, con contexto, requerimientos, restricciones y Definition of Done.
-        </p>
+        <div class="ro-card ro-card--plain">
+          <div class="ro-prose">
+            <h2>Definir el brief técnico</h2>
+            <p>Un brief claro reduce el retrabajo. Antes de avanzar, define <strong>contexto</strong>, alcance y el criterio de aceptación junto con el equipo.</p>
+            <ul>
+              <li>Contexto del problema</li>
+              <li>Requerimientos y restricciones</li>
+              <li>Criterio de aceptación</li>
+            </ul>
+            <blockquote>Un buen contexto reduce el retrabajo.</blockquote>
+          </div>
+        </div>
       </main>
 
       <!-- COLUMNA 3 -->
-      <aside class="ro-rail ro-rail--right" aria-label="Recursos del módulo">
-        <div class="ro-tabs" role="tablist" aria-label="Panel del módulo">
-          <button class="ro-tab" role="tab" aria-selected="true">Temario</button>
+      <aside class="ro-rail ro-rail--right ro-rail--panel" aria-label="Recursos de la tarea">
+        <div class="ro-tabs" role="tablist" aria-label="Panel de la tarea">
+          <button class="ro-tab" role="tab" aria-selected="true">Detalle</button>
           <button class="ro-tab" role="tab" aria-selected="false" tabindex="-1">Discusión <span class="ro-tab__count">0</span></button>
           <button class="ro-tab" role="tab" aria-selected="false" tabindex="-1">Checkpoints <span class="ro-tab__count">0</span></button>
         </div>
         <div class="ro-rail__scroll" style="padding:20px">
           <h2 class="ro-h3">Recursos</h2>
-          <a class="ro-resource"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-external-link"></use></svg> 10X Builder Code · GitHub</a>
-          <div class="ro-eyebrow ro-eyebrow--ink" style="margin-top:20px">Módulo 04 · Temario</div>
+          <a class="ro-resource"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-external-link"></use></svg> Plantilla de brief · Documento</a>
+          <div class="ro-eyebrow ro-eyebrow--ink" style="margin-top:20px">Tarea 4 · Detalle</div>
           <p class="ro-body" style="margin-top:10px">
-            Muchas veces el problema está en el contexto que recibe el modelo.
-            <strong>Contexto de calidad = código de calidad.</strong>
+            Muchas veces el problema está en la falta de contexto compartido.
+            <strong>Contexto de calidad = mejores resultados.</strong>
           </p>
         </div>
       </aside>
     </div>
   </div>
 
-  <button class="ro-btn ro-btn--soft ro-fab"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-book-open"></use></svg> Temario</button>
-
-  <!-- Inyecta el sprite de iconos (en producción puedes inline-arlo en el HTML) -->
-  <script>
-    fetch(new URL('../../dist/icons.svg', document.baseURI).href)
-      .then(function (r) { return r.ok ? r.text() : ''; })
-      .then(function (svg) { if (!svg) return; var d = document.createElement('div'); d.style.display = 'none'; d.innerHTML = svg; document.body.insertBefore(d, document.body.firstChild); });
-  </script>
+  <button class="ro-btn ro-btn--soft ro-fab"><svg class="ro-icon ro-icon--sm"><use href="#ro-i-book-open"></use></svg> Detalle</button>
 
   <!-- Drawer de navegación móvil: mismo contrato que Modal (overlay-controller). -->
   <script type="module">

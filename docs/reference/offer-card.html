@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Offer card — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/sidebar.html">Panel con sidebar</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Marketing y comercial</p>
+      <div class="dx-ref-title"><h1>Offer card</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Tarjeta de oferta con header de color, icono junto al título, insignias, y footer con precio/estado y llamada a la acción.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Catálogos o grillas de ofertas (planes, productos, promociones) donde cada tarjeta lleva a una página de detalle o conversión.</li><li>Cuando necesitas distinguir visualmente el estado de la oferta (destacada, ya adquirida) sin depender solo del texto.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para una lista de resultados simple sin footer de precio/estado propio: usa List group.</li><li>Para una tarjeta genérica de contenido sin CTA de conversión: usa Card.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;a class=&quot;ro-offer-card ro-offer-card--dark&quot; href=&quot;#&quot;&gt;
+  &lt;div class=&quot;ro-offer-card__header&quot;&gt;
+    &lt;div class=&quot;ro-offer-card__top&quot;&gt;
+      &lt;span class=&quot;ro-offer-card__icon&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+      &lt;h3 class=&quot;ro-offer-card__title&quot;&gt;Lorem Ipsum Dolor&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-offer-card__badges&quot;&gt;&lt;span class=&quot;ro-badge ro-badge--accent&quot;&gt;Lorem&lt;/span&gt;&lt;/div&gt;
+    &lt;p class=&quot;ro-offer-card__meta&quot;&gt;Lorem ipsum dolor sit amet&lt;/p&gt;
+    &lt;p class=&quot;ro-offer-card__desc&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.&lt;/p&gt;
+    &lt;p class=&quot;ro-offer-card__highlights&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Lorem ipsum dolor sit&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-offer-card__footer&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;ro-offer-card__price&quot;&gt;$199&lt;/div&gt;
+      &lt;div class=&quot;ro-offer-card__note&quot;&gt;Lorem ipsum&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;ro-offer-card__cta&quot;&gt;Lorem &lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Toda la tarjeta es un único &lt;a&gt;: el nombre accesible sale del texto visible (título + meta + descripción + precio + CTA), no hace falta aria-label si ese texto ya identifica la oferta con claridad.</li><li>ro-offer-card__top pone el icono junto al título en la misma fila; las insignias van debajo, en su propia fila.</li><li>ro-offer-card__header lleva el color (--dark o --accent); ro-offer-card__footer siempre queda en blanco — la separación visual es el cambio de fondo, no un borde.</li><li>ro-offer-card__icon cambia de color según la variante (amarillo sobre --dark, oscuro sobre --accent) para mantener contraste.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-offer-card</code></td><td>Contenedor: borde, radio banner (22px), overflow hidden, fondo blanco.</td></tr><tr><td><code>.ro-offer-card--dark</code></td><td>Header con fondo --ro-ink y texto claro.</td></tr><tr><td><code>.ro-offer-card--accent</code></td><td>Header con fondo --ro-secondary y texto oscuro.</td></tr><tr><td><code>.ro-offer-card__header</code></td><td>Bloque superior coloreado: icono+título, insignias, meta, descripción, línea de highlights.</td></tr><tr><td><code>.ro-offer-card__top</code></td><td>Fila que alinea el icono junto al título.</td></tr><tr><td><code>.ro-offer-card__icon</code></td><td>Contenedor cuadrado redondeado (34px) para un icono o logo.</td></tr><tr><td><code>.ro-offer-card__title</code></td><td>Título de la oferta, en la misma fila que el icono.</td></tr><tr><td><code>.ro-offer-card__badges</code></td><td>Fila de insignias (usa ro-badge/ro-badge--accent/ro-badge--soft).</td></tr><tr><td><code>.ro-offer-card__meta</code></td><td>Línea secundaria corta (categoría, vigencia, lo que aplique).</td></tr><tr><td><code>.ro-offer-card__desc</code></td><td>Descripción corta (2-3 líneas).</td></tr><tr><td><code>.ro-offer-card__highlights</code></td><td>Línea con icono de check + texto (beneficios, alcance de la oferta).</td></tr><tr><td><code>.ro-offer-card__footer</code></td><td>Bloque inferior blanco: precio/estado + CTA, siempre al fondo (margin-top: auto).</td></tr><tr><td><code>.ro-offer-card__price</code></td><td>Precio o valor destacado.</td></tr><tr><td><code>.ro-offer-card__price--active</code></td><td>Variante del precio para el estado &quot;ya adquirida&quot;: icono + texto en --ro-success en vez de precio.</td></tr><tr><td><code>.ro-offer-card__note</code></td><td>Texto secundario bajo el precio.</td></tr><tr><td><code>.ro-offer-card__cta</code></td><td>Texto de la llamada a la acción, con icono de flecha.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-radius-banner</code> <code>--ro-ink</code> <code>--ro-ink-10</code> <code>--ro-ink-50</code> <code>--ro-ink-70</code> <code>--ro-white</code> <code>--ro-primary</code> <code>--ro-secondary</code> <code>--ro-success</code> <code>--ro-on-dark-72</code> <code>--ro-shadow-sm</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab</kbd></td><td>Enfoca la tarjeta completa (es un único enlace).</td></tr><tr><td><kbd>Enter</kbd></td><td>Navega al destino del enlace.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Es un enlace, no un botón: usa &lt;a href&gt; con un destino real, nunca un &lt;div&gt; con onClick.</li><li>No dupliques el enlace dentro de la tarjeta (por ejemplo un botón adicional) — un enlace de card con controles interactivos anidados rompe el modelo de un único destino por tarjeta.</li><li>El estado &quot;activo/adquirido&quot; (ro-offer-card__price--active) no debe comunicarse solo con el color verde: siempre acompaña el icono de check con texto.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Header oscuro, precio</div>
+  <div class="dx-demo"><a class="ro-offer-card ro-offer-card--dark" href="#" style="max-width:300px">
+  <div class="ro-offer-card__header">
+    <div class="ro-offer-card__top">
+      <span class="ro-offer-card__icon"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-star"></use></svg></span>
+      <h3 class="ro-offer-card__title">Lorem Ipsum Dolor</h3>
+    </div>
+    <div class="ro-offer-card__badges">
+      <span class="ro-badge ro-badge--accent">Lorem</span>
+      <span class="ro-badge ro-badge--accent">Ipsum</span>
+    </div>
+    <p class="ro-offer-card__meta">Lorem ipsum dolor sit amet</p>
+    <p class="ro-offer-card__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+    <p class="ro-offer-card__highlights"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-check"></use></svg> Lorem ipsum dolor sit</p>
+  </div>
+  <div class="ro-offer-card__footer">
+    <div>
+      <div class="ro-offer-card__price">$199</div>
+      <div class="ro-offer-card__note">Lorem ipsum</div>
+    </div>
+    <span class="ro-offer-card__cta">Lorem <svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-arrow-right"></use></svg></span>
+  </div>
+</a></div>
+  <pre class="dx-ref-code"><code>&lt;a class=&quot;ro-offer-card ro-offer-card--dark&quot; href=&quot;#&quot; style=&quot;max-width:300px&quot;&gt;
+  &lt;div class=&quot;ro-offer-card__header&quot;&gt;
+    &lt;div class=&quot;ro-offer-card__top&quot;&gt;
+      &lt;span class=&quot;ro-offer-card__icon&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+      &lt;h3 class=&quot;ro-offer-card__title&quot;&gt;Lorem Ipsum Dolor&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-offer-card__badges&quot;&gt;
+      &lt;span class=&quot;ro-badge ro-badge--accent&quot;&gt;Lorem&lt;/span&gt;
+      &lt;span class=&quot;ro-badge ro-badge--accent&quot;&gt;Ipsum&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;ro-offer-card__meta&quot;&gt;Lorem ipsum dolor sit amet&lt;/p&gt;
+    &lt;p class=&quot;ro-offer-card__desc&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.&lt;/p&gt;
+    &lt;p class=&quot;ro-offer-card__highlights&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Lorem ipsum dolor sit&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-offer-card__footer&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;ro-offer-card__price&quot;&gt;$199&lt;/div&gt;
+      &lt;div class=&quot;ro-offer-card__note&quot;&gt;Lorem ipsum&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;ro-offer-card__cta&quot;&gt;Lorem &lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Header --accent, estado activo</div>
+  <div class="dx-demo"><a class="ro-offer-card ro-offer-card--accent" href="#" style="max-width:300px">
+  <div class="ro-offer-card__header">
+    <div class="ro-offer-card__top">
+      <span class="ro-offer-card__icon"><svg class="ro-icon ro-icon--sm" aria-hidden="true"><use href="#ro-i-star"></use></svg></span>
+      <h3 class="ro-offer-card__title">Ipsum Dolor Sit</h3>
+    </div>
+    <div class="ro-offer-card__badges">
+      <span class="ro-badge ro-badge--accent">Dolor</span>
+      <span class="ro-badge ro-badge--soft">Sit</span>
+    </div>
+    <p class="ro-offer-card__meta">Consectetur adipiscing elit</p>
+    <p class="ro-offer-card__desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+    <p class="ro-offer-card__highlights"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-check"></use></svg> Consectetur adipiscing</p>
+  </div>
+  <div class="ro-offer-card__footer">
+    <div>
+      <div class="ro-offer-card__price ro-offer-card__price--active"><svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-check"></use></svg> Ipsum</div>
+      <div class="ro-offer-card__note">Dolor sit amet</div>
+    </div>
+    <span class="ro-offer-card__cta">Ipsum <svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-arrow-right"></use></svg></span>
+  </div>
+</a></div>
+  <pre class="dx-ref-code"><code>&lt;a class=&quot;ro-offer-card ro-offer-card--accent&quot; href=&quot;#&quot; style=&quot;max-width:300px&quot;&gt;
+  &lt;div class=&quot;ro-offer-card__header&quot;&gt;
+    &lt;div class=&quot;ro-offer-card__top&quot;&gt;
+      &lt;span class=&quot;ro-offer-card__icon&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--sm&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-star&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+      &lt;h3 class=&quot;ro-offer-card__title&quot;&gt;Ipsum Dolor Sit&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-offer-card__badges&quot;&gt;
+      &lt;span class=&quot;ro-badge ro-badge--accent&quot;&gt;Dolor&lt;/span&gt;
+      &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Sit&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;ro-offer-card__meta&quot;&gt;Consectetur adipiscing elit&lt;/p&gt;
+    &lt;p class=&quot;ro-offer-card__desc&quot;&gt;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.&lt;/p&gt;
+    &lt;p class=&quot;ro-offer-card__highlights&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Consectetur adipiscing&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-offer-card__footer&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;ro-offer-card__price ro-offer-card__price--active&quot;&gt;&lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt; Ipsum&lt;/div&gt;
+      &lt;div class=&quot;ro-offer-card__note&quot;&gt;Dolor sit amet&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;span class=&quot;ro-offer-card__cta&quot;&gt;Ipsum &lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Usa --dark o --accent según el contraste que necesites con el resto de la grilla; ambos ya garantizan contraste AA sobre su propio texto.</li><li>Combina ro-badge--accent (énfasis) con ro-badge--soft (secundario) en vez de dos insignias con el mismo peso visual.</li><li>Mantén la descripción a 2-3 líneas: es un resumen, no el contenido completo de la oferta.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No pongas un botón u otro enlace dentro de la tarjeta — rompe la semántica de &quot;toda la tarjeta es un enlace&quot;.</li><li>No uses el color como único indicador del estado activo: acompaña siempre con icono + texto.</li><li>No omitas ro-offer-card__footer: sin precio/estado ni CTA, usa Card en vez de Offer card.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="badge.html">badge</a> · <a href="card.html">card</a> · <a href="list-group.html">list-group</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

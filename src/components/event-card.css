@@ -1,0 +1,22 @@
+/* components/event-card.css — Fila de evento: bloque de fecha + insignias, título y CTA. */
+.ro-event-card {
+  display: flex; align-items: flex-start; gap: var(--ro-space-4); width: 100%;
+  border: 1px solid var(--ro-ink-10); border-radius: var(--ro-radius-card-lg);
+  background: var(--ro-white); padding: 1rem; text-decoration: none; color: inherit;
+  transition: var(--ro-transition); box-sizing: border-box;
+}
+.ro-event-card:hover { box-shadow: var(--ro-shadow-sm); }
+
+.ro-event-card__date {
+  display: grid; place-items: center; flex-shrink: 0; text-align: center;
+  width: 58px; height: 58px; border-radius: 15px;
+  background: var(--ro-secondary-soft); color: var(--ro-ink);
+}
+.ro-event-card__day { font-size: 1.25rem; font-weight: var(--ro-weight-bold); line-height: 1.1; }
+.ro-event-card__month { font-size: 0.5625rem; text-transform: uppercase; letter-spacing: 0.03em; }
+
+.ro-event-card__body { min-width: 0; }
+.ro-event-card__badges { display: flex; flex-wrap: wrap; gap: var(--ro-space-2); }
+.ro-event-card__title { margin-top: var(--ro-space-2); font-size: 1.0625rem; font-weight: var(--ro-weight-bold); }
+.ro-event-card__meta { margin-top: 2px; font-family: var(--ro-font-mono); font-size: 0.71875rem; color: var(--ro-ink-55); }
+.ro-event-card__cta { margin-top: var(--ro-space-2); display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.65625rem; color: var(--ro-ink-45); }

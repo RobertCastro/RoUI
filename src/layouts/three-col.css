@@ -23,6 +23,13 @@
 @media (min-width: 768px)  { .ro-rail--left  { display: flex; } }
 @media (min-width: 1280px) { .ro-rail--right { display: flex; } }
 
+/* Variante "panel": no llega al borde del viewport — queda flotando con gutter,
+   borde completo y radio, en vez de pegada con borde de un solo lado. */
+.ro-rail--panel {
+  height: calc(100vh - var(--ro-header-h) - 2rem); margin: 1rem;
+  border: 1px solid var(--ro-ink-10); border-radius: var(--ro-radius-2xl);
+}
+
 .ro-main { display: flex; flex-direction: column; gap: var(--ro-space-4); min-width: 0;
   padding: 1rem; padding-bottom: 6rem; }
 @media (min-width: 640px)  { .ro-main { padding: 1.25rem 1.5rem; } }

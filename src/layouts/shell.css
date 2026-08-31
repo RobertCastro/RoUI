@@ -8,6 +8,7 @@
 @media (min-width: 1024px) { .ro-container { padding-inline: 2rem; } }
 /* Variantes de ancho: mismo padding responsive, distinto max-width. */
 .ro-container--narrow { max-width: var(--ro-content-narrow); }
+.ro-container--md     { max-width: var(--ro-content-md); }
 .ro-container--wide   { max-width: var(--ro-content-wide); }
 .ro-container--fluid  { max-width: none; }
 

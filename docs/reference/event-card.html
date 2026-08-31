@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event card — RoUI DS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../dist/roui.css">
+  <link rel="stylesheet" href="../assets/docs.css">
+</head>
+<body class="ro-root">
+  <div class="dx">
+    <aside class="dx-nav">
+  <div class="dx-brand">RoUI<span>.</span></div>
+  <div class="dx-nav-group"><h4>Inicio</h4><a href="../index.html">Introducción</a></div>
+  <div class="dx-nav-group"><h4>Fundamentos</h4><a href="../tokens.html">Tokens / Variables</a><a href="../icons.html">Iconos</a><a href="../layouts.html">Layouts &amp; Grid</a></div>
+  <div class="dx-nav-group"><h4>Componentes</h4><a href="../components.html">Galería</a><a href="../reference/index.html" class="is-active">Referencia</a></div>
+  <div class="dx-nav-group"><h4>Plantillas</h4><a href="../templates/dashboard.html">Dashboard</a><a href="../templates/sidebar.html">Panel con sidebar</a><a href="../templates/module-3col.html">Módulo (3 columnas)</a></div>
+</aside>
+    <main class="dx-main">
+      <p class="dx-eyebrow">Marketing y comercial</p>
+      <div class="dx-ref-title"><h1>Event card</h1><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span></div>
+      <p class="dx-lead">Fila de evento: bloque de fecha destacado, insignias de estado, título y meta con CTA de detalle.</p>
+
+      <section class="dx-section" aria-label="Cuándo usarlo">
+        <h2>Cuándo usarlo</h2>
+        <ul class="dx-ref-list"><li>Listados de eventos, sesiones o webinars donde cada fila lleva a una página de detalle.</li><li>Cuando el día es el dato que más rápido necesita escanear quien lee la lista.</li></ul>
+        <h3>Cuándo no</h3><ul class="dx-ref-list"><li>Para una grilla de tarjetas con precio/CTA de conversión: usa Offer card.</li><li>Para una lista simple sin bloque de fecha propio: usa List group.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Anatomía">
+        <h2>Anatomía</h2>
+        <pre class="dx-ref-code"><code>&lt;a class=&quot;ro-event-card&quot; href=&quot;#&quot;&gt;
+  &lt;div class=&quot;ro-event-card__date&quot;&gt;
+    &lt;div class=&quot;ro-event-card__day&quot;&gt;27&lt;/div&gt;
+    &lt;div class=&quot;ro-event-card__month&quot;&gt;Lor&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-event-card__body&quot;&gt;
+    &lt;div class=&quot;ro-event-card__badges&quot;&gt;
+      &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Lorem&lt;/span&gt;
+      &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Ipsum&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;h3 class=&quot;ro-event-card__title&quot;&gt;Lorem ipsum dolor sit amet consectetur.&lt;/h3&gt;
+    &lt;p class=&quot;ro-event-card__meta&quot;&gt;Lorem ipsum · Dolor sit · Amet&lt;/p&gt;
+    &lt;span class=&quot;ro-event-card__cta&quot;&gt;Lorem ipsum &lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+        <ul class="dx-ref-list"><li>Toda la fila es un único &lt;a&gt;: el nombre accesible sale del texto visible (fecha + insignias + título + meta + CTA).</li><li>ro-event-card__date es un bloque de tamaño fijo (58×58) para que la fecha quede alineada entre todas las filas de una lista, sin importar el largo del título.</li><li>ro-event-card__meta usa la fuente monoespaciada del sistema (--ro-font-mono), igual que otras líneas de metadatos cortos en RoUI.</li><li>El color del bloque de fecha (--ro-secondary-soft) es el valor por defecto; si necesitas codificar categorías por color, sobreescribe background/color de ro-event-card__date por instancia.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="API">
+        <h2>API</h2>
+        <h3>Clases</h3><table class="dx-table"><thead><tr><th>Clase</th><th>Descripción</th></tr></thead><tbody><tr><td><code>.ro-event-card</code></td><td>Contenedor: fila flex, borde, radio 18px, fondo blanco.</td></tr><tr><td><code>.ro-event-card__date</code></td><td>Bloque de fecha de tamaño fijo (58×58), fondo --ro-secondary-soft.</td></tr><tr><td><code>.ro-event-card__day</code></td><td>Número de día, grande y en negrita.</td></tr><tr><td><code>.ro-event-card__month</code></td><td>Abreviatura corta en mayúsculas bajo el día.</td></tr><tr><td><code>.ro-event-card__body</code></td><td>Columna con insignias, título, meta y CTA.</td></tr><tr><td><code>.ro-event-card__badges</code></td><td>Fila de insignias de estado (usa ro-badge--soft).</td></tr><tr><td><code>.ro-event-card__title</code></td><td>Título del evento.</td></tr><tr><td><code>.ro-event-card__meta</code></td><td>Línea de metadatos (fecha completa, hora, lugar) en fuente monoespaciada.</td></tr><tr><td><code>.ro-event-card__cta</code></td><td>Texto de la llamada a la acción, con icono de flecha.</td></tr></tbody></table>
+<h3>Tokens que consume</h3><p class="dx-ref-tokens"><code>--ro-ink-10</code> <code>--ro-ink-45</code> <code>--ro-ink-55</code> <code>--ro-white</code> <code>--ro-secondary-soft</code> <code>--ro-font-mono</code> <code>--ro-shadow-sm</code></p>
+<p class="dx-ref-note">Sin JavaScript: es CSS sobre HTML nativo.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Teclado y accesibilidad">
+        <h2>Teclado y accesibilidad</h2>
+        <table class="dx-table"><thead><tr><th>Tecla</th><th>Acción</th></tr></thead><tbody><tr><td><kbd>Tab</kbd></td><td>Enfoca la fila completa (es un único enlace).</td></tr><tr><td><kbd>Enter</kbd></td><td>Navega al destino del enlace.</td></tr></tbody></table><p class="dx-ref-note">Contrato de accesibilidad: <a href="../accessibility/content-and-status.html">content-and-status</a></p><ul class="dx-ref-list"><li>Es un enlace, no un botón: usa &lt;a href&gt; con un destino real.</li><li>No dupliques el enlace dentro de la fila — un único destino por fila, igual que Offer card.</li><li>El día/mes del bloque de fecha es decorativo-redundante con la fecha completa en ro-event-card__meta; no dependas solo del bloque de fecha para transmitir cuándo es el evento.</li></ul>
+      </section>
+
+      <section class="dx-section" aria-label="Ejemplos">
+        <h2>Ejemplos</h2>
+        <div class="dx-ref-example">
+  <div class="dx-ref-example__head">Fila de evento</div>
+  <div class="dx-demo"><a class="ro-event-card" href="#">
+  <div class="ro-event-card__date">
+    <div class="ro-event-card__day">27</div>
+    <div class="ro-event-card__month">Lor</div>
+  </div>
+  <div class="ro-event-card__body">
+    <div class="ro-event-card__badges">
+      <span class="ro-badge ro-badge--soft">Lorem</span>
+      <span class="ro-badge ro-badge--soft">Ipsum</span>
+    </div>
+    <h3 class="ro-event-card__title">Lorem ipsum dolor sit amet consectetur.</h3>
+    <p class="ro-event-card__meta">Lorem ipsum · Dolor sit · Amet</p>
+    <span class="ro-event-card__cta">Lorem ipsum <svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-arrow-right"></use></svg></span>
+  </div>
+</a></div>
+  <pre class="dx-ref-code"><code>&lt;a class=&quot;ro-event-card&quot; href=&quot;#&quot;&gt;
+  &lt;div class=&quot;ro-event-card__date&quot;&gt;
+    &lt;div class=&quot;ro-event-card__day&quot;&gt;27&lt;/div&gt;
+    &lt;div class=&quot;ro-event-card__month&quot;&gt;Lor&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;ro-event-card__body&quot;&gt;
+    &lt;div class=&quot;ro-event-card__badges&quot;&gt;
+      &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Lorem&lt;/span&gt;
+      &lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Ipsum&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;h3 class=&quot;ro-event-card__title&quot;&gt;Lorem ipsum dolor sit amet consectetur.&lt;/h3&gt;
+    &lt;p class=&quot;ro-event-card__meta&quot;&gt;Lorem ipsum · Dolor sit · Amet&lt;/p&gt;
+    &lt;span class=&quot;ro-event-card__cta&quot;&gt;Lorem ipsum &lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/a&gt;</code></pre>
+</div>
+<div class="dx-ref-example">
+  <div class="dx-ref-example__head">Lista de 2 filas</div>
+  <div class="dx-demo"><div class="ro-stack ro-stack--sm" style="max-width:520px">
+  <a class="ro-event-card" href="#">
+    <div class="ro-event-card__date">
+      <div class="ro-event-card__day">14</div>
+      <div class="ro-event-card__month">Ips</div>
+    </div>
+    <div class="ro-event-card__body">
+      <div class="ro-event-card__badges"><span class="ro-badge ro-badge--soft">Dolor</span></div>
+      <h3 class="ro-event-card__title">Consectetur adipiscing elit sed do.</h3>
+      <p class="ro-event-card__meta">Ipsum dolor · Sit amet · Consectetur</p>
+      <span class="ro-event-card__cta">Lorem ipsum <svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-arrow-right"></use></svg></span>
+    </div>
+  </a>
+  <a class="ro-event-card" href="#">
+    <div class="ro-event-card__date">
+      <div class="ro-event-card__day">02</div>
+      <div class="ro-event-card__month">Dol</div>
+    </div>
+    <div class="ro-event-card__body">
+      <div class="ro-event-card__badges"><span class="ro-badge ro-badge--soft">Sit</span></div>
+      <h3 class="ro-event-card__title">Eiusmod tempor incididunt ut labore.</h3>
+      <p class="ro-event-card__meta">Dolor sit · Amet consectetur · Adipiscing</p>
+      <span class="ro-event-card__cta">Lorem ipsum <svg class="ro-icon ro-icon--xs" aria-hidden="true"><use href="#ro-i-arrow-right"></use></svg></span>
+    </div>
+  </a>
+</div></div>
+  <pre class="dx-ref-code"><code>&lt;div class=&quot;ro-stack ro-stack--sm&quot; style=&quot;max-width:520px&quot;&gt;
+  &lt;a class=&quot;ro-event-card&quot; href=&quot;#&quot;&gt;
+    &lt;div class=&quot;ro-event-card__date&quot;&gt;
+      &lt;div class=&quot;ro-event-card__day&quot;&gt;14&lt;/div&gt;
+      &lt;div class=&quot;ro-event-card__month&quot;&gt;Ips&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-event-card__body&quot;&gt;
+      &lt;div class=&quot;ro-event-card__badges&quot;&gt;&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Dolor&lt;/span&gt;&lt;/div&gt;
+      &lt;h3 class=&quot;ro-event-card__title&quot;&gt;Consectetur adipiscing elit sed do.&lt;/h3&gt;
+      &lt;p class=&quot;ro-event-card__meta&quot;&gt;Ipsum dolor · Sit amet · Consectetur&lt;/p&gt;
+      &lt;span class=&quot;ro-event-card__cta&quot;&gt;Lorem ipsum &lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+  &lt;a class=&quot;ro-event-card&quot; href=&quot;#&quot;&gt;
+    &lt;div class=&quot;ro-event-card__date&quot;&gt;
+      &lt;div class=&quot;ro-event-card__day&quot;&gt;02&lt;/div&gt;
+      &lt;div class=&quot;ro-event-card__month&quot;&gt;Dol&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ro-event-card__body&quot;&gt;
+      &lt;div class=&quot;ro-event-card__badges&quot;&gt;&lt;span class=&quot;ro-badge ro-badge--soft&quot;&gt;Sit&lt;/span&gt;&lt;/div&gt;
+      &lt;h3 class=&quot;ro-event-card__title&quot;&gt;Eiusmod tempor incididunt ut labore.&lt;/h3&gt;
+      &lt;p class=&quot;ro-event-card__meta&quot;&gt;Dolor sit · Amet consectetur · Adipiscing&lt;/p&gt;
+      &lt;span class=&quot;ro-event-card__cta&quot;&gt;Lorem ipsum &lt;svg class=&quot;ro-icon ro-icon--xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ro-i-arrow-right&quot;&gt;&lt;/use&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+</div>
+      </section>
+
+      <section class="dx-section" aria-label="Buenas prácticas">
+        <h2>Do / Don't</h2>
+        <div class="dx-ref-dodont">
+          <div class="dx-ref-do"><h3>Sí</h3><ul class="dx-ref-list"><li>Mantén el bloque de fecha a tamaño fijo para que varias filas seguidas queden alineadas.</li><li>Usa ro-badge--soft para el estado del evento — insignias de bajo énfasis, no compiten con el título.</li><li>Repite la fecha completa en ro-event-card__meta aunque ya esté el día en el bloque de fecha.</li></ul></div>
+          <div class="dx-ref-dont"><h3>No</h3><ul class="dx-ref-list"><li>No pongas un botón u otro enlace dentro de la fila — rompe la semántica de &quot;toda la fila es un enlace&quot;.</li><li>No omitas ro-event-card__meta confiando solo en el bloque de fecha: no incluye ni hora ni lugar.</li><li>No uses esta fila para una oferta con precio/CTA de conversión — para eso está Offer card.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="dx-section" aria-label="Madurez">
+        <h2>Madurez</h2>
+        <p class="dx-ref-maturity"><span class="dx-ref-badge dx-ref-badge--experimental">experimental</span> <span>Apariencia o API sin garantías completas; puede cambiar sin aviso.</span></p>
+        <p class="dx-ref-note">Criterios de promoción en el <a href="index.html#madurez">índice de referencia</a>. Cambios incompatibles en la <a href="migration.html">guía de migración</a>.</p>
+      </section>
+
+      <section class="dx-section" aria-label="Relacionados"><h2>Relacionados</h2><p class="dx-ref-related"><a href="badge.html">badge</a> · <a href="offer-card.html">offer-card</a> · <a href="list-group.html">list-group</a></p></section>
+    </main>
+  </div>
+  <script type="module" src="../assets/docs.js"></script>
+</body>
+</html>

@@ -46,8 +46,10 @@
   --ro-primary-soft: rgba(246, 240, 114, 0.18);
   --ro-secondary: #a9a0ec;
   --ro-secondary-40: rgba(169, 160, 236, 0.40);
+  --ro-secondary-featured: var(--ro-secondary-ring);
   --ro-secondary-ring: rgba(169, 160, 236, 0.25);
   --ro-secondary-soft: rgba(169, 160, 236, 0.14);
+  --ro-secondary-strong: #7c6fd6;
   --ro-secondary-tint: rgba(169, 160, 236, 0.18);
   --ro-sky: #d4e0ed;
   --ro-success: #10b981;

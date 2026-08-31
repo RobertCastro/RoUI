@@ -95,15 +95,17 @@
           <thead><tr><th>Clase</th><th>max-width</th><th>Cuándo usarla</th></tr></thead>
           <tbody>
             <tr><td><code>.ro-container--narrow</code></td><td>48rem (768px)</td><td>Formularios largos, artículos, contenido de lectura de una sola columna.</td></tr>
+            <tr><td><code>.ro-container--md</code></td><td>56rem (896px)</td><td>Perfil, settings — más ancho que un formulario, sin llegar al ancho de dashboard.</td></tr>
             <tr><td><code>.ro-container</code> (base)</td><td>80rem (1280px)</td><td>Dashboards, páginas con grid de tarjetas, el caso general.</td></tr>
-            <tr><td><code>.ro-container--wide</code></td><td>96rem (1536px)</td><td>Tablas anchas, layouts densos en datos que necesitan más espacio horizontal.</td></tr>
+            <tr><td><code>.ro-container--wide</code></td><td>90rem (1440px)</td><td>Tablas anchas, listados y grillas densas que necesitan más espacio horizontal.</td></tr>
             <tr><td><code>.ro-container--fluid</code></td><td>ninguno (100%)</td><td>Cuando otro elemento (una tabla, un editor) ya gestiona su propio scroll horizontal.</td></tr>
           </tbody>
         </table>
         <div style="margin-top:14px">
-          <div class="dx-widthbar-row"><span class="dx-code">--narrow · 48rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:50%"></div></div></div>
-          <div class="dx-widthbar-row"><span class="dx-code">(base) · 80rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:83%"></div></div></div>
-          <div class="dx-widthbar-row"><span class="dx-code">--wide · 96rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:100%"></div></div></div>
+          <div class="dx-widthbar-row"><span class="dx-code">--narrow · 48rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:53%"></div></div></div>
+          <div class="dx-widthbar-row"><span class="dx-code">--md · 56rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:62%"></div></div></div>
+          <div class="dx-widthbar-row"><span class="dx-code">(base) · 80rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:89%"></div></div></div>
+          <div class="dx-widthbar-row"><span class="dx-code">--wide · 90rem</span><div class="dx-widthbar-track"><div class="dx-widthbar" style="width:100%"></div></div></div>
         </div>
       </div>
 
@@ -236,6 +238,16 @@
           página ya implementan el patrón completo (nav principal + nav del rail dentro del drawer); úsalas
           como referencia antes de construir una página nueva con rail. Contrato de accesibilidad:
           <a href="accessibility/dialog-drawer.html">dialog-drawer</a>.
+        </p>
+
+        <p class="dx-sub" style="margin-top:24px">Variante <span class="dx-code">--panel</span></p>
+        <p style="color:var(--ro-ink-60);font-size:14px;max-width:70ch">
+          Por defecto el rail llega al borde del viewport (por eso <span class="dx-code">.ro-rail--left</span>/
+          <span class="dx-code">--right</span> solo tienen borde de un lado). Cuando el diseño pide un panel
+          flotante en vez de un rail pegado al borde, sumá <span class="dx-code">.ro-rail--panel</span>: agrega
+          margen, borde completo y <span class="dx-code">border-radius</span>, y ajusta el alto para compensar
+          el margen. Ejemplo real: <a href="templates/module-3col.html">el rail derecho de la plantilla de
+          módulo</a>.
         </p>
       </div>
     </main>

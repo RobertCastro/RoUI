@@ -1,0 +1,127 @@
+{
+  "name": "offer-card",
+  "title": "Offer card",
+  "group": "Marketing y comercial",
+  "maturity": "experimental",
+  "summary": "Tarjeta de oferta con header de color, icono junto al título, insignias, y footer con precio/estado y llamada a la acción.",
+  "whenToUse": [
+    "Catálogos o grillas de ofertas (planes, productos, promociones) donde cada tarjeta lleva a una página de detalle o conversión.",
+    "Cuando necesitas distinguir visualmente el estado de la oferta (destacada, ya adquirida) sin depender solo del texto."
+  ],
+  "whenNotToUse": [
+    "Para una lista de resultados simple sin footer de precio/estado propio: usa List group.",
+    "Para una tarjeta genérica de contenido sin CTA de conversión: usa Card."
+  ],
+  "anatomy": {
+    "html": "<a class=\"ro-offer-card ro-offer-card--dark\" href=\"#\">\n  <div class=\"ro-offer-card__header\">\n    <div class=\"ro-offer-card__top\">\n      <span class=\"ro-offer-card__icon\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></span>\n      <h3 class=\"ro-offer-card__title\">Lorem Ipsum Dolor</h3>\n    </div>\n    <div class=\"ro-offer-card__badges\"><span class=\"ro-badge ro-badge--accent\">Lorem</span></div>\n    <p class=\"ro-offer-card__meta\">Lorem ipsum dolor sit amet</p>\n    <p class=\"ro-offer-card__desc\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>\n    <p class=\"ro-offer-card__highlights\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-check\"></use></svg> Lorem ipsum dolor sit</p>\n  </div>\n  <div class=\"ro-offer-card__footer\">\n    <div>\n      <div class=\"ro-offer-card__price\">$199</div>\n      <div class=\"ro-offer-card__note\">Lorem ipsum</div>\n    </div>\n    <span class=\"ro-offer-card__cta\">Lorem <svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-right\"></use></svg></span>\n  </div>\n</a>",
+    "notes": [
+      "Toda la tarjeta es un único <a>: el nombre accesible sale del texto visible (título + meta + descripción + precio + CTA), no hace falta aria-label si ese texto ya identifica la oferta con claridad.",
+      "ro-offer-card__top pone el icono junto al título en la misma fila; las insignias van debajo, en su propia fila.",
+      "ro-offer-card__header lleva el color (--dark o --accent); ro-offer-card__footer siempre queda en blanco — la separación visual es el cambio de fondo, no un borde.",
+      "ro-offer-card__icon cambia de color según la variante (amarillo sobre --dark, oscuro sobre --accent) para mantener contraste."
+    ]
+  },
+  "api": {
+    "classes": [
+      {
+        "name": "ro-offer-card",
+        "desc": "Contenedor: borde, radio banner (22px), overflow hidden, fondo blanco."
+      },
+      { "name": "ro-offer-card--dark", "desc": "Header con fondo --ro-ink y texto claro." },
+      {
+        "name": "ro-offer-card--accent",
+        "desc": "Header con fondo --ro-secondary y texto oscuro."
+      },
+      {
+        "name": "ro-offer-card__header",
+        "desc": "Bloque superior coloreado: icono+título, insignias, meta, descripción, línea de highlights."
+      },
+      { "name": "ro-offer-card__top", "desc": "Fila que alinea el icono junto al título." },
+      {
+        "name": "ro-offer-card__icon",
+        "desc": "Contenedor cuadrado redondeado (34px) para un icono o logo."
+      },
+      {
+        "name": "ro-offer-card__title",
+        "desc": "Título de la oferta, en la misma fila que el icono."
+      },
+      {
+        "name": "ro-offer-card__badges",
+        "desc": "Fila de insignias (usa ro-badge/ro-badge--accent/ro-badge--soft)."
+      },
+      {
+        "name": "ro-offer-card__meta",
+        "desc": "Línea secundaria corta (categoría, vigencia, lo que aplique)."
+      },
+      { "name": "ro-offer-card__desc", "desc": "Descripción corta (2-3 líneas)." },
+      {
+        "name": "ro-offer-card__highlights",
+        "desc": "Línea con icono de check + texto (beneficios, alcance de la oferta)."
+      },
+      {
+        "name": "ro-offer-card__footer",
+        "desc": "Bloque inferior blanco: precio/estado + CTA, siempre al fondo (margin-top: auto)."
+      },
+      { "name": "ro-offer-card__price", "desc": "Precio o valor destacado." },
+      {
+        "name": "ro-offer-card__price--active",
+        "desc": "Variante del precio para el estado \"ya adquirida\": icono + texto en --ro-success en vez de precio."
+      },
+      { "name": "ro-offer-card__note", "desc": "Texto secundario bajo el precio." },
+      {
+        "name": "ro-offer-card__cta",
+        "desc": "Texto de la llamada a la acción, con icono de flecha."
+      }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-radius-banner",
+      "--ro-ink",
+      "--ro-ink-10",
+      "--ro-ink-50",
+      "--ro-ink-70",
+      "--ro-white",
+      "--ro-primary",
+      "--ro-secondary",
+      "--ro-success",
+      "--ro-on-dark-72",
+      "--ro-shadow-sm"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [
+      ["Tab", "Enfoca la tarjeta completa (es un único enlace)."],
+      ["Enter", "Navega al destino del enlace."]
+    ],
+    "notes": [
+      "Es un enlace, no un botón: usa <a href> con un destino real, nunca un <div> con onClick.",
+      "No dupliques el enlace dentro de la tarjeta (por ejemplo un botón adicional) — un enlace de card con controles interactivos anidados rompe el modelo de un único destino por tarjeta.",
+      "El estado \"activo/adquirido\" (ro-offer-card__price--active) no debe comunicarse solo con el color verde: siempre acompaña el icono de check con texto."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Header oscuro, precio",
+      "html": "<a class=\"ro-offer-card ro-offer-card--dark\" href=\"#\" style=\"max-width:300px\">\n  <div class=\"ro-offer-card__header\">\n    <div class=\"ro-offer-card__top\">\n      <span class=\"ro-offer-card__icon\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></span>\n      <h3 class=\"ro-offer-card__title\">Lorem Ipsum Dolor</h3>\n    </div>\n    <div class=\"ro-offer-card__badges\">\n      <span class=\"ro-badge ro-badge--accent\">Lorem</span>\n      <span class=\"ro-badge ro-badge--accent\">Ipsum</span>\n    </div>\n    <p class=\"ro-offer-card__meta\">Lorem ipsum dolor sit amet</p>\n    <p class=\"ro-offer-card__desc\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>\n    <p class=\"ro-offer-card__highlights\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-check\"></use></svg> Lorem ipsum dolor sit</p>\n  </div>\n  <div class=\"ro-offer-card__footer\">\n    <div>\n      <div class=\"ro-offer-card__price\">$199</div>\n      <div class=\"ro-offer-card__note\">Lorem ipsum</div>\n    </div>\n    <span class=\"ro-offer-card__cta\">Lorem <svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-right\"></use></svg></span>\n  </div>\n</a>"
+    },
+    {
+      "title": "Header --accent, estado activo",
+      "html": "<a class=\"ro-offer-card ro-offer-card--accent\" href=\"#\" style=\"max-width:300px\">\n  <div class=\"ro-offer-card__header\">\n    <div class=\"ro-offer-card__top\">\n      <span class=\"ro-offer-card__icon\"><svg class=\"ro-icon ro-icon--sm\" aria-hidden=\"true\"><use href=\"#ro-i-star\"></use></svg></span>\n      <h3 class=\"ro-offer-card__title\">Ipsum Dolor Sit</h3>\n    </div>\n    <div class=\"ro-offer-card__badges\">\n      <span class=\"ro-badge ro-badge--accent\">Dolor</span>\n      <span class=\"ro-badge ro-badge--soft\">Sit</span>\n    </div>\n    <p class=\"ro-offer-card__meta\">Consectetur adipiscing elit</p>\n    <p class=\"ro-offer-card__desc\">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>\n    <p class=\"ro-offer-card__highlights\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-check\"></use></svg> Consectetur adipiscing</p>\n  </div>\n  <div class=\"ro-offer-card__footer\">\n    <div>\n      <div class=\"ro-offer-card__price ro-offer-card__price--active\"><svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-check\"></use></svg> Ipsum</div>\n      <div class=\"ro-offer-card__note\">Dolor sit amet</div>\n    </div>\n    <span class=\"ro-offer-card__cta\">Ipsum <svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-right\"></use></svg></span>\n  </div>\n</a>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Usa --dark o --accent según el contraste que necesites con el resto de la grilla; ambos ya garantizan contraste AA sobre su propio texto.",
+      "Combina ro-badge--accent (énfasis) con ro-badge--soft (secundario) en vez de dos insignias con el mismo peso visual.",
+      "Mantén la descripción a 2-3 líneas: es un resumen, no el contenido completo de la oferta."
+    ],
+    "dont": [
+      "No pongas un botón u otro enlace dentro de la tarjeta — rompe la semántica de \"toda la tarjeta es un enlace\".",
+      "No uses el color como único indicador del estado activo: acompaña siempre con icono + texto.",
+      "No omitas ro-offer-card__footer: sin precio/estado ni CTA, usa Card en vez de Offer card."
+    ]
+  },
+  "related": ["badge", "card", "list-group"]
+}

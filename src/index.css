@@ -26,6 +26,8 @@
 @import "./components/badge.css" layer(roui.components);
 @import "./components/avatar.css" layer(roui.components);
 @import "./components/card.css" layer(roui.components);
+@import "./components/offer-card.css" layer(roui.components);
+@import "./components/event-card.css" layer(roui.components);
 @import "./components/form.css" layer(roui.components);
 @import "./components/nav.css" layer(roui.components);
 @import "./components/header.css" layer(roui.components);

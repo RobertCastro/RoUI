@@ -19,6 +19,8 @@
   padding: 2rem 2.5rem;
 }
 .ro-card-dark .ro-body { color: var(--ro-card-inverse-muted); }
+/* Variante para medios grandes (video, imagen hero): radio mayor, sin padding, sombra flotante. */
+.ro-card-dark--hero { border-radius: var(--ro-radius-3xl); padding: 0; box-shadow: var(--ro-shadow-hero); }
 
 .ro-card-row {
   display: flex; align-items: center; gap: var(--ro-space-4);

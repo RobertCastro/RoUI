@@ -37,7 +37,16 @@
           <div class="dx-swatch"><div class="chip" style="background:var(--ro-gray)"></div><div class="meta"><b>gray</b><code>#d9e3e3</code></div></div>
           <div class="dx-swatch"><div class="chip" style="background:var(--ro-sky)"></div><div class="meta"><b>sky</b><code>#d4e0ed</code></div></div>
           <div class="dx-swatch"><div class="chip" style="background:var(--ro-ink-soft);border-bottom:1px solid var(--ro-ink-10)"></div><div class="meta"><b>ink-soft</b><code>#f7f7f8</code></div></div>
+          <div class="dx-swatch"><div class="chip" style="background:var(--ro-secondary-strong)"></div><div class="meta"><b>secondary-strong</b><code>#7c6fd6</code></div></div>
         </div>
+        <p class="dx-sub" style="margin-top:14px">Tintes de secondary</p>
+        <div class="dx-demo" style="gap:0">
+          <div style="flex:1;height:48px;background:var(--ro-secondary-soft)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-secondary-tint)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-secondary-featured)"></div>
+          <div style="flex:1;height:48px;background:var(--ro-secondary-40)"></div>
+        </div>
+        <p style="color:var(--ro-ink-60);font-size:14px;margin-top:8px"><code>-soft</code> (14%) para fondos de sección amplios; <code>-tint</code> (18%) para resaltar celdas/rangos; <code>-featured</code> (25%, alias de <code>-ring</code>) para bloques destacados tipo banner/promo; <code>-40</code> para overlays con más contraste. <code>secondary-strong</code> (sólido, más oscuro que <code>secondary</code>) para elementos que necesitan contraste sobre un tinte claro — ej. el relleno de una barra de progreso.</p>
       </div>
 
       <div class="dx-section">
@@ -82,6 +91,7 @@
             <tr><td><code>--ro-space-8</code></td><td>32px</td><td><div style="height:14px;width:32px;background:var(--ro-secondary)"></div></td></tr>
             <tr><td><code>--ro-radius-lg</code></td><td>8px</td><td><div style="height:28px;width:48px;background:var(--ro-ink-06);border-radius:8px"></div></td></tr>
             <tr><td><code>--ro-radius-card</code></td><td>14px</td><td><div style="height:28px;width:48px;background:var(--ro-ink-06);border-radius:14px"></div></td></tr>
+            <tr><td><code>--ro-radius-card-lg</code></td><td>20px</td><td><div style="height:28px;width:48px;background:var(--ro-ink-06);border-radius:20px"></div></td></tr>
             <tr><td><code>--ro-radius-full</code></td><td>9999px</td><td><div style="height:28px;width:48px;background:var(--ro-ink-06);border-radius:9999px"></div></td></tr>
           </tbody>
         </table>
@@ -97,7 +107,10 @@
           <div style="text-align:center"><div style="width:72px;height:72px;background:var(--ro-white);border-radius:12px;box-shadow:var(--ro-shadow-md)"></div><code style="display:block;margin-top:12px">--ro-shadow-md</code></div>
           <div style="text-align:center"><div style="width:72px;height:72px;background:var(--ro-white);border-radius:12px;box-shadow:var(--ro-shadow-lg)"></div><code style="display:block;margin-top:12px">--ro-shadow-lg</code></div>
           <div style="text-align:center"><div style="width:72px;height:72px;background:var(--ro-white);border-radius:12px;box-shadow:var(--ro-shadow-xl)"></div><code style="display:block;margin-top:12px">--ro-shadow-xl</code></div>
+          <div style="text-align:center"><div style="width:72px;height:72px;background:var(--ro-ink);border-radius:24px;box-shadow:var(--ro-shadow-hero)"></div><code style="display:block;margin-top:12px">--ro-shadow-hero</code></div>
         </div>
+        <p class="dx-sub">Uso de <code>--ro-shadow-hero</code></p>
+        <p style="color:var(--ro-ink-60);font-size:14px">Para bloques de medios grandes (video, imagen destacada) que flotan sobre el fondo — más offset-Y y blur que <code>xl</code>, menos opacidad. Aplicalo con <code>.ro-card-dark--hero</code> (radio 24px, sin padding, esta sombra).</p>
       </div>
 
       <div class="dx-section">

@@ -1,0 +1,98 @@
+{
+  "name": "event-card",
+  "title": "Event card",
+  "group": "Marketing y comercial",
+  "maturity": "experimental",
+  "summary": "Fila de evento: bloque de fecha destacado, insignias de estado, título y meta con CTA de detalle.",
+  "whenToUse": [
+    "Listados de eventos, sesiones o webinars donde cada fila lleva a una página de detalle.",
+    "Cuando el día es el dato que más rápido necesita escanear quien lee la lista."
+  ],
+  "whenNotToUse": [
+    "Para una grilla de tarjetas con precio/CTA de conversión: usa Offer card.",
+    "Para una lista simple sin bloque de fecha propio: usa List group."
+  ],
+  "anatomy": {
+    "html": "<a class=\"ro-event-card\" href=\"#\">\n  <div class=\"ro-event-card__date\">\n    <div class=\"ro-event-card__day\">27</div>\n    <div class=\"ro-event-card__month\">Lor</div>\n  </div>\n  <div class=\"ro-event-card__body\">\n    <div class=\"ro-event-card__badges\">\n      <span class=\"ro-badge ro-badge--soft\">Lorem</span>\n      <span class=\"ro-badge ro-badge--soft\">Ipsum</span>\n    </div>\n    <h3 class=\"ro-event-card__title\">Lorem ipsum dolor sit amet consectetur.</h3>\n    <p class=\"ro-event-card__meta\">Lorem ipsum · Dolor sit · Amet</p>\n    <span class=\"ro-event-card__cta\">Lorem ipsum <svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-right\"></use></svg></span>\n  </div>\n</a>",
+    "notes": [
+      "Toda la fila es un único <a>: el nombre accesible sale del texto visible (fecha + insignias + título + meta + CTA).",
+      "ro-event-card__date es un bloque de tamaño fijo (58×58) para que la fecha quede alineada entre todas las filas de una lista, sin importar el largo del título.",
+      "ro-event-card__meta usa la fuente monoespaciada del sistema (--ro-font-mono), igual que otras líneas de metadatos cortos en RoUI.",
+      "El color del bloque de fecha (--ro-secondary-soft) es el valor por defecto; si necesitas codificar categorías por color, sobreescribe background/color de ro-event-card__date por instancia."
+    ]
+  },
+  "api": {
+    "classes": [
+      {
+        "name": "ro-event-card",
+        "desc": "Contenedor: fila flex, borde, radio 18px, fondo blanco."
+      },
+      {
+        "name": "ro-event-card__date",
+        "desc": "Bloque de fecha de tamaño fijo (58×58), fondo --ro-secondary-soft."
+      },
+      { "name": "ro-event-card__day", "desc": "Número de día, grande y en negrita." },
+      { "name": "ro-event-card__month", "desc": "Abreviatura corta en mayúsculas bajo el día." },
+      { "name": "ro-event-card__body", "desc": "Columna con insignias, título, meta y CTA." },
+      {
+        "name": "ro-event-card__badges",
+        "desc": "Fila de insignias de estado (usa ro-badge--soft)."
+      },
+      { "name": "ro-event-card__title", "desc": "Título del evento." },
+      {
+        "name": "ro-event-card__meta",
+        "desc": "Línea de metadatos (fecha completa, hora, lugar) en fuente monoespaciada."
+      },
+      {
+        "name": "ro-event-card__cta",
+        "desc": "Texto de la llamada a la acción, con icono de flecha."
+      }
+    ],
+    "data": [],
+    "tokens": [
+      "--ro-ink-10",
+      "--ro-ink-45",
+      "--ro-ink-55",
+      "--ro-white",
+      "--ro-secondary-soft",
+      "--ro-font-mono",
+      "--ro-shadow-sm"
+    ],
+    "primitive": null
+  },
+  "a11y": {
+    "contract": "accessibility/content-and-status.md",
+    "keyboard": [
+      ["Tab", "Enfoca la fila completa (es un único enlace)."],
+      ["Enter", "Navega al destino del enlace."]
+    ],
+    "notes": [
+      "Es un enlace, no un botón: usa <a href> con un destino real.",
+      "No dupliques el enlace dentro de la fila — un único destino por fila, igual que Offer card.",
+      "El día/mes del bloque de fecha es decorativo-redundante con la fecha completa en ro-event-card__meta; no dependas solo del bloque de fecha para transmitir cuándo es el evento."
+    ]
+  },
+  "examples": [
+    {
+      "title": "Fila de evento",
+      "html": "<a class=\"ro-event-card\" href=\"#\">\n  <div class=\"ro-event-card__date\">\n    <div class=\"ro-event-card__day\">27</div>\n    <div class=\"ro-event-card__month\">Lor</div>\n  </div>\n  <div class=\"ro-event-card__body\">\n    <div class=\"ro-event-card__badges\">\n      <span class=\"ro-badge ro-badge--soft\">Lorem</span>\n      <span class=\"ro-badge ro-badge--soft\">Ipsum</span>\n    </div>\n    <h3 class=\"ro-event-card__title\">Lorem ipsum dolor sit amet consectetur.</h3>\n    <p class=\"ro-event-card__meta\">Lorem ipsum · Dolor sit · Amet</p>\n    <span class=\"ro-event-card__cta\">Lorem ipsum <svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-right\"></use></svg></span>\n  </div>\n</a>"
+    },
+    {
+      "title": "Lista de 2 filas",
+      "html": "<div class=\"ro-stack ro-stack--sm\" style=\"max-width:520px\">\n  <a class=\"ro-event-card\" href=\"#\">\n    <div class=\"ro-event-card__date\">\n      <div class=\"ro-event-card__day\">14</div>\n      <div class=\"ro-event-card__month\">Ips</div>\n    </div>\n    <div class=\"ro-event-card__body\">\n      <div class=\"ro-event-card__badges\"><span class=\"ro-badge ro-badge--soft\">Dolor</span></div>\n      <h3 class=\"ro-event-card__title\">Consectetur adipiscing elit sed do.</h3>\n      <p class=\"ro-event-card__meta\">Ipsum dolor · Sit amet · Consectetur</p>\n      <span class=\"ro-event-card__cta\">Lorem ipsum <svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-right\"></use></svg></span>\n    </div>\n  </a>\n  <a class=\"ro-event-card\" href=\"#\">\n    <div class=\"ro-event-card__date\">\n      <div class=\"ro-event-card__day\">02</div>\n      <div class=\"ro-event-card__month\">Dol</div>\n    </div>\n    <div class=\"ro-event-card__body\">\n      <div class=\"ro-event-card__badges\"><span class=\"ro-badge ro-badge--soft\">Sit</span></div>\n      <h3 class=\"ro-event-card__title\">Eiusmod tempor incididunt ut labore.</h3>\n      <p class=\"ro-event-card__meta\">Dolor sit · Amet consectetur · Adipiscing</p>\n      <span class=\"ro-event-card__cta\">Lorem ipsum <svg class=\"ro-icon ro-icon--xs\" aria-hidden=\"true\"><use href=\"#ro-i-arrow-right\"></use></svg></span>\n    </div>\n  </a>\n</div>"
+    }
+  ],
+  "dodont": {
+    "do": [
+      "Mantén el bloque de fecha a tamaño fijo para que varias filas seguidas queden alineadas.",
+      "Usa ro-badge--soft para el estado del evento — insignias de bajo énfasis, no compiten con el título.",
+      "Repite la fecha completa en ro-event-card__meta aunque ya esté el día en el bloque de fecha."
+    ],
+    "dont": [
+      "No pongas un botón u otro enlace dentro de la fila — rompe la semántica de \"toda la fila es un enlace\".",
+      "No omitas ro-event-card__meta confiando solo en el bloque de fecha: no incluye ni hora ni lugar.",
+      "No uses esta fila para una oferta con precio/CTA de conversión — para eso está Offer card."
+    ]
+  },
+  "related": ["badge", "offer-card", "list-group"]
+}

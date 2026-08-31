@@ -39,8 +39,24 @@ migración real de la prioridad 1 de este documento (valores que calzan con
 padding/gap). El valor de `.ro-input-group` pasa de `12px` a `14px` de
 padding horizontal (mismo token que `.ro-input-box`) — cambio visual menor y
 deliberado, no un ajuste por accidente.
+382 → 388: componente nuevo `course-card` (tarjeta de oferta/curso). Geometría
+local de `.ro-course-card__icon` (`34px`/`34px`/`10px`, contenedor de icono
+sin equivalente exacto en la escala de radios) y dos `margin-top: 2px` de
+ajuste fino en `__meta`/`__builders` — misma excepción ya documentada
+("medidas geométricas locales para iconos"). El resto del componente (color,
+radio de tarjeta, tipografía) usa tokens existentes sin excepción.
+388 → 387: el componente se renombró a `offer-card` (genérico, sin
+referencias a "curso") y se ajustó el layout (icono junto al título, no
+apilado) a pedido del usuario; `__meta` pasó de `margin-top: 2px` a
+`var(--ro-space-2)` (token), quedando un solo literal de 2px en `__note`.
+387 → 393: componente nuevo `event-card` (fila de evento con bloque de
+fecha). Geometría local sin equivalente exacto en la escala: radio de
+tarjeta `18px`, bloque de fecha `58px`×`58px` con radio `15px`, y
+`margin-top: 2px` de `__meta` — misma excepción ya documentada. Color y
+tipografía usan tokens existentes (`--ro-secondary-soft`, `--ro-ink-*`,
+`--ro-font-mono`) sin excepción.
 
-Huella actual: `6fbc2b308c92ee4ad3dc60f4cb21ea7e852d90d747d0b8540d6616531267be31`
+Huella actual: `13c3085f4b76ecb338ae7cd20c897927603b2352db82bdca0fc790bee9d4ff03`
 (0 colores, 382 px).
 
 Excepciones permitidas actualmente:
