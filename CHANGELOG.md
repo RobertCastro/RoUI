@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0
+
+### Minor Changes
+
+- fa371c0: Nuevos tokens `--ro-content-md`/`.ro-container--md`, `--ro-radius-card-lg`, `--ro-secondary-featured`, `--ro-secondary-strong` y `--ro-shadow-hero`; nueva variante de layout `.ro-rail--panel` (rail flotante con gutter y borde completo) y `.ro-card-dark--hero` para bloques de media grandes. `--ro-content-wide` recalibrado de 96rem a 90rem.
+- fa371c0: Nuevos componentes `.ro-offer-card` (tarjeta de oferta genérica, variantes `--dark`/`--accent`) y `.ro-event-card` (fila de evento: bloque de fecha + insignias + título + meta), más `.ro-badge--accent` reutilizable.
+- fa371c0: Soporte para subitems en navegación de sidebar: `.ro-nav-item__chevron`, `.ro-nav-item__sub` y `.ro-nav-item--sub`, pensados para combinarse con `disclosure-controller` (mismo primitivo que Accordion) sobre un `.ro-nav-item` que actúa como trigger.
+
+### Patch Changes
+
+- fa371c0: Corrige el padding de `.ro-context-bar` en `≥640px` de `2rem` a `1.5rem`, alineado al valor real de referencia.
+
 ## 1.2.0
 
 ### Minor Changes
