@@ -35,7 +35,7 @@ jobs:
       - name: Generar SBOM (produccion)
         run: npm run sbom
       - name: Subir SBOM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sbom
           path: sbom.json
